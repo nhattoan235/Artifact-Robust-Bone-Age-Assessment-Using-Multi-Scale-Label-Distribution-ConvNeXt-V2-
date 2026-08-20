@@ -1,1 +1,0 @@
-?? models/tao_sinh_anh_x_ray_hand/

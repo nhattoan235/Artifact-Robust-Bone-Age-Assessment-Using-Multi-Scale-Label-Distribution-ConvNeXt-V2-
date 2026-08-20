@@ -54,3 +54,13 @@
 ## Quy ước cập nhật
 
 Mỗi lần chạy mới phải ghi: ngày, phase/run ID, commit/code hash, config hash, data manifest hash, seed, GPU, checkpoint cuối, MAE/RMSE/CI, cảnh báo, quyết định và đường dẫn artifact. Không xóa artifact cũ; nếu dọn Drive, tải archive và ghi hash trước.
+
+## 2026-08-20 – P10 B0 đang chạy: tái lập recipe P2
+
+- Đã tạo config `p1_baseline/configs/p10_b0_p2_control.toml` với đúng recipe P2
+  đã thắng trước đây: ConvNeXt-Tiny 512, sex embedding, light augmentation,
+  SmoothL1 (beta 3 tháng), LR 2e-4, WD 0,05, dropout 0,2, 35 epoch.
+- Preflight PASS và smoke interruption → resume PASS; không có đường dẫn test.
+- Run đang chạy tại `p9_preprocessing/runs/P10_B0_P2_CONTROL_CONVNEXT_TINY_SEED42`.
+- Mục tiêu là xác nhận pipeline P9 không làm thay đổi baseline trước khi thử
+  augmentation Deeplasia mức vừa và preprocessing từng biến một.
