@@ -1,0 +1,86 @@
+{
+  "status": "PASS",
+  "protocol": "fixed 5-fold equal-weight ensemble; no test tuning",
+  "test_used_for_model_selection": false,
+  "test_images": 200,
+  "ground_truth_sha256": "69e6c73a9f2c5c2f90b6171d8c30f149c04a87f06b79641a0254d17cd40c9743",
+  "fold_metrics": [
+    {
+      "count": 200,
+      "mae": 5.119659459686279,
+      "rmse": 6.7136937431417305,
+      "median_ae": 4.143964080810548,
+      "accuracy_6m": 0.655,
+      "accuracy_12m": 0.945,
+      "accuracy_18m": 0.985,
+      "prediction_mean": 132.83887285232544,
+      "prediction_std": 42.19892564683911
+    },
+    {
+      "count": 200,
+      "mae": 5.318364292907716,
+      "rmse": 6.849768339269677,
+      "median_ae": 4.465191650390622,
+      "accuracy_6m": 0.655,
+      "accuracy_12m": 0.91,
+      "accuracy_18m": 0.99,
+      "prediction_mean": 132.3861552810669,
+      "prediction_std": 41.21304451828582
+    },
+    {
+      "count": 200,
+      "mae": 5.188305963134765,
+      "rmse": 6.799976325009726,
+      "median_ae": 3.965996398925789,
+      "accuracy_6m": 0.665,
+      "accuracy_12m": 0.92,
+      "accuracy_18m": 0.99,
+      "prediction_mean": 133.05361991882324,
+      "prediction_std": 41.94983557030347
+    },
+    {
+      "count": 200,
+      "mae": 4.822036972045899,
+      "rmse": 6.193649319708267,
+      "median_ae": 3.908928527832032,
+      "accuracy_6m": 0.68,
+      "accuracy_12m": 0.93,
+      "accuracy_18m": 0.995,
+      "prediction_mean": 132.41875686645508,
+      "prediction_std": 40.91240221630349
+    },
+    {
+      "count": 200,
+      "mae": 5.279185823059082,
+      "rmse": 6.668974676428202,
+      "median_ae": 4.32744232177734,
+      "accuracy_6m": 0.66,
+      "accuracy_12m": 0.905,
+      "accuracy_18m": 0.995,
+      "prediction_mean": 133.02743015289306,
+      "prediction_std": 40.58592471624432
+    }
+  ],
+  "ensemble_metrics": {
+    "count": 200,
+    "mae": 4.730321210479737,
+    "rmse": 6.028745009417094,
+    "median_ae": 4.133362731933602,
+    "accuracy_6m": 0.7,
+    "accuracy_12m": 0.94,
+    "accuracy_18m": 1.0,
+    "prediction_mean": 132.74496701431272,
+    "prediction_std": 41.2823780004274
+  },
+  "ensemble_bootstrap_95_ci_mae": [
+    4.2224750963974005,
+    5.263708837490082
+  ],
+  "bootstrap_samples": 10000,
+  "bootstrap_seed": 2026,
+  "benchmarks": {
+    "deeplasia_rsna_test_mae_months": 3.87,
+    "bram_2025_rsna_test_mae_months": 3.68,
+    "note": "Benchmarks are reported literature values on the same nominal 200-image RSNA test; compare protocol details and uncertainty."
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "status": "PASS",
+  "p1_complete": true,
+  "scope": "Trainer baseline đã xây dựng và xác minh; chưa chạy huấn luyện A0 dài",
+  "baseline": {
+    "architecture": "convnext_tiny",
+    "pretrained": "ImageNet-1K V1",
+    "image_size": 512,
+    "sex_embedding_dim": 16,
+    "head": "direct regression",
+    "augmentation": "none",
+    "main_config_hash": "1f55956cc0f8eede0a9752b46d5ce38ff07e72142242c3046676c562649adea0"
+  },
+  "data": {
+    "train_count": 12611,
+    "validation_count": 1425,
+    "train_manifest_sha256": "7328667e6822ab074d442155e33eba89606861bb13bbf804be8a1138c78f5285",
+    "validation_manifest_sha256": "f650a20432b557405035d12c52716a6c40fdf20e1343ac3ad0cfb7cd8db21631",
+    "test_ground_truth_accessed": false
+  },
+  "checks": {
+    "unit_tests_6_of_6": true,
+    "preflight_real_image_512": true,
+    "pretrained_forward": true,
+    "stop_resume_completed": true,
+    "resumed_vs_uninterrupted_model_bitwise_equal": true,
+    "resumed_vs_uninterrupted_training_state_equal": true,
+    "checkpoint_contract_complete": true,
+    "checkpoint_reload_new_process": true,
+    "all_checkpoint_model_tensors_finite": true,
+    "gpu_forward_backward_amp": true,
+    "logs_and_predictions_created": true,
+    "no_locked_test_path_in_source_or_config": true
+  },
+  "gpu_smoke": {
+    "run_id": "P1_GPU_SMOKE_CONVNEXT512_B4_VERIFIED",
+    "gpu": "NVIDIA GeForce RTX 4050 Laptop GPU",
+    "torch": "2.7.1+cu128",
+    "amp_dtype": "bfloat16",
+    "physical_batch_size": 4,
+    "gradient_accumulation": 2,
+    "peak_reserved_vram_mib": 1570.0,
+    "warnings": 0,
+    "skipped_batches": 0,
+    "note": "MAE của smoke test 8 ảnh không có giá trị đánh giá khoa học"
+  },
+  "stability_finding": {
+    "initial_issue": "FP16 mặc định tạo gradient Inf tại optimizer step đầu tiên",
+    "safety_response": "Cảnh báo đỏ dừng trước khi cập nhật trọng số",
+    "resolution": "AMP auto ưu tiên BF16 khi GPU hỗ trợ; fallback FP16 dùng init scale 4096",
+    "retest": "PASS"
+  },
+  "code_version": "2cb4370325ab73d43816e406f15d4962d54f70e9f94f9c08fdfee7d9afdc3f33",
+  "next_allowed_phase": "P2: chạy A0-A2 và khóa augmentation"
+}

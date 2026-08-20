@@ -1,0 +1,36 @@
+{
+  "context_version": "2026-08-19",
+  "read_first": "AI_Context/00_START_HERE.md",
+  "read_order": [
+    "AI_Context/01_STATUS_RESULTS.md",
+    "AI_Context/02_METHOD_HISTORY.md",
+    "AI_Context/03_DATA_PROTOCOL.md",
+    "AI_Context/04_NEXT_P9_PLAN.md",
+    "AI_Context/05_FILE_MAP.md",
+    "AI_Context/CHANGELOG.md"
+  ],
+  "current_phase": "P8 complete; P9 not started",
+  "model_locked_for_p7": "ConvNeXt-Tiny + sex embedding + direct regression + A2 augmentation + 512px",
+  "p7_oof": {
+    "status": "PASS",
+    "rows": 14036,
+    "mae_months": 6.3166912053853705,
+    "bootstrap_95_ci": [6.224638314300129, 6.41132660064306],
+    "test_used_for_selection": false
+  },
+  "p8_test": {
+    "status": "PASS_TECHNICAL",
+    "images": 200,
+    "mae_months": 4.730321210479737,
+    "bootstrap_95_ci": [4.2224750963974, 5.263708837490082],
+    "test_used_for_selection": false,
+    "test_ground_truth_has_been_read": true
+  },
+  "benchmarks_months": {"bram_2025": 3.68, "deeplasia_2024": 3.87},
+  "next_action": "P9 Bram-faithful preprocessing/augmentation reproduction; select only with OOF, then seek untouched external hold-out",
+  "do_not": [
+    "Do not select P9 using RSNA test labels",
+    "Do not overwrite completed P7/P8 artifacts",
+    "Do not claim superiority from P8"
+  ]
+}

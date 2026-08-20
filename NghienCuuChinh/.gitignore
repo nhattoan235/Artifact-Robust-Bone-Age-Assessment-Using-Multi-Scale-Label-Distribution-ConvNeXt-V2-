@@ -1,17 +1,7 @@
-# Ignore other folders in parent workspace
-/Dataset/
-/HuongMoi/
-/NguyenNhatToan_docs/
-/doan_totnghiep/
-/p7_final_fixed_v2/
-/*.json
-/*.docx
-/*.zip
-
 # Byte-compiled / Python artifacts
 __pycache__/
 *.py[cod]
-*.class
+*$py.class
 *.pyc
 *.pyo
 *.pyd
@@ -67,8 +57,8 @@ checkpoint-*
 !**/images/*.png
 
 # Specific Output directories
-NghienCuuChinh/p3_preprocessing/outputs/
-NghienCuuChinh/p9_preprocessing/outputs/
+p3_preprocessing/outputs/
+p9_preprocessing/outputs/
 
 # Archives & Large Files
 *.zip

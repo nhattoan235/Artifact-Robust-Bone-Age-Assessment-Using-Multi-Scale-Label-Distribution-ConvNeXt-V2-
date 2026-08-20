@@ -1,0 +1,259 @@
+2026-08-17 15:09:35,466 | INFO | Run=P7_FINAL_V3_FOLD_1 device=cuda config_hash=78edd7a4ca91e3d39a215db9552671a623b82d83118c69818ffe774538c438aa
+2026-08-17 15:09:35,466 | INFO | Split hash train=a5f92d3f11d85829daea0ec407e32b24af5b5b66438177f83eb51ae557958400 validation=67b1343290f92b8761308d410da5ba1599a8098cd33030777b940d21e0742c8f
+2026-08-17 15:09:59,969 | INFO | epoch=22 batch=600 global_step=6752 loss_reg_months=3.7166 lr=0.00006975 grad_norm=1.9785 throughput=306.43 img/s eta_seconds=13.1 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:10:14,152 | INFO | epoch=22 batch=625 global_step=6760 loss_reg_months=3.7237 lr=0.00006975 grad_norm=2.2491 throughput=199.07 img/s eta_seconds=18.7 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:10:31,599 | INFO | epoch=22 batch=650 global_step=6768 loss_reg_months=3.7341 lr=0.00006975 grad_norm=1.2377 throughput=141.50 img/s eta_seconds=24.2 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:10:48,887 | INFO | epoch=22 batch=675 global_step=6777 loss_reg_months=3.7343 lr=0.00006975 grad_norm=1.3824 throughput=111.86 img/s eta_seconds=28.0 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:11:05,341 | INFO | epoch=22 batch=700 global_step=6785 loss_reg_months=3.7500 lr=0.00006975 grad_norm=1.6497 throughput=94.52 img/s eta_seconds=29.9 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:11:24,098 | INFO | epoch=22 batch=725 global_step=6793 loss_reg_months=3.7552 lr=0.00006975 grad_norm=1.3575 throughput=80.84 img/s eta_seconds=31.3 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:11:41,270 | INFO | epoch=22 batch=750 global_step=6802 loss_reg_months=3.7473 lr=0.00006975 grad_norm=1.2859 throughput=72.12 img/s eta_seconds=30.9 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:11:58,673 | INFO | epoch=22 batch=775 global_step=6810 loss_reg_months=3.7525 lr=0.00006975 grad_norm=1.5692 throughput=65.40 img/s eta_seconds=29.5 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:12:15,096 | INFO | epoch=22 batch=800 global_step=6818 loss_reg_months=3.7456 lr=0.00006975 grad_norm=2.0099 throughput=60.52 img/s eta_seconds=26.9 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:12:32,701 | INFO | epoch=22 batch=825 global_step=6827 loss_reg_months=3.7396 lr=0.00006975 grad_norm=1.2808 throughput=56.18 img/s eta_seconds=23.6 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:12:49,636 | INFO | epoch=22 batch=850 global_step=6835 loss_reg_months=3.7273 lr=0.00006975 grad_norm=1.4924 throughput=52.81 img/s eta_seconds=19.5 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:13:07,162 | INFO | epoch=22 batch=875 global_step=6843 loss_reg_months=3.7153 lr=0.00006975 grad_norm=1.8986 throughput=49.84 img/s eta_seconds=14.6 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:13:24,195 | INFO | epoch=22 batch=900 global_step=6852 loss_reg_months=3.7088 lr=0.00006975 grad_norm=2.3363 throughput=47.43 img/s eta_seconds=9.0 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:13:41,135 | INFO | epoch=22 batch=925 global_step=6860 loss_reg_months=3.7090 lr=0.00006975 grad_norm=2.9363 throughput=45.37 img/s eta_seconds=2.8 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:16:15,389 | WARNING | STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [2.74, 229.25]
+2026-08-17 15:16:15,392 | INFO | 
+TRAINING REVIEW SNAPSHOT
+Run ID / config hash / split hash: P7_FINAL_V3_FOLD_1 / 78edd7a4ca91 / a5f92d3f11d8+67b1343290f9
+Epoch / global step: 22 / 6864
+Train loss: 3.7107
+Validation MAE / RMSE / median AE: 6.2983 / 8.5138 / 4.7500
+MAE nam / nữ / age bins: {'F': 6.593479870823621, 'M': 6.048611111111111} / {'0-59': 5.499279853351955, '120-179': 5.761551026757934, '180-228': 6.2178571428571425, '60-119': 7.61800193050193}
+Learning rate / peak VRAM: 0.00006975 / 4426.0 MiB
+Best epoch / best MAE / epochs không cải thiện: 19 / 6.2987 / 3
+Cảnh báo hiện tại: CAM: Prediction vượt nhẹ miền tuổi 0–228: [2.74, 229.25]
+Checkpoint gần nhất: /content/p7_v3/runs/P7_FINAL_V3_FOLD_1/last.ckpt
+Checkpoint tốt nhất: /content/p7_v3/runs/P7_FINAL_V3_FOLD_1/best_mae.ckpt
+Đề xuất tự động: THEO DÕI
+2026-08-17 15:16:42,509 | INFO | epoch=23 batch=25 global_step=6872 loss_reg_months=3.3543 lr=0.00006139 grad_norm=1.3326 throughput=15.32 img/s eta_seconds=713.2 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:16:59,578 | INFO | epoch=23 batch=50 global_step=6880 loss_reg_months=3.3261 lr=0.00006139 grad_norm=1.0606 throughput=16.37 img/s eta_seconds=649.1 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:17:17,718 | INFO | epoch=23 batch=75 global_step=6889 loss_reg_months=3.3286 lr=0.00006139 grad_norm=1.5797 throughput=16.43 img/s eta_seconds=628.7 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:17:35,084 | INFO | epoch=23 batch=100 global_step=6897 loss_reg_months=3.3347 lr=0.00006139 grad_norm=1.4898 throughput=16.63 img/s eta_seconds=603.0 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:17:53,604 | INFO | epoch=23 batch=125 global_step=6905 loss_reg_months=3.3611 lr=0.00006139 grad_norm=1.1126 throughput=16.54 img/s eta_seconds=588.0 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:18:10,756 | INFO | epoch=23 batch=150 global_step=6914 loss_reg_months=3.3108 lr=0.00006139 grad_norm=1.5077 throughput=16.69 img/s eta_seconds=564.8 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:18:27,237 | INFO | epoch=23 batch=175 global_step=6922 loss_reg_months=3.3388 lr=0.00006139 grad_norm=1.4148 throughput=16.89 img/s eta_seconds=540.3 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:29:30,268 | WARNING | STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [0.61, 230.62]
+2026-08-17 15:29:30,272 | INFO | 
+TRAINING REVIEW SNAPSHOT
+Run ID / config hash / split hash: P7_FINAL_V3_FOLD_1 / 78edd7a4ca91 / a5f92d3f11d8+67b1343290f9
+Epoch / global step: 23 / 7176
+Train loss: 3.5219
+Validation MAE / RMSE / median AE: 6.4914 / 8.7320 / 5.0000
+MAE nam / nữ / age bins: {'F': 6.798996576340326, 'M': 6.2310363247863245} / {'0-59': 5.993693261173185, '120-179': 5.756922837585563, '180-228': 6.384693877551021, '60-119': 8.15858268983269}
+Learning rate / peak VRAM: 0.00006139 / 4426.0 MiB
+Best epoch / best MAE / epochs không cải thiện: 19 / 6.2987 / 4
+Cảnh báo hiện tại: CAM: Prediction vượt nhẹ miền tuổi 0–228: [0.61, 230.62]
+Checkpoint gần nhất: /content/p7_v3/runs/P7_FINAL_V3_FOLD_1/last.ckpt
+Checkpoint tốt nhất: /content/p7_v3/runs/P7_FINAL_V3_FOLD_1/best_mae.ckpt
+Đề xuất tự động: THEO DÕI
+2026-08-17 15:29:57,133 | INFO | epoch=24 batch=25 global_step=7184 loss_reg_months=2.8536 lr=0.00005335 grad_norm=1.7388 throughput=15.45 img/s eta_seconds=707.2 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:30:13,555 | INFO | epoch=24 batch=50 global_step=7192 loss_reg_months=3.3007 lr=0.00005335 grad_norm=1.4399 throughput=16.74 img/s eta_seconds=634.8 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:30:30,705 | INFO | epoch=24 batch=75 global_step=7201 loss_reg_months=3.3090 lr=0.00005335 grad_norm=1.5603 throughput=16.99 img/s eta_seconds=608.1 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:30:47,726 | INFO | epoch=24 batch=100 global_step=7209 loss_reg_months=3.2985 lr=0.00005335 grad_norm=1.1900 throughput=17.14 img/s eta_seconds=585.0 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:31:04,414 | INFO | epoch=24 batch=125 global_step=7217 loss_reg_months=3.3012 lr=0.00005335 grad_norm=1.2849 throughput=17.30 img/s eta_seconds=562.3 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:31:21,207 | INFO | epoch=24 batch=150 global_step=7226 loss_reg_months=3.2318 lr=0.00005335 grad_norm=1.6802 throughput=17.39 img/s eta_seconds=542.1 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:31:39,332 | INFO | epoch=24 batch=175 global_step=7234 loss_reg_months=3.2052 lr=0.00005335 grad_norm=1.1204 throughput=17.27 img/s eta_seconds=528.6 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:31:55,434 | INFO | epoch=24 batch=200 global_step=7242 loss_reg_months=3.2922 lr=0.00005335 grad_norm=1.7364 throughput=17.43 img/s eta_seconds=506.6 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:32:14,093 | INFO | epoch=24 batch=225 global_step=7251 loss_reg_months=3.3178 lr=0.00005335 grad_norm=1.3474 throughput=17.27 img/s eta_seconds=493.9 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:32:29,157 | INFO | epoch=24 batch=250 global_step=7259 loss_reg_months=3.3375 lr=0.00005335 grad_norm=1.2977 throughput=17.50 img/s eta_seconds=470.2 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:32:46,195 | INFO | epoch=24 batch=275 global_step=7267 loss_reg_months=3.3188 lr=0.00005335 grad_norm=1.0611 throughput=17.51 img/s eta_seconds=452.8 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:33:03,738 | INFO | epoch=24 batch=300 global_step=7276 loss_reg_months=3.3008 lr=0.00005335 grad_norm=1.3089 throughput=17.47 img/s eta_seconds=436.5 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:33:20,197 | INFO | epoch=24 batch=325 global_step=7284 loss_reg_months=3.3283 lr=0.00005335 grad_norm=1.1212 throughput=17.53 img/s eta_seconds=418.0 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:33:37,008 | INFO | epoch=24 batch=350 global_step=7292 loss_reg_months=3.3331 lr=0.00005335 grad_norm=1.9176 throughput=17.55 img/s eta_seconds=400.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:33:57,437 | INFO | epoch=24 batch=375 global_step=7301 loss_reg_months=3.2952 lr=0.00005335 grad_norm=1.0814 throughput=17.33 img/s eta_seconds=388.3 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:34:13,171 | INFO | epoch=24 batch=400 global_step=7309 loss_reg_months=3.2893 lr=0.00005335 grad_norm=1.4507 throughput=17.43 img/s eta_seconds=368.9 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:34:29,324 | INFO | epoch=24 batch=425 global_step=7317 loss_reg_months=3.3084 lr=0.00005335 grad_norm=1.8207 throughput=17.49 img/s eta_seconds=350.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:34:45,989 | INFO | epoch=24 batch=450 global_step=7326 loss_reg_months=3.3306 lr=0.00005335 grad_norm=1.1874 throughput=17.52 img/s eta_seconds=332.7 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:35:03,393 | INFO | epoch=24 batch=475 global_step=7334 loss_reg_months=3.3372 lr=0.00005335 grad_norm=1.4097 throughput=17.50 img/s eta_seconds=315.8 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:35:21,008 | INFO | epoch=24 batch=500 global_step=7342 loss_reg_months=3.3298 lr=0.00005335 grad_norm=1.2034 throughput=17.48 img/s eta_seconds=299.1 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:35:37,254 | INFO | epoch=24 batch=525 global_step=7351 loss_reg_months=3.3563 lr=0.00005335 grad_norm=1.5449 throughput=17.52 img/s eta_seconds=281.2 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:35:53,857 | INFO | epoch=24 batch=550 global_step=7359 loss_reg_months=3.3517 lr=0.00005335 grad_norm=1.6270 throughput=17.55 img/s eta_seconds=263.8 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:36:11,875 | INFO | epoch=24 batch=575 global_step=7367 loss_reg_months=3.3625 lr=0.00005335 grad_norm=1.6874 throughput=17.51 img/s eta_seconds=247.2 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:36:30,375 | INFO | epoch=24 batch=600 global_step=7376 loss_reg_months=3.3486 lr=0.00005335 grad_norm=1.1450 throughput=17.45 img/s eta_seconds=230.9 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:36:47,704 | INFO | epoch=24 batch=625 global_step=7384 loss_reg_months=3.3417 lr=0.00005335 grad_norm=1.4618 throughput=17.44 img/s eta_seconds=213.7 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:37:04,966 | INFO | epoch=24 batch=650 global_step=7392 loss_reg_months=3.3578 lr=0.00005335 grad_norm=1.3488 throughput=17.44 img/s eta_seconds=196.6 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:37:24,877 | INFO | epoch=24 batch=675 global_step=7401 loss_reg_months=3.3481 lr=0.00005335 grad_norm=1.2055 throughput=17.34 img/s eta_seconds=180.4 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:37:41,831 | INFO | epoch=24 batch=700 global_step=7409 loss_reg_months=3.3596 lr=0.00005335 grad_norm=2.6671 throughput=17.35 img/s eta_seconds=163.0 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:37:58,310 | INFO | epoch=24 batch=725 global_step=7417 loss_reg_months=3.3640 lr=0.00005335 grad_norm=1.5206 throughput=17.38 img/s eta_seconds=145.5 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:38:15,280 | INFO | epoch=24 batch=750 global_step=7426 loss_reg_months=3.3704 lr=0.00005335 grad_norm=1.3301 throughput=17.39 img/s eta_seconds=128.1 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:38:33,047 | INFO | epoch=24 batch=775 global_step=7434 loss_reg_months=3.3714 lr=0.00005335 grad_norm=1.5081 throughput=17.37 img/s eta_seconds=111.0 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:38:50,042 | INFO | epoch=24 batch=800 global_step=7442 loss_reg_months=3.3767 lr=0.00005335 grad_norm=1.7128 throughput=17.38 img/s eta_seconds=93.7 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:39:08,791 | INFO | epoch=24 batch=825 global_step=7451 loss_reg_months=3.3845 lr=0.00005335 grad_norm=2.1102 throughput=17.34 img/s eta_seconds=76.6 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:39:25,430 | INFO | epoch=24 batch=850 global_step=7459 loss_reg_months=3.3766 lr=0.00005335 grad_norm=1.0526 throughput=17.36 img/s eta_seconds=59.2 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:39:42,352 | INFO | epoch=24 batch=875 global_step=7467 loss_reg_months=3.3781 lr=0.00005335 grad_norm=1.7375 throughput=17.37 img/s eta_seconds=41.9 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:39:59,320 | INFO | epoch=24 batch=900 global_step=7476 loss_reg_months=3.3742 lr=0.00005335 grad_norm=1.4686 throughput=17.37 img/s eta_seconds=24.6 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:40:16,171 | INFO | epoch=24 batch=925 global_step=7484 loss_reg_months=3.3855 lr=0.00005335 grad_norm=1.4337 throughput=17.39 img/s eta_seconds=7.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:42:34,245 | WARNING | STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [-0.45, 237.62]
+2026-08-17 15:42:34,249 | INFO | 
+TRAINING REVIEW SNAPSHOT
+Run ID / config hash / split hash: P7_FINAL_V3_FOLD_1 / 78edd7a4ca91 / a5f92d3f11d8+67b1343290f9
+Epoch / global step: 24 / 7488
+Train loss: 3.3827
+Validation MAE / RMSE / median AE: 6.4433 / 8.6990 / 4.8750
+MAE nam / nữ / age bins: {'F': 6.702848753080687, 'M': 6.223673261834319} / {'0-59': 5.845626404831529, '120-179': 5.926182327317984, '180-228': 6.466326530612245, '60-119': 7.643219111969112}
+Learning rate / peak VRAM: 0.00005335 / 4426.0 MiB
+Best epoch / best MAE / epochs không cải thiện: 19 / 6.2987 / 5
+Cảnh báo hiện tại: CAM: Prediction vượt nhẹ miền tuổi 0–228: [-0.45, 237.62]
+Checkpoint gần nhất: /content/p7_v3/runs/P7_FINAL_V3_FOLD_1/last.ckpt
+Checkpoint tốt nhất: /content/p7_v3/runs/P7_FINAL_V3_FOLD_1/best_mae.ckpt
+Đề xuất tự động: THEO DÕI
+2026-08-17 15:43:04,080 | INFO | epoch=25 batch=25 global_step=7496 loss_reg_months=2.9919 lr=0.00004569 grad_norm=1.6383 throughput=15.70 img/s eta_seconds=696.1 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:43:21,956 | INFO | epoch=25 batch=50 global_step=7504 loss_reg_months=3.0569 lr=0.00004569 grad_norm=1.4656 throughput=16.22 img/s eta_seconds=655.2 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:43:39,024 | INFO | epoch=25 batch=75 global_step=7513 loss_reg_months=3.1159 lr=0.00004569 grad_norm=1.3078 throughput=16.65 img/s eta_seconds=620.3 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:43:55,679 | INFO | epoch=25 batch=100 global_step=7521 loss_reg_months=3.1538 lr=0.00004569 grad_norm=1.4336 throughput=16.97 img/s eta_seconds=590.9 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:44:12,919 | INFO | epoch=25 batch=125 global_step=7529 loss_reg_months=3.1295 lr=0.00004569 grad_norm=1.2723 throughput=17.05 img/s eta_seconds=570.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:44:31,774 | INFO | epoch=25 batch=150 global_step=7538 loss_reg_months=3.1677 lr=0.00004569 grad_norm=1.4899 throughput=16.85 img/s eta_seconds=559.4 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:44:49,213 | INFO | epoch=25 batch=175 global_step=7546 loss_reg_months=3.1810 lr=0.00004569 grad_norm=1.5377 throughput=16.90 img/s eta_seconds=540.1 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:45:05,821 | INFO | epoch=25 batch=200 global_step=7554 loss_reg_months=3.1552 lr=0.00004569 grad_norm=1.2589 throughput=17.04 img/s eta_seconds=518.1 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:45:21,536 | INFO | epoch=25 batch=225 global_step=7563 loss_reg_months=3.1433 lr=0.00004569 grad_norm=1.3128 throughput=17.25 img/s eta_seconds=494.5 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:45:39,138 | INFO | epoch=25 batch=250 global_step=7571 loss_reg_months=3.1580 lr=0.00004569 grad_norm=1.3894 throughput=17.22 img/s eta_seconds=477.7 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:45:55,207 | INFO | epoch=25 batch=275 global_step=7579 loss_reg_months=3.1914 lr=0.00004569 grad_norm=2.0816 throughput=17.35 img/s eta_seconds=457.0 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:46:11,615 | INFO | epoch=25 batch=300 global_step=7588 loss_reg_months=3.2397 lr=0.00004569 grad_norm=1.3211 throughput=17.42 img/s eta_seconds=437.9 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:46:28,655 | INFO | epoch=25 batch=325 global_step=7596 loss_reg_months=3.2101 lr=0.00004569 grad_norm=1.2779 throughput=17.43 img/s eta_seconds=420.3 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:46:46,101 | INFO | epoch=25 batch=350 global_step=7604 loss_reg_months=3.1944 lr=0.00004569 grad_norm=1.4208 throughput=17.42 img/s eta_seconds=403.5 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:47:03,354 | INFO | epoch=25 batch=375 global_step=7613 loss_reg_months=3.1907 lr=0.00004569 grad_norm=1.2060 throughput=17.42 img/s eta_seconds=386.3 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:47:19,453 | INFO | epoch=25 batch=400 global_step=7621 loss_reg_months=3.1873 lr=0.00004569 grad_norm=1.4261 throughput=17.49 img/s eta_seconds=367.6 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:47:37,369 | INFO | epoch=25 batch=425 global_step=7629 loss_reg_months=3.1804 lr=0.00004569 grad_norm=1.2928 throughput=17.44 img/s eta_seconds=351.3 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:47:56,722 | INFO | epoch=25 batch=450 global_step=7638 loss_reg_months=3.1873 lr=0.00004569 grad_norm=1.2752 throughput=17.32 img/s eta_seconds=336.5 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:48:12,805 | INFO | epoch=25 batch=475 global_step=7646 loss_reg_months=3.1754 lr=0.00004569 grad_norm=1.4599 throughput=17.39 img/s eta_seconds=317.9 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:48:31,365 | INFO | epoch=25 batch=500 global_step=7654 loss_reg_months=3.1694 lr=0.00004569 grad_norm=1.9835 throughput=17.32 img/s eta_seconds=301.8 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:48:48,672 | INFO | epoch=25 batch=525 global_step=7663 loss_reg_months=3.1608 lr=0.00004569 grad_norm=1.4624 throughput=17.32 img/s eta_seconds=284.5 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:49:06,524 | INFO | epoch=25 batch=550 global_step=7671 loss_reg_months=3.1711 lr=0.00004569 grad_norm=1.2870 throughput=17.30 img/s eta_seconds=267.6 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:49:22,460 | INFO | epoch=25 batch=575 global_step=7679 loss_reg_months=3.1716 lr=0.00004569 grad_norm=1.7015 throughput=17.36 img/s eta_seconds=249.3 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:49:39,219 | INFO | epoch=25 batch=600 global_step=7688 loss_reg_months=3.1721 lr=0.00004569 grad_norm=2.0569 throughput=17.38 img/s eta_seconds=231.7 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:49:56,304 | INFO | epoch=25 batch=625 global_step=7696 loss_reg_months=3.1757 lr=0.00004569 grad_norm=1.6395 throughput=17.39 img/s eta_seconds=214.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:50:15,287 | INFO | epoch=25 batch=650 global_step=7704 loss_reg_months=3.1945 lr=0.00004569 grad_norm=2.2985 throughput=17.32 img/s eta_seconds=197.9 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:50:32,241 | INFO | epoch=25 batch=675 global_step=7713 loss_reg_months=3.1847 lr=0.00004569 grad_norm=1.7468 throughput=17.33 img/s eta_seconds=180.4 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:50:49,239 | INFO | epoch=25 batch=700 global_step=7721 loss_reg_months=3.1921 lr=0.00004569 grad_norm=1.4206 throughput=17.35 img/s eta_seconds=163.0 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:51:05,742 | INFO | epoch=25 batch=725 global_step=7729 loss_reg_months=3.2088 lr=0.00004569 grad_norm=2.0744 throughput=17.37 img/s eta_seconds=145.5 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:51:23,719 | INFO | epoch=25 batch=750 global_step=7738 loss_reg_months=3.2164 lr=0.00004569 grad_norm=1.2328 throughput=17.35 img/s eta_seconds=128.4 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:51:39,783 | INFO | epoch=25 batch=775 global_step=7746 loss_reg_months=3.2228 lr=0.00004569 grad_norm=1.7396 throughput=17.39 img/s eta_seconds=110.9 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:51:58,250 | INFO | epoch=25 batch=800 global_step=7754 loss_reg_months=3.2232 lr=0.00004569 grad_norm=1.2649 throughput=17.35 img/s eta_seconds=93.8 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:52:15,170 | INFO | epoch=25 batch=825 global_step=7763 loss_reg_months=3.2095 lr=0.00004569 grad_norm=1.5608 throughput=17.36 img/s eta_seconds=76.5 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:52:32,500 | INFO | epoch=25 batch=850 global_step=7771 loss_reg_months=3.2076 lr=0.00004569 grad_norm=1.3830 throughput=17.36 img/s eta_seconds=59.2 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:52:49,623 | INFO | epoch=25 batch=875 global_step=7779 loss_reg_months=3.2145 lr=0.00004569 grad_norm=1.6356 throughput=17.37 img/s eta_seconds=41.9 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:53:08,210 | INFO | epoch=25 batch=900 global_step=7788 loss_reg_months=3.2084 lr=0.00004569 grad_norm=1.5327 throughput=17.33 img/s eta_seconds=24.7 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:53:25,425 | INFO | epoch=25 batch=925 global_step=7796 loss_reg_months=3.2164 lr=0.00004569 grad_norm=1.2430 throughput=17.33 img/s eta_seconds=7.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:55:45,057 | WARNING | STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [-0.70, 233.38]
+2026-08-17 15:55:45,061 | WARNING | STABILITY WARNING [CAM] Validation MAE xấu đi trong khi train loss giảm
+2026-08-17 15:55:45,062 | INFO | 
+TRAINING REVIEW SNAPSHOT
+Run ID / config hash / split hash: P7_FINAL_V3_FOLD_1 / 78edd7a4ca91 / a5f92d3f11d8+67b1343290f9
+Epoch / global step: 25 / 7800
+Train loss: 3.2123
+Validation MAE / RMSE / median AE: 6.4501 / 8.6965 / 5.0000
+MAE nam / nữ / age bins: {'F': 6.735567817599067, 'M': 6.208574745233399} / {'0-59': 5.552265188547486, '120-179': 5.956479464841319, '180-228': 6.561734693877551, '60-119': 7.642696267696268}
+Learning rate / peak VRAM: 0.00004569 / 4426.0 MiB
+Best epoch / best MAE / epochs không cải thiện: 19 / 6.2987 / 6
+Cảnh báo hiện tại: CAM: Prediction vượt nhẹ miền tuổi 0–228: [-0.70, 233.38] | CAM: Validation MAE xấu đi trong khi train loss giảm
+Checkpoint gần nhất: /content/p7_v3/runs/P7_FINAL_V3_FOLD_1/last.ckpt
+Checkpoint tốt nhất: /content/p7_v3/runs/P7_FINAL_V3_FOLD_1/best_mae.ckpt
+Đề xuất tự động: THEO DÕI
+2026-08-17 15:56:12,309 | INFO | epoch=26 batch=25 global_step=7808 loss_reg_months=2.7683 lr=0.00003846 grad_norm=1.2454 throughput=14.96 img/s eta_seconds=730.3 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:56:29,451 | INFO | epoch=26 batch=50 global_step=7816 loss_reg_months=2.9658 lr=0.00003846 grad_norm=1.6259 throughput=16.14 img/s eta_seconds=658.7 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:56:47,985 | INFO | epoch=26 batch=75 global_step=7825 loss_reg_months=2.9684 lr=0.00003846 grad_norm=1.1998 throughput=16.15 img/s eta_seconds=639.5 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:57:03,941 | INFO | epoch=26 batch=100 global_step=7833 loss_reg_months=3.1039 lr=0.00003846 grad_norm=1.2911 throughput=16.74 img/s eta_seconds=599.0 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:57:20,600 | INFO | epoch=26 batch=125 global_step=7841 loss_reg_months=3.0530 lr=0.00003846 grad_norm=1.4139 throughput=16.98 img/s eta_seconds=572.9 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:57:37,585 | INFO | epoch=26 batch=150 global_step=7850 loss_reg_months=3.0951 lr=0.00003846 grad_norm=1.3037 throughput=17.09 img/s eta_seconds=551.7 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:57:54,517 | INFO | epoch=26 batch=175 global_step=7858 loss_reg_months=3.0876 lr=0.00003846 grad_norm=1.3557 throughput=17.18 img/s eta_seconds=531.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:58:11,703 | INFO | epoch=26 batch=200 global_step=7866 loss_reg_months=3.0848 lr=0.00003846 grad_norm=1.2656 throughput=17.21 img/s eta_seconds=512.9 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:58:27,189 | INFO | epoch=26 batch=225 global_step=7875 loss_reg_months=3.1069 lr=0.00003846 grad_norm=1.4187 throughput=17.43 img/s eta_seconds=489.3 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:58:44,271 | INFO | epoch=26 batch=250 global_step=7883 loss_reg_months=3.0878 lr=0.00003846 grad_norm=1.2324 throughput=17.44 img/s eta_seconds=471.8 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:58:59,892 | INFO | epoch=26 batch=275 global_step=7891 loss_reg_months=3.1230 lr=0.00003846 grad_norm=1.5604 throughput=17.59 img/s eta_seconds=450.8 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:59:17,088 | INFO | epoch=26 batch=300 global_step=7900 loss_reg_months=3.1330 lr=0.00003846 grad_norm=1.9191 throughput=17.58 img/s eta_seconds=434.0 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:59:36,040 | INFO | epoch=26 batch=325 global_step=7908 loss_reg_months=3.1156 lr=0.00003846 grad_norm=1.2703 throughput=17.43 img/s eta_seconds=420.5 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 15:59:53,424 | INFO | epoch=26 batch=350 global_step=7916 loss_reg_months=3.1059 lr=0.00003846 grad_norm=1.3011 throughput=17.42 img/s eta_seconds=403.5 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:00:10,406 | INFO | epoch=26 batch=375 global_step=7925 loss_reg_months=3.1044 lr=0.00003846 grad_norm=1.3062 throughput=17.43 img/s eta_seconds=386.0 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:00:28,128 | INFO | epoch=26 batch=400 global_step=7933 loss_reg_months=3.1021 lr=0.00003846 grad_norm=1.3201 throughput=17.40 img/s eta_seconds=369.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:00:45,530 | INFO | epoch=26 batch=425 global_step=7941 loss_reg_months=3.1241 lr=0.00003846 grad_norm=1.3777 throughput=17.39 img/s eta_seconds=352.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:01:07,808 | INFO | epoch=26 batch=450 global_step=7950 loss_reg_months=3.1130 lr=0.00003846 grad_norm=1.1984 throughput=17.11 img/s eta_seconds=340.6 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:01:26,131 | INFO | epoch=26 batch=475 global_step=7958 loss_reg_months=3.0962 lr=0.00003846 grad_norm=1.2031 throughput=17.07 img/s eta_seconds=323.8 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:01:43,590 | INFO | epoch=26 batch=500 global_step=7966 loss_reg_months=3.0846 lr=0.00003846 grad_norm=1.2807 throughput=17.08 img/s eta_seconds=306.1 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:02:00,385 | INFO | epoch=26 batch=525 global_step=7975 loss_reg_months=3.0985 lr=0.00003846 grad_norm=1.5091 throughput=17.11 img/s eta_seconds=288.0 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:02:17,368 | INFO | epoch=26 batch=550 global_step=7983 loss_reg_months=3.0993 lr=0.00003846 grad_norm=2.1047 throughput=17.14 img/s eta_seconds=270.0 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:02:35,039 | INFO | epoch=26 batch=575 global_step=7991 loss_reg_months=3.0941 lr=0.00003846 grad_norm=1.5636 throughput=17.13 img/s eta_seconds=252.6 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:02:54,723 | INFO | epoch=26 batch=600 global_step=8000 loss_reg_months=3.0898 lr=0.00003846 grad_norm=1.4690 throughput=17.04 img/s eta_seconds=236.3 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:03:08,556 | INFO | epoch=26 batch=625 global_step=8008 loss_reg_months=3.0844 lr=0.00003846 grad_norm=1.2057 throughput=17.19 img/s eta_seconds=216.9 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:03:25,075 | INFO | epoch=26 batch=650 global_step=8016 loss_reg_months=3.0953 lr=0.00003846 grad_norm=1.3883 throughput=17.23 img/s eta_seconds=199.0 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:03:44,129 | INFO | epoch=26 batch=675 global_step=8025 loss_reg_months=3.1122 lr=0.00003846 grad_norm=1.3168 throughput=17.17 img/s eta_seconds=182.2 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:04:01,322 | INFO | epoch=26 batch=700 global_step=8033 loss_reg_months=3.1075 lr=0.00003846 grad_norm=1.6236 throughput=17.18 img/s eta_seconds=164.7 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:04:18,251 | INFO | epoch=26 batch=725 global_step=8041 loss_reg_months=3.0994 lr=0.00003846 grad_norm=1.4020 throughput=17.19 img/s eta_seconds=147.0 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:04:35,871 | INFO | epoch=26 batch=750 global_step=8050 loss_reg_months=3.1061 lr=0.00003846 grad_norm=1.7336 throughput=17.19 img/s eta_seconds=129.6 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:04:53,551 | INFO | epoch=26 batch=775 global_step=8058 loss_reg_months=3.1113 lr=0.00003846 grad_norm=1.5455 throughput=17.18 img/s eta_seconds=112.2 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:05:10,904 | INFO | epoch=26 batch=800 global_step=8066 loss_reg_months=3.1155 lr=0.00003846 grad_norm=1.2727 throughput=17.18 img/s eta_seconds=94.7 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:05:27,223 | INFO | epoch=26 batch=825 global_step=8075 loss_reg_months=3.1174 lr=0.00003846 grad_norm=1.4513 throughput=17.22 img/s eta_seconds=77.1 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:05:45,097 | INFO | epoch=26 batch=850 global_step=8083 loss_reg_months=3.1323 lr=0.00003846 grad_norm=1.5446 throughput=17.21 img/s eta_seconds=59.7 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:06:02,612 | INFO | epoch=26 batch=875 global_step=8091 loss_reg_months=3.1201 lr=0.00003846 grad_norm=1.6655 throughput=17.20 img/s eta_seconds=42.3 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:06:20,204 | INFO | epoch=26 batch=900 global_step=8100 loss_reg_months=3.1253 lr=0.00003846 grad_norm=1.4255 throughput=17.20 img/s eta_seconds=24.9 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:06:37,755 | INFO | epoch=26 batch=925 global_step=8108 loss_reg_months=3.1212 lr=0.00003846 grad_norm=1.5237 throughput=17.20 img/s eta_seconds=7.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:08:59,444 | WARNING | STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [1.55, 232.00]
+2026-08-17 16:08:59,447 | WARNING | STABILITY WARNING [CAM] Validation MAE xấu đi trong khi train loss giảm
+2026-08-17 16:08:59,448 | INFO | 
+TRAINING REVIEW SNAPSHOT
+Run ID / config hash / split hash: P7_FINAL_V3_FOLD_1 / 78edd7a4ca91 / a5f92d3f11d8+67b1343290f9
+Epoch / global step: 26 / 8112
+Train loss: 3.1244
+Validation MAE / RMSE / median AE: 6.4714 / 8.6897 / 4.9336
+MAE nam / nữ / age bins: {'F': 6.728808517871018, 'M': 6.253538995726496} / {'0-59': 6.3029853351955305, '120-179': 5.829145924082141, '180-228': 6.836734693877551, '60-119': 7.723214285714286}
+Learning rate / peak VRAM: 0.00003846 / 4426.0 MiB
+Best epoch / best MAE / epochs không cải thiện: 19 / 6.2987 / 7
+Cảnh báo hiện tại: CAM: Prediction vượt nhẹ miền tuổi 0–228: [1.55, 232.00] | CAM: Validation MAE xấu đi trong khi train loss giảm
+Checkpoint gần nhất: /content/p7_v3/runs/P7_FINAL_V3_FOLD_1/last.ckpt
+Checkpoint tốt nhất: /content/p7_v3/runs/P7_FINAL_V3_FOLD_1/best_mae.ckpt
+Đề xuất tự động: THEO DÕI
+2026-08-17 16:09:28,116 | INFO | epoch=27 batch=25 global_step=8120 loss_reg_months=2.9793 lr=0.00003174 grad_norm=2.4069 throughput=14.80 img/s eta_seconds=738.6 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:09:48,845 | INFO | epoch=27 batch=50 global_step=8128 loss_reg_months=3.0234 lr=0.00003174 grad_norm=1.3537 throughput=14.63 img/s eta_seconds=726.3 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:10:05,688 | INFO | epoch=27 batch=75 global_step=8137 loss_reg_months=2.8568 lr=0.00003174 grad_norm=1.3990 throughput=15.56 img/s eta_seconds=663.8 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:10:22,528 | INFO | epoch=27 batch=100 global_step=8145 loss_reg_months=2.8723 lr=0.00003174 grad_norm=1.5615 throughput=16.07 img/s eta_seconds=624.1 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:10:41,386 | INFO | epoch=27 batch=125 global_step=8153 loss_reg_months=2.9078 lr=0.00003174 grad_norm=1.4642 throughput=16.04 img/s eta_seconds=606.6 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:10:59,124 | INFO | epoch=27 batch=150 global_step=8162 loss_reg_months=2.8838 lr=0.00003174 grad_norm=1.4176 throughput=16.18 img/s eta_seconds=582.9 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:11:15,720 | INFO | epoch=27 batch=175 global_step=8170 loss_reg_months=2.8323 lr=0.00003174 grad_norm=1.4565 throughput=16.42 img/s eta_seconds=555.8 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:11:32,369 | INFO | epoch=27 batch=200 global_step=8178 loss_reg_months=2.8317 lr=0.00003174 grad_norm=1.9759 throughput=16.61 img/s eta_seconds=531.6 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:11:48,807 | INFO | epoch=27 batch=225 global_step=8187 loss_reg_months=2.8025 lr=0.00003174 grad_norm=1.5896 throughput=16.77 img/s eta_seconds=508.4 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:12:05,612 | INFO | epoch=27 batch=250 global_step=8195 loss_reg_months=2.8466 lr=0.00003174 grad_norm=2.0192 throughput=16.88 img/s eta_seconds=487.6 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:12:23,507 | INFO | epoch=27 batch=275 global_step=8203 loss_reg_months=2.8853 lr=0.00003174 grad_norm=1.7084 throughput=16.87 img/s eta_seconds=470.1 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:12:39,404 | INFO | epoch=27 batch=300 global_step=8212 loss_reg_months=2.9131 lr=0.00003174 grad_norm=2.4535 throughput=17.02 img/s eta_seconds=448.3 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:12:55,851 | INFO | epoch=27 batch=325 global_step=8220 loss_reg_months=2.9039 lr=0.00003174 grad_norm=1.3300 throughput=17.10 img/s eta_seconds=428.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:13:12,880 | INFO | epoch=27 batch=350 global_step=8228 loss_reg_months=2.9052 lr=0.00003174 grad_norm=1.0103 throughput=17.14 img/s eta_seconds=410.0 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:13:32,459 | INFO | epoch=27 batch=375 global_step=8237 loss_reg_months=2.9269 lr=0.00003174 grad_norm=1.2823 throughput=17.01 img/s eta_seconds=395.6 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:13:48,940 | INFO | epoch=27 batch=400 global_step=8245 loss_reg_months=2.9059 lr=0.00003174 grad_norm=2.1086 throughput=17.08 img/s eta_seconds=376.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:14:06,812 | INFO | epoch=27 batch=425 global_step=8253 loss_reg_months=2.9140 lr=0.00003174 grad_norm=1.4768 throughput=17.06 img/s eta_seconds=359.2 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:14:24,063 | INFO | epoch=27 batch=450 global_step=8262 loss_reg_months=2.9201 lr=0.00003174 grad_norm=1.5055 throughput=17.08 img/s eta_seconds=341.3 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:14:40,598 | INFO | epoch=27 batch=475 global_step=8270 loss_reg_months=2.9336 lr=0.00003174 grad_norm=1.7231 throughput=17.13 img/s eta_seconds=322.7 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:14:57,404 | INFO | epoch=27 batch=500 global_step=8278 loss_reg_months=2.9350 lr=0.00003174 grad_norm=1.3812 throughput=17.16 img/s eta_seconds=304.6 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:15:14,965 | INFO | epoch=27 batch=525 global_step=8287 loss_reg_months=2.9298 lr=0.00003174 grad_norm=1.4754 throughput=17.16 img/s eta_seconds=287.2 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:15:34,158 | INFO | epoch=27 batch=550 global_step=8295 loss_reg_months=2.9277 lr=0.00003174 grad_norm=1.5500 throughput=17.08 img/s eta_seconds=270.9 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:15:50,971 | INFO | epoch=27 batch=575 global_step=8303 loss_reg_months=2.9351 lr=0.00003174 grad_norm=1.5004 throughput=17.12 img/s eta_seconds=252.9 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:16:07,534 | INFO | epoch=27 batch=600 global_step=8312 loss_reg_months=2.9248 lr=0.00003174 grad_norm=2.1729 throughput=17.16 img/s eta_seconds=234.8 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:16:23,248 | INFO | epoch=27 batch=625 global_step=8320 loss_reg_months=2.9381 lr=0.00003174 grad_norm=1.6123 throughput=17.23 img/s eta_seconds=216.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:16:40,288 | INFO | epoch=27 batch=650 global_step=8328 loss_reg_months=2.9332 lr=0.00003174 grad_norm=1.1899 throughput=17.24 img/s eta_seconds=198.8 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:16:57,343 | INFO | epoch=27 batch=675 global_step=8337 loss_reg_months=2.9555 lr=0.00003174 grad_norm=1.4779 throughput=17.25 img/s eta_seconds=181.3 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:17:13,333 | INFO | epoch=27 batch=700 global_step=8345 loss_reg_months=2.9577 lr=0.00003174 grad_norm=1.7196 throughput=17.30 img/s eta_seconds=163.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:17:29,327 | INFO | epoch=27 batch=725 global_step=8353 loss_reg_months=2.9624 lr=0.00003174 grad_norm=2.1367 throughput=17.35 img/s eta_seconds=145.7 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:17:47,222 | INFO | epoch=27 batch=750 global_step=8362 loss_reg_months=2.9655 lr=0.00003174 grad_norm=1.7087 throughput=17.33 img/s eta_seconds=128.6 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:18:05,053 | INFO | epoch=27 batch=775 global_step=8370 loss_reg_months=2.9682 lr=0.00003174 grad_norm=1.3792 throughput=17.31 img/s eta_seconds=111.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:18:21,169 | INFO | epoch=27 batch=800 global_step=8378 loss_reg_months=2.9806 lr=0.00003174 grad_norm=1.5216 throughput=17.35 img/s eta_seconds=93.8 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:18:37,597 | INFO | epoch=27 batch=825 global_step=8387 loss_reg_months=2.9847 lr=0.00003174 grad_norm=1.4120 throughput=17.38 img/s eta_seconds=76.4 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:18:55,531 | INFO | epoch=27 batch=850 global_step=8395 loss_reg_months=2.9891 lr=0.00003174 grad_norm=1.6150 throughput=17.36 img/s eta_seconds=59.2 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:19:12,958 | INFO | epoch=27 batch=875 global_step=8403 loss_reg_months=2.9894 lr=0.00003174 grad_norm=1.8350 throughput=17.35 img/s eta_seconds=42.0 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:19:30,104 | INFO | epoch=27 batch=900 global_step=8412 loss_reg_months=2.9773 lr=0.00003174 grad_norm=1.8461 throughput=17.36 img/s eta_seconds=24.7 gpu_alloc=376.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:19:46,996 | INFO | epoch=27 batch=925 global_step=8420 loss_reg_months=2.9779 lr=0.00003174 grad_norm=1.7650 throughput=17.37 img/s eta_seconds=7.4 gpu_alloc=485.7MiB gpu_reserved=4426.0MiB skipped_batches=0
+2026-08-17 16:22:04,572 | WARNING | STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [5.24, 230.75]
+2026-08-17 16:22:04,576 | WARNING | STABILITY WARNING [CAM] Validation MAE xấu đi trong khi train loss giảm
+2026-08-17 16:22:04,577 | INFO | 
+TRAINING REVIEW SNAPSHOT
+Run ID / config hash / split hash: P7_FINAL_V3_FOLD_1 / 78edd7a4ca91 / a5f92d3f11d8+67b1343290f9
+Epoch / global step: 27 / 8424
+Train loss: 2.9797
+Validation MAE / RMSE / median AE: 6.4934 / 8.7230 / 5.0000
+MAE nam / nữ / age bins: {'F': 6.769910644910645, 'M': 6.259486974030243} / {'0-59': 5.669823673184357, '120-179': 6.018279402613565, '180-228': 6.446428571428571, '60-119': 7.680703024453025}
+Learning rate / peak VRAM: 0.00003174 / 4426.0 MiB
+Best epoch / best MAE / epochs không cải thiện: 19 / 6.2987 / 8
+Cảnh báo hiện tại: CAM: Prediction vượt nhẹ miền tuổi 0–228: [5.24, 230.75] | CAM: Validation MAE xấu đi trong khi train loss giảm
+Checkpoint gần nhất: /content/p7_v3/runs/P7_FINAL_V3_FOLD_1/last.ckpt
+Checkpoint tốt nhất: /content/p7_v3/runs/P7_FINAL_V3_FOLD_1/best_mae.ckpt
+Đề xuất tự động: THEO DÕI
+2026-08-17 16:22:10,752 | WARNING | STABILITY WARNING [CAM] Early stopping patience=8

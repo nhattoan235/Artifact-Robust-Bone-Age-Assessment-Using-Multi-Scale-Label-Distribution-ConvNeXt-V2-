@@ -1,0 +1,144 @@
+{
+  "audit_version": "1.0",
+  "created_at_utc": "2026-08-13T02:40:09.750424+00:00",
+  "source_root": "D:\\Hoctap\\Doan_totnghiep\\Dataset\\RSNA",
+  "environment": {
+    "python": "3.12.13 (main, Aug  7 2026, 02:26:41) [MSC v.1944 64 bit (AMD64)]",
+    "executable": "C:\\Users\\ASUS\\Documents\\tao_sinh_anh_x_ray_hand\\.boneage_env\\Scripts\\python.exe",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pillow": "12.3.0",
+    "workers": 8
+  },
+  "sources": {
+    "train_csv": {
+      "path": "D:\\Hoctap\\Doan_totnghiep\\Dataset\\RSNA\\boneage-training-dataset.csv",
+      "sha256": "9459296c0fca3e3cd908e79002914d0d90c7f5e46936eefd34b11261468ce209"
+    },
+    "test_metadata_csv": {
+      "path": "D:\\Hoctap\\Doan_totnghiep\\Dataset\\RSNA\\boneage-test-dataset.csv",
+      "sha256": "95d7de74b4bdf7551b81a249f7fce469865eaa5a6d20356c3af96fb2e56953de"
+    },
+    "test_labels_locked": {
+      "path": "D:\\Hoctap\\Doan_totnghiep\\Dataset\\rsna_test.csv",
+      "sha256": "69e6c73a9f2c5c2f90b6171d8c30f149c04a87f06b79641a0254d17cd40c9743",
+      "labels_emitted": false
+    },
+    "validation": {
+      "present": false,
+      "expected_count": 1425
+    }
+  },
+  "counts": {
+    "train_csv_rows": 12611,
+    "train_png": 12611,
+    "test_metadata_rows": 200,
+    "test_png": 200,
+    "locked_test_label_rows": 200
+  },
+  "id_integrity": {
+    "duplicate_train_csv_ids": [],
+    "duplicate_train_image_ids": [],
+    "train_csv_without_image": [],
+    "train_image_without_csv": [],
+    "duplicate_test_metadata_ids": [],
+    "test_metadata_without_image": [],
+    "test_image_without_metadata": [],
+    "train_test_id_overlap": []
+  },
+  "label_integrity": {
+    "invalid_train_sex_ids": [],
+    "invalid_train_age_ids": [],
+    "invalid_test_metadata_sex_ids": [],
+    "locked_test_ids_match_metadata": true,
+    "locked_test_missing_ids": [],
+    "locked_test_extra_ids": [],
+    "locked_test_sex_mismatch_ids": [],
+    "locked_test_invalid_age_ids": [],
+    "test_age_distribution_inspected_or_emitted": false
+  },
+  "train_distribution": {
+    "sex_counts": {
+      "F": 5778,
+      "M": 6833
+    },
+    "age_all": {
+      "count": 12611,
+      "min": 1.0,
+      "max": 228.0,
+      "mean": 127.3207517246848,
+      "median": 132.0,
+      "std": 41.182021399396326
+    },
+    "age_male": {
+      "count": 6833,
+      "min": 1.0,
+      "max": 228.0,
+      "mean": 135.3036733499195,
+      "median": 150.0,
+      "std": 42.14316182574347
+    },
+    "age_female": {
+      "count": 5778,
+      "min": 4.0,
+      "max": 216.0,
+      "mean": 117.88023537556248,
+      "median": 120.0,
+      "std": 37.90811189841748
+    }
+  },
+  "image_integrity": {
+    "unreadable_train": [],
+    "unreadable_test": [],
+    "train_modes": {
+      "L": 12611
+    },
+    "test_modes": {
+      "L": 200
+    },
+    "train_formats": {
+      "PNG": 12611
+    },
+    "test_formats": {
+      "PNG": 200
+    },
+    "train_width": {
+      "count": 12611,
+      "min": 521.0,
+      "max": 3001.0,
+      "mean": 1319.3485052731742,
+      "median": 1277.0,
+      "std": 314.2975036529627
+    },
+    "train_height": {
+      "count": 12611,
+      "min": 640.0,
+      "max": 2989.0,
+      "mean": 1664.247878835937,
+      "median": 1624.0,
+      "std": 366.9549628180236
+    },
+    "test_width": {
+      "count": 200,
+      "min": 594.0,
+      "max": 2570.0,
+      "mean": 1284.435,
+      "median": 1060.5,
+      "std": 484.6301555965826
+    },
+    "test_height": {
+      "count": 200,
+      "min": 885.0,
+      "max": 2970.0,
+      "mean": 1694.145,
+      "median": 1464.5,
+      "std": 559.2367501232749
+    },
+    "duplicate_hash_groups_train": {},
+    "duplicate_hash_groups_test": {},
+    "cross_split_duplicate_hashes": []
+  },
+  "fingerprints": {
+    "train_manifest_sha256": "7328667e6822ab074d442155e33eba89606861bb13bbf804be8a1138c78f5285",
+    "test_locked_manifest_sha256": "fd22bf5b44397a32826cfedad805b31ba727637047a48be51cc8954bb51229db"
+  }
+}

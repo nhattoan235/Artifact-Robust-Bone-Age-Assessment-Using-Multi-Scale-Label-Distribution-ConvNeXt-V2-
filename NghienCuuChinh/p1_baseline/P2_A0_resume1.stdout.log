@@ -1,0 +1,10 @@
+2026-08-13 19:04:49,985 | INFO | Run=P2_A0_NOAUG_CONVNEXT_TINY_SEED42 device=cuda config_hash=b7d185501fe78eb2d965189d3abc3450a1f29eff0635291389287d2b360e5dbe
+2026-08-13 19:04:49,987 | INFO | Split hash train=7328667e6822ab074d442155e33eba89606861bb13bbf804be8a1138c78f5285 validation=f650a20432b557405035d12c52716a6c40fdf20e1343ac3ad0cfb7cd8db21631
+RESUME CHECK
+Run ID: P2_A0_NOAUG_CONVNEXT_TINY_SEED42
+Checkpoint path: p1_baseline\runs\P2_A0_NOAUG_CONVNEXT_TINY_SEED42\last.ckpt
+Epoch/global step tiếp tục: 3/1053
+Best validation MAE trước đó: 7.371112938596491
+Split hash khớp: CÓ
+Config hash khớp: CÓ
+Code version khớp: CÓ

@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "D:\Hoctap\Doan_totnghiep\NghienCuuChinh\p1_baseline\train.py", line 23, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "D:\Hoctap\Doan_totnghiep\NghienCuuChinh\p1_baseline\train.py", line 17, in main
+    status = trainer.fit(args.resume, args.interrupt_after_global_step)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Hoctap\Doan_totnghiep\NghienCuuChinh\p1_baseline\trainer.py", line 433, in fit
+    self.resume(resume_path)
+  File "D:\Hoctap\Doan_totnghiep\NghienCuuChinh\p1_baseline\trainer.py", line 297, in resume
+    restore_rng_state(state["rng_state"])
+  File "D:\Hoctap\Doan_totnghiep\NghienCuuChinh\p1_baseline\trainer.py", line 70, in restore_rng_state
+    torch.set_rng_state(state["torch_cpu"])
+  File "C:\Users\ASUS\Documents\tao_sinh_anh_x_ray_hand\.boneage_env\Lib\site-packages\torch\random.py", line 19, in set_rng_state
+    default_generator.set_state(new_state)
+TypeError: RNG state must be a torch.ByteTensor

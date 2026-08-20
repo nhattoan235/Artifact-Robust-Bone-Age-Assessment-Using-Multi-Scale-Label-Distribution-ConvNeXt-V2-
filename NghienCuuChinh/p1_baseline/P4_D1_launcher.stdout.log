@@ -1,0 +1,12 @@
+2026-08-15 06:11:36,757 | INFO | Run=P4_D1_CONVNEXTV2_TINY_FCMAE_IN1K_SEED42 device=cuda config_hash=710e8a82b13c7b4cbf33bb1e3a854ba430be1018b112e6764179e9b7f8496ee5
+2026-08-15 06:11:36,759 | INFO | Split hash train=7328667e6822ab074d442155e33eba89606861bb13bbf804be8a1138c78f5285 validation=f650a20432b557405035d12c52716a6c40fdf20e1343ac3ad0cfb7cd8db21631
+RESUME CHECK
+Run ID: P4_D1_CONVNEXTV2_TINY_FCMAE_IN1K_SEED42
+Checkpoint path: p1_baseline\runs\P4_D1_CONVNEXTV2_TINY_FCMAE_IN1K_SEED42\last.ckpt
+Epoch/global step tiếp tục: 0/2
+Best validation MAE trước đó: inf
+Split hash khớp: CÓ
+Config hash khớp: CÓ
+Code version khớp: CÓ
+Optimizer/scheduler/scaler đã phục hồi: CÓ
+2026-08-15 06:13:41,581 | INFO | epoch=1 batch=25 global_step=8 loss_reg_months=30.1662 lr=0.00020000 grad_norm=20.3641 throughput=2.41 img/s eta_seconds=5112.2 gpu_alloc=485.9MiB gpu_reserved=7702.0MiB skipped_batches=0

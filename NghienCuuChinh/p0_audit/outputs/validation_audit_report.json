@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "checks": {
+    "official_csv_rows_1425": true,
+    "png_count_1425": true,
+    "official_unique_ids_1425": true,
+    "image_unique_ids_1425": true,
+    "csv_ids_equal_image_ids": true,
+    "no_train_id_overlap": true,
+    "no_test_id_overlap": true,
+    "all_images_readable": true,
+    "all_grayscale_png": true,
+    "sex_counts_match_expected": true,
+    "labels_valid": true,
+    "matches_deeplasia_annotation": true,
+    "no_duplicate_hash_in_validation": true,
+    "no_hash_overlap_with_train": true,
+    "no_hash_overlap_with_test": true
+  },
+  "counts": {
+    "official_csv": 1425,
+    "png": 1425,
+    "male": 773,
+    "female": 652
+  },
+  "differences": {
+    "csv_without_image": [],
+    "image_without_csv": [],
+    "train_id_overlap": [],
+    "test_id_overlap": [],
+    "unreadable_images": [],
+    "invalid_sex": [],
+    "invalid_age": [],
+    "deeplasia_missing": [],
+    "deeplasia_sex_mismatch": [],
+    "deeplasia_age_mismatch": [],
+    "duplicate_validation_hash_groups": {},
+    "hash_overlap_train": [],
+    "hash_overlap_test": []
+  },
+  "sources": {
+    "source_archive": {
+      "path": "D:\\Hoctap\\Doan_totnghiep\\Dataset\\Bone+Age+Validation+Set.zip",
+      "sha256": "683ea5398dd9d0730af883e673176a5c6817fd35a5a59331a500fa7affcd36f0"
+    },
+    "official_csv": {
+      "path": "D:\\Hoctap\\Doan_totnghiep\\Dataset\\RSNA\\boneage-validation-dataset.csv",
+      "sha256": "fdfeff3e7351f0bdc629f34c01803291c57c1198bc3376076bb4934daa334fec"
+    },
+    "deeplasia_annotation": {
+      "path": "C:\\Users\\ASUS\\Documents\\tao_sinh_anh_x_ray_hand\\external\\aimi_bonn_deeplasia\\data\\annotation.csv",
+      "sha256": "4e708a1a5d72c881ff9922f7304dc3c45ba7fca866a5b528d693c85f17cfa3fa"
+    }
+  },
+  "validation_manifest_sha256": "f650a20432b557405035d12c52716a6c40fdf20e1343ac3ad0cfb7cd8db21631"
+}

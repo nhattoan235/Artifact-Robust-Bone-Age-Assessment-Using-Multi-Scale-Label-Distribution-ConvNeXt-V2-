@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "test_used": false,
+  "expected_image_counts": {"train": 12611, "validation": 1425, "total": 14036},
+  "files": {
+    "train": {
+      "name": "train_source.zip",
+      "bytes": 9801494294,
+      "sha256": "37d6bb4db580dfd98ceb028438fbfef303692bbc00b662e383e2a8f002cbf9b6"
+    },
+    "validation": {
+      "name": "validation_source.zip",
+      "bytes": 1108370691,
+      "sha256": "95352020ea2cc1ab60f92355ea9c1a54129fa56ccacc963c5ef5e3c3eab2bbde"
+    }
+  }
+}

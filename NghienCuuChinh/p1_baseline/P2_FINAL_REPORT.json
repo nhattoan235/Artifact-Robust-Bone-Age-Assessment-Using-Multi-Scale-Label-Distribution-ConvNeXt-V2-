@@ -1,0 +1,27 @@
+{
+  "status": "PASS",
+  "p2_complete": true,
+  "primary_metric": "official validation MAE months",
+  "runs": {
+    "A0": {"augmentation": "none", "best_epoch": 10, "mae": 6.639561403508772, "rmse": 8.8840332703746},
+    "A1": {"augmentation": "horizontal flip p=0.5", "best_epoch": 5, "mae": 6.514166666666667, "rmse": 8.786534161191742},
+    "A2": {"augmentation": "flip + light geometric/intensity", "best_epoch": 12, "mae": 6.1847916666666665, "rmse": 8.486471361474907}
+  },
+  "paired_results": {
+    "A1_minus_A0": {"delta_mae": -0.12539473684210525, "ci95": [-0.3146129385964912, 0.06526973684210516]},
+    "A2_minus_A0": {"delta_mae": -0.45476973684210525, "ci95": [-0.6582239583333334, -0.24937198464912286]},
+    "A2_minus_A1": {"delta_mae": -0.329375, "ci95": [-0.508858278508772, -0.15209265350877196]}
+  },
+  "locked_augmentation": {
+    "horizontal_flip_probability": 0.5,
+    "rotation_degrees": 7.0,
+    "translation_fraction": 0.03,
+    "scale_range": [0.95, 1.05],
+    "brightness_delta": 0.10,
+    "contrast_delta": 0.10,
+    "gamma_range": [0.90, 1.10]
+  },
+  "decision_basis": "A2 đạt MAE/RMSE tốt nhất; paired bootstrap CI so với A0 và A1 đều hoàn toàn dưới 0.",
+  "test_ground_truth_accessed": false,
+  "next_allowed_phase": "P3: B0–B1 preprocessing với augmentation A2 được giữ cố định"
+}

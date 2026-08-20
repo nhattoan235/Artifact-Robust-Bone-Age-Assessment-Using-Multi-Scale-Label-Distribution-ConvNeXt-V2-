@@ -1,0 +1,7 @@
+torch>=2.7.1
+torchvision>=0.18
+albumentations>=1.4
+opencv-python-headless
+scikit-learn
+pandas
+numpy

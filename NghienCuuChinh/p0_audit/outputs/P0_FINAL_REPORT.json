@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "p0_complete": true,
+  "counts": {
+    "train": 12611,
+    "validation": 1425,
+    "test_locked": 200,
+    "development": 14036,
+    "total": 14236
+  },
+  "sex_counts": {
+    "train": {
+      "F": 5778,
+      "M": 6833
+    },
+    "validation": {
+      "F": 652,
+      "M": 773
+    },
+    "test_locked": {
+      "M": 100,
+      "F": 100
+    }
+  },
+  "validation_distribution": {
+    "all": {
+      "count": 1425,
+      "min": 3.0,
+      "max": 228.0,
+      "mean": 127.15649122807018,
+      "median": 132.0,
+      "std": 41.72201092403196
+    },
+    "male": {
+      "count": 773,
+      "min": 6.0,
+      "max": 228.0,
+      "mean": 134.91591203104787,
+      "median": 150.0,
+      "std": 42.52925744363846
+    },
+    "female": {
+      "count": 652,
+      "min": 3.0,
+      "max": 228.0,
+      "mean": 117.95705521472392,
+      "median": 120.0,
+      "std": 38.81360391364085
+    }
+  },
+  "checks": {
+    "split_counts_correct": true,
+    "all_ids_unique_across_splits": true,
+    "all_hashes_unique_across_splits": true,
+    "all_images_readable": true,
+    "all_labels_valid": true,
+    "test_labels_excluded_from_registry": true,
+    "validation_matches_deeplasia": true
+  },
+  "fingerprints": {
+    "train_manifest_sha256": "7328667e6822ab074d442155e33eba89606861bb13bbf804be8a1138c78f5285",
+    "validation_manifest_sha256": "f650a20432b557405035d12c52716a6c40fdf20e1343ac3ad0cfb7cd8db21631",
+    "test_locked_manifest_sha256": "fd22bf5b44397a32826cfedad805b31ba727637047a48be51cc8954bb51229db",
+    "development_manifest_14036_sha256": "db1d62d768aca44016e9434c0d3c3b64e5f695094338cff0dbf6da2077e5925a",
+    "three_split_registry_sha256": "234d368e37dc908c4e30d271a5dee2e3a853e4a9920628b476c418e457b6b7e6",
+    "validation_source_archive_sha256": "683ea5398dd9d0730af883e673176a5c6817fd35a5a59331a500fa7affcd36f0"
+  }
+}

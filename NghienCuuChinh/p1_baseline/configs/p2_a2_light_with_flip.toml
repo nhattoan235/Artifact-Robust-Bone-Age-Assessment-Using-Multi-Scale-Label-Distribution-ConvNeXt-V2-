@@ -1,0 +1,68 @@
+[data]
+train_manifest = "p0_audit/outputs/train_manifest.csv"
+val_manifest = "p0_audit/outputs/validation_manifest.csv"
+expected_train_hash = "7328667e6822ab074d442155e33eba89606861bb13bbf804be8a1138c78f5285"
+expected_val_hash = "f650a20432b557405035d12c52716a6c40fdf20e1343ac3ad0cfb7cd8db21631"
+
+[run]
+run_id = "P2_A2_LIGHT_FLIP_CONVNEXT_TINY_SEED42"
+output_root = "p1_baseline/runs"
+seed = 42
+device = "auto"
+deterministic = true
+allow_tf32 = true
+
+[model]
+architecture = "convnext_tiny"
+pretrained = true
+image_size = 512
+sex_embedding_dim = 16
+head_hidden_dim = 256
+dropout = 0.2
+target_mean = 127.32098961224328
+target_std = 41.18202139939604
+augmentation = "light"
+horizontal_flip_probability = 0.5
+rotation_degrees = 7.0
+translation_fraction = 0.03
+scale_min = 0.95
+scale_max = 1.05
+brightness_delta = 0.10
+contrast_delta = 0.10
+gamma_min = 0.90
+gamma_max = 1.10
+
+[training]
+epochs = 35
+batch_size = 12
+grad_accum_steps = 3
+learning_rate = 0.0002
+min_learning_rate = 0.000001
+weight_decay = 0.05
+smooth_l1_beta_months = 3.0
+gradient_clip_norm = 5.0
+patience = 8
+min_delta_mae = 0.01
+amp = true
+amp_dtype = "auto"
+amp_init_scale = 4096.0
+
+[operations]
+num_workers = 2
+log_every_steps = 25
+checkpoint_every_steps = 500
+checkpoint_every_minutes = 20.0
+periodic_keep = 2
+best_keep = 3
+
+[warnings]
+warning_gradient_norm = 50.0
+warning_gradient_consecutive = 3
+warning_prediction_soft_min = 0.0
+warning_prediction_soft_max = 228.0
+warning_prediction_hard_min = -60.0
+warning_prediction_hard_max = 300.0
+warning_prediction_std_min = 1.0
+warning_sex_mae_gap = 2.5
+warning_overfit_epochs = 3
+age_bins = [0, 60, 120, 180, 229]
