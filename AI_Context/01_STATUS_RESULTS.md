@@ -33,6 +33,31 @@ Protocol: trung bình đều 5 fold, checkpoint tốt nhất từng fold, **khô
 
 MAE theo fold: 5,119659; 5,318364; 5,188306; 4,822037; 5,279186. Input audit PASS: 5 model, manifest SHA PASS, 14.036 OOF duy nhất, 200 ảnh test, sex/ID/ground-truth khớp.
 
+## P10 – kiểm soát recipe và augmentation
+
+- **P10-B0 control:** tái lập chính xác P2 trên validation, MAE **6,184792**,
+  RMSE 8,4865; toàn bộ 1.425 dự đoán giống hệt P2 cũ.
+- **P10-B1 Deeplasia augmentation vừa:** MAE **6,185877**, RMSE 8,4255;
+  delta so với control +0,001086 tháng, CI chứa 0. Không có bằng chứng
+  augmentation mức vừa cải thiện.
+- Hai run chỉ dùng validation để quyết định, không mở test/OOF. Baseline hiện
+  được khóa; bước tiếp theo là TTA/bias correction và Deeplasia single-model,
+  không tăng augmentation mù quáng.
+
+## P9-I – TTA và bias correction trên P7 OOF
+
+- Đã hoàn tất trên toàn bộ 14.036 mẫu OOF; không truy cập test.
+- TTA Deeplasia-style đạt MAE **6,210446 tháng**, RMSE 8,382443; paired delta
+  so với raw tái suy luận **−0,107025**, CI **[−0,135977; −0,078220]**.
+- Raw bias correction cross-fitted đạt MAE 6,324285; delta +0,006815,
+  CI [−0,001070; +0,014648], không có bằng chứng cải thiện.
+- TTA + bias correction đạt MAE 6,228665, kém TTA đơn độc +0,018219,
+  paired CI [+0,012482; +0,023813].
+- Quyết định: giữ TTA làm ứng viên inference; loại bias correction khỏi pipeline
+  chính hiện tại; chuyển sang Deeplasia single-model EfficientNet-B0.
+- Artifact: `p9_inference/P9_I_HANDOFF.md` và
+  `p9_inference/outputs/P9_I_TTA_BIAS_OOF/`.
+
 ## So sánh mốc tham khảo
 
 - Bram et al., *The American Journal of Sports Medicine* (2025): **3,68 tháng** trên RSNA test.
@@ -50,7 +75,21 @@ MAE theo fold: 5,119659; 5,318364; 5,188306; 4,822037; 5,279186. Input audit PAS
 
 - Sai số P8 còn cao hơn Bram khoảng 1,05 tháng và Deeplasia khoảng 0,86 tháng; chưa thể ghi “vượt trội”.
 - Test chỉ có 200 ảnh nên CI rộng; không được lặp lại nhiều lần để chọn mô hình.
-- P7 dùng `preprocessing=none`; nhánh mask B1 không cải thiện validation. Có thể còn khoảng cách do thiếu preprocessing/augmentation/recipe tương đương Bram.
+- P7 dùng `preprocessing=none`; nhánh mask B1 không cải thiện validation. Có thể
+  còn khoảng cách do chưa tái lập đầy đủ preprocessing/inference/ensemble của
+  Deeplasia; P10 cho thấy augmentation mức vừa đơn độc chưa đủ.
 - P4 D1 gây feature collapse; D2 không cải thiện; D3/LDL chỉ cải thiện rất nhỏ và CI chứa 0.
 - Bộ 200 ảnh đã làm sạch artifact và hướng inpainting/generative trước đây chưa phải phần của protocol P7/P8; không được trộn vào so sánh chính nếu chưa có thiết kế paired và audit độc lập.
 
+## P9-B0 – Deeplasia EfficientNet-B0 screening (2026-08-21)
+
+- Đã triển khai EfficientNet-B0 512 + sex embedding 32, head 256/dropout 0,2,
+  MSE, Adam và ReduceLROnPlateau; unit tests 16/16 và preflight đều PASS.
+- Cache deeplasia_mask_v1 còn đủ 12.611 train / 1.425 validation; không dùng test.
+- Screening validation không đạt control P10-B0 MAE 6,184792:
+  - stem 3 kênh, batch 12: best MAE 8,5293 ở epoch 1;
+  - stem 1 kênh, batch 12: best MAE 8,5823 ở epoch 2;
+  - stem 1 kênh, batch 24: best MAE 11,0428 ở epoch 1.
+- Các run không có NaN/Inf/OOM và được dừng để review; không chạy OOF/TTA/ensemble
+  cho EfficientNet-B0 và không mở test.
+- Handoff: p9_single_model/P9_B0_HANDOFF.md.

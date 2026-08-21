@@ -164,8 +164,23 @@ class Trainer:
             cfg.architecture, cfg.pretrained, cfg.sex_embedding_dim,
             cfg.head_hidden_dim, cfg.dropout, cfg.age_class_count,
         ).to(self.device)
-        self.optimizer = torch.optim.AdamW(self.model.parameters(), lr=cfg.learning_rate, weight_decay=cfg.weight_decay)
-        self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(self.optimizer, T_max=cfg.epochs, eta_min=cfg.min_learning_rate)
+        optimizer_class = torch.optim.Adam if cfg.optimizer_name == "adam" else torch.optim.AdamW
+        self.optimizer = optimizer_class(
+            self.model.parameters(), lr=cfg.learning_rate, weight_decay=cfg.weight_decay
+        )
+        if cfg.scheduler_name == "reduce_on_plateau":
+            self.scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
+                self.optimizer,
+                mode="min",
+                factor=cfg.scheduler_factor,
+                patience=cfg.scheduler_patience,
+                cooldown=cfg.scheduler_cooldown,
+                min_lr=cfg.scheduler_min_lr,
+            )
+        else:
+            self.scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+                self.optimizer, T_max=cfg.epochs, eta_min=cfg.min_learning_rate
+            )
         self.amp_enabled = cfg.amp and self.device.type == "cuda"
         if cfg.amp_dtype not in {"auto", "float16", "bfloat16"}:
             raise ValueError("amp_dtype phải là auto, float16 hoặc bfloat16")
@@ -184,7 +199,14 @@ class Trainer:
             "cuda", enabled=self.amp_enabled and self.amp_dtype == torch.float16,
             init_scale=cfg.amp_init_scale,
         )
-        self.loss_fn = nn.L1Loss() if cfg.regression_loss == "mae" else nn.SmoothL1Loss(beta=cfg.smooth_l1_beta_months / cfg.target_std)
+        if cfg.regression_loss == "mae":
+            self.loss_fn = nn.L1Loss()
+        elif cfg.regression_loss == "mse":
+            self.loss_fn = nn.MSELoss()
+        else:
+            self.loss_fn = nn.SmoothL1Loss(
+                beta=cfg.smooth_l1_beta_months / cfg.target_std
+            )
         self.last_distribution_loss = float("nan")
 
         self.epoch = 0
@@ -586,7 +608,10 @@ Checkpoint tốt nhất: {self.run_dir / 'best_mae.ckpt'}
             self._snapshot(train_loss, metrics, " | ".join(self.logger.current_warnings))
             self.train_loss_history.append(train_loss)
             self.val_mae_history.append(metrics["mae"])
-            self.scheduler.step()
+            if self.cfg.scheduler_name == "reduce_on_plateau":
+                self.scheduler.step(metrics["mae"])
+            else:
+                self.scheduler.step()
             self.epoch += 1
             self.batch_in_epoch = 0
             self.samples_seen_in_epoch = 0

@@ -76,6 +76,14 @@ class P1UnitTests(unittest.TestCase):
         self.assertEqual(tuple(output.shape), (1,))
         self.assertEqual(model.backbone.num_features, 768)
 
+    def test_efficientnet_b0_forward_contract(self):
+        model = build_model("efficientnet_b0", False, 32, 256, 0.2).eval()
+        with torch.inference_mode():
+            output = model(torch.zeros(2, 3, 64, 64), torch.zeros(2, 1))
+        self.assertEqual(tuple(output.shape), (2,))
+        self.assertEqual(model.features[0][0].in_channels, 1)
+        self.assertEqual(model.features[-1][0].out_channels, 1280)
+
     def test_multiscale_forward_contract_and_identity_initialization(self):
         model = build_model("convnext_tiny_multiscale", False, 16, 32, 0.0).eval()
         image = torch.randn(2, 3, 64, 64)

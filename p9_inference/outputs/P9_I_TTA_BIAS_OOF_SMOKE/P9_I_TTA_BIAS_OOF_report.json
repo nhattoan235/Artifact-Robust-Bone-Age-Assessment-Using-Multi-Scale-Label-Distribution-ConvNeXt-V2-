@@ -1,0 +1,436 @@
+{
+  "status": "PASS",
+  "protocol": "P7 ConvNeXt-Tiny checkpoint re-inference; Deeplasia-style rotations/flips; leave-one-fold-out bias correction",
+  "test_accessed": false,
+  "subset": true,
+  "limit_per_fold": 16,
+  "input_rows": 80,
+  "fold_counts": {
+    "1": 16,
+    "2": 16,
+    "3": 16,
+    "4": 16,
+    "5": 16
+  },
+  "source_sha256": {
+    "development_manifest": "ee8f6ccd4b94b33ee21a11a0c5b6223f4f7adcb28c5cd3fcd3228f0c647776d5",
+    "oof_csv": "7b8083cd69a976df58c1be21d5d78cdda0b67bcf6c2cd59e038755ef009aedef"
+  },
+  "tta": {
+    "rotations": [
+      -10.0,
+      -5.0,
+      0.0,
+      5.0,
+      10.0
+    ],
+    "flips": [
+      false,
+      true
+    ],
+    "amp": false
+  },
+  "raw_reproduction_vs_p7_oof": {
+    "mean_abs_diff_months": 0.029194736480712892,
+    "median_abs_diff_months": 0.024200439453125,
+    "max_abs_diff_months": 0.1014404296875,
+    "count_abs_diff_le_0_01": 14,
+    "count_abs_diff_le_0_1": 79
+  },
+  "fold_inference": {
+    "1": {
+      "count": 16,
+      "rotations": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ],
+      "flips": [
+        false,
+        true
+      ],
+      "model_dir": "p7_results\\results\\P7_FINAL_V3_FOLD_1"
+    },
+    "2": {
+      "count": 16,
+      "rotations": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ],
+      "flips": [
+        false,
+        true
+      ],
+      "model_dir": "p7_results\\results\\P7_FINAL_V3_FOLD_2"
+    },
+    "3": {
+      "count": 16,
+      "rotations": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ],
+      "flips": [
+        false,
+        true
+      ],
+      "model_dir": "p7_results\\results\\P7_FINAL_V3_FOLD_3"
+    },
+    "4": {
+      "count": 16,
+      "rotations": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ],
+      "flips": [
+        false,
+        true
+      ],
+      "model_dir": "p7_results\\results\\P7_FINAL_V3_FOLD_4"
+    },
+    "5": {
+      "count": 16,
+      "rotations": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ],
+      "flips": [
+        false,
+        true
+      ],
+      "model_dir": "p7_results\\results\\P7_FINAL_V3_FOLD_5"
+    }
+  },
+  "crossfit_bias_parameters": {
+    "1": {
+      "fit_sample_count": 64,
+      "raw": {
+        "slope": 0.044945372527176224,
+        "intercept": -2.1368019930503706
+      },
+      "tta": {
+        "slope": 0.0541695249401669,
+        "intercept": -3.4860280152987624
+      }
+    },
+    "2": {
+      "fit_sample_count": 64,
+      "raw": {
+        "slope": 0.020470027974138476,
+        "intercept": -1.090629644280165
+      },
+      "tta": {
+        "slope": 0.03115692238435644,
+        "intercept": -2.7450215242901868
+      }
+    },
+    "3": {
+      "fit_sample_count": 64,
+      "raw": {
+        "slope": 0.04958880910075696,
+        "intercept": -2.5939515078471933
+      },
+      "tta": {
+        "slope": 0.06252642939966084,
+        "intercept": -4.412930098213529
+      }
+    },
+    "4": {
+      "fit_sample_count": 64,
+      "raw": {
+        "slope": 0.034778224388100326,
+        "intercept": -1.8056029512786433
+      },
+      "tta": {
+        "slope": 0.04335240944735851,
+        "intercept": -3.0724808188855137
+      }
+    },
+    "5": {
+      "fit_sample_count": 64,
+      "raw": {
+        "slope": 0.021242356781823124,
+        "intercept": -0.17516196722879004
+      },
+      "tta": {
+        "slope": 0.032338343258229534,
+        "intercept": -1.9333218304384405
+      }
+    }
+  },
+  "metrics": {
+    "p7_oof_reference_raw": {
+      "count": 80,
+      "mae_months": 8.309326171875,
+      "rmse_months": 11.13827200460629,
+      "median_absolute_error_months": 6.125,
+      "accuracy_within_6_months": 0.4875,
+      "accuracy_within_12_months": 0.75,
+      "accuracy_within_18_months": 0.9,
+      "signed_bias_prediction_minus_target_months": 2.000537109375,
+      "prediction_mean_months": 104.563037109375,
+      "prediction_std_months": 55.756000506331716,
+      "bootstrap_95_ci_mae_months": [
+        6.693880615234375,
+        10.022476806640626
+      ],
+      "age_bins": {
+        "0-59": {
+          "count": 25,
+          "mae_months": 6.58234375,
+          "signed_bias_months": 1.60421875
+        },
+        "60-119": {
+          "count": 14,
+          "mae_months": 9.870535714285714,
+          "signed_bias_months": 0.14732142857142858
+        },
+        "120-179": {
+          "count": 34,
+          "mae_months": 9.485294117647058,
+          "signed_bias_months": 4.033088235294118
+        },
+        "180-228": {
+          "count": 7,
+          "mae_months": 5.642857142857143,
+          "signed_bias_months": -2.75
+        }
+      },
+      "sex": {
+        "F": {
+          "count": 41,
+          "mae_months": 7.319645579268292,
+          "signed_bias_months": -2.3415586890243905
+        },
+        "M": {
+          "count": 39,
+          "mae_months": 9.349759615384615,
+          "signed_bias_months": 6.565304487179487
+        }
+      }
+    },
+    "raw_recomputed": {
+      "count": 80,
+      "mae_months": 8.300005245208741,
+      "rmse_months": 11.13129299000469,
+      "median_absolute_error_months": 6.098274230957031,
+      "accuracy_within_6_months": 0.4875,
+      "accuracy_within_12_months": 0.75,
+      "accuracy_within_18_months": 0.9,
+      "signed_bias_prediction_minus_target_months": 1.9973860740661622,
+      "prediction_mean_months": 104.55988607406616,
+      "prediction_std_months": 55.75799174197507,
+      "bootstrap_95_ci_mae_months": [
+        6.997456231117249,
+        10.175940504074097
+      ],
+      "age_bins": {
+        "0-59": {
+          "count": 25,
+          "mae_months": 6.576096801757813,
+          "signed_bias_months": 1.6002142333984375
+        },
+        "60-119": {
+          "count": 14,
+          "mae_months": 9.860482352120536,
+          "signed_bias_months": 0.13675798688616073
+        },
+        "120-179": {
+          "count": 34,
+          "mae_months": 9.476569905000574,
+          "signed_bias_months": 4.0295807333553535
+        },
+        "180-228": {
+          "count": 7,
+          "mae_months": 5.621124267578125,
+          "signed_bias_months": -2.733546665736607
+        }
+      },
+      "sex": {
+        "F": {
+          "count": 41,
+          "mae_months": 7.312778565941787,
+          "signed_bias_months": -2.3450728625786015
+        },
+        "M": {
+          "count": 39,
+          "mae_months": 9.33785893366887,
+          "signed_bias_months": 6.562535212590144
+        }
+      }
+    },
+    "tta": {
+      "count": 80,
+      "mae_months": 8.198106822967528,
+      "rmse_months": 11.206763332223904,
+      "median_absolute_error_months": 6.0299552917480455,
+      "accuracy_within_6_months": 0.4875,
+      "accuracy_within_12_months": 0.75,
+      "accuracy_within_18_months": 0.9,
+      "signed_bias_prediction_minus_target_months": 1.497943363189697,
+      "prediction_mean_months": 104.06044336318969,
+      "prediction_std_months": 56.36782412579552,
+      "bootstrap_95_ci_mae_months": [
+        6.63288552248478,
+        9.98426062464714
+      ],
+      "age_bins": {
+        "0-59": {
+          "count": 25,
+          "mae_months": 5.846111251831054,
+          "signed_bias_months": 0.24825697326660168
+        },
+        "60-119": {
+          "count": 14,
+          "mae_months": 9.87141808101109,
+          "signed_bias_months": -0.7507670538766058
+        },
+        "120-179": {
+          "count": 34,
+          "mae_months": 9.687819065767178,
+          "signed_bias_months": 4.283509355432845
+        },
+        "180-228": {
+          "count": 7,
+          "mae_months": 6.015723310198102,
+          "signed_bias_months": -3.071362086704795
+        }
+      },
+      "sex": {
+        "F": {
+          "count": 41,
+          "mae_months": 7.215301188026986,
+          "signed_bias_months": -3.0026693297595517
+        },
+        "M": {
+          "count": 39,
+          "mae_months": 9.231312746879384,
+          "signed_bias_months": 6.22935670705942
+        }
+      }
+    },
+    "raw_bias_corrected_crossfit": {
+      "count": 80,
+      "mae_months": 8.642141528888832,
+      "rmse_months": 11.10033463584301,
+      "median_absolute_error_months": 6.72184292181003,
+      "accuracy_within_6_months": 0.425,
+      "accuracy_within_12_months": 0.7375,
+      "accuracy_within_18_months": 0.9125,
+      "signed_bias_prediction_minus_target_months": -0.09325420494483808,
+      "prediction_mean_months": 102.46924579505517,
+      "prediction_std_months": 53.77210173947082,
+      "bootstrap_95_ci_mae_months": [
+        7.060359782532952,
+        9.868996976271177
+      ],
+      "age_bins": {
+        "0-59": {
+          "count": 25,
+          "mae_months": 6.616153335926216,
+          "signed_bias_months": 1.97025365237632
+        },
+        "60-119": {
+          "count": 14,
+          "mae_months": 9.445984657200507,
+          "signed_bias_months": -1.4353297704836763
+        },
+        "120-179": {
+          "count": 34,
+          "mae_months": 9.648659072418525,
+          "signed_bias_months": 0.6113506519501127
+        },
+        "180-228": {
+          "count": 7,
+          "mae_months": 9.381327892844897,
+          "signed_bias_months": -8.201140440646773
+        }
+      },
+      "sex": {
+        "F": {
+          "count": 41,
+          "mae_months": 8.052787057437378,
+          "signed_bias_months": -3.9383249472794977
+        },
+        "M": {
+          "count": 39,
+          "mae_months": 9.261719306568567,
+          "signed_bias_months": 3.948999652381343
+        }
+      }
+    },
+    "tta_bias_corrected_crossfit": {
+      "count": 80,
+      "mae_months": 8.528604326706764,
+      "rmse_months": 11.160829376672382,
+      "median_absolute_error_months": 6.6522569228483945,
+      "accuracy_within_6_months": 0.45,
+      "accuracy_within_12_months": 0.725,
+      "accuracy_within_18_months": 0.9125,
+      "signed_bias_prediction_minus_target_months": -0.12255008640376316,
+      "prediction_mean_months": 102.43994991359625,
+      "prediction_std_months": 53.78433046926703,
+      "bootstrap_95_ci_mae_months": [
+        7.046167850187394,
+        10.034684029628202
+      ],
+      "age_bins": {
+        "0-59": {
+          "count": 25,
+          "mae_months": 6.042468086796756,
+          "signed_bias_months": 1.8498862436458443
+        },
+        "60-119": {
+          "count": 14,
+          "mae_months": 9.545282454347362,
+          "signed_bias_months": -1.7095221761896038
+        },
+        "120-179": {
+          "count": 34,
+          "mae_months": 9.648352032324166,
+          "signed_bias_months": 0.8954416771257234
+        },
+        "180-228": {
+          "count": 7,
+          "mae_months": 9.935531500962501,
+          "signed_bias_months": -8.937552794152472
+        }
+      },
+      "sex": {
+        "F": {
+          "count": 41,
+          "mae_months": 7.894123028950004,
+          "signed_bias_months": -3.964332919003567
+        },
+        "M": {
+          "count": 39,
+          "mae_months": 9.195623126912595,
+          "signed_bias_months": 3.9162472504319275
+        }
+      }
+    },
+    "tta_disagreement": {
+      "mean_std_months": 1.9112297115104078,
+      "median_std_months": 1.7925330649116566,
+      "p95_std_months": 3.4088730178972515
+    }
+  },
+  "notes": [
+    "Primary selection endpoint is cross-fitted OOF, never RSNA test.",
+    "TTA uses the same P7 raw preprocessing/model input normalization; this is an inference ablation, not yet a full Deeplasia preprocessing reproduction.",
+    "The P7 OOF reference is retained for an integrity check; raw_recomputed is the model output used by the correction ablations."
+  ]
+}

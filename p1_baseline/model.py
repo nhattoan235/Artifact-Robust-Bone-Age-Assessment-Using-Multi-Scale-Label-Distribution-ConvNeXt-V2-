@@ -3,7 +3,12 @@ from __future__ import annotations
 import torch
 import timm
 from torch import nn
-from torchvision.models import ConvNeXt_Tiny_Weights, convnext_tiny
+from torchvision.models import (
+    ConvNeXt_Tiny_Weights,
+    EfficientNet_B0_Weights,
+    convnext_tiny,
+    efficientnet_b0,
+)
 
 
 class BoneAgeConvNeXt(nn.Module):
@@ -24,6 +29,55 @@ class BoneAgeConvNeXt(nn.Module):
 
     def forward(self, image: torch.Tensor, sex: torch.Tensor) -> torch.Tensor:
         features = self.backbone(image)
+        conditioned = torch.cat([features, self.sex_embedding(sex)], dim=1)
+        return self.regressor(conditioned).squeeze(1)
+
+
+class BoneAgeEfficientNetB0(nn.Module):
+    """EfficientNet-B0 with sex input and a Deeplasia-style regression head."""
+
+    def __init__(self, pretrained: bool, sex_embedding_dim: int, hidden_dim: int, dropout: float):
+        super().__init__()
+        weights = EfficientNet_B0_Weights.IMAGENET1K_V1 if pretrained else None
+        backbone = efficientnet_b0(weights=weights)
+        first_conv = backbone.features[0][0]
+        one_channel_conv = nn.Conv2d(
+            1,
+            first_conv.out_channels,
+            kernel_size=first_conv.kernel_size,
+            stride=first_conv.stride,
+            padding=first_conv.padding,
+            dilation=first_conv.dilation,
+            groups=1,
+            bias=first_conv.bias is not None,
+            padding_mode=first_conv.padding_mode,
+        )
+        with torch.no_grad():
+            if pretrained:
+                one_channel_conv.weight.copy_(
+                    first_conv.weight.sum(dim=1, keepdim=True)
+                )
+            else:
+                one_channel_conv.weight.copy_(
+                    first_conv.weight.mean(dim=1, keepdim=True)
+                )
+            if first_conv.bias is not None:
+                one_channel_conv.bias.copy_(first_conv.bias)
+        backbone.features[0][0] = one_channel_conv
+        feature_dim = backbone.classifier[1].in_features
+        self.features = backbone.features
+        self.pool = backbone.avgpool
+        self.sex_embedding = nn.Sequential(nn.Linear(1, sex_embedding_dim), nn.ReLU())
+        self.regressor = nn.Sequential(
+            nn.Linear(feature_dim + sex_embedding_dim, hidden_dim),
+            nn.ReLU(),
+            nn.Dropout(dropout),
+            nn.Linear(hidden_dim, 1),
+        )
+
+    def forward(self, image: torch.Tensor, sex: torch.Tensor) -> torch.Tensor:
+        # Deeplasia huấn luyện EfficientNet với ảnh grayscale một kênh.
+        features = self.pool(self.features(image[:, :1])).flatten(1)
         conditioned = torch.cat([features, self.sex_embedding(sex)], dim=1)
         return self.regressor(conditioned).squeeze(1)
 
@@ -171,6 +225,8 @@ def build_model(
 ) -> nn.Module:
     if architecture == "convnext_tiny":
         return BoneAgeConvNeXt(pretrained, sex_embedding_dim, hidden_dim, dropout)
+    if architecture == "efficientnet_b0":
+        return BoneAgeEfficientNetB0(pretrained, sex_embedding_dim, hidden_dim, dropout)
     if architecture == "convnextv2_tiny":
         return BoneAgeConvNeXtV2(pretrained, sex_embedding_dim, hidden_dim, dropout)
     if architecture == "convnext_tiny_multiscale":

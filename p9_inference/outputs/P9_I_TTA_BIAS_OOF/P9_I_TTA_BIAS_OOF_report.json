@@ -1,0 +1,436 @@
+{
+  "status": "PASS",
+  "protocol": "P7 ConvNeXt-Tiny checkpoint re-inference; Deeplasia-style rotations/flips; leave-one-fold-out bias correction",
+  "test_accessed": false,
+  "subset": false,
+  "limit_per_fold": null,
+  "input_rows": 14036,
+  "fold_counts": {
+    "1": 2808,
+    "2": 2807,
+    "3": 2807,
+    "4": 2807,
+    "5": 2807
+  },
+  "source_sha256": {
+    "development_manifest": "ee8f6ccd4b94b33ee21a11a0c5b6223f4f7adcb28c5cd3fcd3228f0c647776d5",
+    "oof_csv": "7b8083cd69a976df58c1be21d5d78cdda0b67bcf6c2cd59e038755ef009aedef"
+  },
+  "tta": {
+    "rotations": [
+      -10.0,
+      -5.0,
+      0.0,
+      5.0,
+      10.0
+    ],
+    "flips": [
+      false,
+      true
+    ],
+    "amp": false
+  },
+  "raw_reproduction_vs_p7_oof": {
+    "mean_abs_diff_months": 0.027946488202960106,
+    "median_abs_diff_months": 0.02392578125,
+    "max_abs_diff_months": 0.364501953125,
+    "count_abs_diff_le_0_01": 3012,
+    "count_abs_diff_le_0_1": 13956
+  },
+  "fold_inference": {
+    "1": {
+      "count": 2808,
+      "rotations": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ],
+      "flips": [
+        false,
+        true
+      ],
+      "model_dir": "p7_results\\results\\P7_FINAL_V3_FOLD_1"
+    },
+    "2": {
+      "count": 2807,
+      "rotations": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ],
+      "flips": [
+        false,
+        true
+      ],
+      "model_dir": "p7_results\\results\\P7_FINAL_V3_FOLD_2"
+    },
+    "3": {
+      "count": 2807,
+      "rotations": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ],
+      "flips": [
+        false,
+        true
+      ],
+      "model_dir": "p7_results\\results\\P7_FINAL_V3_FOLD_3"
+    },
+    "4": {
+      "count": 2807,
+      "rotations": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ],
+      "flips": [
+        false,
+        true
+      ],
+      "model_dir": "p7_results\\results\\P7_FINAL_V3_FOLD_4"
+    },
+    "5": {
+      "count": 2807,
+      "rotations": [
+        -10.0,
+        -5.0,
+        0.0,
+        5.0,
+        10.0
+      ],
+      "flips": [
+        false,
+        true
+      ],
+      "model_dir": "p7_results\\results\\P7_FINAL_V3_FOLD_5"
+    }
+  },
+  "crossfit_bias_parameters": {
+    "1": {
+      "fit_sample_count": 11228,
+      "raw": {
+        "slope": 0.0013068575989151957,
+        "intercept": -0.46889251432613305
+      },
+      "tta": {
+        "slope": 0.003112679568127029,
+        "intercept": -0.3672610507992941
+      }
+    },
+    "2": {
+      "fit_sample_count": 11229,
+      "raw": {
+        "slope": 0.005536473732571254,
+        "intercept": -1.2985973783526565
+      },
+      "tta": {
+        "slope": 0.005380550571397667,
+        "intercept": -0.9859835512765477
+      }
+    },
+    "3": {
+      "fit_sample_count": 11229,
+      "raw": {
+        "slope": 0.001568027322067136,
+        "intercept": -0.6229221327734225
+      },
+      "tta": {
+        "slope": 0.003586911553634356,
+        "intercept": -0.4771703841009313
+      }
+    },
+    "4": {
+      "fit_sample_count": 11229,
+      "raw": {
+        "slope": 0.009335119966956119,
+        "intercept": -1.5311054018469383
+      },
+      "tta": {
+        "slope": 0.0107934460611484,
+        "intercept": -1.3982253793981279
+      }
+    },
+    "5": {
+      "fit_sample_count": 11229,
+      "raw": {
+        "slope": 0.009516845624443724,
+        "intercept": -1.4996026353769185
+      },
+      "tta": {
+        "slope": 0.011380522017140375,
+        "intercept": -1.5930581922131457
+      }
+    }
+  },
+  "metrics": {
+    "p7_oof_reference_raw": {
+      "count": 14036,
+      "mae_months": 6.3166912053853705,
+      "rmse_months": 8.519419710229919,
+      "median_absolute_error_months": 4.875,
+      "accuracy_within_6_months": 0.5901253918495298,
+      "accuracy_within_12_months": 0.8673411228270163,
+      "accuracy_within_18_months": 0.9553291536050157,
+      "signed_bias_prediction_minus_target_months": -0.3899164164497765,
+      "prediction_mean_months": 126.91415881865994,
+      "prediction_std_months": 40.56998224899427,
+      "bootstrap_95_ci_mae_months": [
+        6.2222869579525,
+        6.412747451334334
+      ],
+      "age_bins": {
+        "0-59": {
+          "count": 895,
+          "mae_months": 6.062656713730796,
+          "signed_bias_months": 2.0768946130848462
+        },
+        "60-119": {
+          "count": 3881,
+          "mae_months": 7.316815897964442,
+          "signed_bias_months": 1.1289293996392682
+        },
+        "120-179": {
+          "count": 8033,
+          "mae_months": 5.9118713432092616,
+          "signed_bias_months": -1.0020773683555335
+        },
+        "180-228": {
+          "count": 1227,
+          "mae_months": 5.988895680521598,
+          "signed_bias_months": -2.985635696821516
+        }
+      },
+      "sex": {
+        "F": {
+          "count": 6430,
+          "mae_months": 6.536249700044955,
+          "signed_bias_months": -0.7452201024555307
+        },
+        "M": {
+          "count": 7606,
+          "mae_months": 6.131079698593216,
+          "signed_bias_months": -0.08954793090980805
+        }
+      }
+    },
+    "raw_recomputed": {
+      "count": 14036,
+      "mae_months": 6.317470714420157,
+      "rmse_months": 8.51994465057794,
+      "median_absolute_error_months": 4.852897644042969,
+      "accuracy_within_6_months": 0.5873468224565404,
+      "accuracy_within_12_months": 0.8659874608150471,
+      "accuracy_within_18_months": 0.9551154174978627,
+      "signed_bias_prediction_minus_target_months": -0.39220901499041877,
+      "prediction_mean_months": 126.9118662201193,
+      "prediction_std_months": 40.569072588601664,
+      "bootstrap_95_ci_mae_months": [
+        6.222615565863658,
+        6.40963328376595
+      ],
+      "age_bins": {
+        "0-59": {
+          "count": 895,
+          "mae_months": 6.065080900565206,
+          "signed_bias_months": 2.0810168900303334
+        },
+        "60-119": {
+          "count": 3881,
+          "mae_months": 7.316425989903423,
+          "signed_bias_months": 1.1260261712569424
+        },
+        "120-179": {
+          "count": 8033,
+          "mae_months": 5.912101058931468,
+          "signed_bias_months": -1.004540427155829
+        },
+        "180-228": {
+          "count": 1227,
+          "mae_months": 5.995773812863724,
+          "signed_bias_months": -2.989560040984585
+        }
+      },
+      "sex": {
+        "F": {
+          "count": 6430,
+          "mae_months": 6.536692177637554,
+          "signed_bias_months": -0.7479066982239624
+        },
+        "M": {
+          "count": 7606,
+          "mae_months": 6.132144129028641,
+          "signed_bias_months": -0.09150745001649217
+        }
+      }
+    },
+    "tta": {
+      "count": 14036,
+      "mae_months": 6.210446212895747,
+      "rmse_months": 8.382442855850103,
+      "median_absolute_error_months": 4.74773635864258,
+      "accuracy_within_6_months": 0.5973211741236819,
+      "accuracy_within_12_months": 0.8693359931604445,
+      "accuracy_within_18_months": 0.9582502137361072,
+      "signed_bias_prediction_minus_target_months": -0.09300814088031616,
+      "prediction_mean_months": 127.2110670942294,
+      "prediction_std_months": 40.653818155321346,
+      "bootstrap_95_ci_mae_months": [
+        6.116654917305097,
+        6.304674284325667
+      ],
+      "age_bins": {
+        "0-59": {
+          "count": 895,
+          "mae_months": 5.895303170827514,
+          "signed_bias_months": 1.722843335540601
+        },
+        "60-119": {
+          "count": 3881,
+          "mae_months": 7.296841160460434,
+          "signed_bias_months": 1.3410292127334527
+        },
+        "120-179": {
+          "count": 8033,
+          "mae_months": 5.7586111962683955,
+          "signed_bias_months": -0.5443324490441164
+        },
+        "180-228": {
+          "count": 1227,
+          "mae_months": 5.96215356393082,
+          "signed_bias_months": -2.9986298795045636
+        }
+      },
+      "sex": {
+        "F": {
+          "count": 6430,
+          "mae_months": 6.458097061109766,
+          "signed_bias_months": -0.27852273872814504
+        },
+        "M": {
+          "count": 7606,
+          "mae_months": 6.001085845552054,
+          "signed_bias_months": 0.06382315864131674
+        }
+      }
+    },
+    "raw_bias_corrected_crossfit": {
+      "count": 14036,
+      "mae_months": 6.32428547452676,
+      "rmse_months": 8.525743775237693,
+      "median_absolute_error_months": 4.8520789820826025,
+      "accuracy_within_6_months": 0.585779424337418,
+      "accuracy_within_12_months": 0.8648475349102308,
+      "accuracy_within_18_months": 0.9546879452835566,
+      "signed_bias_prediction_minus_target_months": 3.562843270907963e-05,
+      "prediction_mean_months": 127.30411086354242,
+      "prediction_std_months": 40.351988775788286,
+      "bootstrap_95_ci_mae_months": [
+        6.228930292176138,
+        6.418915221670497
+      ],
+      "age_bins": {
+        "0-59": {
+          "count": 895,
+          "mae_months": 6.262487205436703,
+          "signed_bias_months": 2.9399246287030607
+        },
+        "60-119": {
+          "count": 3881,
+          "mae_months": 7.36366966025556,
+          "signed_bias_months": 1.7169133494496833
+        },
+        "120-179": {
+          "count": 8033,
+          "mae_months": 5.87659787439682,
+          "signed_bias_months": -0.7094965105063588
+        },
+        "180-228": {
+          "count": 1227,
+          "mae_months": 6.012740175313993,
+          "signed_bias_months": -2.929655829115221
+        }
+      },
+      "sex": {
+        "F": {
+          "count": 6430,
+          "mae_months": 6.531733000386507,
+          "signed_bias_months": -0.30204962773359195
+        },
+        "M": {
+          "count": 7606,
+          "mae_months": 6.148912401784428,
+          "signed_bias_months": 0.25541403983808847
+        }
+      }
+    },
+    "tta_bias_corrected_crossfit": {
+      "count": 14036,
+      "mae_months": 6.228665047684445,
+      "rmse_months": 8.396015974827788,
+      "median_absolute_error_months": 4.760986164376348,
+      "accuracy_within_6_months": 0.5946850954687946,
+      "accuracy_within_12_months": 0.8686947848389854,
+      "accuracy_within_18_months": 0.9581077229980052,
+      "signed_bias_prediction_minus_target_months": -0.0008440030022880612,
+      "prediction_mean_months": 127.30323123210744,
+      "prediction_std_months": 40.37982043890222,
+      "bootstrap_95_ci_mae_months": [
+        6.133900519291268,
+        6.3198258364390165
+      ],
+      "age_bins": {
+        "0-59": {
+          "count": 895,
+          "mae_months": 6.0209105540511905,
+          "signed_bias_months": 2.4071772380485896
+        },
+        "60-119": {
+          "count": 3881,
+          "mae_months": 7.313600278034817,
+          "signed_bias_months": 1.6838574904470387
+        },
+        "120-179": {
+          "count": 8033,
+          "mae_months": 5.744957118478328,
+          "signed_bias_months": -0.575845685239991
+        },
+        "180-228": {
+          "count": 1227,
+          "mae_months": 6.11532555145357,
+          "signed_bias_months": -3.321558749051109
+        }
+      },
+      "sex": {
+        "F": {
+          "count": 6430,
+          "mae_months": 6.468984256541056,
+          "signed_bias_months": -0.12038797774349123
+        },
+        "M": {
+          "count": 7606,
+          "mae_months": 6.025502739907953,
+          "signed_bias_months": 0.1002167066461391
+        }
+      }
+    },
+    "tta_disagreement": {
+      "mean_std_months": 1.709391064399508,
+      "median_std_months": 1.558582553458353,
+      "p95_std_months": 3.2524618697287244
+    }
+  },
+  "notes": [
+    "Primary selection endpoint is cross-fitted OOF, never RSNA test.",
+    "TTA uses the same P7 raw preprocessing/model input normalization; this is an inference ablation, not yet a full Deeplasia preprocessing reproduction.",
+    "The P7 OOF reference is retained for an integrity check; raw_recomputed is the model output used by the correction ablations."
+  ]
+}

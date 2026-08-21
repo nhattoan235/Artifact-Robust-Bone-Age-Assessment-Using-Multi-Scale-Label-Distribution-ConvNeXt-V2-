@@ -7,7 +7,8 @@
 - Ghi rõ kết quả hiện tại chưa vượt Bram 2025 (3,68) hoặc Deeplasia 2024 (3,87).
 - Ghi rõ giới hạn quan trọng: test 200 đã được đọc ở P8; P9 phải chọn bằng OOF và cần external hold-out mới nếu muốn tuyên bố confirmatory.
 - Ghi lại các nhánh bị loại: mask B1, ConvNeXtV2-FCMAE D1, multi-scale D2, LDL D3 chưa đủ bằng chứng.
-- Ghi lại kế hoạch P9 ưu tiên tái lập recipe Bram có preprocessing/augmentation/hyperparameter search được khóa trước.
+- Ghi lại kế hoạch P9/P10 ưu tiên Deeplasia-faithful reproduction, inference
+  TTA/bias correction, ensemble dị thể và calibration leakage-safe.
 - Bổ sung `06_PIPELINE_COMPARISON.md`: phân biệt ưu thế về reproducibility/audit với ưu thế về mô hình và hiệu năng; kết luận P7/P8 chưa phải state-of-the-art.
 
 ## 2026-08-20 – P9 A1 hoàn tất
@@ -64,3 +65,56 @@ Mỗi lần chạy mới phải ghi: ngày, phase/run ID, commit/code hash, conf
 - Run đang chạy tại `p9_preprocessing/runs/P10_B0_P2_CONTROL_CONVNEXT_TINY_SEED42`.
 - Mục tiêu là xác nhận pipeline P9 không làm thay đổi baseline trước khi thử
   augmentation Deeplasia mức vừa và preprocessing từng biến một.
+
+## 2026-08-20 – P10 B0 hoàn tất: baseline được tái lập chính xác
+
+- Early-stop ở epoch 20; checkpoint tốt nhất tại epoch 12.
+- Validation MAE **6,1847917**, RMSE **8,4865**, median AE **5,0 tháng**.
+- Dự đoán của P10-B0 và P2 cũ giống hệt trên 1.425 validation IDs
+  (`max_abs_pred_diff = 0`); đây là xác nhận pipeline P9 không gây drift.
+- Không mở test/OOF. Baseline đã được khóa; bước tiếp theo là augmentation
+  Deeplasia mức vừa, giữ nguyên recipe này và chỉ thay augmentation.
+
+## 2026-08-20 – P10 B1 đang chạy: Deeplasia augmentation mức vừa
+
+- Giữ nguyên P10-B0 control; chỉ đổi augmentation sang `deeplasia_fancy`:
+  rotation ±15°, translation ±10%, scale 0,90–1,10, shear ±5°, CLAHE 20%,
+  sharpen 15%, brightness/contrast ±15%, gamma 0,85–1,15.
+- Preflight PASS và smoke interruption → resume PASS; không có đường dẫn test.
+- Run: `p9_preprocessing/runs/P10_B1_DEEPLASIA_MODERATE_CONVNEXT_TINY_SEED42`.
+- PID hiện tại: `23168`. Chỉ giữ ứng viên nếu validation MAE cải thiện rõ so với
+  control 6,1847917; không dùng test để chọn.
+
+## 2026-08-20 – P10 B1 hoàn tất: augmentation mức vừa chưa cải thiện
+
+- Early-stop ở epoch 22; best epoch 14.
+- Validation MAE **6,1858772**, RMSE **8,4255**, median AE **5,0 tháng**.
+- So với P10-B0: delta MAE **+0,001086 tháng**, bootstrap 95% CI xấp xỉ
+  `[-0,1404; +0,1406]`; RMSE giảm nhẹ nhưng MAE không cải thiện.
+- Kết luận: augmentation mức vừa không có bằng chứng giúp ích; không đưa vào
+  OOF/test. Cần chuyển sang phân tích lỗi/ROI hoặc một ablation nhỏ có cơ sở,
+  không tiếp tục tăng độ mạnh augmentation mù quáng.
+
+## 2026-08-21 – P9-I hoàn tất: TTA có lợi, bias correction không giữ
+
+- Tạo `p9_inference/tta_bias_oof.py` và protocol/handoff tương ứng.
+- Chạy đủ 14.036 OOF bằng 5 checkpoint P7, TTA xoay `[-10,-5,0,5,10]` độ,
+  có và không flip; không truy cập đường dẫn/nhãn test.
+- Raw tái suy luận MAE 6,317471; sai khác so với OOF gốc median 0,02393
+  tháng, max 0,36450 tháng.
+- TTA đạt MAE **6,210446**; paired delta so với raw `-0,107025`, CI
+  `[-0,135977; -0,078220]`.
+- Raw + bias correction cross-fitted đạt MAE 6,324285; không cải thiện.
+- TTA + bias correction đạt 6,228665 và kém TTA đơn độc; không giữ correction.
+- Quyết định: giữ TTA làm ứng viên inference, chuyển bước tiếp theo sang
+  Deeplasia single-model EfficientNet-B0 512.
+
+## 2026-08-21 – P9-B0 screening hoàn tất: EfficientNet-B0 chưa đạt gate
+
+- Đã triển khai model/head, MSE, Adam/ReduceLROnPlateau và augmentation
+  Deeplasia gần mã gốc; unit tests 16/16, preflight và smoke/resume PASS.
+- Ba candidate validation lần lượt đạt best MAE 8,5293; 8,5823; 11,0428 tháng,
+  đều kém P10-B0 control 6,184792.
+- Không có NaN/Inf/OOM; không dùng test, không chạy OOF/TTA/ensemble.
+- Dừng P9-B0 để review. Artifact chính:
+  p9_single_model/P9_B0_HANDOFF.md.

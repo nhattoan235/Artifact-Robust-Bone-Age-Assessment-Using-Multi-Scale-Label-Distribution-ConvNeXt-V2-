@@ -57,6 +57,12 @@ class Config:
     learning_rate: float = 2e-4
     min_learning_rate: float = 1e-6
     weight_decay: float = 0.05
+    optimizer_name: str = "adamw"
+    scheduler_name: str = "cosine"
+    scheduler_factor: float = 0.2
+    scheduler_patience: int = 10
+    scheduler_cooldown: int = 0
+    scheduler_min_lr: float = 1e-4
     smooth_l1_beta_months: float = 3.0
     regression_loss: str = "smooth_l1"
     gradient_clip_norm: float = 5.0
@@ -119,8 +125,18 @@ def load_config(path: str | Path) -> Config:
         raise ValueError("preprocessing không được hỗ trợ")
     if cfg.image_normalization not in {"imagenet", "per_image_zscore", "zero_one"}:
         raise ValueError("image_normalization không được hỗ trợ")
-    if cfg.regression_loss not in {"smooth_l1", "mae"}:
-        raise ValueError("regression_loss phải là smooth_l1 hoặc mae")
+    if cfg.regression_loss not in {"smooth_l1", "mae", "mse"}:
+        raise ValueError("regression_loss phải là smooth_l1, mae hoặc mse")
+    if cfg.optimizer_name not in {"adamw", "adam"}:
+        raise ValueError("optimizer_name phải là adamw hoặc adam")
+    if cfg.scheduler_name not in {"cosine", "reduce_on_plateau"}:
+        raise ValueError("scheduler_name phải là cosine hoặc reduce_on_plateau")
+    if not 0.0 < cfg.scheduler_factor < 1.0:
+        raise ValueError("scheduler_factor phải trong (0, 1)")
+    if cfg.scheduler_patience < 0 or cfg.scheduler_cooldown < 0:
+        raise ValueError("scheduler_patience/scheduler_cooldown phải >= 0")
+    if cfg.scheduler_min_lr < 0:
+        raise ValueError("scheduler_min_lr phải >= 0")
     if not 0.0 <= cfg.horizontal_flip_probability <= 1.0:
         raise ValueError("horizontal_flip_probability phải trong [0, 1]")
     if not (0 < cfg.scale_min <= cfg.scale_max):

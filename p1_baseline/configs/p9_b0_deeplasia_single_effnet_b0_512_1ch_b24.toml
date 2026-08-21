@@ -1,0 +1,83 @@
+[data]
+train_manifest = "p0_audit/outputs/train_manifest.csv"
+val_manifest = "p0_audit/outputs/validation_manifest.csv"
+expected_train_hash = "7328667e6822ab074d442155e33eba89606861bb13bbf804be8a1138c78f5285"
+expected_val_hash = "f650a20432b557405035d12c52716a6c40fdf20e1343ac3ad0cfb7cd8db21631"
+expected_train_count = 12611
+expected_val_count = 1425
+
+[run]
+run_id = "P9_B0_DEEPLASIA_SINGLE_EFFNET_B0_512_1CH_B24_SEED42"
+output_root = "p9_single_model/runs"
+seed = 42
+device = "auto"
+deterministic = true
+allow_tf32 = true
+
+[model]
+architecture = "efficientnet_b0"
+pretrained = true
+image_size = 512
+sex_embedding_dim = 32
+head_hidden_dim = 256
+dropout = 0.2
+target_mean = 127.31657409667969
+target_std = 41.17934799194336
+augmentation = "deeplasia_fancy"
+horizontal_flip_probability = 0.5
+rotation_degrees = 30.0
+translation_fraction = 0.2
+scale_min = 0.8
+scale_max = 1.25
+brightness_delta = 0.0
+contrast_delta = 0.0
+gamma_min = 0.7
+gamma_max = 1.3
+shear_degrees = 10.0
+clahe_probability = 1.0
+sharpen_probability = 0.2
+preprocessing = "deeplasia_mask_v1"
+preprocessed_root = "p9_preprocessing/outputs/deeplasia_mask_v1/cache"
+image_normalization = "per_image_zscore"
+
+[training]
+epochs = 100
+batch_size = 24
+grad_accum_steps = 1
+learning_rate = 0.001
+min_learning_rate = 0.000001
+weight_decay = 0.000005
+optimizer_name = "adam"
+scheduler_name = "reduce_on_plateau"
+scheduler_factor = 0.2
+scheduler_patience = 10
+scheduler_cooldown = 5
+scheduler_min_lr = 0.0001
+regression_loss = "mse"
+smooth_l1_beta_months = 3.0
+gradient_clip_norm = 5.0
+patience = 50
+min_delta_mae = 0.01
+amp = true
+amp_dtype = "auto"
+amp_init_scale = 4096.0
+
+[operations]
+num_workers = 2
+log_every_steps = 25
+checkpoint_every_steps = 500
+checkpoint_every_minutes = 20.0
+periodic_keep = 2
+best_keep = 3
+
+[warnings]
+warning_gradient_norm = 50.0
+warning_gradient_consecutive = 3
+warning_prediction_soft_min = 0.0
+warning_prediction_soft_max = 228.0
+warning_prediction_hard_min = -60.0
+warning_prediction_hard_max = 300.0
+warning_prediction_std_min = 1.0
+warning_sex_mae_gap = 2.5
+warning_overfit_epochs = 3
+age_bins = [0, 60, 120, 180, 229]

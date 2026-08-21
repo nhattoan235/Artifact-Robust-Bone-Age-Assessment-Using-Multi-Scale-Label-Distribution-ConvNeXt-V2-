@@ -152,15 +152,24 @@ class BoneAgeDataset(Dataset):
         if self.augmentation == "deeplasia_fancy":
             if rng.random() < self.sharpen_probability:
                 image = TF.adjust_sharpness(image, sharpness_factor=rng.uniform(1.5, 2.0))
-            if rng.random() < self.clahe_probability:
+            # Deeplasia dùng OneOf(CLAHE, RandomGamma); chọn tối đa một
+            # phép biến đổi cường độ để không vô tình áp dụng cả hai.
+            choose_clahe = rng.random() < 0.5
+            if choose_clahe and rng.random() < self.clahe_probability:
                 array = np.asarray(image, dtype=np.uint8)
-                image = Image.fromarray(cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8)).apply(array), mode="L")
-        if self.brightness_delta > 0:
-            image = TF.adjust_brightness(image, rng.uniform(1.0 - self.brightness_delta, 1.0 + self.brightness_delta))
-        if self.contrast_delta > 0:
-            image = TF.adjust_contrast(image, rng.uniform(1.0 - self.contrast_delta, 1.0 + self.contrast_delta))
-        if self.gamma_min != 1.0 or self.gamma_max != 1.0:
-            image = TF.adjust_gamma(image, rng.uniform(self.gamma_min, self.gamma_max))
+                image = Image.fromarray(
+                    cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8)).apply(array),
+                    mode="L",
+                )
+            elif not choose_clahe and (self.gamma_min != 1.0 or self.gamma_max != 1.0):
+                image = TF.adjust_gamma(image, rng.uniform(self.gamma_min, self.gamma_max))
+        else:
+            if self.brightness_delta > 0:
+                image = TF.adjust_brightness(image, rng.uniform(1.0 - self.brightness_delta, 1.0 + self.brightness_delta))
+            if self.contrast_delta > 0:
+                image = TF.adjust_contrast(image, rng.uniform(1.0 - self.contrast_delta, 1.0 + self.contrast_delta))
+            if self.gamma_min != 1.0 or self.gamma_max != 1.0:
+                image = TF.adjust_gamma(image, rng.uniform(self.gamma_min, self.gamma_max))
         return image
 
 
