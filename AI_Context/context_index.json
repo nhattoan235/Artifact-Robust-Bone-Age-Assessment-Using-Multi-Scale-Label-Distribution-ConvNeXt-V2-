@@ -1,16 +1,22 @@
 {
-  "context_version": "2026-08-19",
+  "context_version": "2026-08-22",
   "read_first": "AI_Context/00_START_HERE.md",
   "read_order": [
     "AI_Context/01_STATUS_RESULTS.md",
     "AI_Context/02_METHOD_HISTORY.md",
     "AI_Context/03_DATA_PROTOCOL.md",
-    "AI_Context/04_NEXT_P9_PLAN.md",
+    "AI_Context/08_SEX_AWARE_EXPERIMENT_PLAN.md",
+    "AI_Context/09_P12_UNCERTAINTY_PROTOCOL.md",
+    "AI_Context/10_P13_THESIS_REPORTING_PLAN.md",
+    "AI_Context/11_SCIENTIFIC_CONTRIBUTIONS_REPORT.md",
+    "p11_sex_aware/P11_STAGE2_HANDOFF.md",
+    "p12_uncertainty/P12_HANDOFF.md",
+    "p13_reporting/P13_HANDOFF.md",
     "AI_Context/05_FILE_MAP.md",
     "AI_Context/CHANGELOG.md"
   ],
-  "current_phase": "P8 complete; P9 not started",
-  "model_locked_for_p7": "ConvNeXt-Tiny + sex embedding + direct regression + A2 augmentation + 512px",
+  "current_phase": "P13 complete; thesis contribution reporting finalized",
+  "model_retained": "E1 ConvNeXt-Tiny + sex embedding + direct regression + A2 augmentation + 512px",
   "p7_oof": {
     "status": "PASS",
     "rows": 14036,
@@ -19,18 +25,33 @@
     "test_used_for_selection": false
   },
   "p8_test": {
-    "status": "PASS_TECHNICAL",
+    "status": "PASS_TECHNICAL_NOT_UNTOUCHED_HOLDOUT",
     "images": 200,
     "mae_months": 4.730321210479737,
     "bootstrap_95_ci": [4.2224750963974, 5.263708837490082],
     "test_used_for_selection": false,
     "test_ground_truth_has_been_read": true
   },
-  "benchmarks_months": {"bram_2025": 3.68, "deeplasia_2024": 3.87},
-  "next_action": "P9 Bram-faithful preprocessing/augmentation reproduction; select only with OOF, then seek untouched external hold-out",
+  "p11_sex_aware": {
+    "status": "E1_RETAINED_E2_GATE_FAILED",
+    "e0_minus_e1_mae_months": 1.2869,
+    "bootstrap_95_ci": [1.0114, 1.5667]
+  },
+  "p12_uncertainty": {
+    "status": "ASSOCIATION_SUPPORTED_LIMITED_UTILITY",
+    "oof_rows": 14036,
+    "spearman_rho": 0.2004,
+    "auroc_error_gt_12": 0.6258,
+    "auroc_error_gt_18": 0.6341,
+    "test_accessed": false
+  },
+  "scientific_position": "Controlled empirical and methodological contribution; no state-of-the-art claim",
+  "next_action": "Finalize thesis around sex-aware ablation and limited TTA-disagreement utility; prioritize an untouched external holdout if research continues",
   "do_not": [
-    "Do not select P9 using RSNA test labels",
-    "Do not overwrite completed P7/P8 artifacts",
-    "Do not claim superiority from P8"
+    "Do not select new models using RSNA test labels",
+    "Do not call TTA disagreement calibrated clinical uncertainty",
+    "Do not claim E2 is better than E1",
+    "Do not claim state-of-the-art performance or external generalization",
+    "Do not overwrite completed P7-P13 artifacts"
   ]
 }

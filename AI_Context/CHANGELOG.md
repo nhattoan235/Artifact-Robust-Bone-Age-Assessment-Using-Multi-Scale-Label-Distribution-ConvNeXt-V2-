@@ -185,3 +185,15 @@ Mỗi lần chạy mới phải ghi: ngày, phase/run ID, commit/code hash, conf
 - Soạn bản thảo Methods–Results–Discussion–Limitations và quy tắc diễn đạt tại
   `p13_reporting/P13_THESIS_DRAFT_VI.md`.
 - Handoff: `p13_reporting/P13_HANDOFF.md`.
+
+## 2026-08-22 – Báo cáo đánh giá đóng góp khoa học
+
+- Tổng hợp toàn bộ bằng chứng P0–P13 và xác định đề tài có đóng góp khoa học rõ
+  ở cấp đồ án tốt nghiệp, thuộc nhóm thực nghiệm và phương pháp đánh giá.
+- Khóa bốn đóng góp để trình bày trong luận văn: giá trị dự đoán của giới tính;
+  kết quả âm dual-output; giá trị/giới hạn của TTA disagreement; và quy trình
+  thực nghiệm tái lập, chống leakage.
+- Phân biệt rõ đóng góp khoa học với tuyên bố state of the art; ghi nhận các giới
+  hạn gồm P11 một seed, chưa có external holdout chưa bị tác động và uncertainty
+  chưa được hiệu chỉnh.
+- Báo cáo: `AI_Context/11_SCIENTIFIC_CONTRIBUTIONS_REPORT.md`.
