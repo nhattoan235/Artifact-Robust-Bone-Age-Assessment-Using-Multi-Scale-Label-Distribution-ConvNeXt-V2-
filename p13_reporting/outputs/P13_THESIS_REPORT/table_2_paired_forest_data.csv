@@ -1,0 +1,7 @@
+candidate,group,count,delta_mae_months,ci_low,ci_high,definition
+E0 image-only,Overall,1425,1.2869188596491228,1.0122258771929824,1.569611293859649,candidate absolute error - E1 absolute error
+E0 image-only,Nữ,652,1.379481403374233,0.9486909269555215,1.805653278374233,candidate absolute error - E1 absolute error
+E0 image-only,Nam,773,1.2088454075032342,0.8405461675291074,1.581351067270375,candidate absolute error - E1 absolute error
+E2 dual-output,Overall,1425,-0.027730263157894737,-0.17940926535087717,0.12415076754385956,candidate absolute error - E1 absolute error
+E2 dual-output,Nữ,652,-0.00520034509202454,-0.2204311253834356,0.20965059432515326,candidate absolute error - E1 absolute error
+E2 dual-output,Nam,773,-0.04673350582147477,-0.263745148771022,0.16486497412677872,candidate absolute error - E1 absolute error

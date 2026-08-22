@@ -130,6 +130,7 @@ def main() -> int:
             model = build_model(
                 str(config["architecture"]), False, int(config["sex_embedding_dim"]),
                 int(config["head_hidden_dim"]), float(config["dropout"]), int(config["age_class_count"]),
+                sex_mode=str(config.get("sex_mode", "embedding")),
             ).to(device)
             state = torch.load(io.BytesIO(archive.read(prefix + "best_model.pt")), map_location=device, weights_only=False)
             model.load_state_dict(state["model"], strict=True)

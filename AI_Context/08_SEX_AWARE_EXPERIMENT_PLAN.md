@@ -1,7 +1,7 @@
 # Nhận xét P9-B0 và thiết kế thí nghiệm sex-aware
 
 > **Ngày chốt định hướng:** 2026-08-21  
-> **Trạng thái:** kế hoạch nghiên cứu đã đề xuất; chưa triển khai E0/E2  
+> **Trạng thái:** Giai đoạn 2 hoàn tất; E0 xác nhận giá trị của sex, E2 không đạt gate
 > **Phạm vi lựa chọn mô hình:** chỉ development train/validation hoặc OOF; không dùng nhãn RSNA test  
 > **Thuật ngữ:** `sex` trong tài liệu này là giới tính sinh học theo nhãn M/F của bộ RSNA.
 
@@ -101,7 +101,7 @@ Các kết quả trên tạo ra giả thuyết có thể kiểm định: giới 
 |---|---|---|---|
 | **E0** | ConvNeXt-Tiny, image-only, một head | Đo giá trị thực của biến sex | Bắt buộc |
 | **E1** | ConvNeXt-Tiny + sex embedding, một head | Control hiện tại P10-B0/P7 | Đã có baseline; có thể cần run đối chứng cùng protocol |
-| **E2** | ConvNeXt-Tiny backbone chung + hai regression head M/F | Kiểm định sex-aware specialization mà vẫn học feature từ toàn bộ dữ liệu | Ứng viên chính |
+| **E2** | ConvNeXt-Tiny + bottleneck chung + hai scalar output M/F | Kiểm định sex-aware specialization với capacity gần E0/E1 | Ứng viên chính |
 | **E3** | Hai ConvNeXt độc lập, mỗi mô hình một giới | Kiểm định full specialization | Chỉ chạy nếu E2 đạt gate |
 
 ### 5.1. Kiến trúc E2 đề xuất
@@ -111,14 +111,21 @@ Các kết quả trên tạo ra giả thuyết có thể kiểm định: giới 
     |
 ConvNeXt-Tiny backbone chung
     |
-feature vector
+feature 768
+    |
+Linear 768→256 + GELU + Dropout
+    |
+shared representation
     |-----------------------|
-female regression head      male regression head
+Linear 256→1 (female)       Linear 256→1 (male)
     |                       |
 dự đoán tuổi nữ             dự đoán tuổi nam
 ```
 
-Mỗi mẫu chỉ cập nhật head tương ứng với nhãn sex, nhưng backbone được cập nhật từ cả hai giới. Cấu hình đầu tiên không dùng balanced sampler hoặc oversampling để tránh thay đồng thời nhiều biến; nếu cần cân bằng sẽ là ablation riêng.
+Mỗi mẫu chỉ cập nhật scalar head tương ứng với nhãn sex; backbone và bottleneck
+chung được cập nhật từ cả hai giới. E0 có 197.121 tham số head, E1 có 201.249
+và E2 có 197.378, nên so sánh không bị chi phối bởi tăng capacity. Cấu hình đầu
+không dùng balanced sampler hoặc oversampling; nếu cần sẽ là ablation riêng.
 
 ## 6. Protocol screening E0-E2
 
@@ -240,9 +247,21 @@ Cả hai kết quả đều có giá trị nếu protocol được khóa trướ
 
 ## 13. Bước tiếp theo
 
-1. Khóa specification E0 và E2 trước khi viết code.
-2. Thêm unit test xác nhận routing M/F và gradient chỉ đi vào head đúng.
-3. Chạy smoke/resume cho E0/E2.
-4. Chạy seed 42 trên official validation.
-5. Áp dụng gate đã định trước và cập nhật `AI_Context/CHANGELOG.md`.
+1. ~~Khóa specification E0 và E2 trước khi viết code.~~ Hoàn tất.
+2. ~~Thêm unit test routing M/F và gradient cho head đúng.~~ PASS 24/24 test.
+3. ~~Chạy CPU/GPU smoke và resume cho E0/E2.~~ PASS.
+4. ~~Chạy E0 và E2 seed 42 trên official validation.~~ Hoàn tất.
+5. ~~Áp dụng gate đã định trước; không thay threshold sau khi xem kết quả.~~ E2 không đạt.
+6. Không chạy seed bổ sung, OOF hoặc E3 cho E2.
+7. **Tiếp theo:** P12 phân tích TTA disagreement–error trên 14.036 OOF.
+
+## 14. Kết quả Giai đoạn 2 (2026-08-22)
+
+- E0 image-only: MAE 7,4717; E1 sex embedding: 6,1848; E2 dual-output: 6,1571.
+- E0−E1 paired delta +1,2869 tháng, CI [+1,0114; +1,5667].
+- E2−E1 paired delta −0,0277 tháng, CI [−0,1831; +0,1254].
+- Cải thiện E2 ở nữ 0,0052 tháng và overall 0,0277 tháng, đều dưới gate.
+- H1 được ủng hộ trong recipe đã khóa; H2/H3 không được ủng hộ.
+- Quyết định: giữ E1, dừng E2, không mở E3; chi tiết tại
+  `p11_sex_aware/P11_STAGE2_HANDOFF.md`.
 

@@ -39,6 +39,7 @@ def main() -> int:
     model = build_model(
         cfg.architecture, cfg.pretrained and not args.no_pretrained,
         cfg.sex_embedding_dim, cfg.head_hidden_dim, cfg.dropout, cfg.age_class_count,
+        sex_mode=cfg.sex_mode,
     )
     with torch.inference_mode():
         output = model(sample["image"].unsqueeze(0), sample["sex"].unsqueeze(0))

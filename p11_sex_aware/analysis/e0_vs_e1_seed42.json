@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "count": 1425,
+  "delta_definition": "candidate_absolute_error - baseline_absolute_error; negative favors candidate",
+  "baseline_mae": 6.1847916666666665,
+  "candidate_mae": 7.47171052631579,
+  "delta_mae": 1.2869188596491228,
+  "paired_bootstrap_95_ci": [
+    1.0113563596491228,
+    1.5667338267543858
+  ],
+  "candidate_metrics": {
+    "count": 1425,
+    "mae": 7.47171052631579,
+    "rmse": 9.927858889367483,
+    "median_ae": 6.0,
+    "accuracy_6m": 0.5326315789473685,
+    "accuracy_12m": 0.8175438596491228,
+    "accuracy_18m": 0.9256140350877193,
+    "prediction_mean": 127.08635964912281,
+    "prediction_std": 40.278401696021234,
+    "prediction_min": 11.3125,
+    "prediction_max": 227.0,
+    "mae_by_sex": {
+      "F": 7.768596625766871,
+      "M": 7.221296895213454
+    },
+    "prediction_std_by_sex": {
+      "F": 37.41482243355853,
+      "M": 41.41394943983079
+    },
+    "mae_by_age_bin": {
+      "0-59": 7.736037234042553,
+      "120-179": 7.200247218788628,
+      "60-119": 8.200507614213198,
+      "180-228": 6.75
+    }
+  },
+  "candidate_better_pairs": 523,
+  "candidate_worse_pairs": 778,
+  "ties": 124,
+  "bootstrap_samples": 10000,
+  "bootstrap_seed": 2026
+}

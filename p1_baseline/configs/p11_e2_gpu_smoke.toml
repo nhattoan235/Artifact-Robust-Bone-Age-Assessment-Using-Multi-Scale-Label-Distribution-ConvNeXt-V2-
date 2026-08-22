@@ -1,0 +1,61 @@
+[data]
+train_manifest = "p0_audit/outputs/train_manifest.csv"
+val_manifest = "p0_audit/outputs/validation_manifest.csv"
+expected_train_hash = "7328667e6822ab074d442155e33eba89606861bb13bbf804be8a1138c78f5285"
+expected_val_hash = "f650a20432b557405035d12c52716a6c40fdf20e1343ac3ad0cfb7cd8db21631"
+max_train_samples = 16
+max_val_samples = 8
+
+[run]
+run_id = "P11_E2_GPU_SMOKE_CONVNEXT512_SEED42"
+output_root = "p11_sex_aware/smoke_runs"
+seed = 42
+device = "cuda"
+deterministic = true
+allow_tf32 = true
+
+[model]
+architecture = "convnext_tiny"
+sex_mode = "dual_output"
+pretrained = true
+image_size = 512
+sex_embedding_dim = 16
+head_hidden_dim = 256
+dropout = 0.2
+target_mean = 127.32098961224328
+target_std = 41.18202139939604
+
+[training]
+epochs = 1
+batch_size = 4
+grad_accum_steps = 2
+learning_rate = 0.0002
+min_learning_rate = 0.000001
+weight_decay = 0.05
+smooth_l1_beta_months = 3.0
+gradient_clip_norm = 5.0
+patience = 5
+min_delta_mae = 0.0
+amp = true
+amp_dtype = "auto"
+amp_init_scale = 4096.0
+
+[operations]
+num_workers = 0
+log_every_steps = 1
+checkpoint_every_steps = 1
+checkpoint_every_minutes = 20.0
+periodic_keep = 1
+best_keep = 1
+
+[warnings]
+warning_gradient_norm = 50.0
+warning_gradient_consecutive = 3
+warning_prediction_soft_min = 0.0
+warning_prediction_soft_max = 228.0
+warning_prediction_hard_min = -60.0
+warning_prediction_hard_max = 300.0
+warning_prediction_std_min = 0.0
+warning_sex_mae_gap = 100.0
+warning_overfit_epochs = 3
+age_bins = [0, 60, 120, 180, 229]

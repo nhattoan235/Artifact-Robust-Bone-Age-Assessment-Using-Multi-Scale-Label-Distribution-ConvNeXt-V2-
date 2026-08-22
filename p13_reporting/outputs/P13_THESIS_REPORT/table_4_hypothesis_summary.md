@@ -1,0 +1,6 @@
+| hypothesis | question | status | evidence |
+| --- | --- | --- | --- |
+| H1 | Sex cải thiện so với image-only | SUPPORTED | E0−E1 ΔMAE=1.2869, 95% CI [1.0122; 1.5696] |
+| H2 | Dual-output tốt hơn sex embedding | NOT_SUPPORTED | Overall improvement=0.0277<0.10; female improvement=0.0052<0.20 tháng |
+| H3 | Subgroup cải thiện dưới non-inferiority gate | NOT_SUPPORTED | E2 không đạt gate nữ đã khóa; không mở E3/OOF |
+| H4 | TTA disagreement liên hệ dương với absolute error | SUPPORTED_ASSOCIATION_LIMITED_UTILITY | rho=0.2004, CI [0.1842; 0.2164], AUROC>12=0.6258 |

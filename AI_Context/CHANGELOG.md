@@ -118,3 +118,70 @@ Mỗi lần chạy mới phải ghi: ngày, phase/run ID, commit/code hash, conf
 - Không có NaN/Inf/OOM; không dùng test, không chạy OOF/TTA/ensemble.
 - Dừng P9-B0 để review. Artifact chính:
   p9_single_model/P9_B0_HANDOFF.md.
+
+## 2026-08-21 – P11 Giai đoạn 1 sex-aware PASS
+
+- Đã khóa và triển khai E0 image-only, E1 sex embedding tương thích ngược và E2
+  shared bottleneck + dual scalar output M/F gần parameter-matched.
+- Unit test 24/24, full-config preflight E0/E2 và CPU smoke E0/E2 đều PASS.
+- E2 GPU interrupt/resume PASS trên RTX 4050: split/config/code hash khớp,
+  optimizer/scheduler/scaler phục hồi, peak VRAM 1.800 MiB, không warning.
+- E1 strict-load checkpoint P10-B0 và 12/12 prediction khớp tuyệt đối
+  (`max_abs_diff_months = 0.0`).
+- Chưa chạy official validation seed 42; không có kết luận hiệu năng mới.
+- Handoff: `p11_sex_aware/P11_STAGE1_HANDOFF.md`.
+
+## 2026-08-22 – P11 Giai đoạn 2 hoàn tất: E2 không đạt gate
+
+- E0 image-only early-stop epoch 30, best epoch 22, validation MAE 7,4717.
+- E2 shared dual-output early-stop epoch 23, best epoch 15, MAE 6,1571.
+- Control E1 sex embedding MAE 6,1848; paired trên cùng 1.425 ID, bootstrap
+  10.000 lần, seed 2026.
+- E0−E1 delta +1,2869 tháng, CI [+1,0114; +1,5667], xác nhận sex mang thông
+  tin dự đoán rõ ở cả nữ và nam trong recipe đã khóa.
+- E2−E1 delta −0,0277 tháng, CI [−0,1831; +0,1254]; cải thiện nữ chỉ 0,0052
+  tháng. E2 không đạt gate overall 0,10 hoặc female 0,20 tháng.
+- Giữ E1; không chạy seed bổ sung, OOF hoặc E3 cho E2; không dùng RSNA test.
+- Handoff: `p11_sex_aware/P11_STAGE2_HANDOFF.md`.
+
+## 2026-08-22 – Khóa protocol P12 uncertainty OOF
+
+- Chuyển sang phân tích TTA disagreement–absolute error trên 14.036 P7/P9-I
+  OOF, không huấn luyện mới và không dùng test.
+- Khóa primary Spearman + bootstrap CI; secondary sex × age, TTA gain,
+  worst-group, error >12/>18, AUROC và risk–coverage.
+- Không gọi disagreement là uncertainty lâm sàng đã hiệu chuẩn và không chọn
+  threshold deployment trên cùng OOF.
+- Protocol: `AI_Context/09_P12_UNCERTAINTY_PROTOCOL.md`.
+
+## 2026-08-22 – P12 uncertainty OOF hoàn tất
+
+- Integrity PASS 14.036 OOF ID duy nhất; TTA mean/std recompute khớp 10 views;
+  compile và unit test 6/6 PASS.
+- Primary Spearman giữa disagreement và TTA absolute error ρ=0,2004,
+  bootstrap 95% CI [0,1842; 0,2164]; H4 association được ủng hộ nhưng effect yếu.
+- AUROC nhận biết lỗi >12/>18 tháng lần lượt 0,6258/0,6341, chỉ mức hạn chế.
+- Disagreement quartile cao có MAE 7,6238 so với 4,7587 ở quartile thấp;
+  error >12 cao gấp 2,86 lần và error >18 cao gấp 3,29 lần.
+- Association mạnh hơn ở nam (ρ=0,2386) so với nữ (ρ=0,1462), không đồng đều
+  theo tuổi; F 0–59 không có association, worst-error M 60–119 chỉ ρ=0,0870.
+- TTA gain overall +0,1070 tháng, CI [+0,0775; +0,1361], nhưng không đồng đều
+  giữa sex × age.
+- Giữ disagreement như biến triage nghiên cứu, không gọi là uncertainty lâm
+  sàng, không tối ưu threshold trên OOF và không dùng RSNA test.
+- Handoff: p12_uncertainty/P12_HANDOFF.md.
+
+## 2026-08-22 – P13 đóng gói kết quả luận văn hoàn tất
+
+- Khóa nguồn E0/E1/E2 trên cùng 1.425 validation ID và nguồn OOF P12; không
+  chạy inference/huấn luyện mới và không truy cập RSNA test.
+- Tạo generator tái lập `p13_reporting/build_thesis_assets.py`; paired bootstrap
+  10.000 lần, seed 2026; manifest ghi SHA-256 đầu vào/đầu ra và
+  `test_accessed=false`.
+- Sinh 4 bảng CSV/Markdown và 3 hình PNG/PDF; full build PASS, unit test 5/5
+  PASS, visual QA 3/3 hình PASS; repeat-build có 0/15 artifact đổi hash.
+- Kết luận khóa: H1 supported; H2/H3 not supported; H4 association supported
+  nhưng utility hạn chế. Giữ E1 sex embedding làm baseline chính.
+- Soạn bản thảo Methods–Results–Discussion–Limitations và quy tắc diễn đạt tại
+  `p13_reporting/P13_THESIS_DRAFT_VI.md`.
+- Handoff: `p13_reporting/P13_HANDOFF.md`.

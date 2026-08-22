@@ -69,6 +69,104 @@ class P1UnitTests(unittest.TestCase):
         )
         self.assertNotEqual(scientific_config_hash(cfg), scientific_config_hash(candidate))
 
+    def test_sex_mode_changes_scientific_hash(self):
+        cfg = Config()
+        self.assertNotEqual(
+            scientific_config_hash(cfg),
+            scientific_config_hash(replace(cfg, sex_mode="none")),
+        )
+        self.assertNotEqual(
+            scientific_config_hash(cfg),
+            scientific_config_hash(replace(cfg, sex_mode="dual_output")),
+        )
+
+    def test_e1_embedding_default_is_backward_compatible(self):
+        torch.manual_seed(123)
+        default_model = build_model("smoke_cnn", False, 4, 8, 0.0).eval()
+        torch.manual_seed(123)
+        explicit_model = build_model(
+            "smoke_cnn", False, 4, 8, 0.0, sex_mode="embedding"
+        ).eval()
+        self.assertEqual(
+            list(default_model.state_dict()), list(explicit_model.state_dict())
+        )
+        for key, value in default_model.state_dict().items():
+            self.assertTrue(torch.equal(value, explicit_model.state_dict()[key]))
+        image = torch.randn(2, 3, 32, 32)
+        sex = torch.tensor([[0.0], [1.0]])
+        with torch.inference_mode():
+            self.assertTrue(torch.equal(
+                default_model(image, sex), explicit_model(image, sex)
+            ))
+
+    def test_e0_image_only_ignores_sex(self):
+        model = build_model(
+            "smoke_cnn", False, 4, 8, 0.0, sex_mode="none"
+        ).eval()
+        image = torch.randn(1, 3, 32, 32).repeat(2, 1, 1, 1)
+        sex = torch.tensor([[0.0], [1.0]])
+        with torch.inference_mode():
+            output = model(image, sex)
+        self.assertTrue(torch.equal(output[0], output[1]))
+
+    def test_e2_dual_output_routes_by_sex(self):
+        model = build_model(
+            "smoke_cnn", False, 4, 8, 0.0, sex_mode="dual_output"
+        ).eval()
+        with torch.no_grad():
+            model.female_head.weight.zero_()
+            model.female_head.bias.fill_(-2.0)
+            model.male_head.weight.zero_()
+            model.male_head.bias.fill_(3.0)
+        image = torch.randn(4, 3, 32, 32)
+        sex = torch.tensor([[0.0], [1.0], [0.0], [1.0]])
+        with torch.inference_mode():
+            output = model(image, sex)
+        self.assertTrue(torch.equal(output, torch.tensor([-2.0, 3.0, -2.0, 3.0])))
+
+    def test_e2_only_selected_head_and_backbone_receive_gradients(self):
+        model = build_model(
+            "smoke_cnn", False, 4, 8, 0.0, sex_mode="dual_output"
+        )
+        image = torch.randn(3, 3, 32, 32)
+
+        model(image, torch.zeros(3, 1)).sum().backward()
+        self.assertGreater(model.female_head.bias.grad.abs().sum().item(), 0.0)
+        self.assertEqual(model.male_head.bias.grad.abs().sum().item(), 0.0)
+        self.assertGreater(model.features[0].weight.grad.abs().sum().item(), 0.0)
+
+        model.zero_grad(set_to_none=True)
+        model(image, torch.ones(3, 1)).sum().backward()
+        self.assertEqual(model.female_head.bias.grad.abs().sum().item(), 0.0)
+        self.assertGreater(model.male_head.bias.grad.abs().sum().item(), 0.0)
+        self.assertGreater(model.features[0].weight.grad.abs().sum().item(), 0.0)
+
+    def test_e2_state_dict_round_trip(self):
+        source = build_model(
+            "smoke_cnn", False, 4, 8, 0.0, sex_mode="dual_output"
+        ).eval()
+        restored = build_model(
+            "smoke_cnn", False, 4, 8, 0.0, sex_mode="dual_output"
+        ).eval()
+        restored.load_state_dict(source.state_dict(), strict=True)
+        image = torch.randn(2, 3, 32, 32)
+        sex = torch.tensor([[0.0], [1.0]])
+        with torch.inference_mode():
+            self.assertTrue(torch.equal(source(image, sex), restored(image, sex)))
+
+    def test_e2_rejects_invalid_sex_shape(self):
+        model = build_model(
+            "smoke_cnn", False, 4, 8, 0.0, sex_mode="dual_output"
+        )
+        with self.assertRaisesRegex(ValueError, "shape"):
+            model(torch.randn(2, 3, 32, 32), torch.tensor([0.0, 1.0]))
+
+    def test_new_sex_modes_reject_unsupported_backbones(self):
+        with self.assertRaisesRegex(ValueError, "chỉ hỗ trợ"):
+            build_model(
+                "efficientnet_b0", False, 4, 8, 0.0, sex_mode="dual_output"
+            )
+
     def test_convnextv2_tiny_forward_contract(self):
         model = build_model("convnextv2_tiny", False, 16, 32, 0.0).eval()
         with torch.inference_mode():
