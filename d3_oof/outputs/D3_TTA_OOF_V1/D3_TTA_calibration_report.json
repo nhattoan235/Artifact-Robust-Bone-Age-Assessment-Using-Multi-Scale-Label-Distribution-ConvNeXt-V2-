@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "test_used": false,
+  "count": 14036,
+  "protocol": "global linear calibration; parameters fit on 4 folds and applied to held-out fold; no test access",
+  "baseline": {
+    "ensemble_50_50_mae": 6.101344887691877
+  },
+  "cross_fitted_calibration": {
+    "mae": 6.116406341497568,
+    "delta_mae_calibrated_minus_baseline": 0.015061453805690128,
+    "fold_parameters": {
+      "1": {
+        "slope": 0.9971244566905066,
+        "intercept": 0.27924565848231786,
+        "fit_count": 11228,
+        "held_out_count": 2808
+      },
+      "2": {
+        "slope": 0.9927455069597796,
+        "intercept": 1.1227155918089453,
+        "fit_count": 11229,
+        "held_out_count": 2807
+      },
+      "3": {
+        "slope": 0.9968151173768446,
+        "intercept": 0.4778618491115318,
+        "fit_count": 11229,
+        "held_out_count": 2807
+      },
+      "4": {
+        "slope": 0.9902248674100348,
+        "intercept": 1.1996701207584315,
+        "fit_count": 11229,
+        "held_out_count": 2807
+      },
+      "5": {
+        "slope": 0.991469485041382,
+        "intercept": 1.0583157100063865,
+        "fit_count": 11229,
+        "held_out_count": 2807
+      }
+    }
+  },
+  "decision": "REJECT"
+}
