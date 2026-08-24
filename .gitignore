@@ -1,0 +1,22 @@
+# Python/local environments
+__pycache__/
+*.py[cod]
+.venv*/
+
+# Local datasets and generated image caches
+data/
+**/cache/**
+**/_drive_upload/**
+**/_ready_upload/**
+**/_colab_stage/**
+
+# Large training artifacts kept outside Git
+*.ckpt
+*.pt
+*.pth
+*.zip
+**/periodic/**
+
+# Local logs that are not explicitly force-added as experiment evidence
+*.stderr.log
+*.stdout.log

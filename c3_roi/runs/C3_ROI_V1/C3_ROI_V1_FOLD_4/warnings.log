@@ -1,0 +1,19 @@
+STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [-14.01, 213.38]
+STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [-0.51, 223.88]
+STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [-4.64, 213.75]
+STABILITY WARNING [CAM] Validation MAE xấu đi trong khi train loss giảm
+STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [-5.89, 230.25]
+STABILITY WARNING [CAM] Validation MAE xấu đi trong khi train loss giảm
+STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [1.55, 235.38]
+STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [-5.26, 232.00]
+STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [5.43, 229.88]
+STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [1.49, 228.12]
+STABILITY WARNING [CAM] Validation MAE xấu đi trong khi train loss giảm
+STABILITY WARNING [CAM] Validation MAE xấu đi trong khi train loss giảm
+STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [-5.01, 219.88]
+STABILITY WARNING [CAM] Validation MAE xấu đi trong khi train loss giảm
+STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [-0.89, 233.38]
+STABILITY WARNING [CAM] Validation MAE xấu đi trong khi train loss giảm
+STABILITY WARNING [CAM] Prediction vượt nhẹ miền tuổi 0–228: [4.36, 231.12]
+STABILITY WARNING [CAM] Validation MAE xấu đi trong khi train loss giảm
+STABILITY WARNING [CAM] Early stopping patience=8

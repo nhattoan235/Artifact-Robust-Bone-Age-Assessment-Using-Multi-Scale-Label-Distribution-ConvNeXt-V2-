@@ -13,15 +13,17 @@ Manifest/hash chi tiết: `p0_audit/P0_HANDOFF.md` và `p0_audit/outputs/`.
 
 ## Đường dẫn cục bộ
 
-- RSNA root: `D:\Hoctap\Doan_totnghiep\Dataset\RSNA`
-- Train images: `Dataset\RSNA\boneage-training-dataset\boneage-training-dataset`
-- Train CSV: `Dataset\RSNA\boneage-training-dataset.csv`
-- Validation images: `Dataset\RSNA\boneage-validation-dataset\boneage-validation-dataset`
-- Validation CSV: `Dataset\RSNA\boneage-validation-dataset.csv`
-- Test images: `Dataset\RSNA\boneage-test-dataset\boneage-test-dataset`
-- Test sex CSV: `Dataset\RSNA\boneage-test-dataset.csv`
-- Test ground truth: `Dataset\rsna_test.csv`
-- Deeplasia semantic copy: `external\Deeplasia\data\rsna_test.csv`
+- Workspace data root: `data\`
+- Train images: `data\goc\boneage-training-dataset\boneage-training-dataset`
+- Train CSV: `data\goc\boneage-training-dataset.csv`
+- Validation images: `data\rsna_official_validation\images`
+- Validation CSV: `data\rsna_official_validation\validation.csv`
+- Test images: `data\goc\boneage-test-dataset\boneage-test-dataset`
+- Test sex CSV: `data\goc\boneage-test-dataset.csv`
+- Test ground truth: `data\goc\rsna_test_ground_truth.csv`
+- C1 manifests: `c1_curated\outputs\C1_MANIFEST_V1\`
+
+P0 manifests giữ nguyên fingerprint lịch sử và còn chứa absolute path cũ; C1 remap path sang workspace mà không đổi ID/nhãn/SHA.
 
 ## Quy tắc sử dụng
 

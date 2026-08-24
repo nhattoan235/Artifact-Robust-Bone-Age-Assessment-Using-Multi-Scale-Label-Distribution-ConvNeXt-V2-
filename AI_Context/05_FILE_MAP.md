@@ -25,9 +25,30 @@
 - `p8_test_ensemble/outputs/P8_test_ensemble_report.json` – kết quả và benchmark.
 - `p8_test_ensemble/outputs/P8_ensemble_predictions.csv` – dự đoán 200 test.
 
+## Thí nghiệm C / C3-ROI
+
+- `AI_Context/24_EXPERIMENT_C_C3_ROI_FINAL_REPORT.md` – báo cáo phương pháp,
+  OOF, test thăm dò, sai lệch protocol và claim policy.
+- `c3_roi/configs/fold_1.toml` … `fold_5.toml` – config 5 fold đã chạy.
+- `c3_roi/runs/C3_ROI_V1/C3_ROI_V1_FOLD_X/` – checkpoint/log từng fold.
+- `c3_roi/outputs/C3_ROI_V1_OOF/C3_ROI_V1_OOF_report.json` – báo cáo OOF.
+- `c3_roi/outputs/C3_ROI_V1_OOF/C3_ROI_V1_E1_ensemble_OOF_predictions.csv` –
+  dự đoán paired E1/C3/ensemble.
+- `c3_roi/outputs/C3_ROI_V1_TEST/C3_E1_50_50_test_report.json` – test thăm dò.
+- `c3_roi/_drive_upload/C3_ROI_V1/cpu_artifacts/audit_summary.json` – audit
+  14.036 ROI và tỷ lệ fallback.
+
 ## Bối cảnh và lịch sử
 
 - `AI_Context/00_START_HERE.md` – file phải đọc đầu tiên.
 - `AI_Context/CHANGELOG.md` – changelog chính thức của handoff này.
+
+## C1 curated data
+
+- `c1_curated/C1_HANDOFF.md` – trạng thái audit, config, smoke/resume và gate.
+- `c1_curated/outputs/C1_MANIFEST_V1/C1_manifest_report.json` – báo cáo audit/hash/weight.
+- `c1_curated/outputs/C1_MANIFEST_V1/C1_BALANCED_train_manifest.csv` – train manifest có weight.
+- `p1_baseline/configs/c1_balanced_seed42.toml` – config primary/Colab.
+- `p1_baseline/configs/c1_balanced_local_seed42.toml` – config local RTX 3050 Ti.
 - `PROJECT_CONTEXT.md`, root `CHANGELOG.md` – tài liệu cũ; chỉ dùng để đối chiếu lịch sử.
 

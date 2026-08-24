@@ -1,0 +1,25 @@
+{
+  "cache_root": "D:\\Learning\\Projects\\Artifact-Robust-Bone-Age-Assessment-Using-Multi-Scale-Label-Distribution-ConvNeXt-V2-\\c3_roi\\cache\\C3_MASK_REUSE_CANDIDATE_V1",
+  "rows": 14036,
+  "mask_bbox_rows": 11441,
+  "global_fallback_rows": 2595,
+  "fallback_rate": 0.18488173268737532,
+  "rows_by_split": {
+    "train": 12611,
+    "validation_official": 1425
+  },
+  "fallback_by_split": {
+    "train": 2300,
+    "validation_official": 295
+  },
+  "fallback_reasons": {
+    "segment_hand_failed": 2595
+  },
+  "test_rows_in_manifest": 0,
+  "policy": {
+    "keep_all_development_rows": true,
+    "test_masks_used": false,
+    "fallback_is_explicit": true,
+    "roi_margin": 0.08
+  }
+}

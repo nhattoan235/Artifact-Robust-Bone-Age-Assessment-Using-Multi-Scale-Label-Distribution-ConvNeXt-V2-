@@ -1,5 +1,21 @@
 # AI_Context changelog
 
+## 2026-08-21 – C1 implementation complete
+
+- Added `c1_curated` manifest audit, sex × age stratification and deterministic mild weighted sampler.
+- Full SHA/image readability audit PASS: 12.611 train + 1.425 official validation kept, 0 exclusions.
+- Added C1 primary, local and smoke configs; primary C1 train manifest hash `59b68c4b...e300095`.
+- Added weighted sampler resume support; interrupted and uninterrupted smoke predictions were byte-identical.
+- Added `c1_curated/C1_HANDOFF.md`; long C1 training has not started and RSNA test was not used.
+
+## 2026-08-21 – Khóa thiết kế curated data + E3 + ensemble
+
+- Thống nhất hai nhánh độc lập: C1 curated-data và E3 hai model nam/nữ.
+- Giữ nguyên RSNA official test 200; không dùng test để lọc dữ liệu, chọn model hoặc ensemble weight.
+- Tách C1 thành C1-Audit và C1-Balanced; primary candidate giữ toàn bộ ảnh hợp lệ và dùng sampling nhẹ theo sex × age.
+- E3-full là đối chứng bắt buộc trước E3-curated; chỉ ensemble bằng prediction OOF cùng ID.
+- Ghi protocol, gate, rủi ro và decision log trong `09_CURATED_E3_ENSEMBLE_PLAN.md`.
+
 ## 2026-08-19 – Tạo bộ hồ sơ bàn giao AI_Context
 
 - Tạo `00_START_HERE.md`, `01_STATUS_RESULTS.md`, `02_METHOD_HISTORY.md`, `03_DATA_PROTOCOL.md`, `04_NEXT_P9_PLAN.md`, `05_FILE_MAP.md`.
@@ -55,6 +71,20 @@
 ## Quy ước cập nhật
 
 Mỗi lần chạy mới phải ghi: ngày, phase/run ID, commit/code hash, config hash, data manifest hash, seed, GPU, checkpoint cuối, MAE/RMSE/CI, cảnh báo, quyết định và đường dẫn artifact. Không xóa artifact cũ; nếu dọn Drive, tải archive và ghi hash trước.
+
+## 2026-08-24 – Thí nghiệm C / C3-ROI hoàn tất
+
+- Train đủ 5 fold `C3_ROI_V1` trên split P7 khóa, seed 42; OOF đủ 14.036 ID,
+  target/sex khớp E1.
+- C3-ROI standalone MAE 6,437349; E1 raw 6,316691.
+- Ensemble cố định E1+C3 50/50 đạt MAE **6,176212**, giảm 0,140480 tháng;
+  paired bootstrap 95% CI `[-0,172547; -0,109853]`, cải thiện cả 5 fold.
+- Test thăm dò 200 ảnh: E1 4,730321; C3 4,337267; ensemble 4,454661.
+  Không tune trọng số theo test và không xem đây là xác nhận độc lập.
+- Audit phát hiện protocol deviation: full-image fallback 18,49% development
+  và 33% test, vượt gate ≤1% của thiết kế C. Kết quả được giữ như ablation OOF
+  dương tính, không claim local carpal specialist thuần túy.
+- Thêm báo cáo: `AI_Context/24_EXPERIMENT_C_C3_ROI_FINAL_REPORT.md`.
 
 ## 2026-08-20 – P10 B0 đang chạy: tái lập recipe P2
 

@@ -7,12 +7,18 @@ from pathlib import Path
 
 import torch
 
-from p1_baseline.config import Config, scientific_config_hash
-from p1_baseline.data import EpochPermutationSampler, manifest_hash
+from p1_baseline.config import Config, load_config, scientific_config_hash
+from p1_baseline.data import (
+    EpochPermutationSampler,
+    EpochWeightedSampler,
+    build_train_sampler,
+    manifest_hash,
+)
 from p1_baseline.data import BoneAgeDataset, load_manifest
 from p1_baseline.metrics import compute_metrics
 from p1_baseline.model import build_model
-from p1_baseline.trainer import CHECKPOINT_KEYS, atomic_torch_save
+from p1_baseline.preflight import sampling_report
+from p1_baseline.trainer import CHECKPOINT_KEYS, Trainer, atomic_torch_save
 from p1_baseline.trainer import gaussian_label_distribution, restore_rng_state, rng_state
 
 
@@ -31,12 +37,122 @@ class P1UnitTests(unittest.TestCase):
         resumed = list(EpochPermutationSampler(20, 42, 3, 7))
         self.assertEqual(full[7:], resumed)
 
+    def test_weighted_sampler_is_deterministic_and_resume_is_suffix(self):
+        weights = [0.75, 1.0, 1.5, 0.9]
+        full = list(EpochWeightedSampler(weights, 20, 42, 3, 0))
+        repeated = list(EpochWeightedSampler(weights, 20, 42, 3, 0))
+        resumed = list(EpochWeightedSampler(weights, 20, 42, 3, 7))
+        self.assertEqual(full, repeated)
+        self.assertEqual(full[7:], resumed)
+        self.assertEqual(len(full), 20)
+
+    def test_weighted_sampler_favors_larger_weights(self):
+        sampled = list(EpochWeightedSampler([0.01, 1.0], 1000, 42, 0, 0))
+        self.assertGreater(sampled.count(1), 950)
+
+    def test_sampler_factory_selects_locked_strategy_and_resume_length(self):
+        rows = [
+            {"sample_weight": "0.75000000"},
+            {"sample_weight": "1.50000000"},
+            {"sample_weight": "1.00000000"},
+        ]
+        permutation = build_train_sampler(rows, "permutation", 42, 2, 1)
+        weighted = build_train_sampler(rows, "manifest_weighted", 42, 2, 1)
+        self.assertIsInstance(permutation, EpochPermutationSampler)
+        self.assertIsInstance(weighted, EpochWeightedSampler)
+        self.assertEqual(len(permutation), 2)
+        self.assertEqual(len(weighted), 2)
+
+    def test_sampler_factory_rejects_missing_or_invalid_manifest_weights(self):
+        with self.assertRaisesRegex(ValueError, "sample_weight"):
+            build_train_sampler([{}], "manifest_weighted", 42, 0, 0)
+        with self.assertRaisesRegex(ValueError, "sample_weight"):
+            build_train_sampler(
+                [{"sample_weight": "nan"}], "manifest_weighted", 42, 0, 0
+            )
+
+    def test_trainer_loader_uses_manifest_weighted_sampler(self):
+        trainer = Trainer.__new__(Trainer)
+        trainer.cfg = replace(
+            Config(), sampling_strategy="manifest_weighted", num_workers=0, batch_size=2
+        )
+        trainer.train_rows = [
+            {
+                "split": "train",
+                "image_id": "1",
+                "bone_age_months": "30.0",
+                "sex": "F",
+                "image_path": "unused.png",
+                "sample_weight": "0.75000000",
+            },
+            {
+                "split": "train",
+                "image_id": "2",
+                "bone_age_months": "150.0",
+                "sex": "M",
+                "image_path": "unused.png",
+                "sample_weight": "1.50000000",
+            },
+        ]
+        trainer.val_rows = []
+        trainer.device = torch.device("cpu")
+        trainer.epoch = 0
+        loader = trainer._loader(train=True, start_index=0)
+        self.assertIsInstance(loader.sampler, EpochWeightedSampler)
+
+    def test_preflight_sampling_report_exposes_weighted_sequence_health(self):
+        rows = [
+            {"sample_weight": "0.75000000"},
+            {"sample_weight": "1.50000000"},
+            {"sample_weight": "1.00000000"},
+        ]
+        report = sampling_report(rows, "manifest_weighted", seed=42)
+        self.assertEqual(report["strategy"], "manifest_weighted")
+        self.assertEqual(report["num_samples"], 3)
+        self.assertEqual(report["weight_min"], 0.75)
+        self.assertEqual(report["weight_max"], 1.5)
+        self.assertGreaterEqual(report["unique_indices"], 1)
+
+    def test_baseline_manifest_hash_remains_locked(self):
+        rows = load_manifest("p0_audit/outputs/train_manifest.csv", "train")
+        self.assertEqual(
+            manifest_hash(rows),
+            "7328667e6822ab074d442155e33eba89606861bb13bbf804be8a1138c78f5285",
+        )
+
+    def test_curated_manifest_hash_changes_when_weight_changes(self):
+        base = {
+            "split": "train",
+            "image_id": "1",
+            "bone_age_months": "30.0",
+            "sex": "F",
+            "sha256": "a" * 64,
+            "sample_weight": "1.00000000",
+            "age_bin": "000-059",
+            "sex_age_stratum": "F_000-059",
+            "audit_status": "KEEP",
+            "audit_reason": "",
+        }
+        changed = dict(base, sample_weight="1.10000000")
+        self.assertNotEqual(manifest_hash([base]), manifest_hash([changed]))
+
+    def test_config_rejects_unknown_sampling_strategy(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "invalid.toml"
+            path.write_text('[training]\nsampling_strategy = "mystery"\n', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "sampling_strategy"):
+                load_config(path)
+
     def test_checkpoint_contract_includes_partial_epoch_loss(self):
         self.assertIn("epoch_loss_sum", CHECKPOINT_KEYS)
         self.assertIn("epoch_loss_count", CHECKPOINT_KEYS)
 
     def test_augmentation_is_deterministic_for_epoch_and_id(self):
-        rows = load_manifest("p0_audit/outputs/train_manifest.csv", "train")[:1]
+        rows = [dict(load_manifest("p0_audit/outputs/train_manifest.csv", "train")[0])]
+        rows[0]["image_path"] = str(
+            Path("data/goc/boneage-training-dataset/boneage-training-dataset")
+            / f"{rows[0]['image_id']}.png"
+        )
         kwargs = dict(
             rows=rows, image_size=64, target_mean=127.32, target_std=41.18,
             train=True, epoch=2, seed=42, augmentation="light",
