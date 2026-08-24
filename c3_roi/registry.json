@@ -1,0 +1,66 @@
+{
+  "status": "PREPARED_BLOCKED",
+  "protocol": "C3 independent ROI ConvNeXt-Tiny on locked D3/P7 folds",
+  "seed": 42,
+  "test_used": false,
+  "assignment": {
+    "colab": [
+      1,
+      2,
+      3
+    ],
+    "local": [
+      4,
+      5
+    ]
+  },
+  "roi_cache_required": "c3_roi/cache/C3_ROI_V1/roi/{split}/{image_id}.png",
+  "fallback_policy": "keep_all_rows_and_record_global_fallback",
+  "folds": {
+    "1": {
+      "execution": "colab",
+      "train_count": 11228,
+      "validation_count": 2808,
+      "train_hash": "fd41cd3a37b78fd1e95e139279f4306f45a5f9b924c761229ad311c85bd52729",
+      "validation_hash": "163aa3ad88b31c00f8488c021ecade09813f31d66411bab2fda3faab7da56004",
+      "config": "D:\\Learning\\Projects\\Artifact-Robust-Bone-Age-Assessment-Using-Multi-Scale-Label-Distribution-ConvNeXt-V2-\\c3_roi\\configs\\fold_1.toml",
+      "roi_status": "blocked_until_roi_cache_pass"
+    },
+    "2": {
+      "execution": "colab",
+      "train_count": 11229,
+      "validation_count": 2807,
+      "train_hash": "10a7c025ee3c5529dc79b8789f678ef403006785e427a9d37142541ceb9569b3",
+      "validation_hash": "d7d07fe2daa3fe677a1d543d033e167768c78f49837cbbceaef6f5ee4314ca57",
+      "config": "D:\\Learning\\Projects\\Artifact-Robust-Bone-Age-Assessment-Using-Multi-Scale-Label-Distribution-ConvNeXt-V2-\\c3_roi\\configs\\fold_2.toml",
+      "roi_status": "blocked_until_roi_cache_pass"
+    },
+    "3": {
+      "execution": "colab",
+      "train_count": 11229,
+      "validation_count": 2807,
+      "train_hash": "4bf6ceef3c95cce8fd3281099addd2fda1d750a348fc05c3708a4285d0079acd",
+      "validation_hash": "a2698e880509fc04c909679fce4a026cec1770e69b5f5dfe23a6e90e6be4c37b",
+      "config": "D:\\Learning\\Projects\\Artifact-Robust-Bone-Age-Assessment-Using-Multi-Scale-Label-Distribution-ConvNeXt-V2-\\c3_roi\\configs\\fold_3.toml",
+      "roi_status": "blocked_until_roi_cache_pass"
+    },
+    "4": {
+      "execution": "local",
+      "train_count": 11229,
+      "validation_count": 2807,
+      "train_hash": "8d0a69e93f248e94db6787b9757b0e102782cb0c3041c7eef0d9e132595f6092",
+      "validation_hash": "068d6b96e606bb658d1996f1a4788b5dd86d9d0f0c4a9cdca8494408c46f23a0",
+      "config": "D:\\Learning\\Projects\\Artifact-Robust-Bone-Age-Assessment-Using-Multi-Scale-Label-Distribution-ConvNeXt-V2-\\c3_roi\\configs\\fold_4.toml",
+      "roi_status": "blocked_until_roi_cache_pass"
+    },
+    "5": {
+      "execution": "local",
+      "train_count": 11229,
+      "validation_count": 2807,
+      "train_hash": "cabace3083a7857e1b4b3892bd6ab371e4548aa8ca4379b748cb69cf41c0f33f",
+      "validation_hash": "a7ff2ee12cd6dd3c4943151c47fceb6172e33ff489cbbeedbf9dc5b05cd4f0cc",
+      "config": "D:\\Learning\\Projects\\Artifact-Robust-Bone-Age-Assessment-Using-Multi-Scale-Label-Distribution-ConvNeXt-V2-\\c3_roi\\configs\\fold_5.toml",
+      "roi_status": "blocked_until_roi_cache_pass"
+    }
+  }
+}

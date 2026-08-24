@@ -66,6 +66,7 @@ class Config:
     scheduler_min_lr: float = 1e-4
     smooth_l1_beta_months: float = 3.0
     regression_loss: str = "smooth_l1"
+    sampling_strategy: str = "permutation"
     gradient_clip_norm: float = 5.0
     patience: int = 8
     min_delta_mae: float = 0.01
@@ -134,6 +135,8 @@ def load_config(path: str | Path) -> Config:
         )
     if cfg.regression_loss not in {"smooth_l1", "mae", "mse"}:
         raise ValueError("regression_loss phải là smooth_l1, mae hoặc mse")
+    if cfg.sampling_strategy not in {"permutation", "manifest_weighted"}:
+        raise ValueError("sampling_strategy phải là permutation hoặc manifest_weighted")
     if cfg.optimizer_name not in {"adamw", "adam"}:
         raise ValueError("optimizer_name phải là adamw hoặc adam")
     if cfg.scheduler_name not in {"cosine", "reduce_on_plateau"}:

@@ -21,7 +21,7 @@ from torch import nn
 from torch.utils.data import DataLoader
 
 from .config import Config, save_resolved_yaml, scientific_config_hash
-from .data import BoneAgeDataset, EpochPermutationSampler, load_manifest, manifest_hash, worker_seed
+from .data import BoneAgeDataset, build_train_sampler, load_manifest, manifest_hash, worker_seed
 from .metrics import compute_metrics
 from .model import build_model
 
@@ -281,7 +281,12 @@ class Trainer:
             preprocessing=self.cfg.preprocessing, preprocessed_root=self.cfg.preprocessed_root,
             image_root=self.cfg.image_root, image_normalization=self.cfg.image_normalization,
         )
-        sampler = EpochPermutationSampler(len(rows), self.cfg.seed, self.epoch, start_index) if train else None
+        sampler = (
+            build_train_sampler(
+                rows, self.cfg.sampling_strategy, self.cfg.seed, self.epoch, start_index
+            )
+            if train else None
+        )
         generator = torch.Generator().manual_seed(self.cfg.seed + self.epoch)
         return DataLoader(
             dataset, batch_size=self.cfg.batch_size, sampler=sampler, shuffle=False,

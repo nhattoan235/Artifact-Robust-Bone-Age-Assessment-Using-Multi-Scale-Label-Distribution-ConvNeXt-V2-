@@ -1,10 +1,25 @@
 {
+codex/plan-a-d3-report
+  "context_version": "2026-08-24",
+
   "context_version": "2026-08-22",
+main
   "read_first": "AI_Context/00_START_HERE.md",
   "read_order": [
     "AI_Context/01_STATUS_RESULTS.md",
     "AI_Context/02_METHOD_HISTORY.md",
     "AI_Context/03_DATA_PROTOCOL.md",
+codex/plan-a-d3-report
+    "AI_Context/04_NEXT_P9_PLAN.md",
+    "AI_Context/08_SEX_AWARE_EXPERIMENT_PLAN.md",
+    "AI_Context/09_CURATED_E3_ENSEMBLE_PLAN.md",
+    "AI_Context/24_EXPERIMENT_C_C3_ROI_FINAL_REPORT.md",
+    "AI_Context/05_FILE_MAP.md",
+    "AI_Context/CHANGELOG.md"
+  ],
+  "current_phase": "Plan A/D3 and Plan C/C3-ROI OOF complete; Plan B artifact-consistency screening not started",
+  "model_locked_for_p7": "ConvNeXt-Tiny + sex embedding + direct regression + A2 augmentation + 512px",
+
     "AI_Context/08_SEX_AWARE_EXPERIMENT_PLAN.md",
     "AI_Context/09_P12_UNCERTAINTY_PROTOCOL.md",
     "AI_Context/10_P13_THESIS_REPORTING_PLAN.md",
@@ -17,6 +32,7 @@
   ],
   "current_phase": "P13 complete; thesis contribution reporting finalized",
   "model_retained": "E1 ConvNeXt-Tiny + sex embedding + direct regression + A2 augmentation + 512px",
+ main
   "p7_oof": {
     "status": "PASS",
     "rows": 14036,
@@ -32,6 +48,31 @@
     "test_used_for_selection": false,
     "test_ground_truth_has_been_read": true
   },
+codex/plan-a-d3-report
+  "experiment_c_c3_roi": {
+    "status": "OOF_POSITIVE_WITH_PROTOCOL_DEVIATION",
+    "rows": 14036,
+    "model": "ConvNeXt-Tiny direct regression + sex embedding on ROI inputs",
+    "c3_oof_mae_months": 6.43734888189299,
+    "e1_oof_mae_months": 6.3166912053853705,
+    "ensemble_50_50_oof_mae_months": 6.176211657433063,
+    "ensemble_minus_e1_delta_months": -0.1404795479523079,
+    "paired_bootstrap_95_ci": [-0.1725468215659732, -0.10985336238483855],
+    "folds_improved": 5,
+    "prediction_pearson_correlation": 0.9951230675415624,
+    "development_fallback_rate": 0.18488173268737532,
+    "test_fallback_rate": 0.33,
+    "original_fallback_gate_passed": false,
+    "test_exploratory": {
+      "images": 200,
+      "e1_mae_months": 4.730321210479735,
+      "c3_mae_months": 4.337266699981692,
+      "ensemble_50_50_mae_months": 4.454660770416257
+    }
+  },
+  "benchmarks_months": {"bram_2025": 3.68, "deeplasia_2024": 3.87},
+  "next_action": "Decide whether to run Plan B artifact-consistency screening on the same locked data; use clean validation/OOF for selection and do not tune from test",
+
   "p11_sex_aware": {
     "status": "E1_RETAINED_E2_GATE_FAILED",
     "e0_minus_e1_mae_months": 1.2869,
@@ -47,6 +88,7 @@
   },
   "scientific_position": "Controlled empirical and methodological contribution; no state-of-the-art claim",
   "next_action": "Finalize thesis around sex-aware ablation and limited TTA-disagreement utility; prioritize an untouched external holdout if research continues",
+main
   "do_not": [
     "Do not select new models using RSNA test labels",
     "Do not call TTA disagreement calibrated clinical uncertainty",

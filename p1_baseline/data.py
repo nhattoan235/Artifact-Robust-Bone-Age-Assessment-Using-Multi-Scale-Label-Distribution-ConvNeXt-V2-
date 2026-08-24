@@ -35,6 +35,12 @@ def load_manifest(path: str | Path, expected_split: str) -> list[dict[str, str]]
 def manifest_hash(rows: list[dict[str, str]]) -> str:
     digest = hashlib.sha256()
     keys = ["split", "image_id", "bone_age_months", "sex", "sha256"]
+    curated_keys = [
+        "age_bin", "sex_age_stratum", "sample_weight", "audit_status", "audit_reason",
+    ]
+    # Giữ fingerprint P0 bit-exact cho manifest cũ. Chỉ manifest C1 có các cột
+    # curated mới đưa chúng vào hash để đổi weight không thể resume nhầm checkpoint.
+    keys.extend(key for key in curated_keys if any(key in row for row in rows))
     # Phải giữ đúng thuật toán khóa ở P0: ID đã chuẩn hóa nhưng sắp xếp lexical.
     # Không đổi sang numeric sort vì sẽ làm fingerprint khác dù dữ liệu giống hệt.
     for row in sorted(rows, key=lambda item: str(int(float(item["image_id"])))):
@@ -184,6 +190,50 @@ class EpochPermutationSampler(Sampler[int]):
 
     def __len__(self) -> int:
         return len(self.indices)
+
+
+class EpochWeightedSampler(Sampler[int]):
+    """Weighted epoch sequence deterministic by seed+epoch, resumable by suffix."""
+
+    def __init__(
+        self, weights: list[float], num_samples: int, seed: int, epoch: int,
+        start_index: int = 0,
+    ):
+        tensor = torch.as_tensor(weights, dtype=torch.double)
+        if tensor.ndim != 1 or len(tensor) == 0:
+            raise ValueError("sample weights phải là vector không rỗng")
+        if not torch.isfinite(tensor).all() or (tensor <= 0).any():
+            raise ValueError("sample weights phải hữu hạn và > 0")
+        if num_samples <= 0 or not 0 <= start_index <= num_samples:
+            raise ValueError("num_samples/start_index không hợp lệ")
+        generator = torch.Generator().manual_seed(seed + epoch)
+        full = torch.multinomial(
+            tensor, num_samples=num_samples, replacement=True, generator=generator,
+        ).tolist()
+        self.indices = full[start_index:]
+
+    def __iter__(self):
+        return iter(self.indices)
+
+    def __len__(self) -> int:
+        return len(self.indices)
+
+
+def build_train_sampler(
+    rows: list[dict[str, str]], strategy: str, seed: int, epoch: int,
+    start_index: int = 0,
+) -> Sampler[int]:
+    if strategy == "permutation":
+        return EpochPermutationSampler(len(rows), seed, epoch, start_index)
+    if strategy != "manifest_weighted":
+        raise ValueError(f"sampling_strategy không được hỗ trợ: {strategy}")
+    try:
+        weights = [float(row["sample_weight"]) for row in rows]
+    except (KeyError, TypeError, ValueError) as exc:
+        raise ValueError("Manifest weighted thiếu sample_weight hợp lệ") from exc
+    if any(not math.isfinite(weight) or weight <= 0 for weight in weights):
+        raise ValueError("Manifest weighted có sample_weight không hữu hạn hoặc <= 0")
+    return EpochWeightedSampler(weights, len(rows), seed, epoch, start_index)
 
 
 def worker_seed(worker_id: int) -> None:

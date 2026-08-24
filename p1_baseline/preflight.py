@@ -7,8 +7,26 @@ from dataclasses import asdict
 import torch
 
 from .config import load_config, scientific_config_hash
-from .data import BoneAgeDataset, load_manifest, manifest_hash
+from .data import BoneAgeDataset, build_train_sampler, load_manifest, manifest_hash
 from .model import build_model
+
+
+def sampling_report(
+    rows: list[dict[str, str]], strategy: str, seed: int,
+) -> dict[str, int | float | str | None]:
+    sampler = build_train_sampler(rows, strategy, seed, epoch=0, start_index=0)
+    sequence = list(sampler)
+    weights = (
+        [float(row["sample_weight"]) for row in rows]
+        if strategy == "manifest_weighted" else []
+    )
+    return {
+        "strategy": strategy,
+        "num_samples": len(sequence),
+        "unique_indices": len(set(sequence)),
+        "weight_min": min(weights) if weights else None,
+        "weight_max": max(weights) if weights else None,
+    }
 
 
 def main() -> int:
@@ -19,6 +37,7 @@ def main() -> int:
     cfg = load_config(args.config)
     train = load_manifest(cfg.train_manifest, "train")
     val = load_manifest(cfg.val_manifest, "validation_official")
+    sampler = sampling_report(train, cfg.sampling_strategy, cfg.seed)
     checks = {
         "train_count": len(train) == cfg.expected_train_count,
         "val_count": len(val) == cfg.expected_val_count,
@@ -29,6 +48,8 @@ def main() -> int:
             for key, value in asdict(cfg).items()
             if "path" in key.lower() or "manifest" in key.lower() or "root" in key.lower()
         ),
+        "sampling_sequence_length": sampler["num_samples"] == len(train),
+        "sampling_has_support": sampler["unique_indices"] > 0,
     }
     dataset = BoneAgeDataset(
         train[:1], cfg.image_size, cfg.target_mean, cfg.target_std,
@@ -51,7 +72,7 @@ def main() -> int:
         )
     else:
         checks["forward_shape"] = tuple(output.shape) == (1,)
-    report = {"status": "PASS" if all(checks.values()) else "FAIL", "checks": checks, "config_hash": scientific_config_hash(cfg), "sample_id": sample["image_id"], "sample_target_months": float(sample["target_months"])}
+    report = {"status": "PASS" if all(checks.values()) else "FAIL", "checks": checks, "sampling": sampler, "config_hash": scientific_config_hash(cfg), "sample_id": sample["image_id"], "sample_target_months": float(sample["target_months"])}
     print(json.dumps(report, ensure_ascii=False, indent=2))
     return 0 if report["status"] == "PASS" else 1
 

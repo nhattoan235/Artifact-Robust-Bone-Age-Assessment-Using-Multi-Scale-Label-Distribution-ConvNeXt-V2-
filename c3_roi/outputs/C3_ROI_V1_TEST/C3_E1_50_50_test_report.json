@@ -1,0 +1,22 @@
+{
+  "protocol": "fixed C3 5-fold + locked E1 5-fold, equal weight 50/50; no test tuning",
+  "test_used_for_model_selection": false,
+  "c3": {
+    "count": 200,
+    "mae_months": 4.337266699981692,
+    "rmse_months": 5.531101413665844,
+    "median_absolute_error_months": 3.394524383544926
+  },
+  "e1": {
+    "count": 200,
+    "mae_months": 4.730321210479735,
+    "rmse_months": 6.028745009417094,
+    "median_absolute_error_months": 4.133362731933602
+  },
+  "ensemble_50_50": {
+    "count": 200,
+    "mae_months": 4.454660770416257,
+    "rmse_months": 5.650688585110427,
+    "median_absolute_error_months": 3.7340332031250085
+  }
+}

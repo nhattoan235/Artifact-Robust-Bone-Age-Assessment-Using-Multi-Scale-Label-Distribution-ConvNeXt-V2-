@@ -64,6 +64,23 @@ MAE theo fold: 5,119659; 5,318364; 5,188306; 4,822037; 5,279186. Input audit PAS
 - Rassmann et al., *Pediatric Radiology* (2024), Deeplasia: **3,87 tháng** trên RSNA test.
 - P8 tốt hơn baseline nội bộ P7 OOF không phải phép so sánh trực tiếp (OOF 14.036 khác test 200), nhưng **chưa đạt** hai mốc công bố.
 
+## Thí nghiệm C — C3-ROI local/global (2026-08-24)
+
+- Đã train đủ 5 fold trên đúng split P7, seed 42; OOF khớp 14.036 ID với E1.
+- C3-ROI standalone: MAE **6,437349**, kém E1 0,120658 tháng.
+- Ensemble cố định `0,5 × E1 + 0,5 × C3-ROI`: MAE **6,176212**, RMSE
+  8,346747; cải thiện 0,140480 tháng so với E1.
+- Paired bootstrap 95% CI của delta ensemble−E1:
+  `[-0,172547; -0,109853]`; ensemble cải thiện ở cả 5 fold.
+- Prediction correlation E1/C3 là 0,995123: hai model rất giống nhau nhưng vẫn
+  có diversity đủ để ensemble có lợi.
+- ROI thực tế là segmentation bounding-box + margin 8%; fallback full-image
+  18,49% trên development và 33% trên test. Run **không đạt** gate fallback ≤1%
+  của thiết kế C ban đầu và không được gọi là local carpal specialist thuần túy.
+- Test 200 ảnh chỉ thăm dò: E1 4,730321; C3-ROI 4,337267; ensemble 4,454661.
+  Không dùng kết quả này để đổi trọng số hoặc chọn model.
+- Báo cáo đầy đủ: `AI_Context/24_EXPERIMENT_C_C3_ROI_FINAL_REPORT.md`.
+
 ## Điểm tốt
 
 - Split chính thức 12.611 train / 1.425 validation / 200 test được kiểm tra ID, ảnh, duplicate, hash và leakage.
