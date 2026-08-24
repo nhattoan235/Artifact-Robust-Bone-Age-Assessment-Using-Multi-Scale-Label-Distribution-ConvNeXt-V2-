@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "test_used": false,
+  "count": 14036,
+  "subset": false,
+  "tta": {
+    "rotations": [
+      -10.0,
+      -5.0,
+      0.0,
+      5.0,
+      10.0
+    ],
+    "flips": [
+      false,
+      true
+    ],
+    "amp": true
+  },
+  "raw_reproduction_check": {
+    "mean_abs_diff_months": 0.05908732191386404,
+    "max_abs_diff_months": 1.11590576171875
+  },
+  "mae": {
+    "E1_TTA": 6.210446212895747,
+    "D3_TTA": 6.246541746826584,
+    "E1_TTA_D3_TTA_50_50": 6.101344887691877
+  },
+  "ensemble_vs_E1_TTA": {
+    "delta_mae_candidate_minus_baseline": -0.10910132520387038,
+    "paired_bootstrap_95_ci": [
+      -0.13364845231196654,
+      -0.08420409453258335
+    ],
+    "candidate_better_images": 7422,
+    "candidate_worse_images": 6614,
+    "prediction_correlation": 0.9992607266479856,
+    "residual_correlation": 0.9824566960032852
+  },
+  "tta_disagreement": {
+    "mean_std_months": 1.7265011099034546,
+    "p95_std_months": 3.428096823607466
+  }
+}
