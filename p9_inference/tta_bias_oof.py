@@ -205,6 +205,7 @@ def load_fold_model(fold_dir: Path, device: torch.device) -> tuple[torch.nn.Modu
         int(config["head_hidden_dim"]),
         float(config["dropout"]),
         int(config["age_class_count"]),
+        sex_mode=str(config.get("sex_mode", "embedding")),
     ).to(device)
     checkpoint = torch.load(fold_dir / "best_model.pt", map_location=device, weights_only=False)
     model.load_state_dict(checkpoint["model"], strict=True)

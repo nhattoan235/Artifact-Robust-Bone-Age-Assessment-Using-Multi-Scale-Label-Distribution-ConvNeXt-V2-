@@ -1,0 +1,536 @@
+{
+  "status": "PASS",
+  "test_accessed": false,
+  "analysis_type": "post-hoc analysis of locked out-of-fold predictions",
+  "protocol_path": "AI_Context/09_P12_UNCERTAINTY_PROTOCOL.md",
+  "input_path": "p9_inference\\outputs\\P9_I_TTA_BIAS_OOF\\P9_I_TTA_BIAS_OOF_predictions.csv",
+  "input_sha256": "659837337640eab62cf5b225b88367cd098a374d87a965188b3a8dfb8c82f88a",
+  "bootstrap_samples": 5000,
+  "bootstrap_seed": 2026,
+  "integrity": {
+    "row_count": 14036,
+    "unique_image_ids": 14036,
+    "fold_counts": {
+      "1": 2808,
+      "2": 2807,
+      "3": 2807,
+      "4": 2807,
+      "5": 2807
+    },
+    "sex_counts": {
+      "F": 6430,
+      "M": 7606
+    },
+    "max_tta_mean_recompute_diff": 5.684341886080802e-14,
+    "max_tta_std_recompute_diff": 2.19824158875781e-14
+  },
+  "primary": {
+    "endpoint": "Spearman(tta_std_months, abs(tta_prediction-target))",
+    "rho": 0.2004311168255934,
+    "strength": "weak",
+    "pvalue": 3.756857184166575e-127,
+    "bootstrap_95_ci": [
+      0.18423812463397596,
+      0.21641110728266894
+    ],
+    "h4_association": "SUPPORTED"
+  },
+  "overall": {
+    "group_type": "overall",
+    "group": "overall",
+    "sex": "ALL",
+    "age_bin": "ALL",
+    "count": 14036,
+    "raw_mae": 6.317470714420157,
+    "tta_mae": 6.210446212895747,
+    "tta_gain_raw_mae_minus_tta_mae": 0.10702450152440918,
+    "tta_gain_bootstrap_95_ci": [
+      0.07752998393157431,
+      0.13609339987800217
+    ],
+    "tta_signed_bias": -0.09300814088031599,
+    "tta_error_rate_gt12": 0.13066400683955542,
+    "tta_error_rate_gt18": 0.04174978626389285,
+    "disagreement_mean": 1.709391064399508,
+    "disagreement_median": 1.558582553458353,
+    "disagreement_p95": 3.252461869728724,
+    "spearman_rho": 0.2004311168255934,
+    "spearman_strength": "weak",
+    "spearman_pvalue": 3.756857184166575e-127,
+    "spearman_bootstrap_95_ci": [
+      0.18423812463397596,
+      0.21641110728266894
+    ],
+    "auc_error_gt12": 0.6258138850255524,
+    "auc_error_gt18": 0.6341076163771775
+  },
+  "groups": [
+    {
+      "group_type": "overall",
+      "group": "overall",
+      "sex": "ALL",
+      "age_bin": "ALL",
+      "count": 14036,
+      "raw_mae": 6.317470714420157,
+      "tta_mae": 6.210446212895747,
+      "tta_gain_raw_mae_minus_tta_mae": 0.10702450152440918,
+      "tta_gain_bootstrap_95_ci": [
+        0.07752998393157431,
+        0.13609339987800217
+      ],
+      "tta_signed_bias": -0.09300814088031599,
+      "tta_error_rate_gt12": 0.13066400683955542,
+      "tta_error_rate_gt18": 0.04174978626389285,
+      "disagreement_mean": 1.709391064399508,
+      "disagreement_median": 1.558582553458353,
+      "disagreement_p95": 3.252461869728724,
+      "spearman_rho": 0.2004311168255934,
+      "spearman_strength": "weak",
+      "spearman_pvalue": 3.756857184166575e-127,
+      "spearman_bootstrap_95_ci": [
+        0.18423812463397596,
+        0.21641110728266894
+      ],
+      "auc_error_gt12": 0.6258138850255524,
+      "auc_error_gt18": 0.6341076163771775
+    },
+    {
+      "group_type": "sex",
+      "group": "F",
+      "sex": "F",
+      "age_bin": "ALL",
+      "count": 6430,
+      "raw_mae": 6.536692177637554,
+      "tta_mae": 6.458097061109766,
+      "tta_gain_raw_mae_minus_tta_mae": 0.07859511652778875,
+      "tta_gain_bootstrap_95_ci": [
+        0.03544937670249398,
+        0.12266308160814503
+      ],
+      "tta_signed_bias": -0.27852273872814487,
+      "tta_error_rate_gt12": 0.14136858475894246,
+      "tta_error_rate_gt18": 0.042768273716951785,
+      "disagreement_mean": 1.7269403673923773,
+      "disagreement_median": 1.584495416314112,
+      "disagreement_p95": 3.164615657044569,
+      "spearman_rho": 0.14621738702096498,
+      "spearman_strength": "weak",
+      "spearman_pvalue": 4.6153265325877903e-32,
+      "spearman_bootstrap_95_ci": [
+        0.12236675229906452,
+        0.1699610989598115
+      ],
+      "auc_error_gt12": 0.5888451913476078,
+      "auc_error_gt18": 0.6008129384831253
+    },
+    {
+      "group_type": "sex",
+      "group": "M",
+      "sex": "M",
+      "age_bin": "ALL",
+      "count": 7606,
+      "raw_mae": 6.132144129028641,
+      "tta_mae": 6.001085845552055,
+      "tta_gain_raw_mae_minus_tta_mae": 0.1310582834765876,
+      "tta_gain_bootstrap_95_ci": [
+        0.09280956374260449,
+        0.17023795981736914
+      ],
+      "tta_signed_bias": 0.0638231586413169,
+      "tta_error_rate_gt12": 0.12161451485669209,
+      "tta_error_rate_gt18": 0.04088877202208783,
+      "disagreement_mean": 1.6945551429895487,
+      "disagreement_median": 1.5275392416571107,
+      "disagreement_p95": 3.3227145797626694,
+      "spearman_rho": 0.23860973014845982,
+      "spearman_strength": "weak",
+      "spearman_pvalue": 6.17642131423364e-99,
+      "spearman_bootstrap_95_ci": [
+        0.21664421783847812,
+        0.25991633043433593
+      ],
+      "auc_error_gt12": 0.6575654235286027,
+      "auc_error_gt18": 0.6616591992489239
+    },
+    {
+      "group_type": "sex_age",
+      "group": "F:0-59",
+      "sex": "F",
+      "age_bin": "0-59",
+      "count": 419,
+      "raw_mae": 5.917375960611785,
+      "tta_mae": 5.886469309768131,
+      "tta_gain_raw_mae_minus_tta_mae": 0.030906650843654303,
+      "tta_gain_bootstrap_95_ci": [
+        -0.1265499102927054,
+        0.18217432377162043
+      ],
+      "tta_signed_bias": 0.6618413838680154,
+      "tta_error_rate_gt12": 0.09307875894988067,
+      "tta_error_rate_gt18": 0.016706443914081145,
+      "disagreement_mean": 1.6648071547188619,
+      "disagreement_median": 1.4376124287810192,
+      "disagreement_p95": 3.259190121688593,
+      "spearman_rho": -0.017428959684957675,
+      "spearman_strength": "very_weak",
+      "spearman_pvalue": 0.7220479141833244,
+      "spearman_bootstrap_95_ci": [
+        -0.11360869840229709,
+        0.0783678920595842
+      ],
+      "auc_error_gt12": 0.5078947368421053,
+      "auc_error_gt18": 0.7111650485436893,
+      "spearman_bh_qvalue": 0.7220479141833244
+    },
+    {
+      "group_type": "sex_age",
+      "group": "F:60-119",
+      "sex": "F",
+      "age_bin": "60-119",
+      "count": 2294,
+      "raw_mae": 6.8053576777889715,
+      "tta_mae": 6.857886414166212,
+      "tta_gain_raw_mae_minus_tta_mae": -0.052528736377240266,
+      "tta_gain_bootstrap_95_ci": [
+        -0.1300953521745142,
+        0.019758400908738965
+      ],
+      "tta_signed_bias": 1.1286335511943415,
+      "tta_error_rate_gt12": 0.16521360069747165,
+      "tta_error_rate_gt18": 0.046207497820401046,
+      "disagreement_mean": 1.8263402788390217,
+      "disagreement_median": 1.679167829628161,
+      "disagreement_p95": 3.201558824317735,
+      "spearman_rho": 0.11460189192352749,
+      "spearman_strength": "weak",
+      "spearman_pvalue": 3.71077928216341e-08,
+      "spearman_bootstrap_95_ci": [
+        0.0743086347708138,
+        0.1545321842897446
+      ],
+      "auc_error_gt12": 0.5785997230584815,
+      "auc_error_gt18": 0.5863371391121383,
+      "spearman_bh_qvalue": 7.42155856432682e-08
+    },
+    {
+      "group_type": "sex_age",
+      "group": "F:120-179",
+      "sex": "F",
+      "age_bin": "120-179",
+      "count": 3352,
+      "raw_mae": 6.3909131188950274,
+      "tta_mae": 6.204844304997484,
+      "tta_gain_raw_mae_minus_tta_mae": 0.18606881389754476,
+      "tta_gain_bootstrap_95_ci": [
+        0.12217345634337518,
+        0.24958537461934038
+      ],
+      "tta_signed_bias": -0.9106844863345344,
+      "tta_error_rate_gt12": 0.12649164677804295,
+      "tta_error_rate_gt18": 0.038484486873508354,
+      "disagreement_mean": 1.6924421804618621,
+      "disagreement_median": 1.564158378817174,
+      "disagreement_p95": 3.11579115219841,
+      "spearman_rho": 0.15363777789720842,
+      "spearman_strength": "weak",
+      "spearman_pvalue": 3.7221809931067307e-19,
+      "spearman_bootstrap_95_ci": [
+        0.12057602145909219,
+        0.18611658276244103
+      ],
+      "auc_error_gt12": 0.5978016419218476,
+      "auc_error_gt18": 0.632132901360618,
+      "spearman_bh_qvalue": 1.4888723972426923e-18
+    },
+    {
+      "group_type": "sex_age",
+      "group": "F:180-228",
+      "sex": "F",
+      "age_bin": "180-228",
+      "count": 365,
+      "raw_mae": 6.8978599652852095,
+      "tta_mae": 6.927407993682441,
+      "tta_gain_raw_mae_minus_tta_mae": -0.029548028397233517,
+      "tta_gain_bootstrap_95_ci": [
+        -0.16872709143651726,
+        0.11087744872210754
+      ],
+      "tta_signed_bias": -4.3963937482441935,
+      "tta_error_rate_gt12": 0.18356164383561643,
+      "tta_error_rate_gt18": 0.09041095890410959,
+      "disagreement_mean": 1.490360482029877,
+      "disagreement_median": 1.2739837797990703,
+      "disagreement_p95": 3.056340502103285,
+      "spearman_rho": 0.3564496585830519,
+      "spearman_strength": "moderate",
+      "spearman_pvalue": 2.2431689741764737e-12,
+      "spearman_bootstrap_95_ci": [
+        0.26019138187436897,
+        0.4448957941321365
+      ],
+      "auc_error_gt12": 0.6167484724030852,
+      "auc_error_gt18": 0.5471887550200804,
+      "spearman_bh_qvalue": 5.981783931137263e-12
+    },
+    {
+      "group_type": "sex_age",
+      "group": "M:0-59",
+      "sex": "M",
+      "age_bin": "0-59",
+      "count": 476,
+      "raw_mae": 6.195098484263701,
+      "tta_mae": 5.903079195583567,
+      "tta_gain_raw_mae_minus_tta_mae": 0.2920192886801327,
+      "tta_gain_bootstrap_95_ci": [
+        0.1473836352845198,
+        0.4398117864632805
+      ],
+      "tta_signed_bias": 2.6567925324960924,
+      "tta_error_rate_gt12": 0.11974789915966387,
+      "tta_error_rate_gt18": 0.029411764705882353,
+      "disagreement_mean": 1.6355632876241566,
+      "disagreement_median": 1.4960057937153803,
+      "disagreement_p95": 3.0948659899335222,
+      "spearman_rho": 0.14551395136008724,
+      "spearman_strength": "weak",
+      "spearman_pvalue": 0.0014558048591193284,
+      "spearman_bootstrap_95_ci": [
+        0.05548916962177423,
+        0.23011695395119763
+      ],
+      "auc_error_gt12": 0.6298622451115856,
+      "auc_error_gt18": 0.6542980828695115,
+      "spearman_bh_qvalue": 0.001663776981850661
+    },
+    {
+      "group_type": "sex_age",
+      "group": "M:60-119",
+      "sex": "M",
+      "age_bin": "60-119",
+      "count": 1587,
+      "raw_mae": 8.055172497773967,
+      "tta_mae": 7.9313478951793694,
+      "tta_gain_raw_mae_minus_tta_mae": 0.12382460259459775,
+      "tta_gain_bootstrap_95_ci": [
+        0.026641032411830957,
+        0.22495627655048447
+      ],
+      "tta_signed_bias": 1.6480460038933276,
+      "tta_error_rate_gt12": 0.21613106490233144,
+      "tta_error_rate_gt18": 0.08191556395715185,
+      "disagreement_mean": 2.051637701409734,
+      "disagreement_median": 1.8830733735974308,
+      "disagreement_p95": 3.666320573073122,
+      "spearman_rho": 0.08704100579037595,
+      "spearman_strength": "very_weak",
+      "spearman_pvalue": 0.0005178971165631676,
+      "spearman_bootstrap_95_ci": [
+        0.038663385182177164,
+        0.13716362588528955
+      ],
+      "auc_error_gt12": 0.5730081651401948,
+      "auc_error_gt18": 0.5757879731798743,
+      "spearman_bh_qvalue": 0.0006905294887508901
+    },
+    {
+      "group_type": "sex_age",
+      "group": "M:120-179",
+      "sex": "M",
+      "age_bin": "120-179",
+      "count": 4681,
+      "raw_mae": 5.569230299478819,
+      "tta_mae": 5.439069777669827,
+      "tta_gain_raw_mae_minus_tta_mae": 0.1301605218089918,
+      "tta_gain_bootstrap_95_ci": [
+        0.08211982649632252,
+        0.1787633293761423
+      ],
+      "tta_signed_bias": -0.28199277183892923,
+      "tta_error_rate_gt12": 0.09442426831873531,
+      "tta_error_rate_gt18": 0.03225806451612903,
+      "disagreement_mean": 1.6389451351861466,
+      "disagreement_median": 1.4541608066607852,
+      "disagreement_p95": 3.230653344203184,
+      "spearman_rho": 0.25892984831799265,
+      "spearman_strength": "weak",
+      "spearman_pvalue": 1.3862437141091146e-72,
+      "spearman_bootstrap_95_ci": [
+        0.23251512866770677,
+        0.284807421309453
+      ],
+      "auc_error_gt12": 0.6713260512436233,
+      "auc_error_gt18": 0.656045787465462,
+      "spearman_bh_qvalue": 1.1089949712872917e-71
+    },
+    {
+      "group_type": "sex_age",
+      "group": "M:180-228",
+      "sex": "M",
+      "age_bin": "180-228",
+      "count": 862,
+      "raw_mae": 5.61379997802168,
+      "tta_mae": 5.55343214066012,
+      "tta_gain_raw_mae_minus_tta_mae": 0.06036783736156041,
+      "tta_gain_bootstrap_95_ci": [
+        -0.036337734895072124,
+        0.15579690424306267
+      ],
+      "tta_signed_bias": -2.406769308634533,
+      "tta_error_rate_gt12": 0.0962877030162413,
+      "tta_error_rate_gt18": 0.018561484918793503,
+      "disagreement_mean": 1.3717019521181066,
+      "disagreement_median": 1.120077850397319,
+      "disagreement_p95": 3.2058214898200754,
+      "spearman_rho": 0.16849495924192814,
+      "spearman_strength": "weak",
+      "spearman_pvalue": 6.510628812971014e-07,
+      "spearman_bootstrap_95_ci": [
+        0.10300261818944066,
+        0.23726678515789718
+      ],
+      "auc_error_gt12": 0.6333420975300431,
+      "auc_error_gt18": 0.7304964539007093,
+      "spearman_bh_qvalue": 1.0417006100753622e-06
+    }
+  ],
+  "worst_sex_age_group_tta_mae": {
+    "group_type": "sex_age",
+    "group": "M:60-119",
+    "sex": "M",
+    "age_bin": "60-119",
+    "count": 1587,
+    "raw_mae": 8.055172497773967,
+    "tta_mae": 7.9313478951793694,
+    "tta_gain_raw_mae_minus_tta_mae": 0.12382460259459775,
+    "tta_gain_bootstrap_95_ci": [
+      0.026641032411830957,
+      0.22495627655048447
+    ],
+    "tta_signed_bias": 1.6480460038933276,
+    "tta_error_rate_gt12": 0.21613106490233144,
+    "tta_error_rate_gt18": 0.08191556395715185,
+    "disagreement_mean": 2.051637701409734,
+    "disagreement_median": 1.8830733735974308,
+    "disagreement_p95": 3.666320573073122,
+    "spearman_rho": 0.08704100579037595,
+    "spearman_strength": "very_weak",
+    "spearman_pvalue": 0.0005178971165631676,
+    "spearman_bootstrap_95_ci": [
+      0.038663385182177164,
+      0.13716362588528955
+    ],
+    "auc_error_gt12": 0.5730081651401948,
+    "auc_error_gt18": 0.5757879731798743,
+    "spearman_bh_qvalue": 0.0006905294887508901
+  },
+  "age_standardized_by_sex": {
+    "overall_age_bin_weights": {
+      "0-59": 0.06376460530065546,
+      "60-119": 0.2765032772869763,
+      "120-179": 0.5723140495867769,
+      "180-228": 0.08741806782559133
+    },
+    "F": {
+      "raw_mae": 6.51962980149154,
+      "tta_mae": 6.42827665402641
+    },
+    "M": {
+      "raw_mae": 6.300405897408288,
+      "tta_mae": 6.167777559265468
+    }
+  },
+  "disagreement_quartiles": [
+    {
+      "quartile": "Q1_low",
+      "count": 3509,
+      "disagreement_min": 0.1612877617756064,
+      "disagreement_max": 1.108386691435573,
+      "tta_mae": 4.758689229187377,
+      "error_rate_gt12": 0.07039042462239954,
+      "error_rate_gt18": 0.02080364776289541
+    },
+    {
+      "quartile": "Q2",
+      "count": 3509,
+      "disagreement_min": 1.1084160705930424,
+      "disagreement_max": 1.5584913735987815,
+      "tta_mae": 5.942820551783381,
+      "error_rate_gt12": 0.11541749786263893,
+      "error_rate_gt18": 0.03362781419207751
+    },
+    {
+      "quartile": "Q3",
+      "count": 3509,
+      "disagreement_min": 1.5586737333179246,
+      "disagreement_max": 2.136586131785419,
+      "tta_mae": 6.51647694930965,
+      "error_rate_gt12": 0.1353662011969222,
+      "error_rate_gt18": 0.04417212881162724
+    },
+    {
+      "quartile": "Q4_high",
+      "count": 3509,
+      "disagreement_min": 2.1366642332401216,
+      "disagreement_max": 10.835262510906423,
+      "tta_mae": 7.62379812130258,
+      "error_rate_gt12": 0.20148190367626104,
+      "error_rate_gt18": 0.06839555428897122
+    }
+  ],
+  "risk_coverage": [
+    {
+      "coverage": 1.0,
+      "retained_count": 14036,
+      "max_retained_disagreement": 10.835262510906423,
+      "tta_mae": 6.210446212895747,
+      "error_rate_gt12": 0.13066400683955542,
+      "error_rate_gt18": 0.04174978626389285
+    },
+    {
+      "coverage": 0.9,
+      "retained_count": 12632,
+      "max_retained_disagreement": 2.805944014161164,
+      "tta_mae": 5.99806927000895,
+      "error_rate_gt12": 0.11922102596580114,
+      "error_rate_gt18": 0.03657378087397087
+    },
+    {
+      "coverage": 0.8,
+      "retained_count": 11228,
+      "max_retained_disagreement": 2.306876590341267,
+      "tta_mae": 5.813924720153972,
+      "error_rate_gt12": 0.1105272532953331,
+      "error_rate_gt18": 0.03402208763804774
+    },
+    {
+      "coverage": 0.7,
+      "retained_count": 9825,
+      "max_retained_disagreement": 1.9895366747966503,
+      "tta_mae": 5.673199047292461,
+      "error_rate_gt12": 0.10381679389312977,
+      "error_rate_gt18": 0.032162849872773534
+    },
+    {
+      "coverage": 0.5,
+      "retained_count": 7018,
+      "max_retained_disagreement": 1.5584913735987815,
+      "tta_mae": 5.350754890485379,
+      "error_rate_gt12": 0.09290396124251923,
+      "error_rate_gt18": 0.027215730977486464
+    }
+  ],
+  "collapse_checks": {
+    "raw_prediction_min": 0.0876846313476562,
+    "raw_prediction_max": 231.0957946777344,
+    "raw_prediction_std": 40.569072588601664,
+    "tta_prediction_min": 0.5091453552246094,
+    "tta_prediction_max": 229.9226211547852,
+    "tta_prediction_std": 40.653818155321346
+  },
+  "limitations": [
+    "Disagreement is not calibrated clinical uncertainty.",
+    "Thresholds and risk-coverage are descriptive on the same OOF set.",
+    "Subgroup analyses are exploratory even with BH correction.",
+    "External validation is required before clinical use."
+  ]
+}

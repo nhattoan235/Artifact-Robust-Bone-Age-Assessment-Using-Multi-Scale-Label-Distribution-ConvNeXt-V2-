@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "test_accessed": false,
+  "bootstrap_samples": 10000,
+  "bootstrap_seed": 2026,
+  "inputs": {
+    "p11_sex_aware\\runs\\P11_E0_IMAGE_ONLY_CONVNEXT_TINY_SEED42\\val_predictions_best.csv": "73dfc7e0272feab6762caee0822f6625442109f3113dbb2424105a5348a76ad0",
+    "p9_preprocessing\\runs\\P10_B0_P2_CONTROL_CONVNEXT_TINY_SEED42\\val_predictions_best.csv": "c6d72ee026647acaa9666bf888f046f50797f99f6a3cb22b3988a1cb63549b26",
+    "p11_sex_aware\\runs\\P11_E2_SHARED_DUAL_OUTPUT_CONVNEXT_TINY_SEED42\\val_predictions_best.csv": "0f6b84b5255636bc9c302122dff1db4ef77e55f7429e23c33a9dcde4aa1b5cce",
+    "p11_sex_aware\\analysis\\e0_vs_e1_seed42.json": "980a3194a99557b70578e336f42db8f2320d9fd40f87b17c2ce9f81b47541d0c",
+    "p11_sex_aware\\analysis\\e2_vs_e1_seed42.json": "5a2f44a174ff2df0a6c5c9b2e36ef4e3b7b0019366a32d3109df705443df82d2",
+    "p12_uncertainty\\outputs\\P12_OOF_UNCERTAINTY\\report.json": "47805405e4cf7db91cac7b0388df095f3d846393dc0ace62df3c30d83fec62f4",
+    "p12_uncertainty\\outputs\\P12_OOF_UNCERTAINTY\\group_metrics.csv": "ecf4a5dcdaf6cad480f5847098ab1866aaeca1bfa5fc6dd9f6702a1c0783c32b",
+    "p12_uncertainty\\outputs\\P12_OOF_UNCERTAINTY\\disagreement_quartiles.csv": "62a182b676d246e4fb1284dcd40ce038df722af18622def5371c06000295e01d",
+    "p12_uncertainty\\outputs\\P12_OOF_UNCERTAINTY\\risk_coverage.csv": "b17c5b8dc3c336f553f7d2673b0aa1f40cc6f782ce44d40f4964300973dfae8d"
+  },
+  "outputs": {
+    "figure_1_paired_forest.pdf": "5d5f14d6d94f486f7ccfd927ba9a39100f03c7c1cdd24f67925501ac6f8d3b10",
+    "figure_1_paired_forest.png": "a2779851e594a5c9b55b9d78644b0dd567b6e0e54ddd56e646507ffe8ec0c1f3",
+    "figure_2_sex_age_heatmaps.pdf": "bb31a6fed05339bd047648930748a11d0374277a9c65d90a2b2d2f1fe25c3673",
+    "figure_2_sex_age_heatmaps.png": "a2183c7c29d9d27167a8ead9247c68d371255e7586b27b9640f1b051cd20f875",
+    "figure_3_disagreement_risk.pdf": "c9a8c99e3975e7cb2176f2a5c52c7cabd04a8cbaf237123367c08d615056aa0d",
+    "figure_3_disagreement_risk.png": "b9dc22488a8dc9e5db18cabea976acc5eb549d537d9c0e37eccde1d4882ea5e9",
+    "figure_captions.json": "964f6213802badac2817fce412c6d5770341b063363ed1e23b5e454e63e3bb46",
+    "table_1_model_comparison.csv": "66b0b6e632fddd16dc4d79c012b07ccbd4f04a384c7d15ee7e116d216b918520",
+    "table_1_model_comparison.md": "1417e4ad6d03b191be7f3422ae7b9fc9ac878e7aa136f64c0df61d509af0d141",
+    "table_2_paired_forest_data.csv": "73ef9084a9ed0495e37bbd2802a146504d52cec9577fd87214f360f370703baf",
+    "table_2_paired_forest_data.md": "fc2e88b5c9bcb0b20912ab9e024d234bae5cae29704d4ac2d6f873f903e2a961",
+    "table_3_p12_sex_age.csv": "3198435b968e257ecc89372ebc8a70febe2108e620085c4733e9100fd54a06bf",
+    "table_3_p12_sex_age.md": "fd6c422f9908506b6d9785953dde4d0fd5daeee14a1abf1abfbed61edad73c8c",
+    "table_4_hypothesis_summary.csv": "bafa454876ecbbe69b686904bf9771b0261340317ab0dbece874b3befbbfdda0",
+    "table_4_hypothesis_summary.md": "79d2d998cdd33fa806fb4dbece191d8dcb479c08a0ea24c3697d7a13102f2f62"
+  },
+  "primary_conclusions": {
+    "H1": "SUPPORTED",
+    "H2": "NOT_SUPPORTED",
+    "H3": "NOT_SUPPORTED",
+    "H4": "SUPPORTED_ASSOCIATION_LIMITED_UTILITY"
+  }
+}

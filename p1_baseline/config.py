@@ -22,6 +22,7 @@ class Config:
     checkpoint_mirror_root: str = ""
 
     architecture: str = "convnext_tiny"
+    sex_mode: str = "embedding"
     pretrained: bool = True
     image_size: int = 512
     sex_embedding_dim: int = 16
@@ -126,6 +127,12 @@ def load_config(path: str | Path) -> Config:
         raise ValueError("preprocessing không được hỗ trợ")
     if cfg.image_normalization not in {"imagenet", "per_image_zscore", "zero_one"}:
         raise ValueError("image_normalization không được hỗ trợ")
+    if cfg.sex_mode not in {"none", "embedding", "dual_output"}:
+        raise ValueError("sex_mode phải là none, embedding hoặc dual_output")
+    if cfg.sex_mode != "embedding" and cfg.architecture not in {"convnext_tiny", "smoke_cnn"}:
+        raise ValueError(
+            "sex_mode none/dual_output hiện chỉ hỗ trợ convnext_tiny hoặc smoke_cnn"
+        )
     if cfg.regression_loss not in {"smooth_l1", "mae", "mse"}:
         raise ValueError("regression_loss phải là smooth_l1, mae hoặc mse")
     if cfg.sampling_strategy not in {"permutation", "manifest_weighted"}:

@@ -1,0 +1,5 @@
+{
+  "figure_1_paired_forest": "Chênh lệch absolute error paired so với E1; thanh ngang là bootstrap 95% CI.",
+  "figure_2_sex_age_heatmaps": "TTA MAE và Spearman association giữa disagreement–absolute error theo giới tính × tuổi.",
+  "figure_3_disagreement_risk": "Sai số, lỗi lớn theo disagreement quartile và risk–coverage mô tả trên cùng OOF."
+}

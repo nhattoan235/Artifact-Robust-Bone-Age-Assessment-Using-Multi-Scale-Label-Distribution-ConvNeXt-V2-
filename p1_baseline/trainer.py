@@ -163,6 +163,7 @@ class Trainer:
         self.model = build_model(
             cfg.architecture, cfg.pretrained, cfg.sex_embedding_dim,
             cfg.head_hidden_dim, cfg.dropout, cfg.age_class_count,
+            sex_mode=cfg.sex_mode,
         ).to(self.device)
         optimizer_class = torch.optim.Adam if cfg.optimizer_name == "adam" else torch.optim.AdamW
         self.optimizer = optimizer_class(

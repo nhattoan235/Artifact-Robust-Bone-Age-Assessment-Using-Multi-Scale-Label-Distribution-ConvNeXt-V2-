@@ -12,25 +12,60 @@ from torchvision.models import (
 
 
 class BoneAgeConvNeXt(nn.Module):
-    def __init__(self, pretrained: bool, sex_embedding_dim: int, hidden_dim: int, dropout: float):
+    SUPPORTED_SEX_MODES = {"none", "embedding", "dual_output"}
+
+    def __init__(
+        self, pretrained: bool, sex_embedding_dim: int, hidden_dim: int,
+        dropout: float, sex_mode: str = "embedding",
+    ):
         super().__init__()
+        if sex_mode not in self.SUPPORTED_SEX_MODES:
+            raise ValueError(f"sex_mode không hỗ trợ: {sex_mode}")
         weights = ConvNeXt_Tiny_Weights.IMAGENET1K_V1 if pretrained else None
         backbone = convnext_tiny(weights=weights)
         feature_dim = backbone.classifier[-1].in_features
         backbone.classifier = nn.Sequential(backbone.classifier[0], backbone.classifier[1])
         self.backbone = backbone
-        self.sex_embedding = nn.Sequential(nn.Linear(1, sex_embedding_dim), nn.GELU())
-        self.regressor = nn.Sequential(
-            nn.Linear(feature_dim + sex_embedding_dim, hidden_dim),
-            nn.GELU(),
-            nn.Dropout(dropout),
-            nn.Linear(hidden_dim, 1),
-        )
+        self.sex_mode = sex_mode
+        if sex_mode == "embedding":
+            # Giữ nguyên tên module và thứ tự khởi tạo của E1 để checkpoint cũ
+            # tiếp tục load strict và forward không thay đổi.
+            self.sex_embedding = nn.Sequential(nn.Linear(1, sex_embedding_dim), nn.GELU())
+            self.regressor = nn.Sequential(
+                nn.Linear(feature_dim + sex_embedding_dim, hidden_dim),
+                nn.GELU(),
+                nn.Dropout(dropout),
+                nn.Linear(hidden_dim, 1),
+            )
+        elif sex_mode == "none":
+            self.regressor = nn.Sequential(
+                nn.Linear(feature_dim, hidden_dim),
+                nn.GELU(),
+                nn.Dropout(dropout),
+                nn.Linear(hidden_dim, 1),
+            )
+        else:
+            self.shared_regressor = nn.Sequential(
+                nn.Linear(feature_dim, hidden_dim),
+                nn.GELU(),
+                nn.Dropout(dropout),
+            )
+            self.female_head = nn.Linear(hidden_dim, 1)
+            self.male_head = nn.Linear(hidden_dim, 1)
 
     def forward(self, image: torch.Tensor, sex: torch.Tensor) -> torch.Tensor:
         features = self.backbone(image)
-        conditioned = torch.cat([features, self.sex_embedding(sex)], dim=1)
-        return self.regressor(conditioned).squeeze(1)
+        if self.sex_mode == "embedding":
+            conditioned = torch.cat([features, self.sex_embedding(sex)], dim=1)
+            return self.regressor(conditioned).squeeze(1)
+        if self.sex_mode == "none":
+            return self.regressor(features).squeeze(1)
+        if tuple(sex.shape) != (features.shape[0], 1):
+            raise ValueError("sex phải có shape [batch, 1] cho dual_output")
+        shared = self.shared_regressor(features)
+        female_prediction = self.female_head(shared).squeeze(1)
+        male_prediction = self.male_head(shared).squeeze(1)
+        return torch.where(sex.squeeze(1) >= 0.5, male_prediction, female_prediction)
 
 
 class BoneAgeEfficientNetB0(nn.Module):
@@ -205,26 +240,66 @@ class BoneAgeConvNeXtLabelDistribution(nn.Module):
 
 class SmokeNet(nn.Module):
     """Backbone nhỏ chỉ dùng để kiểm thử trainer/checkpoint trên CPU."""
-    def __init__(self, sex_embedding_dim: int, hidden_dim: int, dropout: float):
+    def __init__(
+        self, sex_embedding_dim: int, hidden_dim: int, dropout: float,
+        sex_mode: str = "embedding",
+    ):
         super().__init__()
+        if sex_mode not in BoneAgeConvNeXt.SUPPORTED_SEX_MODES:
+            raise ValueError(f"sex_mode không hỗ trợ: {sex_mode}")
         self.features = nn.Sequential(
             nn.Conv2d(3, 8, 3, stride=2, padding=1), nn.GELU(),
             nn.Conv2d(8, 16, 3, stride=2, padding=1), nn.GELU(),
             nn.AdaptiveAvgPool2d(1), nn.Flatten(),
         )
-        self.sex_embedding = nn.Sequential(nn.Linear(1, sex_embedding_dim), nn.GELU())
-        self.regressor = nn.Sequential(nn.Linear(16 + sex_embedding_dim, hidden_dim), nn.GELU(), nn.Dropout(dropout), nn.Linear(hidden_dim, 1))
+        self.sex_mode = sex_mode
+        if sex_mode == "embedding":
+            self.sex_embedding = nn.Sequential(nn.Linear(1, sex_embedding_dim), nn.GELU())
+            self.regressor = nn.Sequential(
+                nn.Linear(16 + sex_embedding_dim, hidden_dim), nn.GELU(),
+                nn.Dropout(dropout), nn.Linear(hidden_dim, 1),
+            )
+        elif sex_mode == "none":
+            self.regressor = nn.Sequential(
+                nn.Linear(16, hidden_dim), nn.GELU(), nn.Dropout(dropout),
+                nn.Linear(hidden_dim, 1),
+            )
+        else:
+            self.shared_regressor = nn.Sequential(
+                nn.Linear(16, hidden_dim), nn.GELU(), nn.Dropout(dropout),
+            )
+            self.female_head = nn.Linear(hidden_dim, 1)
+            self.male_head = nn.Linear(hidden_dim, 1)
 
     def forward(self, image: torch.Tensor, sex: torch.Tensor) -> torch.Tensor:
-        return self.regressor(torch.cat([self.features(image), self.sex_embedding(sex)], dim=1)).squeeze(1)
+        features = self.features(image)
+        if self.sex_mode == "embedding":
+            return self.regressor(
+                torch.cat([features, self.sex_embedding(sex)], dim=1)
+            ).squeeze(1)
+        if self.sex_mode == "none":
+            return self.regressor(features).squeeze(1)
+        if tuple(sex.shape) != (features.shape[0], 1):
+            raise ValueError("sex phải có shape [batch, 1] cho dual_output")
+        shared = self.shared_regressor(features)
+        female_prediction = self.female_head(shared).squeeze(1)
+        male_prediction = self.male_head(shared).squeeze(1)
+        return torch.where(sex.squeeze(1) >= 0.5, male_prediction, female_prediction)
 
 
 def build_model(
     architecture: str, pretrained: bool, sex_embedding_dim: int,
     hidden_dim: int, dropout: float, age_class_count: int = 229,
+    sex_mode: str = "embedding",
 ) -> nn.Module:
+    if sex_mode != "embedding" and architecture not in {"convnext_tiny", "smoke_cnn"}:
+        raise ValueError(
+            "sex_mode none/dual_output hiện chỉ hỗ trợ convnext_tiny hoặc smoke_cnn"
+        )
     if architecture == "convnext_tiny":
-        return BoneAgeConvNeXt(pretrained, sex_embedding_dim, hidden_dim, dropout)
+        return BoneAgeConvNeXt(
+            pretrained, sex_embedding_dim, hidden_dim, dropout, sex_mode
+        )
     if architecture == "efficientnet_b0":
         return BoneAgeEfficientNetB0(pretrained, sex_embedding_dim, hidden_dim, dropout)
     if architecture == "convnextv2_tiny":
@@ -236,5 +311,5 @@ def build_model(
             pretrained, sex_embedding_dim, hidden_dim, dropout, age_class_count
         )
     if architecture == "smoke_cnn":
-        return SmokeNet(sex_embedding_dim, hidden_dim, dropout)
+        return SmokeNet(sex_embedding_dim, hidden_dim, dropout, sex_mode)
     raise ValueError(f"Kiến trúc không hỗ trợ: {architecture}")
