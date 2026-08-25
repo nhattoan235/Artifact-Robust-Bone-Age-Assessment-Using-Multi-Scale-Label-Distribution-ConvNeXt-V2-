@@ -1,0 +1,35 @@
+{
+  "package_id": "OFFICIAL_A2_LIGHT_FLIP_CONVNEXT_TINY_SEX",
+  "created_utc": "2026-08-25",
+  "technique": "a2_light_flip recipe: ConvNeXt-Tiny 512 + sex feature + light flip augmentation",
+  "evaluation": "Official train/validation split (1,425 validation images)",
+  "mae_months": 6.706370830535889,
+  "status": "OFFICIAL_SINGLE_SPLIT_MODEL",
+  "result_note": "Official single-split baseline checkpoint. Use the recorded recipe and validation report when comparing against later experiments.",
+  "source_checkpoint": "D:\\do_an_tot_nghiep\\project\\baseline_v1\\outputs\\official_a2_light_flip_seed42\\official_a2_light_flip_seed42\\official\\best.pt",
+  "checkpoint_inspection": {
+    "torch_load": "PASS",
+    "python_type": "dict",
+    "top_level_keys": [
+      "best_mae",
+      "config",
+      "epoch",
+      "model"
+    ],
+    "checkpoint_bytes": 112180679,
+    "checkpoint_sha256": "0240d29d47b3064030ce4d9504a8cbf20b0bef54895f61b9c9b8271335b78c27",
+    "state_dict_location": "model",
+    "tensor_count": 188,
+    "parameter_count": 28027105
+  },
+  "included_files": [
+    "code\\boneage_baseline.py",
+    "code\\requirements.txt",
+    "config\\data_manifest.json",
+    "evidence\\official_report.json",
+    "evidence\\report.json",
+    "evidence\\training_log.csv",
+    "evidence\\val_predictions.csv",
+    "model\\best_model.pt"
+  ]
+}

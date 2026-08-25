@@ -1,0 +1,40 @@
+{
+  "schema_version": 3,
+  "run_id": "P7_FINAL_V3_FOLD_3",
+  "status": "completed",
+  "best_mae": 6.411474104916281,
+  "files": {
+    "best_model.pt": {
+      "bytes": 112155595,
+      "sha256": "aae6939474afcff38ee2e01319eb582672afdfd67f929b150fcefecfdda81a10"
+    },
+    "config_resolved.yaml": {
+      "bytes": 1851,
+      "sha256": "6f0fa815d3a11f31a38659cce6ef2bfca2a6a19da24d31aff26f0f5ae1676d53"
+    },
+    "environment.txt": {
+      "bytes": 672,
+      "sha256": "27d4f3dfee5553bc7e60760bde7f8c2f7056faf4d913dce707fff4cb49190ff7"
+    },
+    "metrics.jsonl": {
+      "bytes": 8634,
+      "sha256": "62ebf690ceafb2ee2e67b9a7dd27314cc7ddf00ab90c2168658da2d53580f641"
+    },
+    "run_state.json": {
+      "bytes": 391,
+      "sha256": "e6006ecae0f7e9b82cb8ea64d636c4869b2f9c8bd4d556799c179cf9565cac8b"
+    },
+    "train.log": {
+      "bytes": 75769,
+      "sha256": "4a9697e0c34a6780227e3faabf8cb425770f04017fa7f26d05cf51100377eb99"
+    },
+    "val_predictions_best.csv": {
+      "bytes": 77866,
+      "sha256": "7d3a1afefe4df998ac5cd49a1198928a64540846fa63fa1789e7cdf71c0e6b76"
+    },
+    "warnings.log": {
+      "bytes": 656,
+      "sha256": "9c9971f69e90c79171aa2a5cc0b4b05c1d179c86fd37ebc3e8c767c9fc27b4fc"
+    }
+  }
+}

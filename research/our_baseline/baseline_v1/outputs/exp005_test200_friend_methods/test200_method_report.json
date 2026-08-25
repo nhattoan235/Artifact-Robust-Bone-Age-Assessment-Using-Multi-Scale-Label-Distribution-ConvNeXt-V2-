@@ -1,0 +1,49 @@
+{
+  "evaluation": "exploratory_test_200",
+  "test_labels_used": true,
+  "selection_warning": "Do not use this test report to select weights or hyperparameters; the 200-image test has been inspected previously.",
+  "device": "cpu",
+  "n": 200,
+  "retrain_checkpoint": "project\\baseline_v1\\outputs\\exp004_friend_holdout\\checkpoint_mirror\\checkpoint_mirror\\EXP004_FRIEND_P7_FRESH_HOLDOUT_SEED42\\best_mae.ckpt",
+  "friend_checkpoints": [],
+  "friend_prediction_file": "project\\friend_repo\\p8_test_ensemble\\outputs\\P8_ensemble_predictions.csv",
+  "methods": {
+    "retrain": {
+      "n": 200,
+      "mae_months": 5.214580438226935,
+      "rmse_months": 6.8283995533379835,
+      "median_absolute_error_months": 3.635758145259331,
+      "accuracy_pm6": 0.655,
+      "accuracy_pm12": 0.92,
+      "accuracy_pm18": 0.99
+    },
+    "friend_p7_ensemble": {
+      "n": 200,
+      "mae_months": 4.730865240868928,
+      "rmse_months": 6.029187310964317,
+      "median_absolute_error_months": 4.1341960604003845,
+      "accuracy_pm6": 0.7,
+      "accuracy_pm12": 0.94,
+      "accuracy_pm18": 1.0
+    },
+    "blend_50_50": {
+      "n": 200,
+      "mae_months": 4.93336742169929,
+      "rmse_months": 6.3248867664860144,
+      "median_absolute_error_months": 4.134396220336058,
+      "accuracy_pm6": 0.68,
+      "accuracy_pm12": 0.935,
+      "accuracy_pm18": 0.99
+    },
+    "blend_75_retrain_25_friend": {
+      "n": 200,
+      "mae_months": 5.065745471291863,
+      "rmse_months": 6.553197477211081,
+      "median_absolute_error_months": 3.8447489628848857,
+      "accuracy_pm6": 0.67,
+      "accuracy_pm12": 0.93,
+      "accuracy_pm18": 0.99
+    }
+  },
+  "prediction_file": "project\\baseline_v1\\outputs\\exp005_test200_friend_methods\\test200_method_predictions.csv"
+}

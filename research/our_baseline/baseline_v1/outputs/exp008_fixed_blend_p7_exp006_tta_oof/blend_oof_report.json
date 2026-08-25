@@ -1,0 +1,49 @@
+{
+  "experiment": "EXP008_FIXED_BLEND_P7_AND_EXP006_TTA_OOF",
+  "protocol": "Fixed 50/50 blend of two row-aligned OOF prediction sources",
+  "test_labels_used": false,
+  "selection_warning": "50/50 was fixed before this audit; do not tune weights on the labeled 200-image test set.",
+  "count": 14036,
+  "target_match": true,
+  "methods": {
+    "p7_friend_oof": {
+      "n": 14036,
+      "mae_months": 6.3166912053853705,
+      "rmse_months": 8.519419710229919,
+      "median_absolute_error_months": 4.875,
+      "accuracy_pm6": 0.5901253918495298,
+      "accuracy_pm12": 0.8673411228270163,
+      "accuracy_pm18": 0.9553291536050157,
+      "signed_bias_months": -0.3899164164497765
+    },
+    "exp006_tta_oof": {
+      "n": 14036,
+      "mae_months": 6.29620339784163,
+      "rmse_months": 8.505894481506788,
+      "median_absolute_error_months": 4.760894393920893,
+      "accuracy_pm6": 0.5948275862068966,
+      "accuracy_pm12": 0.8630664006839556,
+      "accuracy_pm18": 0.9557566258193217,
+      "signed_bias_months": 0.17622601263677365
+    },
+    "blend_50_50": {
+      "n": 14036,
+      "mae_months": 6.120448357592148,
+      "rmse_months": 8.272590327525027,
+      "median_absolute_error_months": 4.624317932128903,
+      "accuracy_pm6": 0.6053719008264463,
+      "accuracy_pm12": 0.8732544884582503,
+      "accuracy_pm18": 0.9592476489028213,
+      "signed_bias_months": -0.10684520190650146
+    }
+  },
+  "delta_blend_minus_exp006_tta": {
+    "mae_months": -0.17575504024948252,
+    "rmse_months": -0.23330415398176108
+  },
+  "sources": {
+    "p7_oof": "project\\friend_repo\\p7_oof_final\\oof_final\\P7_OOF_predictions.csv",
+    "exp006_tta_oof": "project\\baseline_v1\\outputs\\exp006_p7_tta\\exp006_p7_tta\\results\\tta_oof_predictions.csv"
+  },
+  "prediction_file": "project\\baseline_v1\\outputs\\exp008_fixed_blend_p7_exp006_tta_oof\\blend_oof_predictions.csv"
+}

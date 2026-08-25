@@ -1,0 +1,13 @@
+{
+  "run_id": "EXP004_FRIEND_P7_SMOKE",
+  "status": "completed",
+  "epoch": 1,
+  "batch_in_epoch": 0,
+  "samples_seen_in_epoch": 0,
+  "global_step": 4,
+  "best_mae": 18.708477020263672,
+  "best_epoch": 0,
+  "epochs_without_improvement": 0,
+  "last_checkpoint": "D:\\do_an_tot_nghiep\\project\\baseline_v1\\outputs\\exp004_friend_holdout\\smoke_runs\\EXP004_FRIEND_P7_SMOKE\\last.ckpt",
+  "best_checkpoint": "D:\\do_an_tot_nghiep\\project\\baseline_v1\\outputs\\exp004_friend_holdout\\smoke_runs\\EXP004_FRIEND_P7_SMOKE\\best_mae.ckpt"
+}

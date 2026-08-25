@@ -1,0 +1,33 @@
+{
+  "mode": "official",
+  "config": {
+    "recipe": "a2_light_flip",
+    "seed": 42,
+    "img_size": 512,
+    "batch_size": 2,
+    "epochs": 100,
+    "patience": 15,
+    "min_delta": 0.01,
+    "lr": 0.0001,
+    "weight_decay": 0.01,
+    "warmup_epochs": 3,
+    "accum_steps": 1,
+    "folds": 5,
+    "workers": 2,
+    "pretrained": true,
+    "beta": 1.0,
+    "amp": "fp16",
+    "device": "cuda",
+    "max_train_samples": 0,
+    "max_val_samples": 0
+  },
+  "train_csv": "/content/data_goc/boneage-training-dataset.csv",
+  "val_csv": "/content/data_goc/boneage-validation-dataset/Validation Dataset.csv",
+  "train_csv_sha256": "9459296c0fca3e3cd908e79002914d0d90c7f5e46936eefd34b11261468ce209",
+  "val_csv_sha256": "fdfeff3e7351f0bdc629f34c01803291c57c1198bc3376076bb4934daa334fec",
+  "train_count": 12611,
+  "val_count": 1425,
+  "train_frame_sha256": "b3acb2654ae9ff25919c512a49a57554804ff83bba16e73aad8d126da9a47b98",
+  "val_frame_sha256": "54e158b73e876603afc99f02f68a51d489a828f3f5f35ae11d674a17e30090f9",
+  "test_labels_loaded": false
+}

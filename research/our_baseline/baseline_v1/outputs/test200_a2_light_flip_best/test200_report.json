@@ -1,0 +1,16 @@
+{
+  "evaluation": "exploratory_test_200",
+  "checkpoint": "official_a2_light_flip_seed42/official_a2_light_flip_seed42/official/best.pt",
+  "recipe": "a2_light_flip",
+  "device": "cpu",
+  "n": 200,
+  "mae_months": 5.54514,
+  "rmse_months": 7.122605,
+  "median_absolute_error_months": 4.51648,
+  "accuracy_pm6": 0.625,
+  "accuracy_pm12": 0.89,
+  "accuracy_pm18": 0.99,
+  "prediction_file": "test_predictions_no_labels.csv",
+  "ground_truth_file": "data_goc/boneage-test-dataset-with-gt.csv",
+  "note": "Exploratory evaluation on the 200-image test set; do not use this test result for model or hyperparameter selection."
+}

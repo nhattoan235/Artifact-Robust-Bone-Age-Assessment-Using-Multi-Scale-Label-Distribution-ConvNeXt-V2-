@@ -1,0 +1,57 @@
+{
+  "created_at_utc": "2026-08-24T11:51:21.558941+00:00",
+  "test_labels_used": false,
+  "protocol": "P7-compatible pad-square TTA on fold-held-out development rows",
+  "device": "cuda",
+  "folds": 5,
+  "count": 14036,
+  "rotations": [
+    -10.0,
+    -5.0,
+    0.0,
+    5.0,
+    10.0
+  ],
+  "flips": [
+    false,
+    true
+  ],
+  "metrics": {
+    "p7_oof_reference": {
+      "n": 14036,
+      "mae": 6.323629479830881,
+      "rmse": 8.529248213093975,
+      "median_ae": 4.75,
+      "acc_pm6": 0.591407808492448,
+      "acc_pm12": 0.8644913080649758,
+      "acc_pm18": 0.9566828156169849
+    },
+    "raw_recomputed": {
+      "n": 14036,
+      "mae": 6.32386664034261,
+      "rmse": 8.529058160320318,
+      "median_ae": 4.765289306640625,
+      "acc_pm6": 0.5885579937304075,
+      "acc_pm12": 0.8636363636363636,
+      "acc_pm18": 0.9565403248788829
+    },
+    "tta": {
+      "n": 14036,
+      "mae": 6.296203397841628,
+      "rmse": 8.505894481506788,
+      "median_ae": 4.760894393920893,
+      "acc_pm6": 0.5948275862068966,
+      "acc_pm12": 0.8630664006839556,
+      "acc_pm18": 0.9557566258193217
+    }
+  },
+  "source_sha256": {
+    "development_manifest": "a7b7cdf8822b6e4e6650220fed8fcbc882111f75b3d3a745f6ddbd0491649477",
+    "oof_csv": "cd1b0971c49567c547f30624c0d6336edd0d83a5413b044044a1f7e0b1b9edf8"
+  },
+  "notes": [
+    "No test CSV or test label was read.",
+    "Raw and TTA are both retained; TTA is accepted only if OOF improves consistently.",
+    "For LDL checkpoints this script evaluates the regression output only."
+  ]
+}

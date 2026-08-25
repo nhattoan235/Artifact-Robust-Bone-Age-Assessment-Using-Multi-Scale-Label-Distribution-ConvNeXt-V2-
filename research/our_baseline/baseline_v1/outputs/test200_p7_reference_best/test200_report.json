@@ -1,0 +1,16 @@
+{
+  "evaluation": "exploratory_test_200",
+  "checkpoint": "official_gpu/official/results/outputs/official_fp16/official/best.pt",
+  "recipe": "p7_reference",
+  "device": "cpu",
+  "n": 200,
+  "mae_months": 5.113332,
+  "rmse_months": 6.682403,
+  "median_absolute_error_months": 3.798758,
+  "accuracy_pm6": 0.645,
+  "accuracy_pm12": 0.925,
+  "accuracy_pm18": 0.985,
+  "prediction_file": "test_predictions_no_labels.csv",
+  "ground_truth_file": "project/data/rsna/boneage-test-dataset-with-gt.csv",
+  "note": "Exploratory evaluation on the 200-image test set; do not use this test result for model or hyperparameter selection."
+}

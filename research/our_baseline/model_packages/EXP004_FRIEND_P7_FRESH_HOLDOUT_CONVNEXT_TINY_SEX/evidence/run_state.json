@@ -1,0 +1,13 @@
+{
+  "run_id": "EXP004_FRIEND_P7_FRESH_HOLDOUT_SEED42",
+  "status": "early_stopped",
+  "epoch": 27,
+  "batch_in_epoch": 0,
+  "samples_seen_in_epoch": 0,
+  "global_step": 9585,
+  "best_mae": 6.213795882936508,
+  "best_epoch": 18,
+  "epochs_without_improvement": 8,
+  "last_checkpoint": "/content/exp004_friend_runs/EXP004_FRIEND_P7_FRESH_HOLDOUT_SEED42/last.ckpt",
+  "best_checkpoint": "/content/exp004_friend_runs/EXP004_FRIEND_P7_FRESH_HOLDOUT_SEED42/best_mae.ckpt"
+}

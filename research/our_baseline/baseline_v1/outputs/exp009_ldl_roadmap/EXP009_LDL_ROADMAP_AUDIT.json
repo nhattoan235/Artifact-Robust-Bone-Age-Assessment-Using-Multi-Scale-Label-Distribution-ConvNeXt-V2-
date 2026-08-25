@@ -1,0 +1,59 @@
+{
+  "created_at_utc": "2026-08-24T18:42:38.734037+00:00",
+  "experiment": "EXP009_LDL_FUSED_FIVE_FOLD",
+  "test_labels_used": false,
+  "source_split": "D:\\do_an_tot_nghiep\\project\\baseline_v1\\outputs\\exp006_roadmap",
+  "architecture": "convnext_tiny_ldl",
+  "label_distribution_sigma": 2.0,
+  "label_distribution_weight": 0.2,
+  "regression_inference_weight": 0.5,
+  "same_split_as": "EXP006_P7_CONTROL_FOLD_1..5",
+  "selection_gate": "Pooled OOF MAE must beat EXP008 fixed 50/50 blend MAE 6.120448 before any test-200 comparison.",
+  "folds": [
+    {
+      "fold": 1,
+      "run_id": "EXP009_LDL_FUSED_FOLD_1",
+      "train_count": 11228,
+      "val_count": 2808,
+      "train_manifest_sha256": "006270a077e65f96bffc6ea1ffb39589518f14392a01fc5ae5cc4298f34a1c1e",
+      "val_manifest_sha256": "2d26e4760645bb24b878d73cef5b3a2fd69750808c737b8e99f8b04930d5ec34",
+      "config": "D:\\do_an_tot_nghiep\\project\\baseline_v1\\outputs\\exp009_ldl_roadmap\\fold_1\\exp009_ldl_fused.toml"
+    },
+    {
+      "fold": 2,
+      "run_id": "EXP009_LDL_FUSED_FOLD_2",
+      "train_count": 11229,
+      "val_count": 2807,
+      "train_manifest_sha256": "fb572d460e3f92a6fac15c18f964cf0991eff987907a5fdbaaa261dd8fffe016",
+      "val_manifest_sha256": "080037e694c076d3aac92c35f63db7641c8dadd0d63e3fb5cc299d76d8ca3a55",
+      "config": "D:\\do_an_tot_nghiep\\project\\baseline_v1\\outputs\\exp009_ldl_roadmap\\fold_2\\exp009_ldl_fused.toml"
+    },
+    {
+      "fold": 3,
+      "run_id": "EXP009_LDL_FUSED_FOLD_3",
+      "train_count": 11229,
+      "val_count": 2807,
+      "train_manifest_sha256": "492feb3b4445cb855a82eb5ec83017dcfcaf9b104fb12d974ccbaf1d3544570e",
+      "val_manifest_sha256": "f27504a5fd25ad6d525bd0c94085d17aa728e74c2717875b4fe48c2ca3e7644a",
+      "config": "D:\\do_an_tot_nghiep\\project\\baseline_v1\\outputs\\exp009_ldl_roadmap\\fold_3\\exp009_ldl_fused.toml"
+    },
+    {
+      "fold": 4,
+      "run_id": "EXP009_LDL_FUSED_FOLD_4",
+      "train_count": 11229,
+      "val_count": 2807,
+      "train_manifest_sha256": "063c26504b1a055f76b35cf065087c889d719fd577a93e8a4f4b1139474317f9",
+      "val_manifest_sha256": "fee433eac9abadc9df8c81ec87146cd6c8b6e7f20161e51bb832f49a03baaf97",
+      "config": "D:\\do_an_tot_nghiep\\project\\baseline_v1\\outputs\\exp009_ldl_roadmap\\fold_4\\exp009_ldl_fused.toml"
+    },
+    {
+      "fold": 5,
+      "run_id": "EXP009_LDL_FUSED_FOLD_5",
+      "train_count": 11229,
+      "val_count": 2807,
+      "train_manifest_sha256": "561addd6f61f59495a467c9368a5cc3abff525e32b22e89e0e908dfb31362fb0",
+      "val_manifest_sha256": "c7f99f8c50b8000ba92cfd9df45b63f37648b289d14141c028f82049662d3e7c",
+      "config": "D:\\do_an_tot_nghiep\\project\\baseline_v1\\outputs\\exp009_ldl_roadmap\\fold_5\\exp009_ldl_fused.toml"
+    }
+  ]
+}

@@ -1,0 +1,288 @@
+========== P7 FIVE-FOLD FINAL AUDIT ==========
+
+========== FOLD 1 ==========
+Status: early_stopped
+Best epoch: 19
+Best MAE state: 6.298709880252849
+Stopped epoch: 27
+Global step: 8424
+Final status valid: True
+
+File integrity:
+  best_model.pt: exists=True, size=True, sha256=True
+  config_resolved.yaml: exists=True, size=True, sha256=True
+  environment.txt: exists=True, size=True, sha256=True
+  metrics.jsonl: exists=True, size=True, sha256=True
+  run_state.json: exists=True, size=True, sha256=True
+  train.log: exists=True, size=True, sha256=True
+  warnings.log: exists=True, size=True, sha256=True
+  val_predictions_best.csv: exists=True, size=True, sha256=True
+Required files complete: True
+Manifest integrity: True
+
+Predictions:
+  Rows: 2808 / 2808
+  IDs unique: True
+  Disjoint from previous folds: True
+  Calculated MAE: 6.298709880252849
+  MAE matches state: True
+
+Best model metadata:
+  MAE matches state: True
+  Epoch matches state: True
+  Model tensors: 186
+
+Best-epoch metrics:
+FAIL: không tìm thấy metrics của best epoch
+
+Warnings:
+  RED: 0
+  ORANGE: 10
+
+========== FOLD 2 ==========
+Status: early_stopped
+Best epoch: 23
+Best MAE state: 6.19683492162451
+Stopped epoch: 31
+Global step: 9672
+Final status valid: True
+
+File integrity:
+  best_model.pt: exists=True, size=True, sha256=True
+  config_resolved.yaml: exists=True, size=True, sha256=True
+  environment.txt: exists=True, size=True, sha256=True
+  metrics.jsonl: exists=True, size=True, sha256=True
+  run_state.json: exists=True, size=True, sha256=True
+  train.log: exists=True, size=True, sha256=True
+  val_predictions_best.csv: exists=True, size=True, sha256=True
+  warnings.log: exists=True, size=True, sha256=True
+Required files complete: True
+Manifest integrity: True
+
+Predictions:
+  Rows: 2807 / 2807
+  IDs unique: True
+  Disjoint from previous folds: True
+  Calculated MAE: 6.19683492162451
+  MAE matches state: True
+
+Best model metadata:
+  MAE matches state: True
+  Epoch matches state: True
+  Model tensors: 186
+
+Best-epoch metrics:
+{
+  "epoch": 23,
+  "mae": 6.19683492162451,
+  "rmse": 8.341720618661252,
+  "median_ae": 4.6875,
+  "accuracy_6m": 0.5999287495546847,
+  "accuracy_12m": 0.8713929462059138,
+  "accuracy_18m": 0.95724973281083,
+  "mae_by_sex": {
+    "F": 6.385835518648019,
+    "M": 6.036806126644737
+  },
+  "mae_by_age_bin": {
+    "0-59": 6.098027234636872,
+    "120-179": 5.747199751088986,
+    "60-119": 7.470642719072165,
+    "180-228": 5.183673469387755
+  },
+  "epoch_seconds": 730.5035355350001
+}
+
+Warnings:
+  RED: 0
+  ORANGE: 25
+
+========== FOLD 3 ==========
+Status: completed
+Best epoch: 28
+Best MAE state: 6.411474104916281
+Stopped epoch: 35
+Global step: 10919
+Final status valid: True
+
+File integrity:
+  best_model.pt: exists=True, size=True, sha256=True
+  config_resolved.yaml: exists=True, size=True, sha256=True
+  environment.txt: exists=True, size=True, sha256=True
+  metrics.jsonl: exists=True, size=True, sha256=True
+  run_state.json: exists=True, size=True, sha256=True
+  train.log: exists=True, size=True, sha256=True
+  val_predictions_best.csv: exists=True, size=True, sha256=True
+  warnings.log: exists=True, size=True, sha256=True
+Required files complete: True
+Manifest integrity: True
+
+Predictions:
+  Rows: 2807 / 2807
+  IDs unique: True
+  Disjoint from previous folds: True
+  Calculated MAE: 6.411474104916281
+  MAE matches state: True
+
+Best model metadata:
+  MAE matches state: True
+  Epoch matches state: True
+  Model tensors: 186
+
+Best-epoch metrics:
+{
+  "epoch": 28,
+  "mae": 6.411474104916281,
+  "rmse": 8.652960297764903,
+  "median_ae": 4.875,
+  "accuracy_6m": 0.5935162094763092,
+  "accuracy_12m": 0.8610616316351977,
+  "accuracy_18m": 0.9536872105450659,
+  "mae_by_sex": {
+    "F": 6.585779548989113,
+    "M": 6.264099482248521
+  },
+  "mae_by_age_bin": {
+    "120-179": 6.03868306351183,
+    "60-119": 7.631443298969073,
+    "0-59": 5.617362081005586,
+    "180-228": 5.574695121951219
+  },
+  "epoch_seconds": 722.1764481740001
+}
+
+Warnings:
+  RED: 0
+  ORANGE: 8
+
+========== FOLD 4 ==========
+Status: early_stopped
+Best epoch: 8
+Best MAE state: 6.348768146597791
+Stopped epoch: 16
+Global step: 4992
+Final status valid: True
+
+File integrity:
+  best_model.pt: exists=True, size=True, sha256=True
+  config_resolved.yaml: exists=True, size=True, sha256=True
+  environment.txt: exists=True, size=True, sha256=True
+  metrics.jsonl: exists=True, size=True, sha256=True
+  run_state.json: exists=True, size=True, sha256=True
+  train.log: exists=True, size=True, sha256=True
+  val_predictions_best.csv: exists=True, size=True, sha256=True
+  warnings.log: exists=True, size=True, sha256=True
+Required files complete: True
+Manifest integrity: True
+
+Predictions:
+  Rows: 2807 / 2807
+  IDs unique: True
+  Disjoint from previous folds: True
+  Calculated MAE: 6.348768146597791
+  MAE matches state: True
+
+Best model metadata:
+  MAE matches state: True
+  Epoch matches state: True
+  Model tensors: 186
+
+Best-epoch metrics:
+{
+  "epoch": 8,
+  "mae": 6.348768146597791,
+  "rmse": 8.583554646473244,
+  "median_ae": 4.875,
+  "accuracy_6m": 0.5863911649447809,
+  "accuracy_12m": 0.8628428927680798,
+  "accuracy_18m": 0.9519059494121839,
+  "mae_by_sex": {
+    "F": 6.574221789883269,
+    "M": 6.15842127956636
+  },
+  "mae_by_age_bin": {
+    "60-119": 6.699596774193548,
+    "120-179": 6.141373677660236,
+    "0-59": 7.141716131284916,
+    "180-228": 6.021341463414634
+  },
+  "epoch_seconds": 736.6785263000002
+}
+
+Warnings:
+  RED: 0
+  ORANGE: 12
+
+========== FOLD 5 ==========
+Status: early_stopped
+Best epoch: 10
+Best MAE state: 6.327675379422537
+Stopped epoch: 18
+Global step: 5616
+Final status valid: True
+
+File integrity:
+  best_model.pt: exists=True, size=True, sha256=True
+  config_resolved.yaml: exists=True, size=True, sha256=True
+  environment.txt: exists=True, size=True, sha256=True
+  metrics.jsonl: exists=True, size=True, sha256=True
+  run_state.json: exists=True, size=True, sha256=True
+  train.log: exists=True, size=True, sha256=True
+  val_predictions_best.csv: exists=True, size=True, sha256=True
+  warnings.log: exists=True, size=True, sha256=True
+Required files complete: True
+Manifest integrity: True
+
+Predictions:
+  Rows: 2807 / 2807
+  IDs unique: True
+  Disjoint from previous folds: True
+  Calculated MAE: 6.327675379422537
+  MAE matches state: True
+
+Best model metadata:
+  MAE matches state: True
+  Epoch matches state: True
+  Model tensors: 186
+
+Best-epoch metrics:
+{
+  "epoch": 10,
+  "mae": 6.327675379422537,
+  "rmse": 8.481427995579885,
+  "median_ae": 5.0,
+  "accuracy_6m": 0.5867474171713574,
+  "accuracy_12m": 0.8710366939793374,
+  "accuracy_18m": 0.9561809761311009,
+  "mae_by_sex": {
+    "F": 6.594451928045963,
+    "M": 6.102440251314061
+  },
+  "mae_by_age_bin": {
+    "180-228": 6.858673469387755,
+    "120-179": 5.784441158156912,
+    "0-59": 6.34883262591655,
+    "60-119": 7.278193371943372
+  },
+  "epoch_seconds": 720.6314192999998
+}
+
+Warnings:
+  RED: 0
+  ORANGE: 14
+
+========== POOLED OOF PRELIMINARY ==========
+Rows: 14036
+Unique IDs: 14036
+Complete 14,036-image coverage: True
+Pooled OOF MAE: 6.3166912053853705
+Pooled OOF RMSE: 8.519419710229919
+Pooled median AE: 4.875
+Accuracy ±6 months: 0.5901253918495298
+Accuracy ±12 months: 0.8673411228270163
+Accuracy ±18 months: 0.9553291536050157
+Fold MAEs: [6.298709880252849, 6.19683492162451, 6.411474104916281, 6.348768146597791, 6.327675379422537]
+Mean fold MAE: 6.316692486562793
+Fold MAE SD: 0.0787753722342663
+
+FINAL FIVE-FOLD AUDIT: FAIL

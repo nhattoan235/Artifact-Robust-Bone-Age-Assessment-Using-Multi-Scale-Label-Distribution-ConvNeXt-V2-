@@ -1,0 +1,5 @@
+id,boneage,male,pred,fold_or_split
+1386,30.0,False,0.56966317,official
+1392,162.0,True,0.14149077,official
+1397,18.0,False,0.16582169,official
+1401,132.0,False,0.122781664,official

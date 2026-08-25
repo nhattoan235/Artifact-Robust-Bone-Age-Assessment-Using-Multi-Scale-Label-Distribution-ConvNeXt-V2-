@@ -1,0 +1,15 @@
+{
+  "python": "3.13.5 | packaged by Anaconda, Inc. | (main, Jun 12 2025, 16:37:03) [MSC v.1929 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "torch": "2.12.0+cpu",
+  "torchvision": "0.27.0+cpu",
+  "cuda_available": false,
+  "cuda_build": null,
+  "gpu": null,
+  "amp_enabled": false,
+  "amp_dtype_resolved": "disabled",
+  "config_hash": "68265c8c5a777b66cdac1ed818879df53831179330958ed0942f0921b49b43ee",
+  "code_version": "d80ddbc433edde329f14ec853afe3b81fd06294f2757a5d35f0a34b801b63510",
+  "train_manifest_hash": "e6a49b89a52dd029eb341555a878e50c8f17f267fc6c43f40a409db44965c8a2",
+  "val_manifest_hash": "b11701e8ef111b673dbb8fcb3c892bc4c00e9cfcca713fe28332564cd4a7cd40"
+}

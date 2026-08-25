@@ -1,0 +1,15 @@
+{
+  "python": "3.13.15 (main, Aug  6 2026, 11:06:23) [GCC 11.4.0]",
+  "platform": "Linux-6.6.122+-x86_64-with-glibc2.35",
+  "torch": "2.11.0+cu128",
+  "torchvision": "0.26.0+cu128",
+  "cuda_available": true,
+  "cuda_build": "12.8",
+  "gpu": "Tesla T4",
+  "amp_enabled": true,
+  "amp_dtype_resolved": "torch.float16",
+  "config_hash": "ff4d0d202b58f5e6065e330039accc6e0868a2ec6b076802642232c285d6c945",
+  "code_version": "a0c9ebd2f5c983d4ea5127af4046a7e19c6dd5e607cc8bad1de6e87912b072a6",
+  "train_manifest_hash": "e6a49b89a52dd029eb341555a878e50c8f17f267fc6c43f40a409db44965c8a2",
+  "val_manifest_hash": "b11701e8ef111b673dbb8fcb3c892bc4c00e9cfcca713fe28332564cd4a7cd40"
+}

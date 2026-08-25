@@ -1,0 +1,98 @@
+{
+  "evaluation": "exploratory_test_200",
+  "test_labels_used": true,
+  "selection_warning": "Do not use this test report to select weights or hyperparameters.",
+  "protocol": "EXP006 P7 five-fold ensemble; raw is rot_0_no_flip, TTA averages 5 rotations x 2 flip states per fold.",
+  "device": "cuda",
+  "folds": 5,
+  "count": 200,
+  "rotations": [
+    -10,
+    -5,
+    0,
+    5,
+    10
+  ],
+  "flips": [
+    false,
+    true
+  ],
+  "methods": {
+    "raw_5fold": {
+      "n": 200,
+      "mae_months": 4.604078858993884,
+      "rmse_months": 5.805921248869533,
+      "median_absolute_error_months": 3.973957769578817,
+      "accuracy_pm6": 0.7,
+      "accuracy_pm12": 0.95,
+      "accuracy_pm18": 1.0,
+      "signed_bias_months": 0.6110188254519922,
+      "age_bins": {
+        "0-59": {
+          "n": 14,
+          "mae_months": 5.0924616660185205,
+          "signed_bias_months": 1.5824370272485218
+        },
+        "60-119": {
+          "n": 53,
+          "mae_months": 6.441067119765829,
+          "signed_bias_months": 4.100502770107218
+        },
+        "120-179": {
+          "n": 108,
+          "mae_months": 3.7936065988389993,
+          "signed_bias_months": -0.5201204288022211
+        },
+        "180-228": {
+          "n": 25,
+          "mae_months": 3.9374095380926737,
+          "signed_bias_months": -2.444159751844942
+        }
+      }
+    },
+    "tta_5fold": {
+      "n": 200,
+      "mae_months": 4.4668861067151315,
+      "rmse_months": 5.747239848265745,
+      "median_absolute_error_months": 3.6316732160192338,
+      "accuracy_pm6": 0.715,
+      "accuracy_pm12": 0.955,
+      "accuracy_pm18": 1.0,
+      "signed_bias_months": 0.760364859692716,
+      "age_bins": {
+        "0-59": {
+          "n": 14,
+          "mae_months": 4.805648948077861,
+          "signed_bias_months": 0.43556409263461404
+        },
+        "60-119": {
+          "n": 53,
+          "mae_months": 6.40753324386431,
+          "signed_bias_months": 3.8540215202799617
+        },
+        "120-179": {
+          "n": 108,
+          "mae_months": 3.690556220833681,
+          "signed_bias_months": -0.013634834511945405
+        },
+        "180-228": {
+          "n": 25,
+          "mae_months": 3.516752091803611,
+          "signed_bias_months": -2.272620152235569
+        }
+      }
+    }
+  },
+  "delta_tta_minus_raw": {
+    "mae_months": -0.13719275227875283,
+    "rmse_months": -0.05868140060378746
+  },
+  "checkpoints": [
+    "/kaggle/input/datasets/inhtnphng/exp006-p7-tta-results/exp006-p7-tta-results/runs/EXP006_P7_CONTROL_FOLD_1/best_mae.ckpt",
+    "/kaggle/input/datasets/inhtnphng/exp006-p7-tta-results/exp006-p7-tta-results/runs/EXP006_P7_CONTROL_FOLD_2/best_mae.ckpt",
+    "/kaggle/input/datasets/inhtnphng/exp006-p7-tta-results/exp006-p7-tta-results/runs/EXP006_P7_CONTROL_FOLD_3/best_mae.ckpt",
+    "/kaggle/input/datasets/inhtnphng/exp006-p7-tta-results/exp006-p7-tta-results/runs/EXP006_P7_CONTROL_FOLD_4/best_mae.ckpt",
+    "/kaggle/input/datasets/inhtnphng/exp006-p7-tta-results/exp006-p7-tta-results/runs/EXP006_P7_CONTROL_FOLD_5/best_mae.ckpt"
+  ],
+  "prediction_file": "/kaggle/working/exp007_test200_p7_tta/test200_p7_tta_predictions.csv"
+}

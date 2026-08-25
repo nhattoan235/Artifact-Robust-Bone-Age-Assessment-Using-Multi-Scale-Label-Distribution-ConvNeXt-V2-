@@ -1,0 +1,82 @@
+{
+  "created_at_utc": "2026-08-24T07:17:56.689571+00:00",
+  "test_labels_used": false,
+  "run_prefix": "EXP006_P7_CONTROL_FOLD_",
+  "runs_root": "D:\\do_an_tot_nghiep\\project\\baseline_v1\\outputs\\results\\exp006_roadmap\\runs",
+  "count": 14036,
+  "fold_counts": {
+    "1": 2808,
+    "2": 2807,
+    "3": 2807,
+    "4": 2807,
+    "5": 2807
+  },
+  "pooled": {
+    "n": 14036,
+    "mae": 6.323629479830881,
+    "rmse": 8.529248213093975,
+    "median_ae": 4.75,
+    "acc_pm6": 0.591407808492448,
+    "acc_pm12": 0.8644913080649758,
+    "acc_pm18": 0.9566828156169849
+  },
+  "folds": {
+    "1": {
+      "n": 2808,
+      "mae": 6.239961716524217,
+      "rmse": 8.500630699426916,
+      "median_ae": 4.75,
+      "acc_pm6": 0.6032763532763533,
+      "acc_pm12": 0.8678774928774928,
+      "acc_pm18": 0.9554843304843305
+    },
+    "2": {
+      "n": 2807,
+      "mae": 6.257336569291058,
+      "rmse": 8.543693726231208,
+      "median_ae": 4.625,
+      "acc_pm6": 0.6052725329533309,
+      "acc_pm12": 0.8692554328464553,
+      "acc_pm18": 0.9558247239045244
+    },
+    "3": {
+      "n": 2807,
+      "mae": 6.344305948298896,
+      "rmse": 8.545695161569073,
+      "median_ae": 4.75,
+      "acc_pm6": 0.5860349127182045,
+      "acc_pm12": 0.8685429283933025,
+      "acc_pm18": 0.95724973281083
+    },
+    "4": {
+      "n": 2807,
+      "mae": 6.4665444716890805,
+      "rmse": 8.522672511243657,
+      "median_ae": 5.0,
+      "acc_pm6": 0.575347345920912,
+      "acc_pm12": 0.849305308158176,
+      "acc_pm18": 0.9586747417171357
+    },
+    "5": {
+      "n": 2807,
+      "mae": 6.310028500178126,
+      "rmse": 8.533479461468001,
+      "median_ae": 4.75,
+      "acc_pm6": 0.5871036693979338,
+      "acc_pm12": 0.8674741717135732,
+      "acc_pm18": 0.9561809761311009
+    }
+  },
+  "sources": {
+    "project\\baseline_v1\\outputs\\results\\exp006_roadmap\\runs\\EXP006_P7_CONTROL_FOLD_1\\val_predictions_best.csv": "dc2790eaea2258580bcba350cd04ad74d2317f4add12766406f6089554021c03",
+    "project\\baseline_v1\\outputs\\results\\exp006_roadmap\\runs\\EXP006_P7_CONTROL_FOLD_2\\val_predictions_best.csv": "2cb19a4179f195d0bfbfd7ac6ded84d41b58d1989c80704519823fc1c00a1196",
+    "project\\baseline_v1\\outputs\\results\\exp006_roadmap\\runs\\EXP006_P7_CONTROL_FOLD_3\\val_predictions_best.csv": "c2d3bf264f6e036dac6ca19a0863cba9350733510621b1314cd179c01c43b5a9",
+    "project\\baseline_v1\\outputs\\results\\exp006_roadmap\\runs\\EXP006_P7_CONTROL_FOLD_4\\val_predictions_best.csv": "e06480fbb212f59ec63b070bb1267a3b45e67d59eb7569fb6c9da165e5126070",
+    "project\\baseline_v1\\outputs\\results\\exp006_roadmap\\runs\\EXP006_P7_CONTROL_FOLD_5\\val_predictions_best.csv": "49552a5a1548ad0b1a35ef7292f6253d8fb4430fb227397cce719bcf4b37c70d"
+  },
+  "notes": [
+    "OOF rows are predictions from the fold that did not train on the row.",
+    "This report is the selection gate for TTA/LDL/blend candidates.",
+    "The 200-image test set is not read."
+  ]
+}

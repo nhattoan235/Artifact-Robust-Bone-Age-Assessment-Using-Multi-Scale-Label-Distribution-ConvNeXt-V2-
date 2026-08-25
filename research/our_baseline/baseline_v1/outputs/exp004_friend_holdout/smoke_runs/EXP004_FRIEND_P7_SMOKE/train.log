@@ -1,0 +1,20 @@
+2026-08-22 22:29:32,314 | INFO | Run=EXP004_FRIEND_P7_SMOKE device=cpu config_hash=68265c8c5a777b66cdac1ed818879df53831179330958ed0942f0921b49b43ee
+2026-08-22 22:29:32,315 | INFO | Split hash train=e6a49b89a52dd029eb341555a878e50c8f17f267fc6c43f40a409db44965c8a2 validation=b11701e8ef111b673dbb8fcb3c892bc4c00e9cfcca713fe28332564cd4a7cd40
+2026-08-22 22:29:32,709 | INFO | epoch=1 batch=1 global_step=1 loss_reg_months=57.4936 lr=0.00020000 grad_norm=23.4551 throughput=5.14 img/s eta_seconds=1.2 gpu_alloc=0.0MiB gpu_reserved=0.0MiB skipped_batches=0
+2026-08-22 22:29:33,436 | INFO | epoch=1 batch=2 global_step=2 loss_reg_months=71.0772 lr=0.00020000 grad_norm=20.1073 throughput=3.58 img/s eta_seconds=1.1 gpu_alloc=0.0MiB gpu_reserved=0.0MiB skipped_batches=0
+2026-08-22 22:29:33,683 | INFO | epoch=1 batch=3 global_step=3 loss_reg_months=74.8216 lr=0.00020000 grad_norm=14.9876 throughput=4.40 img/s eta_seconds=0.5 gpu_alloc=0.0MiB gpu_reserved=0.0MiB skipped_batches=0
+2026-08-22 22:29:34,486 | INFO | epoch=1 batch=4 global_step=4 loss_reg_months=64.7669 lr=0.00020000 grad_norm=15.2176 throughput=3.69 img/s eta_seconds=0.0 gpu_alloc=0.0MiB gpu_reserved=0.0MiB skipped_batches=0
+2026-08-22 22:29:34,618 | WARNING | STABILITY WARNING [CAM] Khoảng cách MAE nam-nữ=24.567 tháng
+2026-08-22 22:29:36,092 | INFO | 
+TRAINING REVIEW SNAPSHOT
+Run ID / config hash / split hash: EXP004_FRIEND_P7_SMOKE / 68265c8c5a77 / e6a49b89a52d+b11701e8ef11
+Epoch / global step: 1 / 4
+Train loss: 64.7669
+Validation MAE / RMSE / median AE: 18.7085 / 22.7039 / 20.7834
+MAE nam / nữ / age bins: {'F': 30.991973876953125, 'M': 6.424980163574219} / {'120-179': 18.708477020263672}
+Learning rate / peak VRAM: 0.00020000 / 0.0 MiB
+Best epoch / best MAE / epochs không cải thiện: 1 / 18.7085 / 0
+Cảnh báo hiện tại: CAM: Khoảng cách MAE nam-nữ=24.567 tháng
+Checkpoint gần nhất: D:\do_an_tot_nghiep\project\baseline_v1\outputs\exp004_friend_holdout\smoke_runs\EXP004_FRIEND_P7_SMOKE\last.ckpt
+Checkpoint tốt nhất: D:\do_an_tot_nghiep\project\baseline_v1\outputs\exp004_friend_holdout\smoke_runs\EXP004_FRIEND_P7_SMOKE\best_mae.ckpt
+Đề xuất tự động: THEO DÕI

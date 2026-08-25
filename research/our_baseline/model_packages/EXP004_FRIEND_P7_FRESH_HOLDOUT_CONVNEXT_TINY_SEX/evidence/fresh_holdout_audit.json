@@ -1,0 +1,20 @@
+{
+  "created_at_utc": "2026-08-22T15:26:34.311328+00:00",
+  "experiment": "EXP-004 fresh holdout with friend's P7 trainer",
+  "source_manifest": "project\\friend_repo\\p0_audit\\outputs\\development_manifest_14036.csv",
+  "data_root": "data_goc",
+  "original_train_count": 12611,
+  "original_official_validation_count": 1425,
+  "new_train_count": 12776,
+  "new_holdout_count": 1260,
+  "holdout_fraction": 0.1,
+  "seed": 42,
+  "split_rule": "sha256(seed:image_id) / 0xffffffff < holdout_fraction, applied only to original train",
+  "target_mean_new_train": 127.30549467752036,
+  "target_std_new_train": 41.309203642993275,
+  "train_manifest_hash": "e6a49b89a52dd029eb341555a878e50c8f17f267fc6c43f40a409db44965c8a2",
+  "holdout_manifest_hash": "b11701e8ef111b673dbb8fcb3c892bc4c00e9cfcca713fe28332564cd4a7cd40",
+  "test_labels_loaded": false,
+  "config": "project\\baseline_v1\\outputs\\exp004_friend_holdout\\friend_p7_fresh_holdout.toml",
+  "trainer_source": "project\\friend_repo\\p1_baseline"
+}

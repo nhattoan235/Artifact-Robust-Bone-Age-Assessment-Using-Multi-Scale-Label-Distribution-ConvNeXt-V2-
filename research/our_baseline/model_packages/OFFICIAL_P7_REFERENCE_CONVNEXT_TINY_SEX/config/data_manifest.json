@@ -1,0 +1,31 @@
+{
+  "mode": "official",
+  "config": {
+    "recipe": "p7_reference",
+    "seed": 42,
+    "img_size": 512,
+    "batch_size": 1,
+    "epochs": 30,
+    "patience": 15,
+    "min_delta": 0.01,
+    "lr": 0.0001,
+    "weight_decay": 0.01,
+    "warmup_epochs": 3,
+    "accum_steps": 8,
+    "folds": 5,
+    "workers": 2,
+    "pretrained": true,
+    "beta": 1.0,
+    "max_train_samples": 0,
+    "max_val_samples": 0
+  },
+  "train_csv": "data_goc\\boneage-training-dataset.csv",
+  "val_csv": "data_goc\\boneage-validation-dataset\\Validation Dataset.csv",
+  "train_csv_sha256": "9459296c0fca3e3cd908e79002914d0d90c7f5e46936eefd34b11261468ce209",
+  "val_csv_sha256": "fdfeff3e7351f0bdc629f34c01803291c57c1198bc3376076bb4934daa334fec",
+  "train_count": 12611,
+  "val_count": 1425,
+  "train_frame_sha256": "3fa2550bebcaae79ee5f869d98b3984f587ed5c170ee084e133423c881ccbf59",
+  "val_frame_sha256": "a1c54b9aeef5fc8be4ac321fac8cfb709056bd47f0b2d82162a4dea7d668d91a",
+  "test_labels_loaded": false
+}

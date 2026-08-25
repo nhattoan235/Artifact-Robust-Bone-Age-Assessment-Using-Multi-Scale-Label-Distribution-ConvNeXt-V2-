@@ -1,0 +1,37 @@
+{
+  "created_at_utc": "2026-08-23T07:37:02.616221+00:00",
+  "protocol": "fixed-weight blend on overlap between own official validation predictions and friend's P7 OOF predictions",
+  "test_labels_used": false,
+  "own_prediction_file": "project\\baseline_v1\\outputs\\exp004_friend_holdout\\checkpoint_mirror\\checkpoint_mirror\\EXP004_FRIEND_P7_FRESH_HOLDOUT_SEED42\\val_predictions_best.csv",
+  "own_prediction_sha256": "f52bcf9f8b626183b3bc63ccd7b7222266084b48714a0b6393387062dda93c91",
+  "friend_root": "project\\p7_results\\results",
+  "friend_prediction_files": [
+    "project\\p7_results\\results\\P7_FINAL_V3_FOLD_1\\val_predictions_best.csv",
+    "project\\p7_results\\results\\P7_FINAL_V3_FOLD_2\\val_predictions_best.csv",
+    "project\\p7_results\\results\\P7_FINAL_V3_FOLD_3\\val_predictions_best.csv",
+    "project\\p7_results\\results\\P7_FINAL_V3_FOLD_4\\val_predictions_best.csv",
+    "project\\p7_results\\results\\P7_FINAL_V3_FOLD_5\\val_predictions_best.csv"
+  ],
+  "friend_prediction_sha256": {
+    "project\\p7_results\\results\\P7_FINAL_V3_FOLD_1\\val_predictions_best.csv": "e18cc8ad08d409aab0fd004c82d6db49b0e37930a471964d03dc2e0eb6ad1e1f",
+    "project\\p7_results\\results\\P7_FINAL_V3_FOLD_2\\val_predictions_best.csv": "507585d5201b60d1c0d2af8c35f093e189a70f3c5a040790f010a326b354f3cb",
+    "project\\p7_results\\results\\P7_FINAL_V3_FOLD_3\\val_predictions_best.csv": "7d3a1afefe4df998ac5cd49a1198928a64540846fa63fa1789e7cdf71c0e6b76",
+    "project\\p7_results\\results\\P7_FINAL_V3_FOLD_4\\val_predictions_best.csv": "6ef4154624bc2a5b367e32d9095a4887e3854e65f0d7218d921b9d7d3a5cc066",
+    "project\\p7_results\\results\\P7_FINAL_V3_FOLD_5\\val_predictions_best.csv": "7b3d310f3faa313450f1786568800ef1fa83fa702e4d8b0e680b5fec6dfb51ea"
+  },
+  "own_validation_rows": 1260,
+  "friend_oof_rows": 14036,
+  "overlap_rows": 1260,
+  "target_values_agree": true,
+  "max_target_difference_months": 0.0,
+  "weights_tested": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "selection_warning": "The official validation split is development data. Any best blend weight must be confirmed on a separate OOF/holdout protocol before being reported as final.",
+  "metrics_file": "project\\baseline_v1\\outputs\\exp004_friend_holdout\\blend_holdout\\blend_metrics.csv",
+  "merged_predictions_file": "project\\baseline_v1\\outputs\\exp004_friend_holdout\\blend_holdout\\blend_merged_predictions.csv"
+}

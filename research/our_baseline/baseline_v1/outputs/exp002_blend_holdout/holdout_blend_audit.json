@@ -1,0 +1,20 @@
+{
+  "created_at_utc": "2026-08-22T15:07:49.305262+00:00",
+  "source_predictions": "project\\baseline_v1\\outputs\\exp001_friend_blend\\blend_merged_predictions.csv",
+  "source_sha256": "ece525d1fa028a1bd867d7b8711667b838317eef84eb922e521698ef0a04994d",
+  "split_rule": "sha256(image_id) normalized to [0,1): <0.70 development, otherwise holdout",
+  "development_rows": 1034,
+  "holdout_rows": 391,
+  "weights_tested": [
+    0.0,
+    0.25,
+    0.5,
+    0.75,
+    1.0
+  ],
+  "fixed_weight_confirmed": 0.5,
+  "holdout_fixed_50_50_mae": 5.761538922634271,
+  "holdout_best_weight": 0.5,
+  "holdout_best_mae": 5.761538922634271,
+  "strict_independence_warning": "The complete official validation file was inspected in EXP-001 before this split was created. This is an internal split-confirmation, not a pristine unseen holdout. A strict confirmation requires a new training split or an untouched external holdout."
+}

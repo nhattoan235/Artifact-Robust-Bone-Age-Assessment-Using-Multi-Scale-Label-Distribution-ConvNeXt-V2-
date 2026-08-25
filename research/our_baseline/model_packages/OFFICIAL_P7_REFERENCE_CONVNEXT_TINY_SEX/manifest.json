@@ -1,0 +1,34 @@
+{
+  "package_id": "OFFICIAL_P7_REFERENCE_CONVNEXT_TINY_SEX",
+  "created_utc": "2026-08-25",
+  "technique": "p7_reference recipe: ConvNeXt-Tiny 512 + sex feature + P7 reference preprocessing",
+  "evaluation": "Official train/validation split (1,425 validation images)",
+  "mae_months": 6.4711432456970215,
+  "status": "OFFICIAL_SINGLE_SPLIT_MODEL",
+  "result_note": "Official single-split baseline checkpoint. Use the recorded recipe and validation report when comparing against later experiments.",
+  "source_checkpoint": "D:\\do_an_tot_nghiep\\project\\baseline_v1\\outputs\\official_gpu\\official\\best.pt",
+  "checkpoint_inspection": {
+    "torch_load": "PASS",
+    "python_type": "dict",
+    "top_level_keys": [
+      "best_mae",
+      "config",
+      "epoch",
+      "model"
+    ],
+    "checkpoint_bytes": 112180615,
+    "checkpoint_sha256": "a5f03c8b0a52cf252f5ce0d658262e2857d98e663b1e98fba19cecf38089b77c",
+    "state_dict_location": "model",
+    "tensor_count": 188,
+    "parameter_count": 28027105
+  },
+  "included_files": [
+    "code\\boneage_baseline.py",
+    "code\\requirements.txt",
+    "config\\data_manifest.json",
+    "evidence\\report.json",
+    "evidence\\training_log.csv",
+    "evidence\\val_predictions.csv",
+    "model\\best_model.pt"
+  ]
+}

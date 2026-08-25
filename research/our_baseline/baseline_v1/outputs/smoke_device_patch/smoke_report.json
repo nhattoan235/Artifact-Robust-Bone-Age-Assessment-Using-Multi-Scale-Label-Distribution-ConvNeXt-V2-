@@ -1,0 +1,18 @@
+{
+  "train_count": 12611,
+  "val_count": 1425,
+  "batch_shape": [
+    2,
+    3,
+    64,
+    64
+  ],
+  "pred_shape": [
+    2
+  ],
+  "ids": [
+    "1377",
+    "1378"
+  ],
+  "finite": true
+}
