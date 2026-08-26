@@ -1,0 +1,343 @@
+{
+  "status": "PASS",
+  "count": 200,
+  "original_dataset": "data/goc/boneage-test-dataset/boneage-test-dataset",
+  "cleaned_dataset": "artifact_only_200_manual_v3/cleaned",
+  "same_ground_truth": true,
+  "protocol": "same six model families, same checkpoints, no TTA, fixed 50/50 ensembles",
+  "results": {
+    "E1_P7_5FOLD": {
+      "original": {
+        "count": 200,
+        "mae_months": 4.730144010162354,
+        "rmse_months": 6.028674847148621,
+        "median_absolute_error_months": 4.132354125976562,
+        "accuracy_within_6_months": 0.7,
+        "accuracy_within_12_months": 0.94,
+        "accuracy_within_18_months": 1.0,
+        "bias_months": 0.649814701080321,
+        "prediction_mean_months": 132.74531470108033,
+        "prediction_std_months": 41.28207446013002,
+        "bootstrap_95_ci_mae": [
+          4.2254716754531865,
+          5.259229339733124
+        ]
+      },
+      "cleaned": {
+        "count": 200,
+        "mae_months": 4.971329705810547,
+        "rmse_months": 6.3138337886475595,
+        "median_absolute_error_months": 4.236759338378917,
+        "accuracy_within_6_months": 0.675,
+        "accuracy_within_12_months": 0.94,
+        "accuracy_within_18_months": 0.99,
+        "bias_months": 1.0473975753784177,
+        "prediction_mean_months": 133.1428975753784,
+        "prediction_std_months": 41.114172760639796,
+        "bootstrap_95_ci_mae": [
+          4.444130116462708,
+          5.520546534671783
+        ]
+      },
+      "cleaned_minus_original_mae": 0.24118569564819303,
+      "absolute_prediction_shift_mean_months": 0.7739407463073743,
+      "prediction_correlation_original_cleaned": 0.9996354863824236
+    },
+    "E0_IMAGE_ONLY": {
+      "original": {
+        "count": 200,
+        "mae_months": 7.310150401306153,
+        "rmse_months": 9.736731494844785,
+        "median_absolute_error_months": 5.33334060668945,
+        "accuracy_within_6_months": 0.56,
+        "accuracy_within_12_months": 0.8,
+        "accuracy_within_18_months": 0.935,
+        "bias_months": 1.2869110031127924,
+        "prediction_mean_months": 133.3824110031128,
+        "prediction_std_months": 39.83531806375972,
+        "bootstrap_95_ci_mae": [
+          6.442530388450622,
+          8.22803844882965
+        ]
+      },
+      "cleaned": {
+        "count": 200,
+        "mae_months": 7.324193328857422,
+        "rmse_months": 9.750393863785556,
+        "median_absolute_error_months": 5.709851379394529,
+        "accuracy_within_6_months": 0.52,
+        "accuracy_within_12_months": 0.82,
+        "accuracy_within_18_months": 0.95,
+        "bias_months": 0.7519786376953118,
+        "prediction_mean_months": 132.8474786376953,
+        "prediction_std_months": 39.62793286279896,
+        "bootstrap_95_ci_mae": [
+          6.462400887336731,
+          8.256151769981384
+        ]
+      },
+      "cleaned_minus_original_mae": 0.014042927551269457,
+      "absolute_prediction_shift_mean_months": 2.0475211715698243,
+      "prediction_correlation_original_cleaned": 0.9975455515839449
+    },
+    "E1_P10_VALIDATION": {
+      "original": {
+        "count": 200,
+        "mae_months": 4.643414352416992,
+        "rmse_months": 5.780258029507378,
+        "median_absolute_error_months": 3.9942922973632875,
+        "accuracy_within_6_months": 0.695,
+        "accuracy_within_12_months": 0.95,
+        "accuracy_within_18_months": 1.0,
+        "bias_months": 1.0984187622070305,
+        "prediction_mean_months": 133.19391876220703,
+        "prediction_std_months": 41.571917696769184,
+        "bootstrap_95_ci_mae": [
+          4.1701637027740475,
+          5.13223274745941
+        ]
+      },
+      "cleaned": {
+        "count": 200,
+        "mae_months": 4.786774793243408,
+        "rmse_months": 6.010950439310409,
+        "median_absolute_error_months": 4.114934234619145,
+        "accuracy_within_6_months": 0.74,
+        "accuracy_within_12_months": 0.945,
+        "accuracy_within_18_months": 1.0,
+        "bias_months": 1.4419803733825676,
+        "prediction_mean_months": 133.53748037338258,
+        "prediction_std_months": 41.336329086031405,
+        "bootstrap_95_ci_mae": [
+          4.291510780563354,
+          5.297201410369873
+        ]
+      },
+      "cleaned_minus_original_mae": 0.14336044082641575,
+      "absolute_prediction_shift_mean_months": 0.6577681159973144,
+      "prediction_correlation_original_cleaned": 0.9996699138516875
+    },
+    "E2_DUAL_OUTPUT": {
+      "original": {
+        "count": 200,
+        "mae_months": 4.894432136535645,
+        "rmse_months": 6.201458181281225,
+        "median_absolute_error_months": 4.167955017089838,
+        "accuracy_within_6_months": 0.67,
+        "accuracy_within_12_months": 0.96,
+        "accuracy_within_18_months": 0.995,
+        "bias_months": 1.3715499801635735,
+        "prediction_mean_months": 133.46704998016358,
+        "prediction_std_months": 40.72912892235838,
+        "bootstrap_95_ci_mae": [
+          4.375622696952821,
+          5.417949473495483
+        ]
+      },
+      "cleaned": {
+        "count": 200,
+        "mae_months": 5.094974607849121,
+        "rmse_months": 6.513651018984432,
+        "median_absolute_error_months": 4.060515747070326,
+        "accuracy_within_6_months": 0.655,
+        "accuracy_within_12_months": 0.955,
+        "accuracy_within_18_months": 0.98,
+        "bias_months": 1.7949749679565423,
+        "prediction_mean_months": 133.89047496795655,
+        "prediction_std_months": 40.50895213203398,
+        "bootstrap_95_ci_mae": [
+          4.539650540618895,
+          5.661576935691833
+        ]
+      },
+      "cleaned_minus_original_mae": 0.2005424713134758,
+      "absolute_prediction_shift_mean_months": 0.5126557159423828,
+      "prediction_correlation_original_cleaned": 0.999826463752209
+    },
+    "D3_5FOLD": {
+      "original": {
+        "count": 200,
+        "mae_months": 4.875167660522461,
+        "rmse_months": 6.087419437498481,
+        "median_absolute_error_months": 4.410495300292979,
+        "accuracy_within_6_months": 0.665,
+        "accuracy_within_12_months": 0.96,
+        "accuracy_within_18_months": 1.0,
+        "bias_months": 0.9889702892303452,
+        "prediction_mean_months": 133.08447028923035,
+        "prediction_std_months": 41.068318123156985,
+        "bootstrap_95_ci_mae": [
+          4.376226916341781,
+          5.393545841007231
+        ]
+      },
+      "cleaned": {
+        "count": 200,
+        "mae_months": 4.988445799255371,
+        "rmse_months": 6.297464791038627,
+        "median_absolute_error_months": 3.952866516113282,
+        "accuracy_within_6_months": 0.65,
+        "accuracy_within_12_months": 0.945,
+        "accuracy_within_18_months": 0.99,
+        "bias_months": 1.420831651687621,
+        "prediction_mean_months": 133.5163316516876,
+        "prediction_std_months": 41.002378360184956,
+        "bootstrap_95_ci_mae": [
+          4.469008908538816,
+          5.533636422338485
+        ]
+      },
+      "cleaned_minus_original_mae": 0.11327813873290982,
+      "absolute_prediction_shift_mean_months": 0.6439290046691898,
+      "prediction_correlation_original_cleaned": 0.9997254241049808
+    },
+    "C3_ROI_5FOLD": {
+      "original": {
+        "count": 200,
+        "mae_months": 4.336400000762939,
+        "rmse_months": 5.530956976246726,
+        "median_absolute_error_months": 3.39167480468749,
+        "accuracy_within_6_months": 0.74,
+        "accuracy_within_12_months": 0.945,
+        "accuracy_within_18_months": 1.0,
+        "bias_months": 0.6331781959533683,
+        "prediction_mean_months": 132.72867819595336,
+        "prediction_std_months": 41.978153109894315,
+        "bootstrap_95_ci_mae": [
+          3.871556453151701,
+          4.822652554073333
+        ]
+      },
+      "cleaned": {
+        "count": 200,
+        "mae_months": 4.218858639526367,
+        "rmse_months": 5.42529352585733,
+        "median_absolute_error_months": 3.2839912414550767,
+        "accuracy_within_6_months": 0.745,
+        "accuracy_within_12_months": 0.965,
+        "accuracy_within_18_months": 1.0,
+        "bias_months": 0.3470308456420891,
+        "prediction_mean_months": 132.4425308456421,
+        "prediction_std_months": 42.21166411133188,
+        "bootstrap_95_ci_mae": [
+          3.752067441978454,
+          4.708889270992278
+        ]
+      },
+      "cleaned_minus_original_mae": -0.11754136123657233,
+      "absolute_prediction_shift_mean_months": 0.417686962127686,
+      "prediction_correlation_original_cleaned": 0.999839811054878
+    },
+    "E1_P7_plus_D3_50_50": {
+      "original": {
+        "count": 200,
+        "mae_months": 4.7247170627594,
+        "rmse_months": 5.9612493321131765,
+        "median_absolute_error_months": 4.109076690673845,
+        "accuracy_within_6_months": 0.68,
+        "accuracy_within_12_months": 0.945,
+        "accuracy_within_18_months": 1.0,
+        "bias_months": 0.8193924951553335,
+        "prediction_mean_months": 132.91489249515533,
+        "prediction_std_months": 41.16154351959844,
+        "bootstrap_95_ci_mae": [
+          4.238129104270937,
+          5.235892841882709
+        ]
+      },
+      "cleaned": {
+        "count": 200,
+        "mae_months": 4.923852016448975,
+        "rmse_months": 6.211525680056698,
+        "median_absolute_error_months": 4.169601593017575,
+        "accuracy_within_6_months": 0.69,
+        "accuracy_within_12_months": 0.945,
+        "accuracy_within_18_months": 0.99,
+        "bias_months": 1.2341146135330197,
+        "prediction_mean_months": 133.329614613533,
+        "prediction_std_months": 41.044387570843,
+        "bootstrap_95_ci_mae": [
+          4.407727098982335,
+          5.455212009513378
+        ]
+      },
+      "cleaned_minus_original_mae": 0.19913495368957435,
+      "absolute_prediction_shift_mean_months": 0.6632387428283687,
+      "prediction_correlation_original_cleaned": 0.99972624310298
+    },
+    "E1_P7_plus_C3_50_50": {
+      "original": {
+        "count": 200,
+        "mae_months": 4.454524768829345,
+        "rmse_months": 5.6504952552112515,
+        "median_absolute_error_months": 3.7373648071288983,
+        "accuracy_within_6_months": 0.725,
+        "accuracy_within_12_months": 0.96,
+        "accuracy_within_18_months": 1.0,
+        "bias_months": 0.6414964485168455,
+        "prediction_mean_months": 132.73699644851683,
+        "prediction_std_months": 41.61306847859633,
+        "bootstrap_95_ci_mae": [
+          3.985953342761994,
+          4.95011933535576
+        ]
+      },
+      "cleaned": {
+        "count": 200,
+        "mae_months": 4.4853595611572254,
+        "rmse_months": 5.705608982490787,
+        "median_absolute_error_months": 3.76549690246582,
+        "accuracy_within_6_months": 0.72,
+        "accuracy_within_12_months": 0.95,
+        "accuracy_within_18_months": 1.0,
+        "bias_months": 0.6972142105102538,
+        "prediction_mean_months": 132.79271421051027,
+        "prediction_std_months": 41.64285464751116,
+        "bootstrap_95_ci_mae": [
+          4.011638601589201,
+          4.985512157001494
+        ]
+      },
+      "cleaned_minus_original_mae": 0.030834792327880223,
+      "absolute_prediction_shift_mean_months": 0.44693197250366196,
+      "prediction_correlation_original_cleaned": 0.9998110223698488
+    },
+    "ALL_6_MODEL_FAMILIES_EQUAL": {
+      "original": {
+        "count": 200,
+        "mae_months": 4.734560462188721,
+        "rmse_months": 5.914312255038889,
+        "median_absolute_error_months": 3.9984091440836593,
+        "accuracy_within_6_months": 0.685,
+        "accuracy_within_12_months": 0.955,
+        "accuracy_within_18_months": 1.0,
+        "bias_months": 1.0048071552912392,
+        "prediction_mean_months": 133.10030715529123,
+        "prediction_std_months": 40.960582447039435,
+        "bootstrap_95_ci_mae": [
+          4.254654372753302,
+          5.238870038211345
+        ]
+      },
+      "cleaned": {
+        "count": 200,
+        "mae_months": 4.862957365036011,
+        "rmse_months": 6.071926611553687,
+        "median_absolute_error_months": 4.052443173726392,
+        "accuracy_within_6_months": 0.695,
+        "accuracy_within_12_months": 0.955,
+        "accuracy_within_18_months": 0.995,
+        "bias_months": 1.134032341957091,
+        "prediction_mean_months": 133.22953234195708,
+        "prediction_std_months": 40.852266344198135,
+        "bootstrap_95_ci_mae": [
+          4.368175471684932,
+          5.376070131584802
+        ]
+      },
+      "cleaned_minus_original_mae": 0.12839690284728977,
+      "absolute_prediction_shift_mean_months": 0.6306301829020169,
+      "prediction_correlation_original_cleaned": 0.9997333954109486
+    }
+  }
+}
