@@ -11,6 +11,7 @@
 | EXP-007-TTA | Five-fold P7 TTA | OOF and test-200 | OOF MAE 6.296203; test MAE 4.466886 | Retain TTA; test value exploratory |
 | EXP-008 | Fixed 50/50 P7 + TTA OOF blend | 14,036-row pooled OOF | MAE 6.120448 | Current OOF gate |
 | EXP-009 | ConvNeXt-Tiny LDL fused | Same five-fold split | No final result in this bundle | Run only if resources available; must beat 6.120448 |
+| EXP-010 | All packaged checkpoints, raw vs 10-view TTA | Cleaned labeled test-200 | 15-model MAE 4.766358 → 4.675289 with TTA | Exploratory only; no selection from test labels |
 
 ## Evidence locations
 
@@ -25,6 +26,7 @@ metric artifacts are in:
 - `baseline_v1/outputs/exp008_fixed_blend_p7_exp006_tta_oof/`
 - `baseline_v1/outputs/exp008_blend_test200/`
 - `baseline_v1/outputs/exp009_ldl_roadmap/`
+- `baseline_v1/outputs/evaluate_raw_test200_20260826/`
 
 The original chronological notes are preserved in
 `baseline_v1/EXPERIMENT_LOG.md` and `baseline_v1/TONG_HOP_TOAN_BO_TIEN_TRINH.md`.

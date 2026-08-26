@@ -17,6 +17,8 @@ exploratory and must not be used as a model-selection claim.
 | Friend P7 ensemble | Exploratory test-200 | 200 | 4.730865 | 6.029187 | Best group reference on test-200 |
 | EXP-006 P7 + TTA | Exploratory test-200 | 200 | **4.466886** | 5.747240 | Exploratory only |
 | EXP-008 fixed 50/50 blend | Exploratory test-200 | 200 | 4.553021 | 5.785748 | Exploratory only |
+| All 15 packaged models, raw | Cleaned test-200 | 200 | 4.766358 | 5.974673 | Exploratory only |
+| All 15 packaged models + TTA | Cleaned test-200 | 200 | **4.675289** | **5.928851** | Exploratory only |
 
 ## EXP-001: blend on official validation
 
@@ -64,6 +66,17 @@ The labeled 200-image set was evaluated only after the method choices were fixed
 EXP-006 P7 + TTA obtained MAE 4.466886 and the fixed blend obtained 4.553021.
 These values are useful for comparison with the group reference but are not a
 selection protocol and do not establish generalization by themselves.
+
+## EXP-010: all packaged models on cleaned test-200
+
+All 15 available checkpoints were evaluated on the manually cleaned 200-image
+set. The raw score is the native deterministic inference of each checkpoint.
+The TTA score averages five rotations (-10, -5, 0, 5, 10 degrees), each with
+and without horizontal flip. The equal-weight ensemble improved from MAE
+4.766358 to 4.675289 months. This is an exploratory test-200 audit only and
+must not be used to select weights or hyperparameters. The full per-model table,
+predictions, and provenance are in
+`baseline_v1/outputs/evaluate_raw_test200_20260826/RAW_TEST200_ALL_MODELS_AUDIT.md`.
 
 ## EXP-009: LDL roadmap
 

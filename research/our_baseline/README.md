@@ -41,6 +41,8 @@ research/our_baseline/
 6. Label Distribution Learning (LDL) roadmap using a ConvNeXt-Tiny LDL head;
    its five-fold training was prepared but must beat the OOF gate before being
    considered a valid improvement.
+7. EXP-010 audit of all 15 packaged checkpoints on cleaned test-200: raw
+   ensemble MAE 4.766358 and 10-view TTA ensemble MAE 4.675289.
 
 ## Reproduction entry points
 
@@ -52,6 +54,10 @@ The code is under `baseline_v1/`:
 - `scripts/evaluate_exp006_tta_oof.py`: evaluate TTA on OOF predictions.
 - `scripts/blend_exp006_tta_p7_oof.py`: calculate the fixed OOF blend.
 - `scripts/prepare_exp009_ldl_roadmap.py`: prepare the LDL experiment.
+- `scripts/evaluate_all_models_tta_cleaned_test200.py`: evaluate all packaged
+  checkpoints with raw inference and 10-view TTA.
+- `scripts/write_all_models_tta_audit_md.py`: generate the consolidated TTA
+  Markdown report from its JSON output.
 
 Most configuration files and manifests are under `baseline_v1/outputs/`.
 They may contain historical absolute paths; replace those paths for the target
