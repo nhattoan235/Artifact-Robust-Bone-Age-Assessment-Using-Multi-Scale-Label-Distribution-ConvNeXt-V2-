@@ -1,0 +1,64 @@
+{
+  "protocol": "locked exploratory re-evaluation on the original 200-case test; no test tuning; five-fold mean; no TTA",
+  "test_used_for_model_selection": false,
+  "audit": {
+    "count": 200,
+    "unique_ids": 200,
+    "id_sets_equal": true
+  },
+  "attention": {
+    "count": 200,
+    "mae_months": 4.411921752166749,
+    "rmse_months": 5.639078294371304,
+    "median_absolute_error_months": 3.5871014404296915
+  },
+  "c3_roi": {
+    "count": 200,
+    "mae_months": 4.33726669998169,
+    "rmse_months": 5.531101413665844,
+    "median_absolute_error_months": 3.394524383544926
+  },
+  "e1_reference": {
+    "count": 200,
+    "mae_months": 4.730321210479737,
+    "rmse_months": 6.028745009417094,
+    "median_absolute_error_months": 4.133362731933602
+  },
+  "paired_bootstrap_attention_minus_c3": {
+    "estimate_months": 0.07465505218505848,
+    "lower_95": -0.12382979812622125,
+    "upper_95": 0.26174505462646563,
+    "n_bootstrap": 5000,
+    "seed": 42
+  },
+  "by_sex": {
+    "F": {
+      "attention": {
+        "count": 100,
+        "mae_months": 4.770011352539063,
+        "rmse_months": 5.9544740567924626,
+        "median_absolute_error_months": 4.0444528198242224
+      },
+      "c3_roi": {
+        "count": 100,
+        "mae_months": 4.741209773254394,
+        "rmse_months": 5.897372229449812,
+        "median_absolute_error_months": 3.7948721313476597
+      }
+    },
+    "M": {
+      "attention": {
+        "count": 100,
+        "mae_months": 4.053832151794435,
+        "rmse_months": 5.304964347390533,
+        "median_absolute_error_months": 3.3063455200195264
+      },
+      "c3_roi": {
+        "count": 100,
+        "mae_months": 3.933323626708985,
+        "rmse_months": 5.1387903716562295,
+        "median_absolute_error_months": 2.9203712463378935
+      }
+    }
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "protocol": "locked 5-fold development OOF; test 200 not used",
+  "comparison": "C3_ROI_ATTN_V1 vs C3_ROI_V1",
+  "audit": {
+    "unique_ids": 14036,
+    "id_sets_equal": true,
+    "target_and_sex_match": true
+  },
+  "attention": {
+    "overall": {
+      "count": 14036,
+      "mae_months": 6.420879512948845,
+      "rmse_months": 8.65675891986881,
+      "median_absolute_error_months": 4.875,
+      "accuracy_within_6_months": 0.5874893131946424,
+      "accuracy_within_12_months": 0.8602878312909661
+    },
+    "by_fold": {
+      "1": {
+        "count": 2808,
+        "mae_months": 6.340856481481482,
+        "rmse_months": 8.538887280754633,
+        "median_absolute_error_months": 4.875,
+        "accuracy_within_6_months": 0.5886752136752137,
+        "accuracy_within_12_months": 0.8632478632478633
+      },
+      "2": {
+        "count": 2807,
+        "mae_months": 6.382447898111863,
+        "rmse_months": 8.614757303612748,
+        "median_absolute_error_months": 4.875,
+        "accuracy_within_6_months": 0.5935162094763092,
+        "accuracy_within_12_months": 0.8639116494478091
+      },
+      "3": {
+        "count": 2807,
+        "mae_months": 6.52299357632704,
+        "rmse_months": 8.807382380130282,
+        "median_absolute_error_months": 4.875,
+        "accuracy_within_6_months": 0.5910224438902744,
+        "accuracy_within_12_months": 0.8539365871036694
+      },
+      "4": {
+        "count": 2807,
+        "mae_months": 6.520041970965443,
+        "rmse_months": 8.781271566218287,
+        "median_absolute_error_months": 4.9375,
+        "accuracy_within_6_months": 0.5824723904524404,
+        "accuracy_within_12_months": 0.8592803705023156
+      },
+      "5": {
+        "count": 2807,
+        "mae_months": 6.338086146241539,
+        "rmse_months": 8.537607566567665,
+        "median_absolute_error_months": 4.875,
+        "accuracy_within_6_months": 0.5817598859992875,
+        "accuracy_within_12_months": 0.8610616316351977
+      }
+    },
+    "by_sex": {
+      "F": {
+        "count": 6430,
+        "mae_months": 6.631065318818041,
+        "rmse_months": 8.758873214236717,
+        "median_absolute_error_months": 5.1875,
+        "accuracy_within_6_months": 0.5628304821150856,
+        "accuracy_within_12_months": 0.852099533437014
+      },
+      "M": {
+        "count": 7606,
+        "mae_months": 6.243191538752301,
+        "rmse_months": 8.569483917360605,
+        "median_absolute_error_months": 4.625,
+        "accuracy_within_6_months": 0.6083355245858533,
+        "accuracy_within_12_months": 0.8672100972916119
+      }
+    }
+  },
+  "c3_roi": {
+    "overall": {
+      "count": 14036,
+      "mae_months": 6.43734888189299,
+      "rmse_months": 8.649621736230008,
+      "median_absolute_error_months": 4.9375,
+      "accuracy_within_6_months": 0.5849244799088059,
+      "accuracy_within_12_months": 0.860002849814762
+    },
+    "by_fold": {
+      "1": {
+        "count": 2808,
+        "mae_months": 6.3755188857727925,
+        "rmse_months": 8.607837076572435,
+        "median_absolute_error_months": 4.9375,
+        "accuracy_within_6_months": 0.5868945868945868,
+        "accuracy_within_12_months": 0.8646723646723646
+      },
+      "2": {
+        "count": 2807,
+        "mae_months": 6.372684360527253,
+        "rmse_months": 8.535016714932818,
+        "median_absolute_error_months": 4.875,
+        "accuracy_within_6_months": 0.5928037050231564,
+        "accuracy_within_12_months": 0.8621303883149269
+      },
+      "3": {
+        "count": 2807,
+        "mae_months": 6.591259017634485,
+        "rmse_months": 8.811916531428064,
+        "median_absolute_error_months": 5.0625,
+        "accuracy_within_6_months": 0.5721410758817242,
+        "accuracy_within_12_months": 0.8507303170644817
+      },
+      "4": {
+        "count": 2807,
+        "mae_months": 6.426442264873531,
+        "rmse_months": 8.725341669042296,
+        "median_absolute_error_months": 4.75,
+        "accuracy_within_6_months": 0.5910224438902744,
+        "accuracy_within_12_months": 0.8582116138225864
+      },
+      "5": {
+        "count": 2807,
+        "mae_months": 6.420861907730673,
+        "rmse_months": 8.564882260274313,
+        "median_absolute_error_months": 5.0,
+        "accuracy_within_6_months": 0.5817598859992875,
+        "accuracy_within_12_months": 0.8642679016743855
+      }
+    },
+    "by_sex": {
+      "F": {
+        "count": 6430,
+        "mae_months": 6.617054456648523,
+        "rmse_months": 8.7126263797482,
+        "median_absolute_error_months": 5.125,
+        "accuracy_within_6_months": 0.570606531881804,
+        "accuracy_within_12_months": 0.8528771384136858
+      },
+      "M": {
+        "count": 7606,
+        "mae_months": 6.285428444648962,
+        "rmse_months": 8.595998335299132,
+        "median_absolute_error_months": 4.75,
+        "accuracy_within_6_months": 0.5970286615829609,
+        "accuracy_within_12_months": 0.866026820930844
+      }
+    }
+  },
+  "paired_bootstrap_attention_minus_c3": {
+    "estimate_months": -0.01646936894414363,
+    "lower_95": -0.06365328441151326,
+    "upper_95": 0.030326036620119692
+  }
+}
