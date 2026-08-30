@@ -329,16 +329,19 @@ class Trainer:
             return
         destination = mirror_dir / (relative or source.relative_to(self.run_dir))
         destination.parent.mkdir(parents=True, exist_ok=True)
-        temporary = destination.with_suffix(destination.suffix + ".tmp")
         last_error: Exception | None = None
         for attempt in range(1, 4):
             try:
-                shutil.copy2(source, temporary)
-                os.replace(temporary, destination)
+                # Google Drive FUSE can remove/relocate a temporary file before
+                # os.replace sees it.  The source is already atomically written
+                # locally; copy it directly to the persistent mirror instead.
+                shutil.copy2(source, destination)
+                if not destination.is_file():
+                    raise OSError(f"Mirror destination was not created: {destination}")
                 return
             except OSError as exc:
                 last_error = exc
-                temporary.unlink(missing_ok=True)
+                destination.unlink(missing_ok=True)
                 if attempt < 3:
                     time.sleep(2 * attempt)
         raise RuntimeError(f"Không đồng bộ được artifact sang mirror: {destination}: {last_error}")

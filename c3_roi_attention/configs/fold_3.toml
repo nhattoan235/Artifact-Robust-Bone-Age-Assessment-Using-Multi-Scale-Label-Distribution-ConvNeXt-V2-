@@ -1,0 +1,66 @@
+[data]
+train_manifest = "c3_roi/manifests/fold_3_train.csv"
+val_manifest = "c3_roi/manifests/fold_3_validation.csv"
+expected_train_hash = "4bf6ceef3c95cce8fd3281099addd2fda1d750a348fc05c3708a4285d0079acd"
+expected_val_hash = "a2698e880509fc04c909679fce4a026cec1770e69b5f5dfe23a6e90e6be4c37b"
+expected_train_count = 11229
+expected_val_count = 2807
+image_root = "."
+
+[run]
+run_id = "C3_ROI_ATTN_V1_FOLD_3"
+output_root = "c3_roi_attention/runs/C3_ROI_ATTN_V1"
+seed = 42
+device = "auto"
+deterministic = true
+allow_tf32 = true
+
+[model]
+architecture = "convnext_tiny_spatial_attention"
+pretrained = true
+image_size = 512
+sex_embedding_dim = 16
+head_hidden_dim = 256
+dropout = 0.2
+target_mean = 127.23833273957962
+target_std = 41.248974358112605
+augmentation = "light"
+horizontal_flip_probability = 0.5
+rotation_degrees = 7.0
+translation_fraction = 0.03
+scale_min = 0.95
+scale_max = 1.05
+brightness_delta = 0.10
+contrast_delta = 0.10
+gamma_min = 0.90
+gamma_max = 1.10
+preprocessing = "none"
+image_normalization = "imagenet"
+
+[training]
+epochs = 35
+batch_size = 6
+grad_accum_steps = 6
+learning_rate = 0.0002
+min_learning_rate = 0.000001
+weight_decay = 0.05
+smooth_l1_beta_months = 3.0
+regression_loss = "smooth_l1"
+sampling_strategy = "permutation"
+gradient_clip_norm = 5.0
+patience = 8
+min_delta_mae = 0.01
+amp = true
+amp_dtype = "auto"
+amp_init_scale = 4096.0
+
+[operations]
+num_workers = 2
+log_every_steps = 25
+checkpoint_every_steps = 500
+checkpoint_every_minutes = 20.0
+periodic_keep = 2
+best_keep = 3
+
+[warnings]
+age_bins = [0, 60, 120, 180, 229]

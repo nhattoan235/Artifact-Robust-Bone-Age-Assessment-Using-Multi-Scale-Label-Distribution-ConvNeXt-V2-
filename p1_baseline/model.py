@@ -71,6 +71,53 @@ class BoneAgeConvNeXt(nn.Module):
         return torch.where(sex.squeeze(1) >= 0.5, male_prediction, female_prediction)
 
 
+class BoneAgeConvNeXtSpatialAttention(nn.Module):
+    """ConvNeXt-Tiny with a residual spatial gate over the final feature map.
+
+    The gate is initialized as identity so the pretrained backbone starts with
+    the same feature scale as the C3-ROI baseline.  This is a lightweight
+    ablation: it changes only the field-of-view feature aggregation, not the
+    input ROI, sex embedding, regression head, or training recipe.
+    """
+
+    def __init__(self, pretrained: bool, sex_embedding_dim: int, hidden_dim: int, dropout: float):
+        super().__init__()
+        weights = ConvNeXt_Tiny_Weights.IMAGENET1K_V1 if pretrained else None
+        backbone = convnext_tiny(weights=weights)
+        self.features = backbone.features
+        self.avgpool = backbone.avgpool
+        self.feature_projection = nn.Sequential(
+            backbone.classifier[0], backbone.classifier[1]
+        )
+        feature_dim = backbone.classifier[-1].in_features
+        self.sex_embedding = nn.Sequential(nn.Linear(1, sex_embedding_dim), nn.GELU())
+        self.regressor = nn.Sequential(
+            nn.Linear(feature_dim + sex_embedding_dim, hidden_dim),
+            nn.GELU(),
+            nn.Dropout(dropout),
+            nn.Linear(hidden_dim, 1),
+        )
+        # Build the added layer after all shared C3 modules so a fixed seed gives
+        # the baseline and candidate identical shared initialization.
+        self.attention_logits = nn.Conv2d(feature_dim, 1, kernel_size=1, bias=True)
+        nn.init.zeros_(self.attention_logits.weight)
+        nn.init.zeros_(self.attention_logits.bias)
+
+    def spatial_attention(self, image: torch.Tensor) -> torch.Tensor:
+        feature_map = self.features(image)
+        return 2.0 * torch.sigmoid(self.attention_logits(feature_map))
+
+    def image_features(self, image: torch.Tensor) -> torch.Tensor:
+        feature_map = self.features(image)
+        gate = 2.0 * torch.sigmoid(self.attention_logits(feature_map))
+        return self.feature_projection(self.avgpool(feature_map * gate))
+
+    def forward(self, image: torch.Tensor, sex: torch.Tensor) -> torch.Tensor:
+        features = self.image_features(image)
+        conditioned = torch.cat([features, self.sex_embedding(sex)], dim=1)
+        return self.regressor(conditioned).squeeze(1)
+
+
 class BoneAgeEfficientNetB0(nn.Module):
     """EfficientNet-B0 with sex input and a Deeplasia-style regression head."""
 
@@ -305,6 +352,8 @@ def build_model(
         return BoneAgeConvNeXt(
             pretrained, sex_embedding_dim, hidden_dim, dropout, sex_mode
         )
+    if architecture == "convnext_tiny_spatial_attention":
+        return BoneAgeConvNeXtSpatialAttention(pretrained, sex_embedding_dim, hidden_dim, dropout)
     if architecture == "efficientnet_b0":
         return BoneAgeEfficientNetB0(pretrained, sex_embedding_dim, hidden_dim, dropout)
     if architecture == "convnextv2_tiny":

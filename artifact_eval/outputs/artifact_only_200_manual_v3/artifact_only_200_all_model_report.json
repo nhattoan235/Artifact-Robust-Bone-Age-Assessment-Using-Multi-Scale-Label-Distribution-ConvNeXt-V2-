@@ -1,0 +1,424 @@
+{
+  "status": "PASS",
+  "dataset": "artifact_only_200_manual_v3/cleaned",
+  "dataset_zip": "data/artifact_only_200_manual_v3.zip",
+  "count": 200,
+  "ground_truth_source": "data/goc/rsna_test_ground_truth.csv",
+  "ground_truth_used_for_metric_only": true,
+  "inference_mode": "no TTA; cleaned full-hand input for E1/E0/E2/D3; locked C3 ROI coordinates applied to cleaned input",
+  "model_families": [
+    {
+      "model_id": "E1_P7_5FOLD",
+      "kind": "folds",
+      "source": "P7_E1_FOLD*_CONVNEXT_TINY_SEX_A2"
+    },
+    {
+      "model_id": "E0_IMAGE_ONLY",
+      "kind": "single",
+      "source": "P11_E0_IMAGE_ONLY_CONVNEXT_TINY_A2"
+    },
+    {
+      "model_id": "E1_P10_VALIDATION",
+      "kind": "single",
+      "source": "P10_E1_VALIDATION_CONVNEXT_TINY_SEX_A2"
+    },
+    {
+      "model_id": "E2_DUAL_OUTPUT",
+      "kind": "single",
+      "source": "P11_E2_DUAL_OUTPUT_CONVNEXT_TINY_A2"
+    },
+    {
+      "model_id": "D3_5FOLD",
+      "kind": "folds",
+      "source": "d3_oof/runs/D3_OOF_V1"
+    },
+    {
+      "model_id": "C3_ROI_5FOLD",
+      "kind": "folds",
+      "source": "c3_roi/runs/C3_ROI_V1"
+    }
+  ],
+  "results": {
+    "E1_P7_5FOLD": {
+      "count": 200,
+      "mae_months": 4.971329705810547,
+      "rmse_months": 6.3138337886475595,
+      "median_absolute_error_months": 4.236759338378917,
+      "accuracy_within_6_months": 0.675,
+      "accuracy_within_12_months": 0.94,
+      "accuracy_within_18_months": 0.99,
+      "bias_months": 1.0473975753784177,
+      "prediction_mean_months": 133.1428975753784,
+      "prediction_std_months": 41.114172760639796,
+      "bootstrap_95_ci_mae": [
+        4.444130116462708,
+        5.520546534671783
+      ],
+      "by_sex": {
+        "F": {
+          "count": 100,
+          "mae_months": 5.130358134460449,
+          "rmse_months": 6.366355349477584,
+          "median_absolute_error_months": 4.675586700439439,
+          "accuracy_within_6_months": 0.62,
+          "accuracy_within_12_months": 0.95,
+          "accuracy_within_18_months": 1.0,
+          "bias_months": 0.7997511276245112,
+          "prediction_mean_months": 124.70635112762449,
+          "prediction_std_months": 39.966893638332834
+        },
+        "M": {
+          "count": 100,
+          "mae_months": 4.812301277160645,
+          "rmse_months": 6.26087164742365,
+          "median_absolute_error_months": 3.7110949707031367,
+          "accuracy_within_6_months": 0.73,
+          "accuracy_within_12_months": 0.93,
+          "accuracy_within_18_months": 0.98,
+          "bias_months": 1.2950440231323241,
+          "prediction_mean_months": 141.5794440231323,
+          "prediction_std_months": 40.5098405891142
+        }
+      }
+    },
+    "E0_IMAGE_ONLY": {
+      "count": 200,
+      "mae_months": 7.324193328857422,
+      "rmse_months": 9.750393863785556,
+      "median_absolute_error_months": 5.709851379394529,
+      "accuracy_within_6_months": 0.52,
+      "accuracy_within_12_months": 0.82,
+      "accuracy_within_18_months": 0.95,
+      "bias_months": 0.7519786376953118,
+      "prediction_mean_months": 132.8474786376953,
+      "prediction_std_months": 39.62793286279896,
+      "bootstrap_95_ci_mae": [
+        6.462400887336731,
+        8.256151769981384
+      ],
+      "by_sex": {
+        "F": {
+          "count": 100,
+          "mae_months": 7.677920562744139,
+          "rmse_months": 10.241608978027248,
+          "median_absolute_error_months": 6.852745971679681,
+          "accuracy_within_6_months": 0.48,
+          "accuracy_within_12_months": 0.8,
+          "accuracy_within_18_months": 0.97,
+          "bias_months": 2.96650806274414,
+          "prediction_mean_months": 126.87310806274414,
+          "prediction_std_months": 38.52441382618127
+        },
+        "M": {
+          "count": 100,
+          "mae_months": 6.970466094970703,
+          "rmse_months": 9.233082179807871,
+          "median_absolute_error_months": 5.1042108154296955,
+          "accuracy_within_6_months": 0.56,
+          "accuracy_within_12_months": 0.84,
+          "accuracy_within_18_months": 0.93,
+          "bias_months": -1.462550787353516,
+          "prediction_mean_months": 138.8218492126465,
+          "prediction_std_months": 39.81494013272471
+        }
+      }
+    },
+    "E1_P10_VALIDATION": {
+      "count": 200,
+      "mae_months": 4.786774793243408,
+      "rmse_months": 6.010950439310409,
+      "median_absolute_error_months": 4.114934234619145,
+      "accuracy_within_6_months": 0.74,
+      "accuracy_within_12_months": 0.945,
+      "accuracy_within_18_months": 1.0,
+      "bias_months": 1.4419803733825676,
+      "prediction_mean_months": 133.53748037338258,
+      "prediction_std_months": 41.336329086031405,
+      "bootstrap_95_ci_mae": [
+        4.291510780563354,
+        5.297201410369873
+      ],
+      "by_sex": {
+        "F": {
+          "count": 100,
+          "mae_months": 5.105856219482422,
+          "rmse_months": 6.241524708006517,
+          "median_absolute_error_months": 4.387094116210946,
+          "accuracy_within_6_months": 0.7,
+          "accuracy_within_12_months": 0.95,
+          "accuracy_within_18_months": 1.0,
+          "bias_months": 1.3956267150878898,
+          "prediction_mean_months": 125.3022267150879,
+          "prediction_std_months": 39.87730589767241
+        },
+        "M": {
+          "count": 100,
+          "mae_months": 4.467693367004395,
+          "rmse_months": 5.771171431090586,
+          "median_absolute_error_months": 3.5861898803711014,
+          "accuracy_within_6_months": 0.78,
+          "accuracy_within_12_months": 0.94,
+          "accuracy_within_18_months": 1.0,
+          "bias_months": 1.4883340316772458,
+          "prediction_mean_months": 141.77273403167726,
+          "prediction_std_months": 41.128407133366125
+        }
+      }
+    },
+    "E2_DUAL_OUTPUT": {
+      "count": 200,
+      "mae_months": 5.094974607849121,
+      "rmse_months": 6.513651018984432,
+      "median_absolute_error_months": 4.060515747070326,
+      "accuracy_within_6_months": 0.655,
+      "accuracy_within_12_months": 0.955,
+      "accuracy_within_18_months": 0.98,
+      "bias_months": 1.7949749679565423,
+      "prediction_mean_months": 133.89047496795655,
+      "prediction_std_months": 40.50895213203398,
+      "bootstrap_95_ci_mae": [
+        4.539650540618895,
+        5.661576935691833
+      ],
+      "by_sex": {
+        "F": {
+          "count": 100,
+          "mae_months": 5.388929409790039,
+          "rmse_months": 6.579565381785697,
+          "median_absolute_error_months": 4.581580352783199,
+          "accuracy_within_6_months": 0.59,
+          "accuracy_within_12_months": 0.95,
+          "accuracy_within_18_months": 1.0,
+          "bias_months": 1.4003022369384757,
+          "prediction_mean_months": 125.30690223693847,
+          "prediction_std_months": 38.74316166200829
+        },
+        "M": {
+          "count": 100,
+          "mae_months": 4.8010198059082025,
+          "rmse_months": 6.447062787117953,
+          "median_absolute_error_months": 3.665122375488288,
+          "accuracy_within_6_months": 0.72,
+          "accuracy_within_12_months": 0.96,
+          "accuracy_within_18_months": 0.96,
+          "bias_months": 2.189647698974609,
+          "prediction_mean_months": 142.4740476989746,
+          "prediction_std_months": 40.41735256600779
+        }
+      }
+    },
+    "D3_5FOLD": {
+      "count": 200,
+      "mae_months": 4.988445799255371,
+      "rmse_months": 6.297464791038627,
+      "median_absolute_error_months": 3.952866516113282,
+      "accuracy_within_6_months": 0.65,
+      "accuracy_within_12_months": 0.945,
+      "accuracy_within_18_months": 0.99,
+      "bias_months": 1.420831651687621,
+      "prediction_mean_months": 133.5163316516876,
+      "prediction_std_months": 41.002378360184956,
+      "bootstrap_95_ci_mae": [
+        4.469008908538816,
+        5.533636422338485
+      ],
+      "by_sex": {
+        "F": {
+          "count": 100,
+          "mae_months": 5.07820889930725,
+          "rmse_months": 6.365953242216356,
+          "median_absolute_error_months": 4.328574066162119,
+          "accuracy_within_6_months": 0.62,
+          "accuracy_within_12_months": 0.93,
+          "accuracy_within_18_months": 1.0,
+          "bias_months": 1.6970639080047596,
+          "prediction_mean_months": 125.60366390800476,
+          "prediction_std_months": 39.90451311244315
+        },
+        "M": {
+          "count": 100,
+          "mae_months": 4.8986826992034915,
+          "rmse_months": 6.2282232544006835,
+          "median_absolute_error_months": 3.7968107604980403,
+          "accuracy_within_6_months": 0.68,
+          "accuracy_within_12_months": 0.96,
+          "accuracy_within_18_months": 0.98,
+          "bias_months": 1.1445993953704825,
+          "prediction_mean_months": 141.42899939537045,
+          "prediction_std_months": 40.55612498746079
+        }
+      }
+    },
+    "C3_ROI_5FOLD": {
+      "count": 200,
+      "mae_months": 4.218858639526367,
+      "rmse_months": 5.42529352585733,
+      "median_absolute_error_months": 3.2839912414550767,
+      "accuracy_within_6_months": 0.745,
+      "accuracy_within_12_months": 0.965,
+      "accuracy_within_18_months": 1.0,
+      "bias_months": 0.3470308456420891,
+      "prediction_mean_months": 132.4425308456421,
+      "prediction_std_months": 42.21166411133188,
+      "bootstrap_95_ci_mae": [
+        3.752067441978454,
+        4.708889270992278
+      ],
+      "by_sex": {
+        "F": {
+          "count": 100,
+          "mae_months": 4.592300831604004,
+          "rmse_months": 5.7748792652823395,
+          "median_absolute_error_months": 3.6328733825683557,
+          "accuracy_within_6_months": 0.7,
+          "accuracy_within_12_months": 0.96,
+          "accuracy_within_18_months": 1.0,
+          "bias_months": 0.14100578155517468,
+          "prediction_mean_months": 124.04760578155516,
+          "prediction_std_months": 41.11259691699515
+        },
+        "M": {
+          "count": 100,
+          "mae_months": 3.845416447448731,
+          "rmse_months": 5.051572938682667,
+          "median_absolute_error_months": 2.8612805175781375,
+          "accuracy_within_6_months": 0.79,
+          "accuracy_within_12_months": 0.97,
+          "accuracy_within_18_months": 1.0,
+          "bias_months": 0.5530559097290034,
+          "prediction_mean_months": 140.837455909729,
+          "prediction_std_months": 41.622758380160484
+        }
+      }
+    },
+    "E1_P7_plus_D3_50_50": {
+      "count": 200,
+      "mae_months": 4.923852016448975,
+      "rmse_months": 6.211525680056698,
+      "median_absolute_error_months": 4.169601593017575,
+      "accuracy_within_6_months": 0.69,
+      "accuracy_within_12_months": 0.945,
+      "accuracy_within_18_months": 0.99,
+      "bias_months": 1.2341146135330197,
+      "prediction_mean_months": 133.329614613533,
+      "prediction_std_months": 41.044387570843,
+      "bootstrap_95_ci_mae": [
+        4.407727098982335,
+        5.455212009513378
+      ],
+      "by_sex": {
+        "F": {
+          "count": 100,
+          "mae_months": 5.037134240150452,
+          "rmse_months": 6.2661167974542495,
+          "median_absolute_error_months": 4.556238956451411,
+          "accuracy_within_6_months": 0.66,
+          "accuracy_within_12_months": 0.95,
+          "accuracy_within_18_months": 1.0,
+          "bias_months": 1.2484075178146365,
+          "prediction_mean_months": 125.15500751781462,
+          "prediction_std_months": 39.92241185895865
+        },
+        "M": {
+          "count": 100,
+          "mae_months": 4.810569792747498,
+          "rmse_months": 6.156450505662281,
+          "median_absolute_error_months": 3.8715252685546915,
+          "accuracy_within_6_months": 0.72,
+          "accuracy_within_12_months": 0.94,
+          "accuracy_within_18_months": 0.98,
+          "bias_months": 1.219821709251403,
+          "prediction_mean_months": 141.50422170925142,
+          "prediction_std_months": 40.51957713446776
+        }
+      }
+    },
+    "E1_P7_plus_C3_50_50": {
+      "count": 200,
+      "mae_months": 4.4853595611572254,
+      "rmse_months": 5.705608982490787,
+      "median_absolute_error_months": 3.76549690246582,
+      "accuracy_within_6_months": 0.72,
+      "accuracy_within_12_months": 0.95,
+      "accuracy_within_18_months": 1.0,
+      "bias_months": 0.6972142105102538,
+      "prediction_mean_months": 132.79271421051027,
+      "prediction_std_months": 41.64285464751116,
+      "bootstrap_95_ci_mae": [
+        4.011638601589201,
+        4.985512157001494
+      ],
+      "by_sex": {
+        "F": {
+          "count": 100,
+          "mae_months": 4.738550076293943,
+          "rmse_months": 5.922736623095651,
+          "median_absolute_error_months": 4.087417297363281,
+          "accuracy_within_6_months": 0.66,
+          "accuracy_within_12_months": 0.95,
+          "accuracy_within_18_months": 1.0,
+          "bias_months": 0.470378454589843,
+          "prediction_mean_months": 124.37697845458986,
+          "prediction_std_months": 40.522173512296455
+        },
+        "M": {
+          "count": 100,
+          "mae_months": 4.232169046020508,
+          "rmse_months": 5.479884908973968,
+          "median_absolute_error_months": 3.2751889801025325,
+          "accuracy_within_6_months": 0.78,
+          "accuracy_within_12_months": 0.95,
+          "accuracy_within_18_months": 1.0,
+          "bias_months": 0.9240499664306645,
+          "prediction_mean_months": 141.20844996643066,
+          "prediction_std_months": 41.04337855976123
+        }
+      }
+    },
+    "ALL_6_MODEL_FAMILIES_EQUAL": {
+      "count": 200,
+      "mae_months": 4.862957365036011,
+      "rmse_months": 6.071926611553687,
+      "median_absolute_error_months": 4.052443173726392,
+      "accuracy_within_6_months": 0.695,
+      "accuracy_within_12_months": 0.955,
+      "accuracy_within_18_months": 0.995,
+      "bias_months": 1.134032341957091,
+      "prediction_mean_months": 133.22953234195708,
+      "prediction_std_months": 40.852266344198135,
+      "bootstrap_95_ci_mae": [
+        4.368175471684932,
+        5.376070131584802
+      ],
+      "by_sex": {
+        "F": {
+          "count": 100,
+          "mae_months": 5.127311629803975,
+          "rmse_months": 6.318721604592127,
+          "median_absolute_error_months": 4.463776423136409,
+          "accuracy_within_6_months": 0.65,
+          "accuracy_within_12_months": 0.95,
+          "accuracy_within_18_months": 1.0,
+          "bias_months": 1.40004297199249,
+          "prediction_mean_months": 125.30664297199247,
+          "prediction_std_months": 39.576577750621446
+        },
+        "M": {
+          "count": 100,
+          "mae_months": 4.598603100268046,
+          "rmse_months": 5.814666184386544,
+          "median_absolute_error_months": 3.879886951446542,
+          "accuracy_within_6_months": 0.74,
+          "accuracy_within_12_months": 0.96,
+          "accuracy_within_18_months": 0.99,
+          "bias_months": 0.8680217119216921,
+          "prediction_mean_months": 141.1524217119217,
+          "prediction_std_months": 40.57050002805272
+        }
+      }
+    }
+  },
+  "artifacts": {
+    "predictions_csv": "artifact_eval\\outputs\\artifact_only_200_manual_v3\\artifact_only_200_all_model_predictions.csv"
+  }
+}
