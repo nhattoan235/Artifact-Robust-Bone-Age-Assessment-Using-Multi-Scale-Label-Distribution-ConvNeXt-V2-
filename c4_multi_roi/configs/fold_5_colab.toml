@@ -1,0 +1,47 @@
+[data]
+manifest = "c4_multi_roi/cache/C4_MULTI_ROI_V1/manifest.csv"
+image_root = "."
+validation_fold = 5
+expected_rows = 14036
+expected_manifest_sha256 = "d7ccc0d12a6779962d1d8370d03aaf72322ab62877cfbed40671503f5fbe29c5"
+
+[run]
+run_id = "C4_MULTI_ROI_V1_FOLD_5"
+output_root = "/content/c4_local_runs/C4_MULTI_ROI_V1"
+checkpoint_mirror_root = "/content/drive/MyDrive/data/c4_multi_roi_runs"
+seed = 42
+device = "auto"
+deterministic = true
+allow_tf32 = true
+
+[model]
+view_mode = "global_plus_six"
+pretrained = true
+image_size = 512
+sex_embedding_dim = 16
+head_hidden_dim = 256
+dropout = 0.2
+target_mean = 127.23833273957962
+target_std = 41.248974358112605
+augmentation = "light"
+
+[training]
+epochs = 35
+batch_size = 1
+grad_accum_steps = 36
+learning_rate = 0.0002
+min_learning_rate = 0.000001
+weight_decay = 0.05
+smooth_l1_beta_months = 3.0
+gradient_clip_norm = 5.0
+patience = 8
+min_delta_mae = 0.01
+amp = true
+amp_dtype = "auto"
+amp_init_scale = 4096.0
+
+[operations]
+num_workers = 2
+log_every_steps = 25
+checkpoint_every_steps = 250
+checkpoint_every_minutes = 15.0
