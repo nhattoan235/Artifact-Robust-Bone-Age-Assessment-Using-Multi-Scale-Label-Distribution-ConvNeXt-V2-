@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "protocol": "C4 V2 global plus six ROI, locked five-fold OOF",
+  "test_used": false,
+  "count": 14024,
+  "mae": 6.639306065156266,
+  "rmse": 8.81567326410905,
+  "manifest_sha256": "d56634f084163bd360a3b43847958869fdc5fa3dcf19d1aae1836f441e612b92",
+  "device": "cuda",
+  "folds_run": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ]
+}

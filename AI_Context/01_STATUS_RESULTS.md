@@ -81,6 +81,20 @@ MAE theo fold: 5,119659; 5,318364; 5,188306; 4,822037; 5,279186. Input audit PAS
   Không dùng kết quả này để đổi trọng số hoặc chọn model.
 - Báo cáo đầy đủ: `AI_Context/24_EXPERIMENT_C_C3_ROI_FINAL_REPORT.md`.
 
+### C3-ROI-TTA và E1-TTA ensemble (2026-09-03)
+
+- Đã chạy đủ 14.036 OOF, 5 fold × 10 TTA view; không đọc test.
+- C3-ROI-TTA đạt MAE **6,325576**, RMSE 8,513483, median AE 4,859656.
+- `0,5 × E1-TTA + 0,5 × C3-ROI-TTA` đạt MAE **6,117080**, RMSE 8,277255,
+  median AE 4,633250.
+- Cải thiện so với E1-TTA là **0,093366 tháng**, CI paired
+  `[-0,120367; -0,067429]`; cải thiện so với E1-TTA + C3 raw là
+  **0,028678 tháng**, CI `[-0,042745; -0,014068]`.
+- Kết quả là ứng viên ensemble ROI dương tính; chưa đạt gate cải thiện tối thiểu
+  0,10 tháng đã đặt trước.
+- Báo cáo: `AI_Context/26_MODEL_FAMILY_REPORT.md` và
+  `c3_roi/outputs/C3_ROI_TTA_OOF/C3_ROI_TTA_OOF_report.json`.
+
 ## Điểm tốt
 
 - Split chính thức 12.611 train / 1.425 validation / 200 test được kiểm tra ID, ảnh, duplicate, hash và leakage.

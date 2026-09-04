@@ -1,0 +1,107 @@
+{
+  "status": "PASS",
+  "protocol": "development OOF only; 5-fold C3-ROI; rotations -10,-5,0,5,10 x flip/no-flip; fixed 50/50 E1-TTA + C3-ROI-TTA",
+  "test_accessed": false,
+  "input_rows": 14036,
+  "tta": {
+    "rotations": [
+      -10.0,
+      -5.0,
+      0.0,
+      5.0,
+      10.0
+    ],
+    "flip_values": [
+      false,
+      true
+    ],
+    "amp": true
+  },
+  "fold_inference": {
+    "1": {
+      "count": 2808,
+      "tta_views": 10
+    },
+    "2": {
+      "count": 2807,
+      "tta_views": 10
+    },
+    "3": {
+      "count": 2807,
+      "tta_views": 10
+    },
+    "4": {
+      "count": 2807,
+      "tta_views": 10
+    },
+    "5": {
+      "count": 2807,
+      "tta_views": 10
+    }
+  },
+  "metrics": {
+    "e1_tta": {
+      "mae_months": 6.210446212895747,
+      "rmse_months": 8.382442855850103,
+      "median_absolute_error_months": 4.74773635864258,
+      "accuracy_within_6_months": 0.5973211741236819,
+      "accuracy_within_12_months": 0.8693359931604445,
+      "accuracy_within_18_months": 0.9582502137361072,
+      "signed_bias_months": -0.09300814088031616
+    },
+    "c3_raw": {
+      "mae_months": 6.43734888189299,
+      "rmse_months": 8.649621736230008,
+      "median_absolute_error_months": 4.9375,
+      "accuracy_within_6_months": 0.5849244799088059,
+      "accuracy_within_12_months": 0.860002849814762,
+      "accuracy_within_18_months": 0.9552579082359647,
+      "signed_bias_months": -0.19628238324665145
+    },
+    "c3_tta": {
+      "mae_months": 6.3255764197814015,
+      "rmse_months": 8.513483024695569,
+      "median_absolute_error_months": 4.859655761718756,
+      "accuracy_within_6_months": 0.5884867483613565,
+      "accuracy_within_12_months": 0.8648475349102308,
+      "accuracy_within_18_months": 0.9564690795098318,
+      "signed_bias_months": -0.19888887995157056
+    },
+    "e1_tta_plus_c3_raw_50_50": {
+      "mae_months": 6.145757720272708,
+      "rmse_months": 8.309436089189028,
+      "median_absolute_error_months": 4.655223846435547,
+      "accuracy_within_6_months": 0.6029495582787119,
+      "accuracy_within_12_months": 0.8734682245654033,
+      "accuracy_within_18_months": 0.9591764035337703,
+      "signed_bias_months": -0.1446452620634838
+    },
+    "e1_tta_plus_c3_tta_50_50": {
+      "mae_months": 6.117080001051048,
+      "rmse_months": 8.277254659611856,
+      "median_absolute_error_months": 4.6332504272460895,
+      "accuracy_within_6_months": 0.60423197492163,
+      "accuracy_within_12_months": 0.8743231689940154,
+      "accuracy_within_18_months": 0.9589626674266173,
+      "signed_bias_months": -0.14594851041594334
+    }
+  },
+  "paired_bootstrap_delta_vs_e1_tta": {
+    "estimate_months": -0.09336621184470006,
+    "lower_95_months": -0.1203672921015483,
+    "upper_95_months": -0.06742860037671042
+  },
+  "paired_bootstrap_delta_vs_e1_tta_plus_c3_raw": {
+    "estimate_months": -0.028677719221661412,
+    "lower_95_months": -0.042745220531388524,
+    "upper_95_months": -0.014068038067473964
+  },
+  "source_sha256": {
+    "e1_tta_csv": "659837337640eab62cf5b225b88367cd098a374d87a965188b3a8dfb8c82f88a"
+  },
+  "notes": [
+    "No RSNA test image or test label was read.",
+    "The 50/50 ensemble weight was fixed before evaluating this OOF result.",
+    "The candidate is retained only if it improves OOF with the locked statistical gates."
+  ]
+}

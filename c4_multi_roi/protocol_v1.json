@@ -1,0 +1,90 @@
+{
+  "protocol_id": "C4_MULTI_ROI_V1",
+  "status": "FROZEN_BEFORE_MODEL_TRAINING",
+  "seed": 42,
+  "source_dataset": {
+    "name": "RSNA development",
+    "expected_unique_image_ids": 14036,
+    "test_ids_allowed": false,
+    "fold_source": "c3_roi/manifests",
+    "folds": 5
+  },
+  "views": {
+    "global_name": "global",
+    "roi_names": [
+      "carpal",
+      "mcp_thumb",
+      "mcp_index",
+      "mcp_middle",
+      "mcp_ring",
+      "mcp_little"
+    ],
+    "locked_order": [
+      "global",
+      "carpal",
+      "mcp_thumb",
+      "mcp_index",
+      "mcp_middle",
+      "mcp_ring",
+      "mcp_little"
+    ],
+    "image_size": 512,
+    "jpeg_quality": 95
+  },
+  "roi_geometry": {
+    "version": "hand-mask-normalized-v1",
+    "uses_target_age": false,
+    "uses_sex": false,
+    "uses_model_prediction": false,
+    "uses_test_data": false,
+    "pilot_image_count": 100,
+    "minimum_complete_acceptance_rate": 0.9,
+    "fallback_policy": "keep_source_id_and_mark_quality_flag"
+  },
+  "model": {
+    "primary_view_mode": "global_plus_six",
+    "ablation_view_modes": ["global_only", "six_roi_only"],
+    "architecture": "convnext_tiny_shared_views",
+    "pretrained": true,
+    "sex_embedding_dim": 16,
+    "head_hidden_dim": 256,
+    "dropout": 0.2,
+    "attention_enabled": false
+  },
+  "training": {
+    "target_mean": 127.23833273957962,
+    "target_std": 41.248974358112605,
+    "loss": "smooth_l1",
+    "smooth_l1_beta_months": 3.0,
+    "optimizer": "adamw",
+    "learning_rate": 0.0002,
+    "minimum_learning_rate": 0.000001,
+    "weight_decay": 0.05,
+    "scheduler": "cosine",
+    "epochs": 35,
+    "effective_source_batch_target": 36,
+    "gradient_clip_norm": 5.0,
+    "early_stopping_patience": 8,
+    "early_stopping_min_delta_mae": 0.01,
+    "amp": true
+  },
+  "selection": {
+    "screening_fold": 1,
+    "clean_noninferiority_months": 0.1,
+    "minimum_screening_gain_months": 0.05,
+    "unregistered_fourth_model_allowed": false
+  },
+  "confirmation": {
+    "folds": 5,
+    "expected_oof_rows": 14036,
+    "primary_metric": "mae_months",
+    "paired_bootstrap_samples": 5000,
+    "paired_bootstrap_seed": 42,
+    "accept_if_delta_ci95_upper_below_zero": true
+  },
+  "test_policy": {
+    "run_only_after_oof_lock": true,
+    "label": "locked exploratory re-evaluation",
+    "may_tune_from_test": false
+  }
+}
