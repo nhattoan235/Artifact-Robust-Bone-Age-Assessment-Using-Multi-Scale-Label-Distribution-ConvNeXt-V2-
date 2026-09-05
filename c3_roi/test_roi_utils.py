@@ -23,6 +23,16 @@ class RoiUtilsTests(unittest.TestCase):
         self.assertEqual(record["roi_mode"], "mask_bbox")
         self.assertEqual(record["roi_bbox"], "7,18,36,24")
 
+    def test_valid_mask_bbox_uses_twelve_percent_default_margin(self) -> None:
+        record = build_roi_record(
+            image_id="9",
+            width=100,
+            height=80,
+            bbox="10,20,30,20",
+            fallback_reason="ok",
+        )
+        self.assertEqual(record["roi_bbox"], "6,18,38,24")
+
 
     def test_failed_mask_uses_full_image_without_dropping_sample(self) -> None:
         record = build_roi_record(
@@ -35,6 +45,39 @@ class RoiUtilsTests(unittest.TestCase):
         self.assertEqual(record["roi_mode"], "global_fallback")
         self.assertEqual(record["roi_bbox"], "0,0,100,80")
         self.assertEqual(record["fallback_reason"], "segment_hand_failed")
+
+    def test_border_rescue_bbox_is_kept_as_a_valid_roi(self) -> None:
+        record = build_roi_record(
+            image_id="10",
+            width=100,
+            height=80,
+            bbox="10,20,30,20",
+            fallback_reason="border_rescue",
+        )
+        self.assertEqual(record["roi_mode"], "mask_bbox")
+
+    def test_malformed_bbox_becomes_invalid_bbox_fallback(self) -> None:
+        record = build_roi_record(
+            image_id="11",
+            width=100,
+            height=80,
+            bbox="not-a-bbox",
+            fallback_reason="ok",
+        )
+        self.assertEqual(record["roi_mode"], "global_fallback")
+        self.assertEqual(record["roi_bbox"], "0,0,100,80")
+        self.assertEqual(record["fallback_reason"], "invalid_bbox")
+
+    def test_empty_bbox_with_success_reason_becomes_invalid_bbox_fallback(self) -> None:
+        record = build_roi_record(
+            image_id="12",
+            width=100,
+            height=80,
+            bbox="",
+            fallback_reason="ok",
+        )
+        self.assertEqual(record["roi_mode"], "global_fallback")
+        self.assertEqual(record["fallback_reason"], "invalid_bbox")
 
 
 if __name__ == "__main__":

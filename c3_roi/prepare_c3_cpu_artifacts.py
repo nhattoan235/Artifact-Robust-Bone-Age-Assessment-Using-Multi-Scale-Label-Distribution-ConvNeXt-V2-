@@ -106,7 +106,7 @@ def main() -> int:
             "keep_all_development_rows": True,
             "test_masks_used": False,
             "fallback_is_explicit": True,
-            "roi_margin": 0.08,
+            "roi_margin": 0.12,
         },
     }
     output_root = args.cache_root / "cpu_artifacts"

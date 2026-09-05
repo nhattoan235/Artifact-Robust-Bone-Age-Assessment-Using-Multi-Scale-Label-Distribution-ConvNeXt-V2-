@@ -3,6 +3,9 @@ from __future__ import annotations
 from typing import Any
 
 
+ROI_SUCCESS_REASONS = frozenset({"ok", "border_rescue"})
+
+
 def parse_bbox(value: str | None) -> tuple[int, int, int, int] | None:
     if not value or not value.strip():
         return None
@@ -52,10 +55,19 @@ def build_roi_record(
     height: int,
     bbox: str | None,
     fallback_reason: str,
-    margin: float = 0.08,
+    margin: float = 0.12,
 ) -> dict[str, Any]:
-    parsed = parse_bbox(bbox)
-    if parsed is not None and fallback_reason == "ok":
+    parsed = None
+    roi_fallback_reason = fallback_reason
+    if fallback_reason in ROI_SUCCESS_REASONS:
+        try:
+            parsed = parse_bbox(bbox)
+        except (TypeError, ValueError):
+            roi_fallback_reason = "invalid_bbox"
+        if parsed is None:
+            roi_fallback_reason = "invalid_bbox"
+
+    if parsed is not None and fallback_reason in ROI_SUCCESS_REASONS:
         roi_bbox = expand_bbox(parsed, width, height, margin)
         roi_mode = "mask_bbox"
     else:
@@ -65,5 +77,5 @@ def build_roi_record(
         "image_id": image_id,
         "roi_mode": roi_mode,
         "roi_bbox": format_bbox(roi_bbox),
-        "fallback_reason": fallback_reason,
+        "fallback_reason": roi_fallback_reason,
     }
