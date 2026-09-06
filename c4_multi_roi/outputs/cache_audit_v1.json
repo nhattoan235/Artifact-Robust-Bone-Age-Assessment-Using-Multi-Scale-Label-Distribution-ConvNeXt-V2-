@@ -1,0 +1,18 @@
+{
+  "pass": true,
+  "rows": 14036,
+  "unique_ids": 14036,
+  "roi_records": 84216,
+  "duplicate_ids": [],
+  "duplicate_roi_paths": [],
+  "missing_fields": [],
+  "missing_files": [],
+  "unreadable_files": [],
+  "hash_mismatch": [],
+  "geometry_quality_counts": {
+    "ok": 11441,
+    "fallback_empty_mask": 2595
+  },
+  "expected_rows": 14036,
+  "manifest_sha256": "d7ccc0d12a6779962d1d8370d03aaf72322ab62877cfbed40671503f5fbe29c5"
+}

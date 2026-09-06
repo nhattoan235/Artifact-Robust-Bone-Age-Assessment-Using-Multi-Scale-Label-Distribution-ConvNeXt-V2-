@@ -1,6 +1,7 @@
 """Prepare the locked C3 ROI preprocessing for the 200-image test set."""
 from __future__ import annotations
 
+import argparse
 import csv
 import hashlib
 import sys
@@ -10,9 +11,10 @@ import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
 MASK_CODE = Path(r"D:\Learning\DoAn Tot nghiep\gpt-image-bone-age-synthesis\models\cau_hinh_C")
 sys.path.insert(0, str(MASK_CODE))
-from mask_generator import segment_hand  # noqa: E402
+from c3_roi.segmentation import segment_hand_with_fallback  # noqa: E402
 
 from roi_utils import build_roi_record
 
@@ -26,8 +28,16 @@ def sha256(path: Path) -> str:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--output-root",
+        type=Path,
+        default=ROOT / "c3_roi/cache/C3_ROI_V1_TEST",
+        help="versioned output directory for the test ROI cache",
+    )
+    args = parser.parse_args()
     image_root = ROOT / "data/goc/boneage-test-dataset/boneage-test-dataset"
-    out_root = ROOT / "c3_roi/cache/C3_ROI_V1_TEST"
+    out_root = args.output_root
     out_root.mkdir(parents=True, exist_ok=True)
     roi_dir = out_root / "roi"
     roi_dir.mkdir(parents=True, exist_ok=True)
@@ -39,8 +49,7 @@ def main() -> None:
         image_id = source.stem
         with Image.open(source) as image:
             gray = np.asarray(image.convert("L"))
-        _region, _hull, bbox = segment_hand(gray)
-        fallback = "ok" if bbox is not None else "segment_hand_failed"
+        _region, _hull, bbox, fallback = segment_hand_with_fallback(gray)
         record = build_roi_record(
             image_id=image_id, width=gray.shape[1], height=gray.shape[0],
             bbox="" if bbox is None else ",".join(str(int(v)) for v in bbox),
@@ -54,7 +63,7 @@ def main() -> None:
             "split": "test", "image_id": image_id, "source_image": str(source),
             "roi_image": str(destination), "source_sha256": sha256(source),
             "roi_sha256": sha256(destination), "roi_mode": record["roi_mode"],
-            "roi_bbox": record["roi_bbox"], "fallback_reason": fallback,
+            "roi_bbox": record["roi_bbox"], "fallback_reason": record["fallback_reason"],
             "width": str(gray.shape[1]), "height": str(gray.shape[0]),
         })
         if index % 25 == 0 or index == len(images):

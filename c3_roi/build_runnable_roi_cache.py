@@ -40,6 +40,7 @@ def main() -> int:
     rows = read_rows(args.mask_root / "mask_manifest.csv")
     if args.limit is not None:
         rows = rows[: args.limit]
+    roi_dir = args.output_root / "roi"
     output_rows = []
     for index, row in enumerate(rows, start=1):
         source_path = resolve_path(row["source_image"])
@@ -55,8 +56,8 @@ def main() -> int:
             x, y, width, height = (int(value) for value in roi_record["roi_bbox"].split(","))
             crop = image.crop((x, y, x + width, y + height))
             split = row["split"]
-            relative_path = Path("c3_roi/cache/C3_ROI_V1/roi") / split / f"{row['image_id']}.png"
-            output_path = ROOT / relative_path
+            output_path = roi_dir / split / f"{row['image_id']}.png"
+            relative_path = output_path.relative_to(ROOT) if output_path.is_relative_to(ROOT) else output_path
             output_path.parent.mkdir(parents=True, exist_ok=True)
             # Không dùng PNG optimize ở bước chuẩn bị: với 14.036 ảnh X-quang,
             # tối ưu nén làm CPU trở thành nút thắt lớn mà không thay đổi pixel.
@@ -70,7 +71,7 @@ def main() -> int:
             "roi_path": str(relative_path),
             "roi_mode": roi_record["roi_mode"],
             "roi_bbox": roi_record["roi_bbox"],
-            "fallback_reason": row.get("fallback_reason", ""),
+            "fallback_reason": roi_record["fallback_reason"],
             "readable": "true",
         })
         if index % 500 == 0 or index == len(rows):

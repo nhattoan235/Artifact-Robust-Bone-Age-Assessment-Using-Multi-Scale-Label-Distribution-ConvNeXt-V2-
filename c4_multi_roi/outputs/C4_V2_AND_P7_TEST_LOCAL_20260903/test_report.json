@@ -1,0 +1,148 @@
+{
+  "status": "PASS",
+  "test_used_for_model_selection": false,
+  "protocol": "held-out RSNA test; fixed checkpoints and equal-weight five-fold ensemble",
+  "test_images": 200,
+  "device": "cuda",
+  "elapsed_minutes": 2.9063499216666364,
+  "original_whole_hand": {
+    "fold_metrics": [
+      {
+        "count": 200,
+        "mae": 5.120317168235779,
+        "rmse": 6.714169707248441,
+        "median_ae": 4.1439642906188965,
+        "accuracy_6m": 0.655,
+        "accuracy_12m": 0.945,
+        "accuracy_18m": 0.985,
+        "prediction_mean": 132.83883825302124,
+        "prediction_std": 42.19898784837558
+      },
+      {
+        "count": 200,
+        "mae": 5.317958598136902,
+        "rmse": 6.8495518419962025,
+        "median_ae": 4.4601593017578125,
+        "accuracy_6m": 0.655,
+        "accuracy_12m": 0.91,
+        "accuracy_18m": 0.99,
+        "prediction_mean": 132.38540649414062,
+        "prediction_std": 41.21251228387702
+      },
+      {
+        "count": 200,
+        "mae": 5.18856454372406,
+        "rmse": 6.799685130556646,
+        "median_ae": 3.9559173583984375,
+        "accuracy_6m": 0.665,
+        "accuracy_12m": 0.92,
+        "accuracy_18m": 0.99,
+        "prediction_mean": 133.05302776336669,
+        "prediction_std": 41.9491083804816
+      },
+      {
+        "count": 200,
+        "mae": 4.822122416496277,
+        "rmse": 6.193752186867062,
+        "median_ae": 3.9089279174804688,
+        "accuracy_6m": 0.68,
+        "accuracy_12m": 0.93,
+        "accuracy_18m": 0.995,
+        "prediction_mean": 132.41861618041992,
+        "prediction_std": 40.91282125924234
+      },
+      {
+        "count": 200,
+        "mae": 5.278679766654968,
+        "rmse": 6.66864866680561,
+        "median_ae": 4.326499938964844,
+        "accuracy_6m": 0.66,
+        "accuracy_12m": 0.905,
+        "accuracy_18m": 0.995,
+        "prediction_mean": 133.02756549835206,
+        "prediction_std": 40.58618381169356
+      }
+    ],
+    "ensemble_metrics": {
+      "count": 200,
+      "mae": 4.730288229942322,
+      "rmse": 6.028797689780501,
+      "median_ae": 4.135374450683599,
+      "accuracy_6m": 0.7,
+      "accuracy_12m": 0.94,
+      "accuracy_18m": 1.0,
+      "prediction_mean": 132.7446908378601,
+      "prediction_std": 41.28228790857124
+    }
+  },
+  "c4_global_plus_six_roi": {
+    "fold_metrics": [
+      {
+        "count": 200,
+        "mae": 5.091323552131652,
+        "rmse": 6.409994255286026,
+        "median_ae": 4.2309417724609375,
+        "accuracy_6m": 0.695,
+        "accuracy_12m": 0.92,
+        "accuracy_18m": 0.995,
+        "prediction_mean": 132.0357098007202,
+        "prediction_std": 42.093525147691444
+      },
+      {
+        "count": 200,
+        "mae": 5.212003741264343,
+        "rmse": 6.635691401701883,
+        "median_ae": 4.1446075439453125,
+        "accuracy_6m": 0.64,
+        "accuracy_12m": 0.925,
+        "accuracy_18m": 0.99,
+        "prediction_mean": 133.85587577819825,
+        "prediction_std": 41.181789851549894
+      },
+      {
+        "count": 200,
+        "mae": 5.231119132041931,
+        "rmse": 6.6580970881994475,
+        "median_ae": 4.147185325622559,
+        "accuracy_6m": 0.645,
+        "accuracy_12m": 0.93,
+        "accuracy_18m": 1.0,
+        "prediction_mean": 134.13298007965088,
+        "prediction_std": 42.35203874322374
+      },
+      {
+        "count": 200,
+        "mae": 4.738576331138611,
+        "rmse": 6.125840932130801,
+        "median_ae": 3.9929275512695312,
+        "accuracy_6m": 0.705,
+        "accuracy_12m": 0.945,
+        "accuracy_18m": 0.995,
+        "prediction_mean": 133.516243057251,
+        "prediction_std": 42.28879779296562
+      },
+      {
+        "count": 200,
+        "mae": 5.787473273277283,
+        "rmse": 7.26156577026364,
+        "median_ae": 4.920753479003906,
+        "accuracy_6m": 0.6,
+        "accuracy_12m": 0.895,
+        "accuracy_18m": 0.99,
+        "prediction_mean": 133.17886129379272,
+        "prediction_std": 41.11717995950648
+      }
+    ],
+    "ensemble_metrics": {
+      "count": 200,
+      "mae": 4.697834681510925,
+      "rmse": 5.985141937181706,
+      "median_ae": 3.8607040405273523,
+      "accuracy_6m": 0.685,
+      "accuracy_12m": 0.95,
+      "accuracy_18m": 1.0,
+      "prediction_mean": 133.3439340019226,
+      "prediction_std": 41.719349244728555
+    }
+  }
+}
