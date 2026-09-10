@@ -14,6 +14,7 @@ from torch.utils.data import Dataset, Sampler
 from torchvision.transforms import functional as TF
 from torchvision.transforms import InterpolationMode
 
+from .artifacts import apply_mild_artifact
 
 IMAGENET_MEAN = (0.485, 0.456, 0.406)
 IMAGENET_STD = (0.229, 0.224, 0.225)
@@ -69,6 +70,7 @@ class BoneAgeDataset(Dataset):
         sharpen_probability: float = 0.0,
         preprocessing: str = "none", preprocessed_root: str = "",
         image_root: str = "", image_normalization: str = "imagenet",
+        artifact_augmentation: str = "none", artifact_probability: float = 0.0,
     ):
         self.rows = rows
         self.image_size = image_size
@@ -94,6 +96,8 @@ class BoneAgeDataset(Dataset):
         self.preprocessed_root = Path(preprocessed_root) if preprocessed_root else None
         self.image_root = Path(image_root) if image_root else None
         self.image_normalization = image_normalization
+        self.artifact_augmentation = artifact_augmentation
+        self.artifact_probability = artifact_probability
 
     def __len__(self) -> int:
         return len(self.rows)
@@ -116,16 +120,24 @@ class BoneAgeDataset(Dataset):
                 image = TF.resize(image, [self.image_size, self.image_size], interpolation=InterpolationMode.BICUBIC, antialias=True)
                 if self.train and self.augmentation != "none":
                     image = self._augment(image, row["image_id"])
-                tensor = TF.pil_to_tensor(image).float().div_(255.0).repeat(3, 1, 1)
-                if self.image_normalization == "imagenet":
-                    tensor = TF.normalize(tensor, IMAGENET_MEAN, IMAGENET_STD)
-                elif self.image_normalization == "per_image_zscore":
-                    tensor = (tensor - tensor.mean()) / tensor.std().clamp_min(1e-6)
+                clean_image = image.copy()
+                artifact_applied = False
+                artifact_image = clean_image
+                if self.train and self.artifact_augmentation == "mild_v1":
+                    artifact_seed = self._artifact_seed(row["image_id"])
+                    artifact_rng = random.Random(artifact_seed)
+                    artifact_applied = artifact_rng.random() < self.artifact_probability
+                    if artifact_applied:
+                        artifact_image = apply_mild_artifact(
+                            clean_image, rng=artifact_rng, severity=1.0
+                        )
+                tensor = self._to_tensor(clean_image)
+                artifact_tensor = self._to_tensor(artifact_image)
         except Exception as exc:
             raise RuntimeError(f"Không đọc được ảnh {path}: {exc}") from exc
         age = float(row["bone_age_months"])
         sex = 1.0 if row["sex"] == "M" else 0.0
-        return {
+        item = {
             "image": tensor,
             "sex": torch.tensor([sex], dtype=torch.float32),
             "target_norm": torch.tensor((age - self.target_mean) / self.target_std, dtype=torch.float32),
@@ -133,11 +145,27 @@ class BoneAgeDataset(Dataset):
             "image_id": row["image_id"],
             "sex_text": row["sex"],
         }
+        if self.train and self.artifact_augmentation != "none":
+            item["artifact_image"] = artifact_tensor
+            item["artifact_applied"] = torch.tensor(artifact_applied, dtype=torch.bool)
+        return item
 
     def _rng(self, image_id: str) -> random.Random:
         token = f"{self.seed}|{self.epoch}|{image_id}|{self.augmentation}"
         value = int.from_bytes(hashlib.sha256(token.encode("utf-8")).digest()[:8], "big")
         return random.Random(value)
+
+    def _artifact_seed(self, image_id: str) -> int:
+        token = f"artifact|{self.seed}|{self.epoch}|{image_id}|{self.artifact_augmentation}"
+        return int.from_bytes(hashlib.sha256(token.encode("utf-8")).digest()[:8], "big")
+
+    def _to_tensor(self, image: Image.Image) -> torch.Tensor:
+        tensor = TF.pil_to_tensor(image).float().div_(255.0).repeat(3, 1, 1)
+        if self.image_normalization == "imagenet":
+            tensor = TF.normalize(tensor, IMAGENET_MEAN, IMAGENET_STD)
+        elif self.image_normalization == "per_image_zscore":
+            tensor = (tensor - tensor.mean()) / tensor.std().clamp_min(1e-6)
+        return tensor
 
     def _augment(self, image: Image.Image, image_id: str) -> Image.Image:
         """Augmentation xác định bởi seed+epoch+ID, nên resume không đổi ảnh."""
