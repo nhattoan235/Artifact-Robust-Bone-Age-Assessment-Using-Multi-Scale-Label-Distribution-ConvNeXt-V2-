@@ -209,6 +209,7 @@ class Trainer:
                 beta=cfg.smooth_l1_beta_months / cfg.target_std
             )
         self.last_distribution_loss = float("nan")
+        self.last_consistency_loss = float("nan")
 
         self.epoch = 0
         self.batch_in_epoch = 0
@@ -280,6 +281,8 @@ class Trainer:
             sharpen_probability=self.cfg.sharpen_probability,
             preprocessing=self.cfg.preprocessing, preprocessed_root=self.cfg.preprocessed_root,
             image_root=self.cfg.image_root, image_normalization=self.cfg.image_normalization,
+            artifact_augmentation=self.cfg.artifact_augmentation if train else "none",
+            artifact_probability=self.cfg.artifact_probability if train else 0.0,
         )
         sampler = (
             build_train_sampler(
@@ -415,28 +418,73 @@ class Trainer:
             target = batch["target_norm"].to(self.device, non_blocking=True)
             try:
                 with torch.autocast(device_type=self.device.type, dtype=self.amp_dtype, enabled=self.amp_enabled):
-                    output = self.model(images, sex)
+                    paired_artifact = (
+                        self.cfg.artifact_augmentation != "none"
+                        and "artifact_image" in batch
+                    )
+                    if paired_artifact:
+                        artifact_images = batch["artifact_image"].to(self.device, non_blocking=True)
+                        output = self.model(
+                            torch.cat([images, artifact_images], dim=0),
+                            torch.cat([sex, sex], dim=0),
+                        )
+                        batch_size = images.shape[0]
+                    else:
+                        output = self.model(images, sex)
+                        batch_size = 0
                     if isinstance(output, dict):
                         prediction = output["regression"]
-                        raw_loss = self.loss_fn(prediction, target)
+                        if paired_artifact:
+                            clean_prediction, artifact_prediction = prediction[:batch_size], prediction[batch_size:]
+                            raw_loss = 0.5 * (
+                                self.loss_fn(clean_prediction, target)
+                                + self.loss_fn(artifact_prediction, target)
+                            )
+                            self.last_consistency_loss = float(
+                                (clean_prediction - artifact_prediction).abs().mean().detach().cpu()
+                            )
+                            consistency_loss = (clean_prediction - artifact_prediction).abs().mean()
+                        else:
+                            raw_loss = self.loss_fn(prediction, target)
+                            consistency_loss = prediction.new_zeros(())
+                            self.last_consistency_loss = float("nan")
                         soft_target = gaussian_label_distribution(
-                            batch["target_months"].to(self.device, non_blocking=True),
+                            batch["target_months"].to(self.device, non_blocking=True)
+                            .repeat(2 if paired_artifact else 1),
                             self.cfg.age_class_count,
                             self.cfg.label_distribution_sigma,
                         )
                         log_probability = torch.log_softmax(
                             output["distribution_logits"].float(), dim=1
                         )
-                        distribution_loss = -(soft_target * log_probability).sum(dim=1).mean()
-                        combined_loss = raw_loss + self.cfg.label_distribution_weight * distribution_loss
+                        distribution_loss_all = -(soft_target * log_probability).sum(dim=1)
+                        distribution_loss = (
+                            0.5 * (distribution_loss_all[:batch_size].mean() + distribution_loss_all[batch_size:].mean())
+                            if paired_artifact else distribution_loss_all.mean()
+                        )
+                        combined_loss = (
+                            raw_loss
+                            + self.cfg.label_distribution_weight * distribution_loss
+                            + self.cfg.consistency_weight * consistency_loss
+                        )
                         self.last_distribution_loss = float(distribution_loss.detach().cpu())
                     else:
-                        prediction = output
-                        raw_loss = self.loss_fn(prediction, target)
-                        combined_loss = raw_loss
+                        if paired_artifact:
+                            clean_prediction, artifact_prediction = output[:batch_size], output[batch_size:]
+                            raw_loss = 0.5 * (
+                                self.loss_fn(clean_prediction, target)
+                                + self.loss_fn(artifact_prediction, target)
+                            )
+                            consistency_loss = (clean_prediction - artifact_prediction).abs().mean()
+                            self.last_consistency_loss = float(consistency_loss.detach().cpu())
+                        else:
+                            raw_loss = self.loss_fn(output, target)
+                            consistency_loss = output.new_zeros(())
+                            self.last_consistency_loss = float("nan")
+                        combined_loss = raw_loss + self.cfg.consistency_weight * consistency_loss
                         self.last_distribution_loss = float("nan")
                     loss = combined_loss / self.cfg.grad_accum_steps
-                if not torch.isfinite(raw_loss):
+                if not torch.isfinite(combined_loss):
                     self.logger.warning("ĐỎ", f"NaN/Inf loss tại epoch={self.epoch} batch={self.batch_in_epoch}")
                     self.save_checkpoint(self.run_dir / "last.ckpt")
                     raise FloatingPointError("Non-finite loss")
@@ -482,7 +530,8 @@ class Trainer:
                 remaining_images = max(0, len(self.train_rows) - self.samples_seen_in_epoch)
                 eta_seconds = remaining_images / max(throughput, 1e-6)
                 ldl_text = f" loss_ldl={self.last_distribution_loss:.4f}" if math.isfinite(self.last_distribution_loss) else ""
-                self.logger.info(f"epoch={self.epoch + 1} batch={self.batch_in_epoch} global_step={self.global_step} loss_reg_months={self.epoch_loss_sum / self.epoch_loss_count:.4f}{ldl_text} lr={self.optimizer.param_groups[0]['lr']:.8f} grad_norm={self.last_grad_norm:.4f} throughput={throughput:.2f} img/s eta_seconds={eta_seconds:.1f} gpu_alloc={allocated:.1f}MiB gpu_reserved={reserved:.1f}MiB skipped_batches=0")
+                consistency_text = f" loss_consistency={self.last_consistency_loss:.4f}" if math.isfinite(self.last_consistency_loss) else ""
+                self.logger.info(f"epoch={self.epoch + 1} batch={self.batch_in_epoch} global_step={self.global_step} loss_reg_months={self.epoch_loss_sum / self.epoch_loss_count:.4f}{ldl_text}{consistency_text} lr={self.optimizer.param_groups[0]['lr']:.8f} grad_norm={self.last_grad_norm:.4f} throughput={throughput:.2f} img/s eta_seconds={eta_seconds:.1f} gpu_alloc={allocated:.1f}MiB gpu_reserved={reserved:.1f}MiB skipped_batches=0")
         return self.epoch_loss_sum / self.epoch_loss_count
 
     @torch.inference_mode()

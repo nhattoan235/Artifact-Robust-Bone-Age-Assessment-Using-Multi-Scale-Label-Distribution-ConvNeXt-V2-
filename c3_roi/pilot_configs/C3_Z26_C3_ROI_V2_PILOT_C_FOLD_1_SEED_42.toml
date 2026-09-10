@@ -1,0 +1,77 @@
+[data]
+train_manifest = "/content/C3_Z26_C3_ROI_V2/manifests/fold_1_train.csv"
+val_manifest = "/content/C3_Z26_C3_ROI_V2/manifests/fold_1_validation.csv"
+expected_train_hash = "bd104dee8d024f7d4c3af09e7f77fe9bdcc51e7eef85f7a21231b3550cf45bdf"
+expected_val_hash = "d03e7faa21651d2c5d53ae31ce407a0b5a22d9f2168d2c836133012c098c4c0a"
+expected_train_count = 11228
+expected_val_count = 2808
+image_root = "/content/C3_Z26_COMBO_V2"
+
+[run]
+run_id = "C3_Z26_C3_ROI_V2_PILOT_C_FOLD_1_SEED_42"
+output_root = "/content/C3_Z26_C3_ROI_V2_PILOTS/runs"
+checkpoint_mirror_root = "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs"
+seed = 42
+device = "auto"
+deterministic = true
+allow_tf32 = true
+
+[model]
+architecture = "convnext_tiny_ldl"
+sex_mode = "embedding"
+pretrained = true
+image_size = 512
+sex_embedding_dim = 16
+head_hidden_dim = 256
+dropout = 0.2
+target_mean = 127.23833273957962
+target_std = 41.248974358112605
+age_class_count = 229
+label_distribution_sigma = 2.0
+label_distribution_weight = 0.2
+regression_inference_weight = 0.5
+augmentation = "light"
+horizontal_flip_probability = 0.5
+rotation_degrees = 7.0
+translation_fraction = 0.03
+scale_min = 0.95
+scale_max = 1.05
+brightness_delta = 0.10
+contrast_delta = 0.10
+gamma_min = 0.90
+gamma_max = 1.10
+artifact_augmentation = "mild_v1"
+artifact_probability = 1.0
+consistency_weight = 0.30
+preprocessing = "none"
+image_normalization = "imagenet"
+
+[training]
+epochs = 35
+batch_size = 18
+grad_accum_steps = 2
+learning_rate = 0.0002
+min_learning_rate = 0.000001
+weight_decay = 0.05
+optimizer_name = "adamw"
+scheduler_name = "cosine"
+smooth_l1_beta_months = 3.0
+regression_loss = "smooth_l1"
+sampling_strategy = "permutation"
+gradient_clip_norm = 5.0
+patience = 8
+min_delta_mae = 0.01
+amp = true
+amp_dtype = "float16"
+amp_init_scale = 4096.0
+
+[operations]
+num_workers = 2
+log_every_steps = 25
+checkpoint_every_steps = 250
+checkpoint_every_minutes = 5.0
+periodic_keep = 2
+best_keep = 3
+
+[warnings]
+age_bins = [0, 60, 120, 180, 229]

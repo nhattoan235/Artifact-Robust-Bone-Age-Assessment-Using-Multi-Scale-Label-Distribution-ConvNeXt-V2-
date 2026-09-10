@@ -47,6 +47,9 @@ class Config:
     shear_degrees: float = 0.0
     clahe_probability: float = 0.0
     sharpen_probability: float = 0.0
+    artifact_augmentation: str = "none"
+    artifact_probability: float = 0.0
+    consistency_weight: float = 0.0
     preprocessing: str = "none"
     preprocessed_root: str = "p3_preprocessing/outputs/official_mask_v1/cache"
     image_normalization: str = "imagenet"
@@ -123,6 +126,12 @@ def load_config(path: str | Path) -> Config:
     cfg = Config(**flat)
     if cfg.augmentation not in {"none", "flip", "light", "deeplasia_fancy"}:
         raise ValueError("augmentation phải là none, flip, light hoặc deeplasia_fancy")
+    if cfg.artifact_augmentation not in {"none", "mild_v1"}:
+        raise ValueError("artifact_augmentation phải là none hoặc mild_v1")
+    if not 0.0 <= cfg.artifact_probability <= 1.0:
+        raise ValueError("artifact_probability phải trong [0, 1]")
+    if cfg.consistency_weight < 0:
+        raise ValueError("consistency_weight phải >= 0")
     if cfg.preprocessing not in {"none", "official_mask_v1", "deeplasia_mask_v1", "deeplasia_mask_histogram_v1"}:
         raise ValueError("preprocessing không được hỗ trợ")
     if cfg.image_normalization not in {"imagenet", "per_image_zscore", "zero_one"}:
