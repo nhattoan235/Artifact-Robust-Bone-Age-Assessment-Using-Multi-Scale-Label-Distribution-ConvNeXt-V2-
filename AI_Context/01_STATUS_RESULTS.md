@@ -1,126 +1,83 @@
-# Trạng thái và kết quả định lượng
+# Trạng thái và kết quả hiện hành
 
-## P7 – 5-fold OOF (kết quả phát triển chính)
+> Cập nhật: 2026-09-11
+> Đơn vị MAE: tháng. Đây là nguồn trạng thái chính; báo cáo dài chỉ dùng để kiểm chứng chi tiết.
 
-Artifact: `p7_final_v3/P7_OOF_report.json`, `p7_final_v3/P7_5FOLD_AUDIT.txt`.
+## Nhãn độ tin cậy
 
-| Chỉ số | Kết quả |
-|---|---:|
-| Số mẫu OOF / ID duy nhất | 14.036 / 14.036 |
-| Pooled MAE | **6,316691 tháng** |
-| RMSE | 8,519420 |
-| Median absolute error | 4,875 |
-| Accuracy ±6 / ±12 / ±18 tháng | 59,01% / 86,73% / 95,53% |
-| Bootstrap 95% CI của MAE | [6,224638; 6,411327] |
-| Test dùng để chọn mô hình | Không |
+- **VERIFIED:** có prediction/report hoặc log đủ để kiểm tra lại.
+- **PARTIAL:** mới có một số fold hoặc log giữa chừng; không dùng để kết luận.
+- **HISTORICAL:** kết quả hợp lệ của nhánh cũ, không còn là quyết định hiện hành.
 
-MAE từng fold: F1 6,298710; F2 6,196835; F3 6,411474; F4 6,348768; F5 6,327675. Mean 6,316692, SD 0,078775. Tất cả manifest/model tensor audit đều đạt.
+## Kết quả khóa
 
-## P8 – ensemble 5 fold trên RSNA test
+| Pipeline | Tập đánh giá | MAE | Trạng thái | Ý nghĩa |
+|---|---:|---:|---|---|
+| Ảnh toàn cảnh + ConvNeXt-Tiny + global average pooling + sex embedding | OOF 14.036 | **6,316691** | VERIFIED | Baseline phát triển chính |
+| Pipeline trên, trung bình 5 fold | Test RSNA 200 | **4,730321** | VERIFIED, exploratory | Test đã được đọc; không dùng để chọn tiếp |
+| ROI bàn tay margin 8% + ConvNeXt-Tiny + sex embedding | OOF 14.036 | **6,437349** | VERIFIED | Đơn lẻ kém baseline OOF |
+| Pipeline ROI margin 8%, trung bình 5 fold | Test RSNA 200 | **4,337267** | VERIFIED, exploratory | Baseline test tốt nhất ổn định |
+| Pipeline ROI margin 8% + 10-view TTA | Test RSNA 200 | **4,331841** | VERIFIED, exploratory | Point estimate thấp nhất; chênh với raw không có ý nghĩa |
+| ROI tái tạo margin 12% + resize/padding Z26, không histogram equalization | OOF 14.036 | **6,324301** | VERIFIED | Gần baseline toàn cảnh |
+| Pipeline trên, trung bình 5 fold | Test RSNA 200 | **4,665987** | VERIFIED, exploratory | Kém ROI margin 8% rõ ràng |
 
-Artifact: `p8_test_ensemble/outputs/P8_test_ensemble_report.json`, `P8_ensemble_predictions.csv`.
+### Khoảng tin cậy và so sánh quan trọng
 
-Protocol: trung bình đều 5 fold, checkpoint tốt nhất từng fold, **không tune trên test**.
+- Baseline toàn cảnh OOF: CI bootstrap 95% **[6,224638; 6,411327]**.
+- ROI margin 12% Z26 không histogram equalization OOF: CI **[6,233724; 6,419696]**.
+- Không histogram equalization so với cùng pipeline có histogram equalization: delta MAE **−0,067554**, CI **[−0,122398; −0,014280]**; bỏ equalization tốt hơn trên OOF.
+- Không histogram equalization so với baseline toàn cảnh: delta **+0,007610**, CI **[−0,050270; +0,066445]**; chưa có khác biệt.
+- Trên test 200, ROI margin 12% Z26 không equalization kém ROI margin 8% **+0,328720**, CI **[+0,056389; +0,612503]**.
+- ROI margin 8% + TTA so với raw: delta **−0,005463**, CI **[−0,162908; +0,156851]**; chưa có bằng chứng TTA cải thiện pipeline này.
 
-| Chỉ số ensemble | Kết quả |
-|---|---:|
-| Số ảnh | 200 |
-| MAE | **4,730321 tháng** |
-| RMSE | 6,028745 |
-| Median AE | 4,133363 |
-| Accuracy ±6 / ±12 / ±18 | 70,0% / 94,0% / 100,0% |
-| Bootstrap 95% CI MAE | [4,222475; 5,263709] |
+## Ensemble đã xác minh
 
-MAE theo fold: 5,119659; 5,318364; 5,188306; 4,822037; 5,279186. Input audit PASS: 5 model, manifest SHA PASS, 14.036 OOF duy nhất, 200 ảnh test, sex/ID/ground-truth khớp.
+| Ensemble | Tập | MAE | Kết luận |
+|---|---:|---:|---|
+| 0,5 × baseline toàn cảnh raw + 0,5 × ROI margin 8% raw | OOF 14.036 | **6,176212** | Tốt hơn baseline toàn cảnh 0,140480; CI delta [−0,172547; −0,109853] |
+| Baseline toàn cảnh TTA + ROI margin 8% TTA, trọng số 0,5/0,5 | OOF 14.036 | **6,117080** | Tốt hơn baseline TTA 0,093366; CI [−0,120367; −0,067429] |
+| Baseline toàn cảnh TTA + ROI margin 8% TTA, trọng số 0,5/0,5 | Test RSNA 200 | **4,400603** | Kém C3-ROI-TTA 0,068762; CI chứa 0 |
+| Nested ensemble lịch sử: baseline TTA + EfficientNet TTA + ROI raw | OOF 14.036 | **6,075569** | Point estimate OOF tốt nhất; cần đọc báo cáo nguồn trước khi tái sử dụng |
 
-## P10 – kiểm soát recipe và augmentation
+## Sàng lọc đang diễn ra trên cùng raw C3-R2
 
-- **P10-B0 control:** tái lập chính xác P2 trên validation, MAE **6,184792**,
-  RMSE 8,4865; toàn bộ 1.425 dự đoán giống hệt P2 cũ.
-- **P10-B1 Deeplasia augmentation vừa:** MAE **6,185877**, RMSE 8,4255;
-  delta so với control +0,001086 tháng, CI chứa 0. Không có bằng chứng
-  augmentation mức vừa cải thiện.
-- Hai run chỉ dùng validation để quyết định, không mở test/OOF. Baseline hiện
-  được khóa; bước tiếp theo là TTA/bias correction và Deeplasia single-model,
-  không tăng augmentation mù quáng.
+Chỉ Fold 1–2; chưa được phép mở test hay tự động chạy Fold 3–5.
 
-## P9-I – TTA và bias correction trên P7 OOF
+| Ứng viên | Fold 1 | Fold 2 | Pooled/Trạng thái | Quyết định |
+|---|---:|---:|---|---|
+| C0: ConvNeXt-Tiny + global average pooling chuẩn | 6,352325 | 6,378387 | **6,365354** | Đối chứng matched đã sẵn sàng |
+| Đối chứng lịch sử C3-ROI V1 trên cùng hai fold | 6,375519 | 6,372684 | 6,374102 | C0 delta −0,008748; CI [−0,094621; +0,080216] |
+| Bilinear pooling thay global average pooling | **6,385449** | Không hợp lệ | PARTIAL | Không promote; Fold 2 dừng vì bất ổn |
+| C1: fine-tuning phân tầng + EMA | Epoch 1: EMA 31,4944; raw 15,7176 | Chưa có | PARTIAL/abnormal | Phải kiểm tra EMA/khởi tạo/training trước khi đánh giá |
+| C2: ConvNeXt V2 pretrained mạnh hơn | Chưa chạy | Chưa chạy | PLANNED | Chỉ chạy sau quyết định C1 |
 
-- Đã hoàn tất trên toàn bộ 14.036 mẫu OOF; không truy cập test.
-- TTA Deeplasia-style đạt MAE **6,210446 tháng**, RMSE 8,382443; paired delta
-  so với raw tái suy luận **−0,107025**, CI **[−0,135977; −0,078220]**.
-- Raw bias correction cross-fitted đạt MAE 6,324285; delta +0,006815,
-  CI [−0,001070; +0,014648], không có bằng chứng cải thiện.
-- TTA + bias correction đạt MAE 6,228665, kém TTA đơn độc +0,018219,
-  paired CI [+0,012482; +0,023813].
-- Quyết định: giữ TTA làm ứng viên inference; loại bias correction khỏi pipeline
-  chính hiện tại; chuyển sang Deeplasia single-model EfficientNet-B0.
-- Artifact: `p9_inference/P9_I_HANDOFF.md` và
-  `p9_inference/outputs/P9_I_TTA_BIAS_OOF/`.
+## Dữ liệu và fallback
 
-## So sánh mốc tham khảo
+- C3-ROI V1: margin 8%; fallback toàn ảnh **18,49% development**, **33% test**.
+- C3-R2: margin 12% + border rescue; hard fallback **14,06% development**, **28% test**.
+- Trong OOF C3-R2 Z26 không equalization, nhóm fallback có MAE **6,9723** (1.974 mẫu), cao hơn nhóm mask/bbox **6,2183** (12.062 mẫu).
+- Không gọi C3-ROI là chuyên gia carpal thuần túy: input là ROI bàn tay theo bbox segmentation và một phần đáng kể fallback toàn ảnh.
 
-- Bram et al., *The American Journal of Sports Medicine* (2025): **3,68 tháng** trên RSNA test.
-- Rassmann et al., *Pediatric Radiology* (2024), Deeplasia: **3,87 tháng** trên RSNA test.
-- P8 tốt hơn baseline nội bộ P7 OOF không phải phép so sánh trực tiếp (OOF 14.036 khác test 200), nhưng **chưa đạt** hai mốc công bố.
+## Benchmark bài báo
 
-## Thí nghiệm C — C3-ROI local/global (2026-08-24)
+| Công trình | Dữ liệu đánh giá | MAE công bố | Có thể so trực tiếp? |
+|---|---|---:|---|
+| Shu & Yu, 2025 | RSNA test 200 | **4,42** | Gần trực tiếp; có thêm 8 đặc trưng kích thước xương bàn tay được đo |
+| Rassmann et al., Deeplasia, 2024 | RSNA test 200 | **3,87** | Có; ensemble 3 model, DHA/GDBD chỉ dùng đánh giá ngoài |
+| Bram et al., 2025 | RSNA test 200 | **3,68** | Có; ensemble 5 fold, loại 35 ca bất thường khỏi train/validation |
+| Zhang et al., 2026 | RSNA validation 1.425 | **4,10** | Không đặt ngang test 200; chỉ dùng RSNA và các view dẫn xuất |
 
-- Đã train đủ 5 fold trên đúng split P7, seed 42; OOF khớp 14.036 ID với E1.
-- C3-ROI standalone: MAE **6,437349**, kém E1 0,120658 tháng.
-- Ensemble cố định `0,5 × E1 + 0,5 × C3-ROI`: MAE **6,176212**, RMSE
-  8,346747; cải thiện 0,140480 tháng so với E1.
-- Paired bootstrap 95% CI của delta ensemble−E1:
-  `[-0,172547; -0,109853]`; ensemble cải thiện ở cả 5 fold.
-- Prediction correlation E1/C3 là 0,995123: hai model rất giống nhau nhưng vẫn
-  có diversity đủ để ensemble có lợi.
-- ROI thực tế là segmentation bounding-box + margin 8%; fallback full-image
-  18,49% trên development và 33% trên test. Run **không đạt** gate fallback ≤1%
-  của thiết kế C ban đầu và không được gọi là local carpal specialist thuần túy.
-- Test 200 ảnh chỉ thăm dò: E1 4,730321; C3-ROI 4,337267; ensemble 4,454661.
-  Không dùng kết quả này để đổi trọng số hoặc chọn model.
-- Báo cáo đầy đủ: `AI_Context/24_EXPERIMENT_C_C3_ROI_FINAL_REPORT.md`.
+## Quyết định hiện hành
 
-### C3-ROI-TTA và E1-TTA ensemble (2026-09-03)
+1. Giữ ROI margin 8% + ConvNeXt-Tiny + sex embedding làm baseline test.
+2. Không promote histogram equalization, C3-R2 Z26 hoặc bilinear pooling từ bằng chứng hiện có.
+3. Hoàn tất chẩn đoán và sàng lọc C1 trên Fold 1–2; nếu thất bại, chuyển C2 ConvNeXt V2.
+4. Chọn ứng viên bằng validation/OOF. Test 200 chỉ báo cáo thăm dò vì đã được truy cập nhiều lần.
+5. Không tuyên bố state-of-the-art; so sánh bài báo phải kèm split, ensemble/single model và khác biệt dữ liệu.
 
-- Đã chạy đủ 14.036 OOF, 5 fold × 10 TTA view; không đọc test.
-- C3-ROI-TTA đạt MAE **6,325576**, RMSE 8,513483, median AE 4,859656.
-- `0,5 × E1-TTA + 0,5 × C3-ROI-TTA` đạt MAE **6,117080**, RMSE 8,277255,
-  median AE 4,633250.
-- Cải thiện so với E1-TTA là **0,093366 tháng**, CI paired
-  `[-0,120367; -0,067429]`; cải thiện so với E1-TTA + C3 raw là
-  **0,028678 tháng**, CI `[-0,042745; -0,014068]`.
-- Kết quả là ứng viên ensemble ROI dương tính; chưa đạt gate cải thiện tối thiểu
-  0,10 tháng đã đặt trước.
-- Báo cáo: `AI_Context/26_MODEL_FAMILY_REPORT.md` và
-  `c3_roi/outputs/C3_ROI_TTA_OOF/C3_ROI_TTA_OOF_report.json`.
+## Rủi ro cần nhớ
 
-## Điểm tốt
-
-- Split chính thức 12.611 train / 1.425 validation / 200 test được kiểm tra ID, ảnh, duplicate, hash và leakage.
-- P7 OOF có 14.036 dự đoán, ID duy nhất, bootstrap CI và subgroup metrics.
-- Checkpoint/resume, SHA manifest, early stopping và audit storage được thiết kế để tái lập qua nhiều tài khoản Colab.
-- P8 là ensemble cố định, không tối ưu trọng số dựa trên nhãn test.
-
-## Điểm chưa tốt/rủi ro
-
-- Sai số P8 còn cao hơn Bram khoảng 1,05 tháng và Deeplasia khoảng 0,86 tháng; chưa thể ghi “vượt trội”.
-- Test chỉ có 200 ảnh nên CI rộng; không được lặp lại nhiều lần để chọn mô hình.
-- P7 dùng `preprocessing=none`; nhánh mask B1 không cải thiện validation. Có thể
-  còn khoảng cách do chưa tái lập đầy đủ preprocessing/inference/ensemble của
-  Deeplasia; P10 cho thấy augmentation mức vừa đơn độc chưa đủ.
-- P4 D1 gây feature collapse; D2 không cải thiện; D3/LDL chỉ cải thiện rất nhỏ và CI chứa 0.
-- Bộ 200 ảnh đã làm sạch artifact và hướng inpainting/generative trước đây chưa phải phần của protocol P7/P8; không được trộn vào so sánh chính nếu chưa có thiết kế paired và audit độc lập.
-
-## P9-B0 – Deeplasia EfficientNet-B0 screening (2026-08-21)
-
-- Đã triển khai EfficientNet-B0 512 + sex embedding 32, head 256/dropout 0,2,
-  MSE, Adam và ReduceLROnPlateau; unit tests 16/16 và preflight đều PASS.
-- Cache deeplasia_mask_v1 còn đủ 12.611 train / 1.425 validation; không dùng test.
-- Screening validation không đạt control P10-B0 MAE 6,184792:
-  - stem 3 kênh, batch 12: best MAE 8,5293 ở epoch 1;
-  - stem 1 kênh, batch 12: best MAE 8,5823 ở epoch 2;
-  - stem 1 kênh, batch 24: best MAE 11,0428 ở epoch 1.
-- Các run không có NaN/Inf/OOM và được dừng để review; không chạy OOF/TTA/ensemble
-  cho EfficientNet-B0 và không mở test.
-- Handoff: p9_single_model/P9_B0_HANDOFF.md.
+- OOF 14.036 và test 200 không cùng phân phối/kích thước; thứ hạng pipeline đã đảo chiều.
+- Test 200 nhỏ và không còn untouched holdout.
+- Run C1 có dấu hiệu EMA bất thường; không diễn giải log epoch 1 như kết quả cuối.
+- Các checkpoint định kỳ lớn có thể làm đầy Google Drive; vẫn phải giữ ít nhất checkpoint tốt nhất và checkpoint gần nhất đã xác minh.

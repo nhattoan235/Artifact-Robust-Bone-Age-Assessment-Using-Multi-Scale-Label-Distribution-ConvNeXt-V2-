@@ -1,54 +1,57 @@
-# Bản đồ file quan trọng
+# Bản đồ tệp
 
-## Hồ sơ phase
+> Cập nhật: 2026-09-11. Đường dẫn tương đối tính từ D:/Hoctap/Doan_totnghiep.
 
-- `p0_audit/P0_HANDOFF.md` – audit split, leakage, fingerprint.
-- `p1_baseline/P1_HANDOFF.md` – hạ tầng baseline/checkpoint/AMP.
-- `p1_baseline/P2_HANDOFF.md` – kết quả augmentation A0–A2.
-- `p3_preprocessing/P3_HANDOFF.md` – mask B1 và quyết định loại.
-- `p4_architecture/P4_HANDOFF.md` – D0–D3 và paired tests.
-- `p5_seed_confirmation/P5_HANDOFF.md` – xác nhận 3 seed.
-- `p5_seed_confirmation/P5_AGGREGATE.json` – số liệu seed máy đọc.
-- `p6_resolution/P6_768_vs_512_paired.json` – quyết định 512.
+## Canonical context
 
-## P7 final
+| Nhu cầu | Tệp |
+|---|---|
+| Bắt đầu/thuật ngữ/định tuyến | AI_Context/00_START_HERE.md |
+| Kết quả và quyết định hiện hành | AI_Context/01_STATUS_RESULTS.md |
+| Lịch sử phương pháp | AI_Context/02_METHOD_HISTORY.md |
+| Split, leakage và test policy | AI_Context/03_DATA_PROTOCOL.md |
+| Kế hoạch C0 → C1 → C2 | AI_Context/04_CURRENT_PLAN.md |
+| Bản đồ này | AI_Context/05_FILE_MAP.md |
+| So sánh pipeline/bài báo | AI_Context/06_PIPELINE_COMPARISON.md |
+| Chỉ mục máy đọc | AI_Context/context_index.json |
 
-- `p7_final_v3/P7_OOF_report.json` – báo cáo OOF chính thức.
-- `p7_final_v3/P7_5FOLD_AUDIT.txt` – audit 5 fold.
-- `p7_results.zip` – best model/results của 5 fold.
-- `p7_oof_final.zip` – OOF CSV/report.
+## Code và báo cáo đang dùng
 
-## P8 test
+| Nội dung | Vị trí |
+|---|---|
+| Repository chính | doan_totnghiep/ |
+| Baseline train/data/model | doan_totnghiep/p1_baseline/ |
+| C3-ROI code và outputs | doan_totnghiep/c3_roi/ |
+| Phân tích ConvNeXt/C0-C2 | doan_totnghiep/research/CONVNEXT_BACKBONE_ANALYSIS_20260909.md |
+| NO_HE OOF audit | doan_totnghiep/artifacts/C3_R2_Z26_NO_HE_E1_V1_RESULTS_AUDIT/NO_HE_OOF_AUDIT_REPORT.json |
+| Báo cáo C3-ROI đầy đủ | AI_Context/24_EXPERIMENT_C_C3_ROI_FINAL_REPORT.md |
+| Báo cáo model family/TTA | AI_Context/26_MODEL_FAMILY_REPORT.md |
+| Báo cáo rebuild fallback | AI_Context/C3_FALLBACK_REBUILD_REPORT.md |
+| P14 artifacts vĩnh viễn | NghienCuuChinh/p14_anatomy_diverse/ |
 
-- `p8_test_ensemble/audit_inputs.py` – audit input.
-- `p8_test_ensemble/infer_ensemble.py` – inference equal-weight 5 fold.
-- `p8_test_ensemble/outputs/P8_test_ensemble_report.json` – kết quả và benchmark.
-- `p8_test_ensemble/outputs/P8_ensemble_predictions.csv` – dự đoán 200 test.
+## Artifact ngoài repository nhưng đang được tham chiếu
 
-## Thí nghiệm C / C3-ROI
+| Artifact | Vị trí |
+|---|---|
+| C3-R2 Z26 NO_HE test report bundle | C3_R2_Z26_NO_HE_TEST_V1_RESULTS.zip |
+| E1/C3 TTA test report bundle | E1_C3_TTA_TEST_V1_RESULTS.zip |
+| C3-R2 full Colab/data bundle | C3_ROI_R2_COLAB_FULL_20260906.zip |
+| Margin-8 train-ready recreation | C3_ROI_V1_MARGIN8_TRAIN_READY_20260909.zip hoặc bản corrected tương ứng |
 
-- `AI_Context/24_EXPERIMENT_C_C3_ROI_FINAL_REPORT.md` – báo cáo phương pháp,
-  OOF, test thăm dò, sai lệch protocol và claim policy.
-- `c3_roi/configs/fold_1.toml` … `fold_5.toml` – config 5 fold đã chạy.
-- `c3_roi/runs/C3_ROI_V1/C3_ROI_V1_FOLD_X/` – checkpoint/log từng fold.
-- `c3_roi/outputs/C3_ROI_V1_OOF/C3_ROI_V1_OOF_report.json` – báo cáo OOF.
-- `c3_roi/outputs/C3_ROI_V1_OOF/C3_ROI_V1_E1_ensemble_OOF_predictions.csv` –
-  dự đoán paired E1/C3/ensemble.
-- `c3_roi/outputs/C3_ROI_V1_TEST/C3_E1_50_50_test_report.json` – test thăm dò.
-- `c3_roi/_drive_upload/C3_ROI_V1/cpu_artifacts/audit_summary.json` – audit
-  14.036 ROI và tỷ lệ fallback.
+Các ZIP chỉ là nguồn artifact; agent không được suy trạng thái từ tên tệp. Phải đọc JSON/report/checkpoint metadata bên trong.
 
-## Bối cảnh và lịch sử
+## Tài liệu chuyên sâu/lịch sử
 
-- `AI_Context/00_START_HERE.md` – file phải đọc đầu tiên.
-- `AI_Context/CHANGELOG.md` – changelog chính thức của handoff này.
+- 07_DEEPLASIA_FOCUSED_ANALYSIS.md — phân tích Deeplasia.
+- 08_SEX_AWARE_EXPERIMENT_PLAN.md — sex-aware ablation.
+- 09_P12_UNCERTAINTY_PROTOCOL.md — uncertainty protocol.
+- 10_P13_THESIS_REPORTING_PLAN.md — thesis reporting.
+- 11_* đến 27_* — các báo cáo quyết định/experiment cũ; chỉ mở theo chủ đề.
+- _P14_TASKS_TEMP/ — dữ liệu tác vụ tạm, **không canonical**. Chỉ xóa khi điều kiện trong 99_CLEANUP_AFTER_P14.md đạt.
 
-## C1 curated data
+## Cách truy xuất tiết kiệm token
 
-- `c1_curated/C1_HANDOFF.md` – trạng thái audit, config, smoke/resume và gate.
-- `c1_curated/outputs/C1_MANIFEST_V1/C1_manifest_report.json` – báo cáo audit/hash/weight.
-- `c1_curated/outputs/C1_MANIFEST_V1/C1_BALANCED_train_manifest.csv` – train manifest có weight.
-- `p1_baseline/configs/c1_balanced_seed42.toml` – config primary/Colab.
-- `p1_baseline/configs/c1_balanced_local_seed42.toml` – config local RTX 3050 Ti.
-- `PROJECT_CONTEXT.md`, root `CHANGELOG.md` – tài liệu cũ; chỉ dùng để đối chiếu lịch sử.
-
+1. Đọc 00_START_HERE.md, context_index.json, 01_STATUS_RESULTS.md.
+2. Dùng rg tìm đúng run ID/metric trước khi mở báo cáo dài.
+3. Với số liệu dùng trong luận văn, ưu tiên JSON/CSV gốc hơn Markdown tóm tắt.
+4. Không đọc _P14_TASKS_TEMP hoặc toàn bộ báo cáo lịch sử nếu tác vụ không liên quan.

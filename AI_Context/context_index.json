@@ -1,99 +1,165 @@
 {
-codex/plan-a-d3-report
-  "context_version": "2026-08-24",
-
-  "context_version": "2026-08-22",
-main
-  "read_first": "AI_Context/00_START_HERE.md",
-  "read_order": [
-    "AI_Context/01_STATUS_RESULTS.md",
-    "AI_Context/02_METHOD_HISTORY.md",
-    "AI_Context/03_DATA_PROTOCOL.md",
-codex/plan-a-d3-report
-    "AI_Context/04_NEXT_P9_PLAN.md",
-    "AI_Context/08_SEX_AWARE_EXPERIMENT_PLAN.md",
-    "AI_Context/09_CURATED_E3_ENSEMBLE_PLAN.md",
-    "AI_Context/24_EXPERIMENT_C_C3_ROI_FINAL_REPORT.md",
-    "AI_Context/05_FILE_MAP.md",
-    "AI_Context/CHANGELOG.md"
-  ],
-  "current_phase": "Plan A/D3 and Plan C/C3-ROI OOF complete; Plan B artifact-consistency screening not started",
-  "model_locked_for_p7": "ConvNeXt-Tiny + sex embedding + direct regression + A2 augmentation + 512px",
-
-    "AI_Context/08_SEX_AWARE_EXPERIMENT_PLAN.md",
-    "AI_Context/09_P12_UNCERTAINTY_PROTOCOL.md",
-    "AI_Context/10_P13_THESIS_REPORTING_PLAN.md",
-    "AI_Context/11_SCIENTIFIC_CONTRIBUTIONS_REPORT.md",
-    "p11_sex_aware/P11_STAGE2_HANDOFF.md",
-    "p12_uncertainty/P12_HANDOFF.md",
-    "p13_reporting/P13_HANDOFF.md",
-    "AI_Context/05_FILE_MAP.md",
-    "AI_Context/CHANGELOG.md"
-  ],
-  "current_phase": "P13 complete; thesis contribution reporting finalized",
-  "model_retained": "E1 ConvNeXt-Tiny + sex embedding + direct regression + A2 augmentation + 512px",
- main
-  "p7_oof": {
-    "status": "PASS",
-    "rows": 14036,
-    "mae_months": 6.3166912053853705,
-    "bootstrap_95_ci": [6.224638314300129, 6.41132660064306],
-    "test_used_for_selection": false
+  "schema_version": 2,
+  "context_version": "2026-09-11",
+  "project": {
+    "task": "RSNA pediatric bone-age regression in months",
+    "short_term_goal": "Improve MAE using development-only selection and extend the margin over the 4.42-month target paper",
+    "primary_metric": "MAE_months"
   },
-  "p8_test": {
-    "status": "PASS_TECHNICAL_NOT_UNTOUCHED_HOLDOUT",
-    "images": 200,
-    "mae_months": 4.730321210479737,
-    "bootstrap_95_ci": [4.2224750963974, 5.263708837490082],
-    "test_used_for_selection": false,
-    "test_ground_truth_has_been_read": true
+  "canonical_read_order": [
+    "AI_Context/00_START_HERE.md",
+    "AI_Context/context_index.json",
+    "AI_Context/01_STATUS_RESULTS.md"
+  ],
+  "route_on_demand": {
+    "history": "AI_Context/02_METHOD_HISTORY.md",
+    "data_and_test_policy": "AI_Context/03_DATA_PROTOCOL.md",
+    "current_plan": "AI_Context/04_CURRENT_PLAN.md",
+    "artifact_map": "AI_Context/05_FILE_MAP.md",
+    "pipeline_and_literature_comparison": "AI_Context/06_PIPELINE_COMPARISON.md"
   },
-codex/plan-a-d3-report
-  "experiment_c_c3_roi": {
-    "status": "OOF_POSITIVE_WITH_PROTOCOL_DEVIATION",
-    "rows": 14036,
-    "model": "ConvNeXt-Tiny direct regression + sex embedding on ROI inputs",
-    "c3_oof_mae_months": 6.43734888189299,
-    "e1_oof_mae_months": 6.3166912053853705,
-    "ensemble_50_50_oof_mae_months": 6.176211657433063,
-    "ensemble_minus_e1_delta_months": -0.1404795479523079,
-    "paired_bootstrap_95_ci": [-0.1725468215659732, -0.10985336238483855],
-    "folds_improved": 5,
-    "prediction_pearson_correlation": 0.9951230675415624,
-    "development_fallback_rate": 0.18488173268737532,
-    "test_fallback_rate": 0.33,
-    "original_fallback_gate_passed": false,
-    "test_exploratory": {
-      "images": 200,
-      "e1_mae_months": 4.730321210479735,
-      "c3_mae_months": 4.337266699981692,
-      "ensemble_50_50_mae_months": 4.454660770416257
+  "definitions": {
+    "E1_P7": "Full-image ConvNeXt-Tiny, ImageNet-1K pretrained, global average pooling, final LayerNorm, sex embedding, direct regression, A2 augmentation, 512 px",
+    "C3_ROI_V1": "Hand segmentation bounding-box ROI with 8 percent margin; full-image fallback",
+    "C3_R2": "Rebuilt ROI with 12 percent margin and border rescue; not Z26-preprocessed by default",
+    "Z26_HE": "Aspect-ratio-preserving resize/padding plus histogram equalization and black canvas",
+    "Z26_NO_HE": "Same resize/padding and black canvas without histogram equalization",
+    "TTA": "Mean of 10 views: rotations -10,-5,0,5,10 degrees crossed with flip/no-flip",
+    "OOF": "Each development sample predicted only by a fold that did not fit that sample"
+  },
+  "locked_results": {
+    "e1_oof": {
+      "status": "VERIFIED",
+      "cohort": "RSNA development OOF",
+      "n": 14036,
+      "mae_months": 6.3166912053853705,
+      "bootstrap_95_ci": [6.224638314300129, 6.41132660064306]
+    },
+    "e1_test": {
+      "status": "VERIFIED_EXPLORATORY",
+      "cohort": "RSNA official test",
+      "n": 200,
+      "mae_months": 4.730321210479737
+    },
+    "c3_roi_v1_oof": {
+      "status": "VERIFIED",
+      "cohort": "RSNA development OOF",
+      "n": 14036,
+      "mae_months": 6.43734888189299
+    },
+    "c3_roi_v1_test": {
+      "status": "VERIFIED_EXPLORATORY",
+      "cohort": "RSNA official test",
+      "n": 200,
+      "mae_months": 4.33726669998169
+    },
+    "c3_roi_tta_test": {
+      "status": "VERIFIED_EXPLORATORY_NO_SIGNIFICANT_GAIN_OVER_RAW",
+      "cohort": "RSNA official test",
+      "n": 200,
+      "mae_months": 4.33184131
+    },
+    "c3_r2_z26_no_he_oof": {
+      "status": "VERIFIED",
+      "cohort": "RSNA development OOF",
+      "n": 14036,
+      "mae_months": 6.32430084480727,
+      "bootstrap_95_ci": [6.233723542873048, 6.4196964136723205]
+    },
+    "c3_r2_z26_no_he_test": {
+      "status": "VERIFIED_EXPLORATORY",
+      "cohort": "RSNA official test",
+      "n": 200,
+      "mae_months": 4.665986809539794
+    },
+    "e1_c3_raw_50_50_oof": {
+      "status": "VERIFIED",
+      "cohort": "RSNA development OOF",
+      "n": 14036,
+      "mae_months": 6.176211657433063,
+      "delta_vs_e1_months": -0.1404795479523079,
+      "paired_95_ci": [-0.1725468215659732, -0.10985336238483855]
+    },
+    "e1_tta_c3_tta_50_50_oof": {
+      "status": "VERIFIED",
+      "cohort": "RSNA development OOF",
+      "n": 14036,
+      "mae_months": 6.11708
     }
   },
-  "benchmarks_months": {"bram_2025": 3.68, "deeplasia_2024": 3.87},
-  "next_action": "Decide whether to run Plan B artifact-consistency screening on the same locked data; use clean validation/OOF for selection and do not tune from test",
-
-  "p11_sex_aware": {
-    "status": "E1_RETAINED_E2_GATE_FAILED",
-    "e0_minus_e1_mae_months": 1.2869,
-    "bootstrap_95_ci": [1.0114, 1.5667]
+  "screening": {
+    "protocol": "Matched raw C3-R2, Fold 1-2 only, no test access",
+    "c0_gap": {
+      "status": "CONTROL_READY",
+      "fold_1_mae": 6.352324830840455,
+      "fold_2_mae": 6.3783871793729965,
+      "pooled_mae": 6.365353684327694
+    },
+    "bilinear": {
+      "status": "PARTIAL_NOT_PROMOTED",
+      "fold_1_mae": 6.385449000573226,
+      "fold_2": "invalid_due_to_instability"
+    },
+    "c1_finetune_ema": {
+      "status": "PARTIAL_ABNORMAL_NEEDS_DIAGNOSIS",
+      "fold_1_epoch_1_ema_mae": 31.4944,
+      "fold_1_epoch_1_raw_mae": 15.7176
+    },
+    "c2_convnext_v2": {
+      "status": "PLANNED_AFTER_C1_DECISION"
+    }
   },
-  "p12_uncertainty": {
-    "status": "ASSOCIATION_SUPPORTED_LIMITED_UTILITY",
-    "oof_rows": 14036,
-    "spearman_rho": 0.2004,
-    "auroc_error_gt_12": 0.6258,
-    "auroc_error_gt_18": 0.6341,
-    "test_accessed": false
+  "roi_fallback": {
+    "c3_roi_v1_development_rate": 0.1849,
+    "c3_roi_v1_test_rate": 0.33,
+    "c3_r2_development_rate": 0.1406,
+    "c3_r2_test_rate": 0.28
   },
-  "scientific_position": "Controlled empirical and methodological contribution; no state-of-the-art claim",
-  "next_action": "Finalize thesis around sex-aware ablation and limited TTA-disagreement utility; prioritize an untouched external holdout if research continues",
-main
-  "do_not": [
-    "Do not select new models using RSNA test labels",
-    "Do not call TTA disagreement calibrated clinical uncertainty",
-    "Do not claim E2 is better than E1",
-    "Do not claim state-of-the-art performance or external generalization",
-    "Do not overwrite completed P7-P13 artifacts"
-  ]
+  "literature_benchmarks": {
+    "shu_yu_2025": {
+      "cohort": "RSNA official test 200",
+      "mae_months": 4.42,
+      "note": "Uses eight measured metacarpal-dimension features"
+    },
+    "deeplasia_2024": {
+      "cohort": "RSNA official test 200",
+      "mae_months": 3.87,
+      "note": "Three-model ensemble"
+    },
+    "bram_2025": {
+      "cohort": "RSNA official test 200",
+      "mae_months": 3.68,
+      "note": "Five-fold ensemble; 35 abnormal cases excluded from train/validation"
+    },
+    "zhang_2026": {
+      "cohort": "RSNA official validation 1425",
+      "mae_months": 4.1,
+      "note": "Not directly comparable with test-200 results"
+    }
+  },
+  "current_decisions": [
+    "Keep C3-ROI V1 as the stable test baseline",
+    "Do not promote histogram equalization, C3-R2 Z26, or bilinear pooling",
+    "Diagnose and finish C1 on matched Fold 1-2",
+    "Run C2 ConvNeXt V2 only after the C1 decision",
+    "Promote candidates using validation or OOF only"
+  ],
+  "hard_rules": [
+    "Do not select preprocessing, models, checkpoints, TTA, calibration, or ensemble weights using RSNA test labels",
+    "Do not compare validation-1425, OOF-14036, and test-200 as the same cohort",
+    "Do not label partial logs as final results",
+    "Do not overwrite completed artifacts",
+    "Do not claim state of the art or external generalization"
+  ],
+  "test_status": {
+    "ground_truth_accessed": true,
+    "accessed_multiple_times": true,
+    "is_untouched_holdout": false,
+    "allowed_use": "exploratory_reporting_only"
+  },
+  "archive_policy": {
+    "default_read_historical_reports": false,
+    "p14_temp_is_canonical": false,
+    "p14_temp_delete_condition": "Delete only when its 99_CLEANUP_AFTER_P14.md condition is satisfied"
+  }
 }

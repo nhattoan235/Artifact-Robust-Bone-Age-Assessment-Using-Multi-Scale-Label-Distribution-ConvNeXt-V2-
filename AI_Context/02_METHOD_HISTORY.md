@@ -1,64 +1,33 @@
 # Lịch sử phương pháp và quyết định
 
-## P0 – audit dữ liệu
+> Cập nhật: 2026-09-11. Chỉ ghi các mốc giúp giải thích pipeline hiện tại.
 
-- Xác minh protocol RSNA: train 12.611, validation chính thức 1.425, test 200.
-- Không có ID/SHA duplicate giữa split; validation tải từ gói chính thức và khớp annotation Deeplasia.
-- Khóa manifest/hash; test chỉ kiểm tra cấu trúc và hash, chưa đọc tuổi.
-- Artifact chính: `p0_audit/P0_HANDOFF.md`, các manifest trong `p0_audit/outputs/`.
+| Giai đoạn | Thay đổi chính | Kết quả/Quyết định |
+|---|---|---|
+| Baseline ban đầu | ConvNeXt-Tiny pretrained, ảnh toàn cảnh 512, global average pooling, final LayerNorm, sex embedding, direct regression, augmentation A2 | Khóa thành E1/P7; OOF 6,316691 |
+| P8 | Trung bình dự đoán từ 5 fold E1 | Test 200 MAE 4,730321; không tune trên test |
+| P9-I | TTA 10 view và bias correction cross-fitted | TTA OOF 6,210446; giữ TTA. Bias correction không cải thiện; loại |
+| EfficientNet/Deeplasia reproduction | EfficientNet-B0, sex embedding, MSE, Deeplasia-style augmentation | Screening validation kém; không mở rộng OOF/test |
+| Thí nghiệm C3-ROI V1 | Crop ROI bàn tay margin 8% từ segmentation bbox; fallback toàn ảnh; giữ backbone/sex embedding E1 | Standalone OOF 6,437349 nhưng test 4,337267; ensemble với E1 cải thiện OOF |
+| C3-ROI TTA | 10 view cho C3-ROI và ensemble với E1-TTA | OOF ensemble 6,117080; test không hơn C3-ROI-TTA |
+| C3-R2 | Tái tạo ROI margin 12% + border rescue để giảm fallback | Fallback giảm nhưng chưa tạo lợi ích test |
+| Zhang-2026 preprocessing | Giữ tỷ lệ, resize 512, padding canvas đen, thử histogram equalization | Bản không equalization tốt hơn bản có equalization trên OOF; cả pipeline kém C3-ROI V1 trên test |
+| Raw C3-R2 C0 | Đối chứng matched: ConvNeXt-Tiny + global average pooling trên raw R2 | Fold 1–2 pooled 6,365354; dùng làm control cho C1/C2 |
+| Bilinear pooling | Thay global average pooling bằng bilinear pooling, phần này chạy FP32 để tránh AMP overflow | Fold 1 = 6,385449; Fold 2 bất ổn. Không promote |
+| C1 | Fine-tuning phân tầng theo layer + learning rate decay, AdamW, warmup/cosine, EMA | Đang screening; epoch 1 bất thường, chưa kết luận |
+| C2 | ConvNeXt V2 với pretrained/recipe phù hợp | Chưa chạy; chỉ bắt đầu nếu C1 không đạt |
 
-## P1 – hạ tầng baseline
+## Những điều đã học được
 
-- ConvNeXt-Tiny ImageNet-1K, ảnh 512, grayscale lặp 3 kênh, sex embedding, direct regression, Smooth L1, AdamW/cosine.
-- Xây checkpoint/resume nguyên tử, RNG/config/code/data hash, log metrics/warnings và early-stop.
-- BF16 được ưu tiên do FP16 smoke ban đầu sinh gradient Inf; smoke/resume cuối PASS.
+- Preprocessing từ một backbone/paper không mặc nhiên chuyển lợi ích sang ConvNeXt-Tiny.
+- Giảm fallback là mục tiêu kỹ thuật tốt nhưng không đồng nghĩa MAE sẽ giảm; hình học crop và miền ảnh phải được kiểm nghiệm riêng.
+- C3-ROI có giá trị lớn nhất hiện nay ở test và diversity khi ensemble, không phải standalone OOF.
+- Global average pooling là control mạnh; pooling phức tạp hơn phải thắng trên paired Fold 1–2 trước khi mở rộng.
+- Test đã truy cập nhiều lần nên mọi lựa chọn tiếp theo phải dựa vào development validation/OOF.
 
-## P2 – augmentation
+## Báo cáo lịch sử chuyên sâu
 
-- A0 không augmentation: MAE 6,640.
-- A1 flip: 6,514.
-- A2 flip + xoay ±7°, tịnh tiến/scale nhẹ, brightness/contrast/gamma nhẹ: **6,185**.
-- Paired A2–A0 delta -0,455, CI [-0,658; -0,249]; khóa A2.
-
-## P3 – preprocessing
-
-- B1 full-hand background masking bằng Efficient-UNet/TensorMask fallback, không crop/rotate.
-- B1 MAE 6,239 so với B0/D0 6,185; delta +0,054, CI chứa 0.
-- Theo quy tắc định trước, loại B1 khỏi pipeline chính; giữ `preprocessing=none`.
-
-## P4 – kiến trúc
-
-- D1 ConvNeXtV2-Tiny FCMAE: MAE 31,963 do feature collapse; loại.
-- D2 multi-scale fusion: MAE 6,297, không cải thiện primary; loại.
-- D3 label-distribution head: fused MAE 6,145 ở seed 42, nhưng CI chứa 0 và cải thiện nhỏ; giữ làm ứng viên phụ.
-- Không được suy rộng rằng mọi ConvNeXtV2/LDL đều thất bại; kết luận chỉ áp dụng cho recipe đã khóa.
-
-## P5 – xác nhận seed
-
-- So sánh D0 và D3 trên seed 17/42/123, mỗi seed 1.425 validation.
-- D3 fused mean MAE 6,22508 vs D0 6,26229; delta -0,03721, CI [-0,13521; +0,05863], chỉ 2/3 seed tốt hơn.
-- D3 regression-only mean delta -0,01932, CI [-0,11270; +0,07069].
-- Không đạt ngưỡng cải thiện thực tiễn 0,10 tháng; chọn D0 đơn giản hơn.
-
-## P6 – độ phân giải
-
-- 512 baseline MAE 6,184792; 768 candidate 6,183421; delta -0,001371, paired CI [-0,190703; +0,192127].
-- Chênh lệch không đáng kể; khóa 512 để tiết kiệm VRAM/thời gian.
-
-## P7 – final 5-fold V3
-
-- Dùng D0: ConvNeXt-Tiny + A2 + direct regression + sex embedding, 512.
-- Train 5 fold trên development pool 14.036; persistent append-only checkpoints trên Drive, resume qua nhiều tài khoản Colab.
-- Smoke step 2 rồi 4 qua tài khoản khác PASS; khắc phục lỗi xác thực email/storage và BF16 T4.
-- Hoàn tất OOF và audit; kết quả xem `01_STATUS_RESULTS.md`.
-
-## P8 – ensemble test
-
-- Audit input PASS rồi suy luận 5 fold bằng equal-weight mean trên 200 test.
-- Chỉ đánh giá sau khi P7 đã khóa; không dùng nhãn test để chọn checkpoint/weight.
-- Kết quả kỹ thuật PASS nhưng chưa vượt Bram/Deeplasia; vì test đã được mở, mọi P9 cần thận trọng về tuyên bố confirmatory.
-
-## Bối cảnh inpainting/generative
-
-Hướng so sánh “200 ảnh sinh/ảnh inpainting so với 200 ảnh gốc” không cùng endpoint với bone-age regression chuẩn. Bộ 200 ảnh cleaned artifact-only có thể dùng cho phân tích robustness/ablation paired, nhưng không được thay thế benchmark RSNA hoặc đưa vào train nếu chưa có giao thức riêng, kiểm tra leakage và nhãn tương ứng.
-
+- C3-ROI: 24_EXPERIMENT_C_C3_ROI_FINAL_REPORT.md
+- Họ model và TTA: 26_MODEL_FAMILY_REPORT.md
+- C3-R2/fallback: C3_FALLBACK_REBUILD_REPORT.md
+- P14 anatomy-diverse: 00_CURRENT_DECISIONS_P14_HANDOFF_2026_08_25.md và artifact vĩnh viễn dưới NghienCuuChinh/p14_anatomy_diverse/

@@ -1,61 +1,64 @@
-# AI Context – Đọc trước khi tiếp tục
+# AI Context — bắt đầu tại đây
 
-> **Nguồn sự thật hiện tại:** thư mục `AI_Context/`. Các file `PROJECT_CONTEXT.md` và `CHANGELOG.md` ở thư mục gốc là lịch sử cũ, không phải trạng thái mới nhất.
+> Cập nhật: 2026-09-11
+> Mục đích: giúp AI/agent nắm đúng trạng thái dự án với số token tối thiểu.
 
-## Mục tiêu đồ án
+## Đường đọc mặc định
 
-Dự đoán tuổi xương (tháng) từ ảnh X-quang bàn tay RSNA. Mục tiêu học thuật là xây dựng quy trình có thể tái lập, đánh giá đúng trên split RSNA và phấn đấu vượt các mốc tham khảo Bram et al. (2025) và Rassmann/Deeplasia (2024).
+Chỉ đọc theo thứ tự sau, dừng khi đã đủ thông tin cho tác vụ:
 
-## Trạng thái hiện tại
+1. `AI_Context/00_START_HERE.md` — phạm vi, thuật ngữ và định tuyến.
+2. `AI_Context/context_index.json` — trạng thái máy đọc và số liệu khóa.
+3. `AI_Context/01_STATUS_RESULTS.md` — kết quả đã xác minh và trạng thái run mới.
+4. Chỉ mở thêm một tệp theo nhu cầu:
+   - lịch sử quyết định: `02_METHOD_HISTORY.md`;
+   - dữ liệu/leakage/test policy: `03_DATA_PROTOCOL.md`;
+   - việc cần làm tiếp: `04_CURRENT_PLAN.md`;
+   - tìm code/artifact: `05_FILE_MAP.md`;
+   - so sánh pipeline và bài báo: `06_PIPELINE_COMPARISON.md`.
 
-codex/plan-a-d3-report
-- **P0–P7:** đã hoàn tất; dữ liệu, leakage, augmentation, preprocessing, kiến trúc, seed, độ phân giải và 5-fold final đã được audit.
-- **P7 OOF:** PASS, 14.036 mẫu, MAE **6,31669 tháng**; test không được dùng để chọn mô hình.
-- **P8 test ensemble:** PASS về mặt kỹ thuật; ensemble 5 fold trên 200 ảnh có MAE **4,73032 tháng**.
-- **Thí nghiệm C / C3-ROI:** đã hoàn tất 5-fold OOF. C3-ROI riêng đạt MAE 6,43735; ensemble cố định E1 + C3-ROI 50/50 đạt **6,17621**, giảm 0,14048 tháng so với E1 với paired CI hoàn toàn dưới 0 và thắng cả 5 fold. Tuy nhiên ROI fallback 18,49% ở development và 33% ở test, nên run không đạt gate hình học ≤1% của thiết kế C ban đầu.
-- **So với công bố:** Bram 2025 báo cáo 3,68 tháng; Deeplasia 2024 báo cáo 3,87 tháng trên RSNA test. Kết quả hiện tại **chưa vượt** hai mốc này.
-- Vì test ground truth đã được đọc ở P8, mọi thử nghiệm chọn mô hình sau đây phải dùng OOF/validation; P8 phải được gọi là đánh giá thăm dò nếu dùng để định hướng P9. Muốn có tuyên bố xác nhận cuối cùng cần một test ngoài/đánh giá mới chưa chạm.
+Không đọc toàn bộ `AI_Context` theo mặc định. Các tệp còn lại là báo cáo lịch sử hoặc bằng chứng chuyên sâu.
 
-## Việc tiếp theo được khuyến nghị
+## Thứ tự ưu tiên khi tài liệu mâu thuẫn
 
-1. Đọc `01_STATUS_RESULTS.md` để nắm số liệu chính xác.
-2. Đọc `02_METHOD_HISTORY.md` để biết vì sao các nhánh đã bị loại.
-3. Đọc `03_DATA_PROTOCOL.md` trước khi chạm dữ liệu.
-4. Làm theo `04_NEXT_P9_PLAN.md`: tái lập công bằng recipe Bram (preprocessing + augmentation + 100 epoch/early stop) và chỉ chọn cấu hình bằng OOF.
-5. Dùng `05_FILE_MAP.md` để tìm artifact; ghi mọi thay đổi vào `CHANGELOG.md`.
-6. Đọc `24_EXPERIMENT_C_C3_ROI_FINAL_REPORT.md` trước khi diễn giải hoặc tái sử dụng kết quả phương án C.
+1. `context_index.json` và `01_STATUS_RESULTS.md` cho trạng thái/số liệu hiện hành.
+2. JSON/CSV/log gốc được chỉ ra trong `05_FILE_MAP.md` để kiểm chứng.
+3. Báo cáo chuyên sâu theo ngày cho lịch sử và provenance.
 
+Tên `00_CURRENT_DECISIONS_P14_HANDOFF_2026_08_25.md` là tên legacy: đó là snapshot P14 ngày 2026-08-25, **không phải trạng thái toàn dự án hiện tại**.
 
-- **P0–P10:** đã hoàn tất audit dữ liệu, baseline, augmentation, preprocessing,
-  kiến trúc, seed, độ phân giải, 5-fold OOF, test ensemble và các nhánh tái lập
-  Deeplasia/TTA.
-- **P7 OOF:** PASS, 14.036 mẫu, MAE **6,31669 tháng**; test không được dùng để
-  chọn mô hình.
-- **P8 test ensemble:** PASS kỹ thuật, MAE **4,73032 tháng** trên 200 ảnh, nhưng
-  chưa vượt hai mốc công bố 3,68–3,87 tháng. Test đã bị truy cập nên không còn là
-  confirmatory holdout mới.
-- **P11 sex-aware:** E1 sex embedding tốt hơn E0 image-only **1,2869 tháng**,
-  CI [1,0114; 1,5667]. E2 dual-output không hơn E1 và không giảm sex gap; giữ E1.
-- **P12 uncertainty OOF:** TTA disagreement liên hệ yếu với sai số
-  (ρ=0,2004); AUROC lỗi lớn 0,6258–0,6341. Có giá trị phân tầng nghiên cứu nhưng
-  chưa phải uncertainty lâm sàng.
-- **P13 reporting:** bảng/hình, manifest và bản thảo luận văn đã hoàn tất; báo
-  cáo đóng góp khoa học nằm tại `11_SCIENTIFIC_CONTRIBUTIONS_REPORT.md`.
-## Việc tiếp theo được khuyến nghị
+## Mục tiêu hiện tại
 
-1. Đọc `01_STATUS_RESULTS.md` và `02_METHOD_HISTORY.md` để nắm bằng chứng nền.
-2. Đọc `08_SEX_AWARE_EXPERIMENT_PLAN.md`, `09_P12_UNCERTAINTY_PROTOCOL.md` và
-   `10_P13_THESIS_REPORTING_PLAN.md` để hiểu các quyết định đã khóa.
-3. Dùng `11_SCIENTIFIC_CONTRIBUTIONS_REPORT.md` để viết phần đóng góp, phạm vi
-   tuyên bố và giới hạn của luận văn.
-4. Hoàn thiện luận văn với E1 làm baseline chính. Nếu tiếp tục nghiên cứu, ưu
-   tiên external holdout chưa bị tác động hoặc xác nhận E0–E1 qua nhiều seed/OOF.
-5. Ghi mọi thay đổi tiếp theo vào `CHANGELOG.md`.
-main
+Dự đoán tuổi xương theo tháng từ ảnh X-quang bàn tay của bộ RSNA. Mục tiêu ngắn hạn là cải thiện MAE trên đúng protocol RSNA, nhưng mọi lựa chọn mô hình phải dựa trên validation/OOF; bộ test 200 ảnh đã được truy cập nhiều lần nên chỉ còn là benchmark thăm dò, không phải holdout xác nhận mới.
+
+## Pipeline và tên gọi cần hiểu đúng
+
+- **E1/P7:** ảnh toàn cảnh; ConvNeXt-Tiny pretrained ImageNet-1K; global average pooling, final LayerNorm, sex embedding, direct regression, augmentation A2, ảnh 512.
+- **C3-ROI V1:** ROI bàn tay margin 8%; ConvNeXt-Tiny và sex embedding như E1; fallback toàn ảnh 18,49% ở development và 33% ở test.
+- **C3-R2:** tái tạo ROI margin 12% với bước border-rescue; hard fallback 14,06% ở development và 28% ở test.
+- **Z26:** họ preprocessing lấy cảm hứng từ Zhang et al. 2026. Phải ghi rõ `HE` hoặc `NO_HE`; không dùng “Z26” một mình để suy ra histogram equalization.
+- **TTA:** trung bình 10 biến thể xoay {-10, -5, 0, 5, 10 độ} × flip/no-flip.
+- **OOF:** mỗi ảnh development chỉ được dự đoán bởi fold không dùng ảnh đó để fit.
+
+## Chốt trạng thái trong một phút
+
+- Baseline E1 OOF: **6,316691** tháng; test: **4,730321**.
+- C3-ROI V1 OOF: **6,437349**; test: **4,337267**.
+- C3-ROI-TTA test có point estimate thấp nhất hiện có: **4,331841**, nhưng gần như ngang C3 raw và CI paired chứa 0.
+- C3-R2 Z26 NO_HE OOF: **6,324301**; test: **4,665987**. OOF gần E1 nhưng test kém C3-ROI V1 rõ ràng.
+- Đối chứng raw C3-R2 + GAP trên Fold 1–2: pooled **6,365354**; không khác có ý nghĩa so với C3-ROI V1 trên cùng hai fold.
+- Raw C3-R2 + bilinear: mới có Fold 1 hợp lệ, MAE **6,385449**; Fold 2 bị dừng vì instability nên chưa có kết luận hai fold.
+- Fine-tuning mới + EMA đang ở giai đoạn screening; log epoch 1 bất thường, chưa có kết quả cuối để so sánh.
+- Benchmark bài báo trực tiếp trên RSNA test 200: Shu & Yu **4,42**, Deeplasia **3,87**, Bram et al. **3,68**. Zhang et al. 2026 **4,10** là validation 1.425 ảnh, không đặt trong bảng test-200.
+
 ## Quy tắc bắt buộc
 
-- Không dùng `rsna_test.csv` hoặc metric test để chọn checkpoint, preprocessing, augmentation, loss, ensemble weight hay hyperparameter.
-- Không thay đổi manifest/hash/config của run đã hoàn tất.
-- Train dài phải có checkpoint nguyên tử, resume, log `metrics`/`warnings`, và kiểm tra trạng thái sau mỗi lần ngắt Colab.
-- Không tuyên bố “vượt bài báo” chỉ từ một lần chạy; cần cùng dataset, cùng protocol và khoảng tin cậy.
+1. Không dùng nhãn/MAE test để chọn preprocessing, model, checkpoint, TTA hoặc trọng số ensemble.
+2. Luôn phân biệt validation 1.425, OOF 14.036 và test 200; không so trực tiếp như cùng một tập.
+3. Chỉ gọi một kết quả `VERIFIED` khi có prediction/report hoặc log đủ để tái tính; log giữa chừng là `PARTIAL`.
+4. Không sửa đè artifact đã chạy. Run mới phải có namespace, config hash, manifest hash, code version và resume state riêng.
+5. Khi nói “vượt bài báo”, phải nêu cùng split hay không, single model hay ensemble, và test có còn độc lập hay không.
 
+## Tài liệu lịch sử
+
+Các tệp có tên P9, P14, C4, D3, Deeplasia analysis hoặc artifact checklist vẫn có giá trị bằng chứng, nhưng không còn là nguồn quyết định hiện hành. `_P14_TASKS_TEMP` chưa được xóa vì điều kiện cleanup trong chính thư mục đó chưa đạt; không dùng nó làm nguồn trạng thái chính.

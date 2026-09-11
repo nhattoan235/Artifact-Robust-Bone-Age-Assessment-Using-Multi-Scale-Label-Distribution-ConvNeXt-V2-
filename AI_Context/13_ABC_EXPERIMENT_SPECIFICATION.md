@@ -175,8 +175,8 @@ Không claim confirmatory vượt Bram 3,68 từ test 200 ảnh vì test đã đ
 
 Tài liệu liên quan:
 
-- [12_ABC_EXPERIMENT_ROADMAP.md](12_ABC_EXPERIMENT_ROADMAP.md)
-- [10_D3_OOF_ENSEMBLE_PLAN.md](10_D3_OOF_ENSEMBLE_PLAN.md)
+- [13_GROUP_COMBINED_TECHNIQUES_RESULTS_2026_08_24.md](13_GROUP_COMBINED_TECHNIQUES_RESULTS_2026_08_24.md)
+- [19_REPORT_PLAN_A_D3_FINAL.md](19_REPORT_PLAN_A_D3_FINAL.md)
 - [11_C_ROI_FALLBACK_PLAN.md](11_C_ROI_FALLBACK_PLAN.md)
 
 Trạng thái hiện tại: A có registry/config đã chuẩn bị; B và C mới ở mức thiết kế; chưa train, chưa sửa dữ liệu và chưa push remote.

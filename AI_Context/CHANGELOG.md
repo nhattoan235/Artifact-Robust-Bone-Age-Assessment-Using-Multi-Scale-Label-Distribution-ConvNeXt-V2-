@@ -1,5 +1,15 @@
 # AI_Context changelog
 
+## 2026-09-11 — Canonical context reset
+
+- Loại mảnh merge-conflict/branch-name khỏi 00_START_HERE.md và context_index.json.
+- Viết lại bộ đọc mặc định 00–06 theo trạng thái mới: E1, C3-ROI, C3-R2/Z26, NO_HE, TTA, C0, bilinear, C1 và C2.
+- Thay kế hoạch P9 lỗi thời bằng 04_CURRENT_PLAN.md.
+- Thêm phân loại VERIFIED/PARTIAL/HISTORICAL và ghi rõ test 200 không còn là untouched holdout.
+- Chuẩn hóa thuật ngữ ROI margin 8%, raw C3-R2 margin 12%, HE/NO_HE và fallback.
+- Giữ các báo cáo dài làm bằng chứng nhưng loại khỏi luồng đọc mặc định.
+- Không xóa _P14_TASKS_TEMP: trạng thái P14 hiện chưa thỏa điều kiện cleanup trong 99_CLEANUP_AFTER_P14.md.
+
 ## 2026-08-21 – C1 implementation complete
 
 - Added `c1_curated` manifest audit, sex × age stratification and deterministic mild weighted sampler.

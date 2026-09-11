@@ -263,7 +263,7 @@ Nếu kết quả cuối cùng chưa vượt 3,87 tháng, đồ án vẫn có th
 - [Trạng thái kết quả hiện tại](01_STATUS_RESULTS.md)
 - [Lịch sử phương pháp](02_METHOD_HISTORY.md)
 - [Protocol dữ liệu](03_DATA_PROTOCOL.md)
-- [Kế hoạch P9 hiện tại](04_NEXT_P9_PLAN.md)
+- [Kế hoạch thực nghiệm hiện tại](04_CURRENT_PLAN.md)
 - [So sánh các pipeline](06_PIPELINE_COMPARISON.md)
 - [Báo cáo P7 OOF](../p7_final_v3/P7_OOF_report.json)
 - [Báo cáo P8 test ensemble](../p8_test_ensemble/outputs/P8_test_ensemble_report.json)

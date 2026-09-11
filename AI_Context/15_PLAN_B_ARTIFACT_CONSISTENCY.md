@@ -71,5 +71,5 @@ Nếu clean MAE không cải thiện nhưng stress MAE cải thiện, kết lu�
 - Teacher/model ban đầu yếu có thể truyền sai lầm.
 - Gain có thể thực chất đến từ augmentation chứ không phải consistency.
 
-Tài liệu liên quan: AI_Context/12_ABC_EXPERIMENT_ROADMAP.md và AI_Context/13_ABC_EXPERIMENT_SPECIFICATION.md.
+Tài liệu liên quan: AI_Context/13_GROUP_COMBINED_TECHNIQUES_RESULTS_2026_08_24.md và AI_Context/13_ABC_EXPERIMENT_SPECIFICATION.md.
 
