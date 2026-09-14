@@ -1,14 +1,14 @@
 [data]
-train_manifest = "/content/C3_Z26_C3_ROI_V2/manifests/fold_1_train.csv"
-val_manifest = "/content/C3_Z26_C3_ROI_V2/manifests/fold_1_validation.csv"
-expected_train_hash = "bd104dee8d024f7d4c3af09e7f77fe9bdcc51e7eef85f7a21231b3550cf45bdf"
-expected_val_hash = "d03e7faa21651d2c5d53ae31ce407a0b5a22d9f2168d2c836133012c098c4c0a"
-expected_train_count = 11228
-expected_val_count = 2808
+train_manifest = "/content/C3_Z26_C3_ROI_V2/manifests/fold_3_train.csv"
+val_manifest = "/content/C3_Z26_C3_ROI_V2/manifests/fold_3_validation.csv"
+expected_train_hash = "896d4fd4efb43a0726d57a3084ba597364d9aedb73551774f34b58fec213be9e"
+expected_val_hash = "c894202bb22f453ffef0eff9dcbd5a3e2f72c5b090073951388b7ed19a6ab82b"
+expected_train_count = 11229
+expected_val_count = 2807
 image_root = "/content/C3_Z26_COMBO_V2"
 
 [run]
-run_id = "C3_Z26_C3_ROI_V2_PILOT_B_V2_FOLD_1_SEED_42"
+run_id = "C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_3_SEED_42"
 output_root = "/content/C3_Z26_C3_ROI_V2_PILOTS/runs"
 checkpoint_mirror_root = "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs"
 seed = 42
@@ -42,7 +42,7 @@ gamma_min = 0.90
 gamma_max = 1.10
 artifact_augmentation = "mild_v1"
 artifact_probability = 1.0
-consistency_weight = 0.0
+consistency_weight = 0.30
 artifact_warmup_epochs = 3
 artifact_ramp_epochs = 5
 preprocessing = "none"

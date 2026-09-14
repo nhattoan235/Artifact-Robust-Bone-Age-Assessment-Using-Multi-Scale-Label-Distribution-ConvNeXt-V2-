@@ -43,6 +43,15 @@ def gaussian_label_distribution(
     return distribution / distribution.sum(dim=1, keepdim=True).clamp_min(1e-12)
 
 
+def artifact_ramp_factor(epoch: int, warmup_epochs: int, ramp_epochs: int) -> float:
+    """Weight artifact supervision from zero after clean warmup to one after ramp."""
+    if epoch < 0 or warmup_epochs < 0 or ramp_epochs <= 0:
+        raise ValueError("epoch/warmup/ramp không hợp lệ")
+    if epoch < warmup_epochs:
+        return 0.0
+    return min(1.0, (epoch - warmup_epochs + 1) / ramp_epochs)
+
+
 def atomic_json(path: Path, value: dict | list) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix(path.suffix + ".tmp")
@@ -266,6 +275,9 @@ class Trainer:
 
     def _loader(self, train: bool, start_index: int = 0) -> DataLoader:
         rows = self.train_rows if train else self.val_rows
+        artifact_factor = artifact_ramp_factor(
+            self.epoch, self.cfg.artifact_warmup_epochs, self.cfg.artifact_ramp_epochs
+        )
         dataset = BoneAgeDataset(
             rows, self.cfg.image_size, self.cfg.target_mean, self.cfg.target_std,
             train=train, epoch=self.epoch, seed=self.cfg.seed,
@@ -282,7 +294,10 @@ class Trainer:
             preprocessing=self.cfg.preprocessing, preprocessed_root=self.cfg.preprocessed_root,
             image_root=self.cfg.image_root, image_normalization=self.cfg.image_normalization,
             artifact_augmentation=self.cfg.artifact_augmentation if train else "none",
-            artifact_probability=self.cfg.artifact_probability if train else 0.0,
+            artifact_probability=(
+                self.cfg.artifact_probability
+                if train and artifact_factor > 0.0 else 0.0
+            ),
         )
         sampler = (
             build_train_sampler(
@@ -411,6 +426,9 @@ class Trainer:
         self.optimizer.zero_grad(set_to_none=True)
         accumulated = 0
         start = time.perf_counter()
+        artifact_factor = artifact_ramp_factor(
+            self.epoch, self.cfg.artifact_warmup_epochs, self.cfg.artifact_ramp_epochs
+        )
         for local_batch, batch in enumerate(loader):
             self.batch_in_epoch += 1
             images = batch["image"].to(self.device, non_blocking=True)
@@ -420,6 +438,7 @@ class Trainer:
                 with torch.autocast(device_type=self.device.type, dtype=self.amp_dtype, enabled=self.amp_enabled):
                     paired_artifact = (
                         self.cfg.artifact_augmentation != "none"
+                        and artifact_factor > 0.0
                         and "artifact_image" in batch
                     )
                     if paired_artifact:
@@ -436,14 +455,17 @@ class Trainer:
                         prediction = output["regression"]
                         if paired_artifact:
                             clean_prediction, artifact_prediction = prediction[:batch_size], prediction[batch_size:]
-                            raw_loss = 0.5 * (
-                                self.loss_fn(clean_prediction, target)
-                                + self.loss_fn(artifact_prediction, target)
-                            )
+                            clean_loss = self.loss_fn(clean_prediction, target)
+                            artifact_loss = self.loss_fn(artifact_prediction, target)
+                            raw_loss = (
+                                clean_loss + artifact_factor * artifact_loss
+                            ) / (1.0 + artifact_factor)
                             self.last_consistency_loss = float(
                                 (clean_prediction - artifact_prediction).abs().mean().detach().cpu()
-                            )
-                            consistency_loss = (clean_prediction - artifact_prediction).abs().mean()
+                            ) * self.cfg.target_std
+                            consistency_loss = (
+                                clean_prediction - artifact_prediction
+                            ).abs().mean()
                         else:
                             raw_loss = self.loss_fn(prediction, target)
                             consistency_loss = prediction.new_zeros(())
@@ -458,30 +480,41 @@ class Trainer:
                             output["distribution_logits"].float(), dim=1
                         )
                         distribution_loss_all = -(soft_target * log_probability).sum(dim=1)
-                        distribution_loss = (
-                            0.5 * (distribution_loss_all[:batch_size].mean() + distribution_loss_all[batch_size:].mean())
-                            if paired_artifact else distribution_loss_all.mean()
-                        )
+                        if paired_artifact:
+                            clean_distribution_loss = distribution_loss_all[:batch_size].mean()
+                            artifact_distribution_loss = distribution_loss_all[batch_size:].mean()
+                            distribution_loss = (
+                                clean_distribution_loss
+                                + artifact_factor * artifact_distribution_loss
+                            ) / (1.0 + artifact_factor)
+                        else:
+                            distribution_loss = distribution_loss_all.mean()
                         combined_loss = (
                             raw_loss
                             + self.cfg.label_distribution_weight * distribution_loss
-                            + self.cfg.consistency_weight * consistency_loss
+                            + self.cfg.consistency_weight * artifact_factor * consistency_loss
                         )
                         self.last_distribution_loss = float(distribution_loss.detach().cpu())
                     else:
                         if paired_artifact:
                             clean_prediction, artifact_prediction = output[:batch_size], output[batch_size:]
-                            raw_loss = 0.5 * (
-                                self.loss_fn(clean_prediction, target)
-                                + self.loss_fn(artifact_prediction, target)
-                            )
+                            clean_loss = self.loss_fn(clean_prediction, target)
+                            artifact_loss = self.loss_fn(artifact_prediction, target)
+                            raw_loss = (
+                                clean_loss + artifact_factor * artifact_loss
+                            ) / (1.0 + artifact_factor)
                             consistency_loss = (clean_prediction - artifact_prediction).abs().mean()
-                            self.last_consistency_loss = float(consistency_loss.detach().cpu())
+                            self.last_consistency_loss = (
+                                float(consistency_loss.detach().cpu()) * self.cfg.target_std
+                            )
                         else:
                             raw_loss = self.loss_fn(output, target)
                             consistency_loss = output.new_zeros(())
                             self.last_consistency_loss = float("nan")
-                        combined_loss = raw_loss + self.cfg.consistency_weight * consistency_loss
+                        combined_loss = (
+                            raw_loss
+                            + self.cfg.consistency_weight * artifact_factor * consistency_loss
+                        )
                         self.last_distribution_loss = float("nan")
                     loss = combined_loss / self.cfg.grad_accum_steps
                 if not torch.isfinite(combined_loss):
@@ -530,8 +563,9 @@ class Trainer:
                 remaining_images = max(0, len(self.train_rows) - self.samples_seen_in_epoch)
                 eta_seconds = remaining_images / max(throughput, 1e-6)
                 ldl_text = f" loss_ldl={self.last_distribution_loss:.4f}" if math.isfinite(self.last_distribution_loss) else ""
-                consistency_text = f" loss_consistency={self.last_consistency_loss:.4f}" if math.isfinite(self.last_consistency_loss) else ""
-                self.logger.info(f"epoch={self.epoch + 1} batch={self.batch_in_epoch} global_step={self.global_step} loss_reg_months={self.epoch_loss_sum / self.epoch_loss_count:.4f}{ldl_text}{consistency_text} lr={self.optimizer.param_groups[0]['lr']:.8f} grad_norm={self.last_grad_norm:.4f} throughput={throughput:.2f} img/s eta_seconds={eta_seconds:.1f} gpu_alloc={allocated:.1f}MiB gpu_reserved={reserved:.1f}MiB skipped_batches=0")
+                consistency_text = f" disagreement_months={self.last_consistency_loss:.4f}" if math.isfinite(self.last_consistency_loss) else ""
+                artifact_text = f" artifact_factor={artifact_factor:.2f}" if self.cfg.artifact_augmentation != "none" else ""
+                self.logger.info(f"epoch={self.epoch + 1} batch={self.batch_in_epoch} global_step={self.global_step} loss_reg_months={self.epoch_loss_sum / self.epoch_loss_count:.4f}{ldl_text}{consistency_text}{artifact_text} lr={self.optimizer.param_groups[0]['lr']:.8f} grad_norm={self.last_grad_norm:.4f} throughput={throughput:.2f} img/s eta_seconds={eta_seconds:.1f} gpu_alloc={allocated:.1f}MiB gpu_reserved={reserved:.1f}MiB skipped_batches=0")
         return self.epoch_loss_sum / self.epoch_loss_count
 
     @torch.inference_mode()

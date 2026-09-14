@@ -1,0 +1,123 @@
+{
+  "protocol": "Fold 1 validation only; fixed clean and synthetic mild-artifact paired views",
+  "test_accessed": false,
+  "count": 2808,
+  "clean": {
+    "count": 2808,
+    "mae": 6.275103373405261,
+    "rmse": 8.59259181107118,
+    "median_ae": 4.744071960449219,
+    "accuracy_6m": 0.5908119658119658,
+    "accuracy_12m": 0.86502849002849,
+    "accuracy_18m": 0.9611823361823362,
+    "prediction_mean": 128.2762283776221,
+    "prediction_std": 39.9539816003517,
+    "prediction_min": 2.2740631103515625,
+    "prediction_max": 226.93682861328125,
+    "mae_by_sex": {
+      "F": 6.494380624885233,
+      "M": 6.0895610836914384
+    },
+    "prediction_std_by_sex": {
+      "F": 36.76538682681854,
+      "M": 40.825438295560176
+    },
+    "mae_by_age_bin": {
+      "0-59": 6.353228009612867,
+      "120-179": 5.5913756488641,
+      "180-228": 6.122670761419802,
+      "60-119": 7.71926313324171
+    }
+  },
+  "artifact": {
+    "count": 2808,
+    "mae": 6.392491821549896,
+    "rmse": 8.746703054862186,
+    "median_ae": 4.829326629638672,
+    "accuracy_6m": 0.5804843304843305,
+    "accuracy_12m": 0.8571937321937322,
+    "accuracy_18m": 0.9565527065527065,
+    "prediction_mean": 128.44034994565524,
+    "prediction_std": 39.97564668869885,
+    "prediction_min": 2.5859756469726562,
+    "prediction_max": 227.61117553710938,
+    "mae_by_sex": {
+      "F": 6.627300911572152,
+      "M": 6.193807206915681
+    },
+    "prediction_std_by_sex": {
+      "F": 36.76136758629958,
+      "M": 40.8802853794278
+    },
+    "mae_by_age_bin": {
+      "0-59": 6.421744490468968,
+      "120-179": 5.673990326782302,
+      "180-228": 6.297891297632334,
+      "60-119": 7.901594527746567
+    }
+  },
+  "artifact_minus_clean_mae_months": 0.11738844814463523,
+  "artifact_minus_clean_paired_bootstrap_95_ci_months": [
+    0.060750431314832466,
+    0.17528769711823203
+  ],
+  "disagreement_months": {
+    "mean": 1.0919258682816118,
+    "median": 0.7543182373046875,
+    "p95": 3.3238231658935558
+  },
+  "subgroups_by_sex": {
+    "F": {
+      "count": 1287,
+      "clean_mae": 6.494380624885233,
+      "artifact_mae": 6.627300911572152,
+      "artifact_minus_clean_mae": 0.13292028668691902,
+      "mean_disagreement_months": 1.1153852289373225
+    },
+    "M": {
+      "count": 1521,
+      "clean_mae": 6.0895610836914384,
+      "artifact_mae": 6.193807206915681,
+      "artifact_minus_clean_mae": 0.1042461232242422,
+      "mean_disagreement_months": 1.0720756400344718
+    }
+  },
+  "subgroups_by_age_bin": {
+    "0-59": {
+      "count": 179,
+      "clean_mae": 6.353228009612867,
+      "artifact_mae": 6.421744490468968,
+      "artifact_minus_clean_mae": 0.0685164808561014,
+      "mean_disagreement_months": 1.1988934564856844
+    },
+    "60-119": {
+      "count": 777,
+      "clean_mae": 7.71926313324171,
+      "artifact_mae": 7.901594527746567,
+      "artifact_minus_clean_mae": 0.1823313945048568,
+      "mean_disagreement_months": 1.2844191837188053
+    },
+    "120-179": {
+      "count": 1607,
+      "clean_mae": 5.5913756488641,
+      "artifact_mae": 5.673990326782302,
+      "artifact_minus_clean_mae": 0.08261467791820198,
+      "mean_disagreement_months": 0.9571404020906459
+    },
+    "180-228": {
+      "count": 245,
+      "clean_mae": 6.122670761419802,
+      "artifact_mae": 6.297891297632334,
+      "artifact_minus_clean_mae": 0.17522053621253164,
+      "mean_disagreement_months": 1.2873778674067282
+    }
+  },
+  "locked_baseline_fold1_mae_months": 6.253462484419516,
+  "clean_gain_vs_locked_baseline_months": -0.02164088898574512,
+  "limitations": [
+    "Artifact view is synthetic mild_v1, not an external hospital dataset.",
+    "Pilot selection is restricted to Fold 1; confirmation requires all folds."
+  ],
+  "run_id": "C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_1_SEED_42",
+  "checkpoint": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_1_SEED_42/best_mae.ckpt"
+}

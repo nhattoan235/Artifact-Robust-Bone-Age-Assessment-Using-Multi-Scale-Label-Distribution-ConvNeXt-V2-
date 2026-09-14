@@ -8,7 +8,7 @@ expected_val_count = 2808
 image_root = "/content/C3_Z26_COMBO_V2"
 
 [run]
-run_id = "C3_Z26_C3_ROI_V2_PILOT_C_FOLD_1_SEED_42"
+run_id = "C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_1_SEED_42"
 output_root = "/content/C3_Z26_C3_ROI_V2_PILOTS/runs"
 checkpoint_mirror_root = "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs"
 seed = 42
@@ -17,7 +17,7 @@ deterministic = true
 allow_tf32 = true
 
 [model]
-architecture = "convnext_tiny_ldl"
+architecture = "convnext_tiny"
 sex_mode = "embedding"
 pretrained = true
 image_size = 512
@@ -43,6 +43,8 @@ gamma_max = 1.10
 artifact_augmentation = "mild_v1"
 artifact_probability = 1.0
 consistency_weight = 0.30
+artifact_warmup_epochs = 3
+artifact_ramp_epochs = 5
 preprocessing = "none"
 image_normalization = "imagenet"
 
