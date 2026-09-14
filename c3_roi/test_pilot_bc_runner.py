@@ -17,7 +17,7 @@ from p1_baseline.config import Config, scientific_config_hash
 
 
 class PilotBCRunnerTests(unittest.TestCase):
-    def test_pilot_config_path_accepts_fold_and_keeps_b_locked_to_fold1(self):
+    def test_pilot_config_path_accepts_fold_and_keeps_b_locked_to_folds1_and5(self):
         root = Path("/tmp/pilots")
         self.assertEqual(
             pilot_config_path("b", root).name,
@@ -26,6 +26,10 @@ class PilotBCRunnerTests(unittest.TestCase):
         self.assertEqual(
             pilot_config_path("C", root, 3).name,
             "C3_Z26_C3_ROI_V2_PILOT_C_FOLD_3_SEED_42.toml",
+        )
+        self.assertEqual(
+            pilot_config_path("B", root, 5).name,
+            "C3_Z26_C3_ROI_V2_PILOT_B_FOLD_5_SEED_42.toml",
         )
         with self.assertRaises(ValueError):
             pilot_config_path("B", root, 2)

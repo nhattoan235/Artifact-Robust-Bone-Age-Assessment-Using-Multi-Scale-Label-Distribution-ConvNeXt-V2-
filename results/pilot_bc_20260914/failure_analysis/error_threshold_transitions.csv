@@ -1,0 +1,9 @@
+threshold_months,model,view,baseline_ok_candidate_bad,baseline_bad_candidate_ok,both_ok,both_bad
+6.0,c,clean,1151,1075,7194,4616
+6.0,c,artifact,1397,1901,6216,4522
+6.0,blend,clean,808,814,7537,4877
+6.0,blend,artifact,938,1459,6675,4964
+12.0,c,clean,463,445,11653,1475
+12.0,c,artifact,596,1018,10983,1439
+12.0,blend,clean,296,347,11820,1573
+12.0,blend,artifact,374,835,11205,1622

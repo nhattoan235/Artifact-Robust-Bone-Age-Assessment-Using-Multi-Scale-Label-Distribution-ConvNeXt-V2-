@@ -1,0 +1,67 @@
+{
+  "protocol": "Locked five-fold validation OOF only; no RSNA 200-image test access; fixed blend=0.27 baseline + 0.73 Pilot C",
+  "test_accessed": false,
+  "count": 14036,
+  "weight_c": 0.73,
+  "worst_clean_fold": {
+    "fold": 5,
+    "count": 2807,
+    "pilot_c_delta": 0.2482342286852277,
+    "blend_delta": 0.07749996186661748,
+    "blend_delta_ci_95": [
+      -0.011255237736988421,
+      0.16397965648278806
+    ]
+  },
+  "worst_fold_age_group": {
+    "group": "fold_5|60-119",
+    "count": 777,
+    "pilot_c_delta": 0.8300443524099225,
+    "blend_delta": 0.4979806193053491,
+    "blend_delta_ci_95": [
+      0.31826023305919937,
+      0.6783535953580638
+    ]
+  },
+  "fold5_concentration": {
+    "count": 2807,
+    "c": {
+      "mean_delta": 0.2482342286852277,
+      "median_delta": 0.21370697021484375,
+      "worsened_fraction": 0.5311720698254364,
+      "improved_fraction": 0.4688279301745636,
+      "positive_error_sum": 3664.948890686035,
+      "negative_error_sum": -2968.155410766601,
+      "images_for_50pct_positive_error": 317,
+      "fraction_for_50pct_positive_error": 0.1129319558247239,
+      "images_for_80pct_positive_error": 717,
+      "fraction_for_80pct_positive_error": 0.25543284645529035,
+      "trimmed_1pct_mean_delta": 0.23782784872751717,
+      "trimmed_5pct_mean_delta": 0.17039603314508803
+    },
+    "blend": {
+      "mean_delta": 0.07749996186661748,
+      "median_delta": 0.06909469604491392,
+      "worsened_fraction": 0.5133594584966156,
+      "improved_fraction": 0.48664054150338437,
+      "positive_error_sum": 2587.075109863282,
+      "negative_error_sum": -2369.5327169036864,
+      "images_for_50pct_positive_error": 308,
+      "fraction_for_50pct_positive_error": 0.10972568578553615,
+      "images_for_80pct_positive_error": 695,
+      "fraction_for_80pct_positive_error": 0.24759529747060918,
+      "trimmed_1pct_mean_delta": 0.06897543801125472,
+      "trimmed_5pct_mean_delta": 0.04963948816586238
+    }
+  },
+  "next_control_experiment": {
+    "pilot": "B",
+    "fold": 5,
+    "reason": "Fold 5 is the largest fixed-blend clean regression. Training Pilot B on the same locked fold separates artifact augmentation from Pilot C's consistency penalty."
+  },
+  "files": {
+    "group_summary": "results\\pilot_bc_20260914\\failure_analysis\\fold_age_failure_summary.csv",
+    "threshold_transitions": "results\\pilot_bc_20260914\\failure_analysis\\error_threshold_transitions.csv",
+    "worst_regressions": "results\\pilot_bc_20260914\\failure_analysis\\worst_200_clean_regressions.csv"
+  }
+}
