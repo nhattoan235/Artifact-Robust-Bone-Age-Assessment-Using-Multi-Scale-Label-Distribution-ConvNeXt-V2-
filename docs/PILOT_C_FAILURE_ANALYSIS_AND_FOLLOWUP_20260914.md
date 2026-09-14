@@ -38,6 +38,40 @@ Generated evidence:
 - `results/pilot_bc_20260914/failure_analysis/error_threshold_transitions.csv`
 - `results/pilot_bc_20260914/failure_analysis/worst_200_clean_regressions.csv`
 
+## Balanced OOF re-evaluation (complete)
+
+Balanced MAE was recomputed from the same locked OOF predictions. No checkpoint
+was changed and no inference was repeated. `age_macro` gives each of the four
+age bins exactly 25% weight, regardless of its image count.
+
+| View | Metric | Baseline | Pilot C | Fixed blend | Blend delta vs baseline | Blend 95% paired CI |
+|---|---|---:|---:|---:|---:|---:|
+| Clean | Ordinary image-weighted MAE | 6.3300 | 6.3707 | **6.2725** | -0.0575 | [-0.0925, -0.0229] |
+| Clean | Age-balanced MAE | **6.2597** | 6.4834 | 6.3056 | +0.0458 | [-0.0180, +0.1093] |
+| Artifact | Ordinary image-weighted MAE | 7.2378 | 6.5227 | **6.4879** | -0.7499 | [-0.8151, -0.6865] |
+| Artifact | Age-balanced MAE | 6.9645 | 6.6866 | **6.5090** | -0.4555 | [-0.5427, -0.3676] |
+
+The clean conclusion changes under age balancing: baseline has the lowest
+numeric MAE, while the blend difference is inconclusive because its interval
+crosses zero. Pilot C alone is significantly worse than baseline by 0.2236
+months, 95% CI [0.1390, 0.3073]. The artifact conclusion remains strong after
+balancing: the blend improves age-balanced artifact MAE by 0.4555 months.
+
+Fold-by-age macro averaging over all 20 cells produces nearly identical values
+(baseline 6.2596, Pilot C 6.4832, blend 6.3055), so the finding is not caused by
+one fold receiving more weight. Sex-balanced clean MAE still favors the blend
+by 0.0557 months, indicating that the unresolved imbalance is primarily by age.
+
+Balanced MAE is a diagnostic/fairness metric and must be reported alongside the
+ordinary MAE. It is not directly comparable with a paper that reports ordinary
+image-weighted MAE.
+
+Generated evidence:
+
+- `results/pilot_bc_20260914/balanced_oof/balanced_oof_report.json`
+- `results/pilot_bc_20260914/balanced_oof/balanced_oof_metrics.csv`
+- `results/pilot_bc_20260914/balanced_oof/balanced_oof_age_groups.csv`
+
 ## Step 2 — artifact-type matrix (prepared; requires T4 inference)
 
 Run the prepared Fold-5 matrix before another training experiment. It evaluates
