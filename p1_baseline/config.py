@@ -50,6 +50,8 @@ class Config:
     artifact_augmentation: str = "none"
     artifact_probability: float = 0.0
     consistency_weight: float = 0.0
+    artifact_warmup_epochs: int = 0
+    artifact_ramp_epochs: int = 1
     preprocessing: str = "none"
     preprocessed_root: str = "p3_preprocessing/outputs/official_mask_v1/cache"
     image_normalization: str = "imagenet"
@@ -132,6 +134,8 @@ def load_config(path: str | Path) -> Config:
         raise ValueError("artifact_probability phải trong [0, 1]")
     if cfg.consistency_weight < 0:
         raise ValueError("consistency_weight phải >= 0")
+    if cfg.artifact_warmup_epochs < 0 or cfg.artifact_ramp_epochs <= 0:
+        raise ValueError("artifact_warmup_epochs phải >= 0 và artifact_ramp_epochs phải > 0")
     if cfg.preprocessing not in {"none", "official_mask_v1", "deeplasia_mask_v1", "deeplasia_mask_histogram_v1"}:
         raise ValueError("preprocessing không được hỗ trợ")
     if cfg.image_normalization not in {"imagenet", "per_image_zscore", "zero_one"}:

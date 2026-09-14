@@ -7,9 +7,16 @@ from PIL import Image
 
 from p1_baseline.artifacts import apply_mild_artifact
 from p1_baseline.data import BoneAgeDataset
+from p1_baseline.trainer import artifact_ramp_factor
 
 
 class PilotArtifactTests(unittest.TestCase):
+    def test_artifact_schedule_has_three_clean_epochs_then_five_epoch_ramp(self):
+        factors = [artifact_ramp_factor(epoch, warmup_epochs=3, ramp_epochs=5) for epoch in range(9)]
+        self.assertEqual(factors[:3], [0.0, 0.0, 0.0])
+        self.assertEqual(factors[3:8], [0.2, 0.4, 0.6, 0.8, 1.0])
+        self.assertEqual(factors[8], 1.0)
+
     def test_mild_artifact_is_deterministic_and_preserves_shape(self):
         source = Image.fromarray(np.full((32, 40), 128, dtype=np.uint8), mode="L")
         first = apply_mild_artifact(source, seed=123, severity=1.0)

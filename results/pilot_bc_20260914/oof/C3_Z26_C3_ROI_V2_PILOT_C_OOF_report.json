@@ -1,0 +1,176 @@
+{
+  "protocol": "Pooled 5-fold validation only; Pilot C versus locked C3-V2; fixed clean and synthetic mild-artifact paired views",
+  "test_accessed": false,
+  "count": 14036,
+  "folds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "baseline_clean": {
+    "count": 14036,
+    "mae": 6.330013979327206,
+    "rmse": 8.61284229054337,
+    "median_ae": 4.701698303222649
+  },
+  "pilot_c_clean": {
+    "count": 14036,
+    "mae": 6.3706596825122155,
+    "rmse": 8.59862806812676,
+    "median_ae": 4.876678466796875
+  },
+  "baseline_artifact": {
+    "count": 14036,
+    "mae": 7.237796939176928,
+    "rmse": 10.068124151861376,
+    "median_ae": 5.402381896972663
+  },
+  "pilot_c_artifact": {
+    "count": 14036,
+    "mae": 6.522732400391373,
+    "rmse": 8.809826361950234,
+    "median_ae": 4.997688293457031
+  },
+  "clean_delta_c_minus_baseline_months": 0.040645703185009374,
+  "clean_paired_bootstrap_95_ci_months": [
+    -0.006547788460732306,
+    0.08629290723977316
+  ],
+  "artifact_delta_c_minus_baseline_months": -0.7150645387855548,
+  "artifact_gain_months": 0.7150645387855548,
+  "artifact_paired_bootstrap_95_ci_months": [
+    -0.7983717379457218,
+    -0.6331857975068069
+  ],
+  "baseline_disagreement_mean_months": 3.093309116553771,
+  "pilot_c_disagreement_mean_months": 1.1090097897546725,
+  "disagreement_reduction_fraction": 0.6414810974370998,
+  "disagreement_delta_paired_bootstrap_95_ci_months": [
+    -2.0504100827825615,
+    -1.918783287113295
+  ],
+  "subgroups_by_sex": {
+    "F": {
+      "count": 6430,
+      "c_clean_mae": 6.625994817873182,
+      "baseline_clean_mae": 6.5548584672563,
+      "c_artifact_mae": 6.787759966575895,
+      "baseline_artifact_mae": 7.451663837462525,
+      "clean_delta_c_minus_baseline": 0.07113635061688228,
+      "artifact_delta_c_minus_baseline": -0.6639038708866298,
+      "c_disagreement_mean": 1.1168420586949377,
+      "baseline_disagreement_mean": 3.0723938824785626
+    },
+    "M": {
+      "count": 7606,
+      "c_clean_mae": 6.154803132371404,
+      "baseline_clean_mae": 6.139933771940397,
+      "c_artifact_mae": 6.298682012465199,
+      "baseline_artifact_mae": 7.056997023850029,
+      "clean_delta_c_minus_baseline": 0.01486936043100684,
+      "artifact_delta_c_minus_baseline": -0.7583150113848296,
+      "c_disagreement_mean": 1.1023885053363311,
+      "baseline_disagreement_mean": 3.11099054635966
+    }
+  },
+  "subgroups_by_age_bin": {
+    "0-59": {
+      "count": 895,
+      "c_clean_mae": 6.556463789273907,
+      "baseline_clean_mae": 6.058881804396986,
+      "c_artifact_mae": 6.852670820864885,
+      "baseline_artifact_mae": 6.551212259644236,
+      "clean_delta_c_minus_baseline": 0.49758198487692074,
+      "artifact_delta_c_minus_baseline": 0.30145856122064885,
+      "c_disagreement_mean": 1.2829017255559314,
+      "baseline_disagreement_mean": 3.163226753106996
+    },
+    "60-119": {
+      "count": 3881,
+      "c_clean_mae": 7.599745007588426,
+      "baseline_clean_mae": 7.363896172122223,
+      "c_artifact_mae": 7.802886453740101,
+      "baseline_artifact_mae": 8.108318601125173,
+      "clean_delta_c_minus_baseline": 0.2358488354662036,
+      "artifact_delta_c_minus_baseline": -0.30543214738507274,
+      "c_disagreement_mean": 1.2835234888003555,
+      "baseline_disagreement_mean": 3.2681181508835615
+    },
+    "120-179": {
+      "count": 8033,
+      "c_clean_mae": 5.819160430083814,
+      "baseline_clean_mae": 5.964313185587479,
+      "c_artifact_mae": 5.921461565266299,
+      "baseline_artifact_mae": 7.0619123134283,
+      "clean_delta_c_minus_baseline": -0.14515275550366535,
+      "artifact_delta_c_minus_baseline": -1.1404507481620003,
+      "c_disagreement_mean": 0.9886111365477026,
+      "baseline_disagreement_mean": 3.078431646004421
+    },
+    "180-228": {
+      "count": 1227,
+      "c_clean_mae": 5.958123963347468,
+      "baseline_clean_mae": 5.651807771043847,
+      "c_artifact_mae": 6.169379385875898,
+      "baseline_artifact_mae": 6.136639577155203,
+      "clean_delta_c_minus_baseline": 0.30631619230362084,
+      "artifact_delta_c_minus_baseline": 0.03273980872069426,
+      "c_disagreement_mean": 1.2184160103521995,
+      "baseline_disagreement_mean": 2.5867896169399773
+    }
+  },
+  "gates": {
+    "clean_noninferiority_pass": true,
+    "artifact_superiority_pass": true,
+    "stability_pass": true,
+    "subgroup_pass": false,
+    "all_pass": false
+  },
+  "expected_count": 14036,
+  "provenance": [
+    {
+      "fold": 1,
+      "pilot_c_predictions": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_1_SEED_42/artifact_robustness_predictions.csv",
+      "pilot_c_predictions_sha256": "02da492a70fe5eb1f8a1c6edfd5f1ad243c305e5ae53717c79cbba63127620fe",
+      "pilot_c_report": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_1_SEED_42/artifact_robustness_report.json",
+      "pilot_c_checkpoint": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_1_SEED_42/best_mae.ckpt",
+      "baseline_checkpoint": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2/runs/C3_Z26_C3_ROI_V2_FOLD_1/best_mae.ckpt"
+    },
+    {
+      "fold": 2,
+      "pilot_c_predictions": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_2_SEED_42/artifact_robustness_predictions.csv",
+      "pilot_c_predictions_sha256": "96a6a80ae842d2b9487f11cce600f2a0e7575d18cdd77fc8429917b9f7b805e0",
+      "pilot_c_report": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_2_SEED_42/artifact_robustness_report.json",
+      "pilot_c_checkpoint": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_2_SEED_42/best_mae.ckpt",
+      "baseline_checkpoint": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2/runs/C3_Z26_C3_ROI_V2_FOLD_2/best_mae.ckpt"
+    },
+    {
+      "fold": 3,
+      "pilot_c_predictions": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_3_SEED_42/artifact_robustness_predictions.csv",
+      "pilot_c_predictions_sha256": "4941e473a3b9dc23ceab4aa904c5d54dcb8228676737a34c9785cdf35f9e5622",
+      "pilot_c_report": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_3_SEED_42/artifact_robustness_report.json",
+      "pilot_c_checkpoint": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_3_SEED_42/best_mae.ckpt",
+      "baseline_checkpoint": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2/runs/C3_Z26_C3_ROI_V2_FOLD_3/best_mae.ckpt"
+    },
+    {
+      "fold": 4,
+      "pilot_c_predictions": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_4_SEED_42/artifact_robustness_predictions.csv",
+      "pilot_c_predictions_sha256": "f586907c8e881260c7730dbace4c9af3ec6dc238fb9fcb10c82fb9a722f7b5e4",
+      "pilot_c_report": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_4_SEED_42/artifact_robustness_report.json",
+      "pilot_c_checkpoint": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_4_SEED_42/best_mae.ckpt",
+      "baseline_checkpoint": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2/runs/C3_Z26_C3_ROI_V2_FOLD_4/best_mae.ckpt"
+    },
+    {
+      "fold": 5,
+      "pilot_c_predictions": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_5_SEED_42/artifact_robustness_predictions.csv",
+      "pilot_c_predictions_sha256": "cc4933edd63ae3ac1eab348bd15e7e4020355e69fe95631fbc4f579bb4dd5bfd",
+      "pilot_c_report": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_5_SEED_42/artifact_robustness_report.json",
+      "pilot_c_checkpoint": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/runs/C3_Z26_C3_ROI_V2_PILOT_C_V2_FOLD_5_SEED_42/best_mae.ckpt",
+      "baseline_checkpoint": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2/runs/C3_Z26_C3_ROI_V2_FOLD_5/best_mae.ckpt"
+    }
+  ],
+  "predictions_csv": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/OOF/C3_Z26_C3_ROI_V2_PILOT_C_OOF_predictions.csv",
+  "subgroups_csv": "/content/drive/MyDrive/RSNA_DATA/C3_Z26_C3_ROI_V2_PILOTS/OOF/C3_Z26_C3_ROI_V2_PILOT_C_OOF_subgroups.csv"
+}

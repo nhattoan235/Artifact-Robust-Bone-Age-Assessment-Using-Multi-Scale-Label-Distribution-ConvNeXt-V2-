@@ -1,0 +1,55 @@
+{
+  "protocol": "Fold 1 paired comparison; same 2808 IDs; fixed clean and synthetic mild-artifact views",
+  "test_accessed": false,
+  "count": 2808,
+  "comparisons": [
+    {
+      "comparison": "C vs B — clean",
+      "reference_mae": 6.298440028459598,
+      "candidate_mae": 6.275103373405261,
+      "delta_candidate_minus_reference": -0.023336655054336575,
+      "gain_months": 0.023336655054336575,
+      "bootstrap_95_ci": [
+        -0.11899607008339014,
+        0.07469633495026463
+      ],
+      "candidate_statistically_better": false
+    },
+    {
+      "comparison": "C vs B — artifact",
+      "reference_mae": 6.483510155963082,
+      "candidate_mae": 6.392491821549896,
+      "delta_candidate_minus_reference": -0.09101833441318607,
+      "gain_months": 0.09101833441318607,
+      "bootstrap_95_ci": [
+        -0.19678995636453658,
+        0.016347619441160147
+      ],
+      "candidate_statistically_better": false
+    },
+    {
+      "comparison": "C vs baseline — clean",
+      "reference_mae": 6.253524022224622,
+      "candidate_mae": 6.275103373405261,
+      "delta_candidate_minus_reference": 0.02157935118063925,
+      "gain_months": -0.02157935118063925,
+      "bootstrap_95_ci": [
+        -0.07577796712560182,
+        0.12204403819521632
+      ],
+      "candidate_statistically_better": false
+    },
+    {
+      "comparison": "C vs baseline — artifact",
+      "reference_mae": 7.152143273258481,
+      "candidate_mae": 6.392491821549896,
+      "delta_candidate_minus_reference": -0.7596514517085851,
+      "gain_months": 0.7596514517085851,
+      "bootstrap_95_ci": [
+        -0.9257920763431448,
+        -0.5896961203327883
+      ],
+      "candidate_statistically_better": true
+    }
+  ]
+}
