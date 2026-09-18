@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "protocol": "locked OOF-selected C3-Z26 V2; five folds; rotations -10,-5,0,5,10 x flip/no-flip; uniform mean of 50 predictions",
+  "protocol_locked_from_oof": true,
+  "test_used_for_model_selection": false,
+  "count": 200,
+  "views_per_fold": 10,
+  "fold_count": 5,
+  "metadata_sha256": "56d08082449565581e51b1ebcf01a5a2456a6f76f7d765cdacd146fd295e5954",
+  "checkpoint_sha256": {
+    "1": "e8a8c32734a2b53ff0d61db04b70b8588065dcafcfc4f60e4d05aa716252f704",
+    "2": "9281d5bf2d40a82d960f2ea8e3a572c5c4ce45322b63525f7f3da819bb48ff52",
+    "3": "f7a766e7dea82dbbec59d781a3a8f313408f9b58bfef0e94fbad2fc289b85e78",
+    "4": "60ef069bfac91e6de13049b2581e422fa94072f4eb4b1e6fa5d829ae9f4f7bd1",
+    "5": "19be6279bd90cb795c330013b08aca742724ff46ffb9ab56235771df469a376c"
+  },
+  "metrics": {
+    "raw_5fold": {
+      "mae_months": 4.382808957672119,
+      "rmse_months": 5.4945795118611045,
+      "median_absolute_error_months": 3.749432373046883,
+      "accuracy_within_6_months": 0.725,
+      "accuracy_within_12_months": 0.97,
+      "signed_bias_months": 0.6858277778625487
+    },
+    "tta_5fold_10view": {
+      "mae_months": 4.251691782379151,
+      "rmse_months": 5.424345315910086,
+      "median_absolute_error_months": 3.4651522064209033,
+      "accuracy_within_6_months": 0.71,
+      "accuracy_within_12_months": 0.98,
+      "signed_bias_months": 0.7137888946533194
+    }
+  },
+  "tta_mae_bootstrap_95_ci": [
+    3.8014346619796755,
+    4.718735501766206
+  ],
+  "paired_tta_minus_raw": {
+    "estimate_months": -0.13111717529296885,
+    "bootstrap_95_ci": [
+      -0.31147057078361595,
+      0.04614076468467705
+    ]
+  }
+}

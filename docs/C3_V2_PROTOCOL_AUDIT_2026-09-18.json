@@ -1,0 +1,100 @@
+{
+  "scope": "local manifest/config/handoff metadata only; no image decoding or patient identity check",
+  "folds": {
+    "1": {
+      "train_count": 11228,
+      "validation_count": 2808,
+      "within_fold_id_overlap": 0,
+      "within_fold_sha256_overlap": 0,
+      "validation_id_seen_in_other_fold": 0,
+      "expected_counts_match": true,
+      "manifest_hashes_match": true,
+      "train_target_mean": 127.23833273957962,
+      "train_target_std_sample": 41.248974358112605,
+      "configured_target_mean": 127.23833273957962,
+      "configured_target_std": 41.248974358112605,
+      "target_normalization_matches_own_train": true
+    },
+    "2": {
+      "train_count": 11229,
+      "validation_count": 2807,
+      "within_fold_id_overlap": 0,
+      "within_fold_sha256_overlap": 0,
+      "validation_id_seen_in_other_fold": 0,
+      "expected_counts_match": true,
+      "manifest_hashes_match": true,
+      "train_target_mean": 127.41472971769525,
+      "train_target_std_sample": 41.24421735515304,
+      "configured_target_mean": 127.23833273957962,
+      "configured_target_std": 41.248974358112605,
+      "target_normalization_matches_own_train": false
+    },
+    "3": {
+      "train_count": 11229,
+      "validation_count": 2807,
+      "within_fold_id_overlap": 0,
+      "within_fold_sha256_overlap": 0,
+      "validation_id_seen_in_other_fold": 0,
+      "expected_counts_match": true,
+      "manifest_hashes_match": true,
+      "train_target_mean": 127.35292546086028,
+      "train_target_std_sample": 41.29279781131869,
+      "configured_target_mean": 127.23833273957962,
+      "configured_target_std": 41.248974358112605,
+      "target_normalization_matches_own_train": false
+    },
+    "4": {
+      "train_count": 11229,
+      "validation_count": 2807,
+      "within_fold_id_overlap": 0,
+      "within_fold_sha256_overlap": 0,
+      "validation_id_seen_in_other_fold": 0,
+      "expected_counts_match": true,
+      "manifest_hashes_match": true,
+      "train_target_mean": 127.25817080772998,
+      "train_target_std_sample": 41.18746900058828,
+      "configured_target_mean": 127.23833273957962,
+      "configured_target_std": 41.248974358112605,
+      "target_normalization_matches_own_train": false
+    },
+    "5": {
+      "train_count": 11229,
+      "validation_count": 2807,
+      "within_fold_id_overlap": 0,
+      "within_fold_sha256_overlap": 0,
+      "validation_id_seen_in_other_fold": 0,
+      "expected_counts_match": true,
+      "manifest_hashes_match": true,
+      "train_target_mean": 127.25621159497729,
+      "train_target_std_sample": 41.20649499429804,
+      "configured_target_mean": 127.23833273957962,
+      "configured_target_std": 41.248974358112605,
+      "target_normalization_matches_own_train": false
+    }
+  },
+  "oof_count": 14036,
+  "oof_unique_ids": 14036,
+  "oof_unique_sha256": 14036,
+  "age_bin_counts": {
+    "0-59": 895,
+    "120-179": 8033,
+    "180-228": 1227,
+    "60-119": 3881
+  },
+  "sex_counts": {
+    "F": 6430,
+    "M": 7606
+  },
+  "test_id_overlap_with_oof": 0,
+  "test_manifest_has_age_labels": false,
+  "oof_handoff_sha256_match_count": 14036,
+  "recorded_global_fallback_count": 1974,
+  "rescued_but_still_recorded_global_fallback_count": 588,
+  "effective_global_fallback_count_after_rescue": 1386,
+  "target_normalization_fold_mismatch": [
+    2,
+    3,
+    4,
+    5
+  ]
+}
