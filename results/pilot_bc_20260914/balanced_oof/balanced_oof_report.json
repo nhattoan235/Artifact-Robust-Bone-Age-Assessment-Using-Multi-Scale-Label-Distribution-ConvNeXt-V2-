@@ -1,0 +1,140 @@
+{
+  "protocol": "Locked 14,036-image validation OOF; existing predictions only; fixed blend=0.27 baseline + 0.73 Pilot C; no test access",
+  "test_accessed": false,
+  "count": 14036,
+  "weight_c": 0.73,
+  "bootstrap_repetitions": 20000,
+  "definitions": {
+    "ordinary_micro": "Every image has equal weight.",
+    "age_macro": "Each of four locked age bins has 25% weight.",
+    "sex_macro": "Female and male groups each have 50% weight.",
+    "age_sex_macro": "Each observed age-by-sex cell has equal weight.",
+    "fold_age_macro": "Each of 20 fold-by-age cells has equal weight."
+  },
+  "headline": [
+    {
+      "view": "clean",
+      "scheme": "ordinary_micro",
+      "groups": 1,
+      "model": "base",
+      "mae": 6.330013979327206,
+      "delta_vs_baseline": 0.0,
+      "delta_ci_low": 0.0,
+      "delta_ci_high": 0.0
+    },
+    {
+      "view": "clean",
+      "scheme": "ordinary_micro",
+      "groups": 1,
+      "model": "c",
+      "mae": 6.3706596825122155,
+      "delta_vs_baseline": 0.040645703185009374,
+      "delta_ci_low": -0.005849686379648624,
+      "delta_ci_high": 0.08872170177203158
+    },
+    {
+      "view": "clean",
+      "scheme": "ordinary_micro",
+      "groups": 1,
+      "model": "blend",
+      "mae": 6.272541777452331,
+      "delta_vs_baseline": -0.057472201874874784,
+      "delta_ci_low": -0.09247128577529938,
+      "delta_ci_high": -0.022942581278606915
+    },
+    {
+      "view": "clean",
+      "scheme": "age_macro",
+      "groups": 4,
+      "model": "base",
+      "mae": 6.259724733287634,
+      "delta_vs_baseline": 0.0,
+      "delta_ci_low": 0.0,
+      "delta_ci_high": 0.0
+    },
+    {
+      "view": "clean",
+      "scheme": "age_macro",
+      "groups": 4,
+      "model": "c",
+      "mae": 6.483373297573404,
+      "delta_vs_baseline": 0.22364856428577085,
+      "delta_ci_low": 0.13902933229807662,
+      "delta_ci_high": 0.30731045712652905
+    },
+    {
+      "view": "clean",
+      "scheme": "age_macro",
+      "groups": 4,
+      "model": "blend",
+      "mae": 6.305571066380641,
+      "delta_vs_baseline": 0.04584633309300745,
+      "delta_ci_low": -0.01796054843917427,
+      "delta_ci_high": 0.10926216308331224
+    },
+    {
+      "view": "artifact",
+      "scheme": "ordinary_micro",
+      "groups": 1,
+      "model": "base",
+      "mae": 7.237796939176928,
+      "delta_vs_baseline": 0.0,
+      "delta_ci_low": 0.0,
+      "delta_ci_high": 0.0
+    },
+    {
+      "view": "artifact",
+      "scheme": "ordinary_micro",
+      "groups": 1,
+      "model": "c",
+      "mae": 6.522732400391373,
+      "delta_vs_baseline": -0.7150645387855548,
+      "delta_ci_low": -0.7974503524896595,
+      "delta_ci_high": -0.6326621680220296
+    },
+    {
+      "view": "artifact",
+      "scheme": "ordinary_micro",
+      "groups": 1,
+      "model": "blend",
+      "mae": 6.487925483266592,
+      "delta_vs_baseline": -0.7498714559103359,
+      "delta_ci_low": -0.8151452450083679,
+      "delta_ci_high": -0.6864673431923193
+    },
+    {
+      "view": "artifact",
+      "scheme": "age_macro",
+      "groups": 4,
+      "model": "base",
+      "mae": 6.964520687838228,
+      "delta_vs_baseline": 0.0,
+      "delta_ci_low": 0.0,
+      "delta_ci_high": 0.0
+    },
+    {
+      "view": "artifact",
+      "scheme": "age_macro",
+      "groups": 4,
+      "model": "c",
+      "mae": 6.686599556436796,
+      "delta_vs_baseline": -0.27792113140143204,
+      "delta_ci_low": -0.39146275926709406,
+      "delta_ci_high": -0.16613071483343744
+    },
+    {
+      "view": "artifact",
+      "scheme": "age_macro",
+      "groups": 4,
+      "model": "blend",
+      "mae": 6.509023272483827,
+      "delta_vs_baseline": -0.4554974153544018,
+      "delta_ci_low": -0.5426534636197392,
+      "delta_ci_high": -0.36757624259609645
+    }
+  ],
+  "files": {
+    "metrics": "results\\pilot_bc_20260914\\balanced_oof\\balanced_oof_metrics.csv",
+    "age_groups": "results\\pilot_bc_20260914\\balanced_oof\\balanced_oof_age_groups.csv"
+  }
+}

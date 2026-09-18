@@ -73,6 +73,28 @@ class PilotBCBundleTests(unittest.TestCase):
             self.assertEqual(config["model"]["architecture"], fold1["model"]["architecture"])
             self.assertEqual(config["training"], fold1["training"])
 
+    def test_b_fold5_differs_from_c_fold5_only_by_run_identity_and_consistency(self):
+        b_path = ROOT / "c3_roi" / "pilot_configs" / (
+            "C3_Z26_C3_ROI_V2_PILOT_B_FOLD_5_SEED_42.toml"
+        )
+        c_path = ROOT / "c3_roi" / "pilot_configs" / (
+            "C3_Z26_C3_ROI_V2_PILOT_C_FOLD_5_SEED_42.toml"
+        )
+        b = tomllib.loads(b_path.read_text(encoding="utf-8"))
+        c = tomllib.loads(c_path.read_text(encoding="utf-8"))
+        self.assertEqual(b["data"], c["data"])
+        self.assertEqual(b["training"], c["training"])
+        self.assertEqual(b["warnings"], c["warnings"])
+        b_model = dict(b["model"])
+        c_model = dict(c["model"])
+        self.assertEqual(b_model.pop("consistency_weight"), 0.0)
+        self.assertEqual(c_model.pop("consistency_weight"), 0.30)
+        self.assertEqual(b_model, c_model)
+        b_run = dict(b["run"])
+        c_run = dict(c["run"])
+        self.assertNotEqual(b_run.pop("run_id"), c_run.pop("run_id"))
+        self.assertEqual(b_run, c_run)
+
     def test_v2_bundle_bootstraps_colab_and_contains_resume_and_evaluation(self):
         self.assertEqual(builder.DEFAULT_OUTPUT.name, "C3_Z26_C3_ROI_V2_PILOT_BC_CODE_V2.zip")
         with tempfile.TemporaryDirectory() as directory:

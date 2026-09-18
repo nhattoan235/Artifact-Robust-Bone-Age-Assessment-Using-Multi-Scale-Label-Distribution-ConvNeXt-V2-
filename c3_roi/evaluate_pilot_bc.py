@@ -145,8 +145,8 @@ def _config_path(pilot: str, pilot_root: Path, fold: int = 1) -> Path:
         raise ValueError("pilot phải là B hoặc C")
     if fold not in {1, 2, 3, 4, 5}:
         raise ValueError("fold phải nằm trong 1..5")
-    if name == "B" and fold != 1:
-        raise ValueError("Pilot B chỉ được khóa ở Fold 1")
+    if name == "B" and fold not in {1, 5}:
+        raise ValueError("Pilot B chỉ được khóa ở Fold 1 và Fold 5")
     return pilot_root / "configs" / f"C3_Z26_C3_ROI_V2_PILOT_{name}_FOLD_{fold}_SEED_42.toml"
 
 

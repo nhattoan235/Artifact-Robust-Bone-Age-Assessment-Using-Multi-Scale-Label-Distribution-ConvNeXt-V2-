@@ -1,11 +1,16 @@
 import tempfile
 import unittest
+import random
 from pathlib import Path
 
 import numpy as np
 from PIL import Image
 
-from p1_baseline.artifacts import apply_mild_artifact
+from p1_baseline.artifacts import (
+    ARTIFACT_PROFILES,
+    apply_artifact_profile,
+    apply_mild_artifact,
+)
 from p1_baseline.data import BoneAgeDataset
 from p1_baseline.trainer import artifact_ramp_factor
 
@@ -30,6 +35,32 @@ class PilotArtifactTests(unittest.TestCase):
         source = Image.fromarray(np.arange(64, dtype=np.uint8).reshape(8, 8), mode="L")
         result = apply_mild_artifact(source, seed=123, severity=0.0)
         self.assertTrue(np.array_equal(np.asarray(result), np.asarray(source)))
+
+    def test_diagnostic_profiles_are_deterministic_and_preserve_shape(self):
+        source = Image.fromarray(
+            np.arange(64 * 64, dtype=np.uint16).reshape(64, 64).astype(np.uint8)
+        )
+        for profile in ARTIFACT_PROFILES:
+            with self.subTest(profile=profile):
+                first = apply_artifact_profile(source, profile, seed=17, severity=1.0)
+                second = apply_artifact_profile(source, profile, seed=17, severity=1.0)
+                self.assertEqual(first.size, source.size)
+                self.assertTrue(np.array_equal(np.asarray(first), np.asarray(second)))
+
+    def test_profile_rejects_extrapolated_severity(self):
+        source = Image.new("L", (32, 32), 128)
+        with self.assertRaises(ValueError):
+            apply_artifact_profile(source, "noise", severity=1.1)
+
+    def test_composite_profile_reproduces_locked_probability_rng_sequence(self):
+        source = Image.fromarray(np.full((32, 40), 128, dtype=np.uint8), mode="L")
+        rng = random.Random(123)
+        rng.random()  # artifact_probability draw in BoneAgeDataset
+        expected = apply_mild_artifact(source, rng=rng, severity=1.0)
+        actual = apply_artifact_profile(
+            source, "composite_mild", seed=123, severity=1.0,
+        )
+        self.assertTrue(np.array_equal(np.asarray(expected), np.asarray(actual)))
 
     def test_dataset_returns_paired_artifact_view(self):
         with tempfile.TemporaryDirectory() as directory:
